@@ -66,11 +66,11 @@ VALUES
 ('Software Engineer'),
 ('Sales'),('Healthcare'),('Manufacturing'),('Finance'),('Agriculture'), ('Information Technology'),('Automobile Manufacturing'), ('Telecommunication'), ('Food Industry'), ('Cannabis Industry'), ('Online Conferencing Industry'), ('Online Dating Industry'), ('HR & Recruitment Services'), ('Real Estate'), ('Apparel Manufacturing'), ('Tourism'), ('Entertainment');
 
-INSERT INTO "user" ("username", "password", "email", "industry_id", "facebook", "linkedin", "twitter", "youtube", "instagram", "portfolio", "location_city", "location_zip", "location_state", "availability")
+INSERT INTO "profiles" ("first_name", "last_name", "email", "industry_id", "facebook", "linkedin", "twitter", "youtube", "instagram", "portfolio", "location_city", "location_zip", "location_state", "availability", "user_id")
 VALUES
-('Michael', '1234', 'test1@aol.com', 1, 'facebook.com/test1', 'linkedin.com/test1', 'twitter.com/test1', 'youtube.com/test1', 'instagram.com/test1', 'test1.com', 'Mounds View', 55112, 'Minnesota', true)
-('Kayla', '1234', 'test2@aol.com', 2, 'facebook.com/test2', 'linkedin.com/test2', 'twitter.com/test2', 'youtube.com/test2', 'instagram.com/test2', 'test2.com', 'Minneapolis', 55407, 'Minnesota', true),
-('Vic', '1234', 'test3@aol.com', 3, 'facebook.com/test3', 'linkedin.com/test3', 'twitter.com/test3', 'youtube.com/test3', 'instagram.com/test3', 'test3.com', 'Minneapolis', 55407, 'Minnesota', true),
-('Joe', '1234', 'test4@aol.com', 4, 'facebook.com/test4', 'linkedin.com/test4', 'twitter.com/test4', 'youtube.com/test4', 'instagram.com/test4', 'test4.com', 'Minneapolis', 55407, 'Minnesota', true),
-('Nick', '1234', 'test5@aol.com', 5, 'facebook.com/test5', 'linkedin.com/test5', 'twitter.com/test5', 'youtube.com/test5', 'instagram.com/test5', 'test5.com', 'Minneapolis', 55407, 'Minnesota', true),
-('Duncan', '1234', 'test6@aol.com', 1, 'facebook.com/test6', 'linkedin.com/test6', 'twitter.com/test6', 'youtube.com/test6', 'instagram.com/test6', 'test6.com', 'Eden Prairie', 55347, 'Minnesota', true);
+('Michael', 'Huso', 'test1@aol.com', 1, 'facebook.com/test1', 'linkedin.com/test1', 'twitter.com/test1', 'youtube.com/test1', 'instagram.com/test1', 'test1.com', 'Mounds View', 55112, 'Minnesota', true, 1),
+('Vic', 'Lees', 'test2@aol.com', 2, 'facebook.com/test2', 'linkedin.com/test2', 'twitter.com/test2', 'youtube.com/test2', 'instagram.com/test2', 'test2.com', 'Minneapolis', 55407, 'Minnesota', true, 2),
+('Joe', 'Allen', 'test3@aol.com', 3, 'facebook.com/test3', 'linkedin.com/test3', 'twitter.com/test3', 'youtube.com/test3', 'instagram.com/test3', 'test3.com', 'Minneapolis', 55407, 'Minnesota', true, 3),
+('Kayla', 'Mir', 'test4@aol.com', 4, 'facebook.com/test4', 'linkedin.com/test4', 'twitter.com/test4', 'youtube.com/test4', 'instagram.com/test4', 'test4.com', 'Minneapolis', 55407, 'Minnesota', true, 4),
+('Nicholas', 'Ilacqua', 'test5@aol.com', 5, 'facebook.com/test5', 'linkedin.com/test5', 'twitter.com/test5', 'youtube.com/test5', 'instagram.com/test5', 'test5.com', 'Minneapolis', 55407, 'Minnesota', true, 5),
+('Duncan', 'Nielsen', 'test6@aol.com', 6, 'facebook.com/test6', 'linkedin.com/test6', 'twitter.com/test6', 'youtube.com/test6', 'instagram.com/test6', 'test6.com', 'Eden Prairie', 55347, 'Minnesota', true, 6);
