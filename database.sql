@@ -13,8 +13,11 @@ CREATE TABLE "industry" (
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL,
-    "email" CHARACTER VARYING (1000) NOT NULL,
+    "password" VARCHAR (1000) NOT NULL
+);
+
+CREATE TABLE "profiles" (
+	"email" CHARACTER VARYING (1000) NOT NULL,
     "photo" VARCHAR (1000),
     "industry_id" INT REFERENCES "industry" (id) ON DELETE CASCADE NOT NULL,
     "facebook" VARCHAR (1000),
@@ -23,7 +26,7 @@ CREATE TABLE "user" (
     "youtube" VARCHAR (1000),
     "instagram" VARCHAR (1000),
     "portfolio" VARCHAR (1000),
-    "location_city" VARCHAR (1000) NOT NULL,
+    "location_city" VARCHAR (1000),
     "location_zip" INTEGER  NOT NULL,
     "location_state" VARCHAR (1000) NOT NULL,
     "availability" BOOLEAN
