@@ -17,6 +17,7 @@ CREATE TABLE "user" (
 );
 
 CREATE TABLE "profiles" (
+	"id" SERIAL PRIMARY KEY,
 	"email" CHARACTER VARYING (1000) NOT NULL,
     "photo" VARCHAR (1000),
     "industry_id" INT REFERENCES "industry" (id) ON DELETE CASCADE NOT NULL,
@@ -29,7 +30,10 @@ CREATE TABLE "profiles" (
     "location_city" VARCHAR (1000),
     "location_zip" INTEGER  NOT NULL,
     "location_state" VARCHAR (1000) NOT NULL,
-    "availability" BOOLEAN
+    "availability" BOOLEAN DEFAULT true,
+    "user_id" INT REFERENCES "user" (id) ON DELETE CASCADE NOT NULL,
+    "first_name" VARCHAR (1000),
+    "last_name" VARCHAR (1000)
 );
 
 CREATE TABLE "user_messages" (
