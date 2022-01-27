@@ -29,7 +29,10 @@ CREATE TABLE "profiles" (
     "location_city" VARCHAR (1000),
     "location_zip" INTEGER  NOT NULL,
     "location_state" VARCHAR (1000) NOT NULL,
-    "availability" BOOLEAN
+    "availability" BOOLEAN,
+    "user_id" INT REFERENCES "user" (id) ON DELETE CASCADE NOT NULL,
+    "first_name" VARCHAR (1000),
+    "last_name" VARCHAR (1000),
 );
 
 CREATE TABLE "user_messages" (
