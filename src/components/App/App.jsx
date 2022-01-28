@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
+import SearchProfiles from '../SearchProfiles/SearchProfiles';
 
 function App() {
   const dispatch = useDispatch();
@@ -66,6 +67,13 @@ function App() {
             path="/info"
           >
             <InfoPage />
+          </ProtectedRoute>
+          
+          <ProtectedRoute
+            exact
+            path="/searchProfiles"
+          >
+            <SearchProfiles />
           </ProtectedRoute>
 
           <Route
