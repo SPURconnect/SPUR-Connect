@@ -3,6 +3,21 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
+router.get('/', rejectUnauthenticated, (req, res) => {
+  const queryText = `
+      SELECT * FROM "user_meetings"
+      WHERE "user_id"=$1
+  `;
+  pool.query(queryText, [req.user.id])
+    .then((dbRes) => {
+      res.send(dbRes.rows);
+    })
+    .catch(dbErr => {
+      console.log('/meetings GET error:', dbErr);
+      res.sendStatus(500);
+    });
+});
+
 //POST meeting to database.
 router.post('/', rejectUnauthenticated, (req, res) => {
   const queryText = `
@@ -21,7 +36,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
       res.sendStatus(201);
     })
     .catch((dbErr) =>{
-      console.log('/meetings POST err:', dbErr);
+      console.log('/meetings POST error:', dbErr);
       res.sendStatus(500);
     });
 });
