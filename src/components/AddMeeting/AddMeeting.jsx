@@ -13,7 +13,7 @@ function AddMeeting(){
   const dispatch = useDispatch();
   const [meetingTitle, setMeetingTitle] = useState('');
   const [location, setLocation] = useState('');
-  const [date, setDate] = useState(new Date('2014-08-18T21:11:54'));
+  const [date, setDate] = useState(new Date('2014-08-18T21:11:54')); //TODO: This needs to default to current time... somehow. Duncan can figure this one out.
 
   function handleSetMeetingTitle(event){
     setMeetingTitle(event.target.value);
@@ -29,17 +29,18 @@ function AddMeeting(){
   };
 
   function goToProfile(){
-    //history.push(`/profiles/${params.id}`);
+    //history.push(`/profiles/${params.id}`);  TODO: Set this up to head back to the profile you came from.
   };
 
   function addMeeting(){
       console.log(meetingTitle, location, date)
       dispatch({
         type: 'ADD_MEETING',
-        payload: {meetingTitle: meetingTitle, location: location, date: date, participant: '5'}//Useparams for Participant
+        payload: {meetingTitle: meetingTitle, location: location, date: date, participant: '5'}// TODO: Change "participant" to current useParams to match whatever user profile we were selected on.
       });
       setMeetingTitle('');
       setLocation('');
+      goToProfile(); //Will send you back to the profile you came from once params are setup.
   }
 
   return(
