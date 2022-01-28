@@ -1,4 +1,5 @@
 import { all } from 'redux-saga/effects';
+import industriesSaga from './industries.saga';
 import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import searchProfilesSaga from './searchProfiles.saga';
@@ -17,5 +18,6 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     searchProfilesSaga(),
+    industriesSaga(),
   ]);
 }
