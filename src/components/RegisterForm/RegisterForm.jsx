@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [location, setLocation] = useState('');
+  const [industry, setIndustry] = useState('');
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 
@@ -21,7 +24,8 @@ function RegisterForm() {
 
   return (
     <form className="formPanel" onSubmit={registerUser}>
-      <h2>Register User</h2>
+      <center>
+      <h2>Register</h2>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}
@@ -29,7 +33,7 @@ function RegisterForm() {
       )}
       <div>
         <label htmlFor="username">
-          Username:
+          Username:<br></br>
           <input
             type="text"
             name="username"
@@ -41,7 +45,7 @@ function RegisterForm() {
       </div>
       <div>
         <label htmlFor="password">
-          Password:
+          Password:<br></br>
           <input
             type="password"
             name="password"
@@ -52,8 +56,47 @@ function RegisterForm() {
         </label>
       </div>
       <div>
+        <label htmlFor="email">
+          Email:<br></br>
+          <input
+            type="email"
+            name="email"
+            value={email}
+            required
+            onChange={(event) => setEmail(event.target.value)}
+          />
+        </label>
+      </div>
+      <div>
+        <label htmlFor="location">
+          Location/City:<br></br>
+          <input
+            type="location"
+            name="locaiton"
+            value={location}
+            required
+            onChange={(event) => setLocation(event.target.value)}
+          />
+        </label>
+      </div>
+
+      <div><br></br>
+        <label htmlFor="Industry">
+        Industry:<br></br>
+        </label>
+          <input
+            type="industry"
+            name="industry"
+            value={industry}
+            required
+            onChange={(event) => setIndustry(event.target.value)}
+          />
+        
+      </div>
+      <div>
         <input className="btn" type="submit" name="submit" value="Register" />
       </div>
+      </center>
     </form>
   );
 }
