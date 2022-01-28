@@ -39,9 +39,9 @@ CREATE TABLE "profiles" (
 CREATE TABLE "user_messages" (
     "id" SERIAL PRIMARY KEY,
     "content" VARCHAR (80) NOT NULL,
-    "user_id" INT REFERENCES "user" (id) ON DELETE CASCADE NOT NULL,
-    "participan_id" INTEGER NOT NULL,
-    "timeStamp" TIMESTAMP WITH TIME ZONE NOT NULL
+    "sender_id" INT REFERENCES "user" (id) ON DELETE CASCADE NOT NULL,
+    "recipient_id" INT REFERENCES "user" (id) ON DELETE CASCADE NOT NULL,
+    "timestamp" TIMESTAMP WITH TIME ZONE NOT NULL
 );
 
 CREATE TABLE "user_meetings" (
@@ -51,7 +51,7 @@ CREATE TABLE "user_meetings" (
     "date" VARCHAR (255) NOT NULL,
     "meeting_title" VARCHAR (255) NOT NULL,
     "user_id" INT REFERENCES "user" (id) ON DELETE CASCADE NOT NULL,
-    "participan_id" INTEGER NOT NULL
+    "participant_id" INTEGER NOT NULL
 );
 
 CREATE TABLE "meeting_uploads"(
