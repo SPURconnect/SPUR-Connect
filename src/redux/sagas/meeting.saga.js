@@ -31,9 +31,25 @@ function* getMeetings(){
   };
 };
 
+function* getNotes(action){
+  try{
+    const response = yield axios({
+      method: 'GET',
+      url: `/api/meetings/notes/${action.payload}`,
+    })
+    yield put({
+      type: 'SET_NOTES',
+      payload: response.data
+    })
+  }catch(error){
+    console.log('getMeetings catch error:', error);
+  };
+}
+
 function* meetingSaga(){
   yield takeEvery('ADD_MEETING', addMeeting);
-  yield takeEvery('GET_MEETINGS', getMeetings)
+  yield takeEvery('GET_MEETINGS', getMeetings);
+  yield takeEvery('GET_NOTES', getNotes);
 };
 
 export default meetingSaga;
