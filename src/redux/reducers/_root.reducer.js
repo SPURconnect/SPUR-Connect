@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
+import searchProfilesReducer from './searchProfiles.reducer';
+import industriesReducer from './industries.reducer';
 import messagesReducer from './messages.reducer';
 import whereReducer from './where.reducer';
 import meetings from './meetings.reducer';
@@ -14,6 +16,8 @@ import meetings from './meetings.reducer';
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
+  searchProfilesReducer,
+  industriesReducer,
   messagesReducer,
   whereReducer,
   meetings, // contains users meetings

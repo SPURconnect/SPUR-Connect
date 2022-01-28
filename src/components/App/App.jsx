@@ -23,6 +23,7 @@ import TESTMessages from '../TESTMessages/TESTMessages';
 import AddMeeting from '../AddMeeting/AddMeeting.jsx';
 
 import './App.css';
+import SearchProfiles from '../SearchProfiles/SearchProfiles';
 
 function App() {
   const dispatch = useDispatch();
@@ -76,6 +77,13 @@ function App() {
             path="/info"
           >
             <InfoPage />
+          </ProtectedRoute>
+          
+          <ProtectedRoute
+            exact
+            path="/searchProfiles"
+          >
+            <SearchProfiles />
           </ProtectedRoute>
 
           <ProtectedRoute
