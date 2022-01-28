@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
+import BottomNavBar from '../BottomNavBar/BottomNavBar';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
@@ -27,9 +28,17 @@ function App() {
   const dispatch = useDispatch();
 
   const user = useSelector(store => store.user);
+  // gets the location of where the user is in the app based on the url
+    // splices it to work with the reducer set up
+    // see BottomNavBar for other side of this code
+  const locationToSend = window.location.hash.replace('#/', '');
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
+    dispatch({
+      type: 'SET_WHERE',
+      payload: locationToSend
+    })
   }, [dispatch]);
 
   return (
@@ -118,6 +127,7 @@ function App() {
           </Route>
         </Switch>
         <Footer />
+        <BottomNavBar />
       </div>
     </Router>
   );
