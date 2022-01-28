@@ -4,6 +4,9 @@ import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import searchProfilesSaga from './searchProfiles.saga';
 import userSaga from './user.saga';
+import messagesGET from './GETmessages.saga';
+import messagesPOST from './POSTmessages.saga';
+import meetingSaga from './meeting.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -19,5 +22,8 @@ export default function* rootSaga() {
     userSaga(),
     searchProfilesSaga(),
     industriesSaga(),
+    messagesGET(),
+    messagesPOST(),
+    meetingSaga(), // saga for meetings
   ]);
 }
