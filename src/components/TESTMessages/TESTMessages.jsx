@@ -1,5 +1,5 @@
 import react, {useEffect, useState} from 'react';
-import {useDispatch} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import TESTMsgCompon from '../TESTMsgCompon/TESTMsgCompon';
 
@@ -9,7 +9,10 @@ import 'react-chat-elements/dist/main.css';
 import { MessageBox } from 'react-chat-elements';
 
 export default function TESTMessages() {
+  //alias HOOKs
   const dispatch = useDispatch();
+  //REDUX store
+  const userMessages = useSelector((store) => store.messagesReducer);
 
   const [message, setMessage] = useState('');
 
@@ -35,8 +38,10 @@ export default function TESTMessages() {
 
   return(
     <>
+    {userMessages.map((msg) => {
+      return <TESTMsgCompon key={msg.id} timestamp={msg.timestamp} message={msg.content} />
+    })}
     
-    {/* <TESTMsgCompon timestamp={timestamp} message={message}/> */}
     <p>Test messages!</p>
     <input 
       value = {message}
