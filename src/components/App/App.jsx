@@ -9,7 +9,6 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
 import BottomNavBar from '../BottomNavBar/BottomNavBar';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
@@ -20,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import TESTMessages from '../TESTMessages/TESTMessages';
 import AddMeeting from '../AddMeeting/AddMeeting.jsx';
 
 import './App.css';
@@ -77,6 +77,15 @@ function App() {
           >
             <InfoPage />
           </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/messages"
+          >
+            <TESTMessages />
+          </ProtectedRoute>
+
           <Route
             exact
             path="/login"
@@ -126,8 +135,9 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
-        <Footer />
+
         <BottomNavBar />
+
       </div>
     </Router>
   );
