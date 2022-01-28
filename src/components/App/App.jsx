@@ -20,6 +20,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import AddMeeting from '../AddMeeting/AddMeeting.jsx';
 
 import './App.css';
 
@@ -76,7 +77,6 @@ function App() {
           >
             <InfoPage />
           </ProtectedRoute>
-
           <Route
             exact
             path="/login"
@@ -104,7 +104,9 @@ function App() {
               <RegisterPage />
             }
           </Route>
-
+          <ProtectedRoute exact path = "/addmeeting">
+            <AddMeeting />
+          </ProtectedRoute>
           <Route
             exact
             path="/home"
