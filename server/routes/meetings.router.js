@@ -4,6 +4,8 @@ const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 //POST meeting to database.
+
+
 router.post('/', rejectUnauthenticated, (req, res) => {
   const queryText = `
     INSERT INTO "user_meetings" ("user_id", "participant_id", "meeting_title", "date", "meetup_location")
