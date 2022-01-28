@@ -7,9 +7,11 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
   // GET route code here
+  console.log('GET/UserProfiles', req.user.id);
+  
   const sqlText = `
     SELECT * FROM "profiles"
-    WHERE "username_id"=$1;
+    WHERE "user_id"=$1;
   `;
   const sqlValues = [req.user.id]
   pool.query (sqlText, sqlValues)

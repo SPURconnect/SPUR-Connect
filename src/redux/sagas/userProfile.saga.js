@@ -4,6 +4,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 function* fetchUserProfile() {
   try {
+    
     const response = yield axios({
       method: 'GET',
       url: '/api/userProfile'
@@ -12,8 +13,9 @@ function* fetchUserProfile() {
       type: 'SET_USER_PROFILE',
       payload: response.data
     })
+    console.log('in fetchUserProfile', response.data);
   } catch (err) {
-    console.log('in POST error', err);
+    console.log('in GET fetchUserProfile error', err);
   }
 }
 
