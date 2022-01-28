@@ -46,7 +46,7 @@ CREATE TABLE "user_messages" (
 
 CREATE TABLE "user_meetings" (
     "id" SERIAL PRIMARY KEY,
-    "summary" VARCHAR (1000) NOT NULL,
+    "summary" VARCHAR (1000),
     "meetup_location" VARCHAR (255) NOT NULL,
     "date" VARCHAR (255) NOT NULL,
     "meeting_title" VARCHAR (255) NOT NULL,

@@ -9,7 +9,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
+import BottomNavBar from '../BottomNavBar/BottomNavBar';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import TESTMessages from '../TESTMessages/TESTMessages';
+import AddMeeting from '../AddMeeting/AddMeeting.jsx';
 
 import './App.css';
 
@@ -27,9 +28,17 @@ function App() {
   const dispatch = useDispatch();
 
   const user = useSelector(store => store.user);
+  // gets the location of where the user is in the app based on the url
+    // splices it to work with the reducer set up
+    // see BottomNavBar for other side of this code
+  const locationToSend = window.location.hash.replace('#/', '');
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
+    dispatch({
+      type: 'SET_WHERE',
+      payload: locationToSend
+    })
   }, [dispatch]);
 
   return (
@@ -68,7 +77,7 @@ function App() {
           >
             <InfoPage />
           </ProtectedRoute>
-          
+
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
@@ -104,7 +113,9 @@ function App() {
               <RegisterPage />
             }
           </Route>
-
+          <ProtectedRoute exact path = "/addmeeting">
+            <AddMeeting />
+          </ProtectedRoute>
           <Route
             exact
             path="/home"
@@ -125,7 +136,8 @@ function App() {
           </Route>
         </Switch>
 
-        
+        <BottomNavBar />
+
       </div>
     </Router>
   );
