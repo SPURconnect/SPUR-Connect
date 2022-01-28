@@ -18,6 +18,8 @@ function RegisterForm() {
       payload: {
         username: username,
         password: password,
+        email: email,
+        location_city: location,      
       },
     });
   }; // end registerUser
