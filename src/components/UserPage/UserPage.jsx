@@ -26,12 +26,12 @@ function UserPage() {
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
+      {/* To do: Need to figure out how to get the picture to render */}
       {userProfile.map((profile)=>{
         return <ul key ={profile.id} value={profile.id}>
           {profile.first_name}  {profile.last_name}
           <li>{profile.location_city}, {profile.location_state}</li>
-          {/* <li>{profile.industry}</li> todo: get industries from same GET route as userProfile or
-          do a separate get for the industries?  */}
+          <li>{profile.industry_name}</li>
           <li>{profile.email}</li>
           <li>{profile.linkedin}</li>
           <li>{profile.portfolio}</li>
