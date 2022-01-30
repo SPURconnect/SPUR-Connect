@@ -4,15 +4,21 @@
 ## Joe
 [ ] Messaging
   [ ] FE View
-  [ ] Test msg pieces
-  [ ] create dummy messages
+  [ 👍 ] Test msg pieces
+  [ 👍 ] create dummy messages
+
+  [ ] Convo w User card
+  [ ] Convo View
 
   [ ] Server-side
   handle the message sorting on server
-    [ ] GET msg dispatch
-    [ ] grab all users
-    [ ] chunk by oth user
-      [ ] sort timestamp 
+    [ 👍 ] FETCH_MESSAGES dispatch
+    [ 👍 ] grab all users
+    [ 👍 ] sorts timestamp asc
+  [ ]
+    [ ] chunk by other user
+
+    
 
 ## Kayla
   [ ]
