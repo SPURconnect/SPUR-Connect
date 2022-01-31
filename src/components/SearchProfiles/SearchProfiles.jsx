@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { string } from 'prop-types';
 
 function SearchProfiles(props) {
  
@@ -14,9 +15,10 @@ function SearchProfiles(props) {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_INDUSTRIES' })
-}, []);
+  }, []);
 
   const handleQueryChange = (event) => {
+    let cleanString = event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1);
     event.preventDefault();
     if (event.target.value === '')  {
       dispatch({
@@ -26,16 +28,29 @@ function SearchProfiles(props) {
     else  {
     dispatch({
       type: 'FETCH_PROFILES',
-      payload: event.target.value
-    })
+      payload: cleanString
+      })
+    }
   }
-}
+
+  const handleIndustryChange = (event) =>  {
+    event.preventDefault();
+    console.log(event.target.value)
+    let filteredSearch = searchProfilesReducer.filter(industry => industry.industry_id === event.target.value);
+    console.log(filteredSearch);
+    for (let i = 0; i < filteredSearch.length; i++) {
+      searchProfilesReducer.unshift(filteredSearch[i]);
+    }
+    return searchProfilesReducer;
+  }
+
+
 
 
   return (
     <div>
       <input onChange={(event) => handleQueryChange(event)}></input>
-      <select>
+      <select onChange={(event) => handleIndustryChange(event)}>
         <option>Filter By Industry</option>
         {industriesReducer.map((industry) =>  {
             return  (

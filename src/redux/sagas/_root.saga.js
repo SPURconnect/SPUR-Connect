@@ -21,7 +21,7 @@ export default function* rootSaga() {
     loginSaga(), // login saga is now registered
     registrationSaga(),
     userSaga(),
-    userProfile()//This is to grab the users profile information
+    userProfile(),//This is to grab the users profile information
     searchProfilesSaga(),
     industriesSaga(),
     messagesGET(),

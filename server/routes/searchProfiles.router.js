@@ -16,6 +16,7 @@ searchProfilesRouter.get('/:input', (req, res) => {
     SELECT * FROM "profiles"
       WHERE "location_city" LIKE $1
         OR  "location_state" LIKE $1
+        OR  "location_zip" LIKE $1
         OR  "first_name" LIKE $1
         OR  "last_name" LIKE $1;
     `;
