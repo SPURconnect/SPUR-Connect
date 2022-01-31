@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import TESTMessages from '../TESTMessages/TESTMessages';
 import AddMeeting from '../AddMeeting/AddMeeting.jsx';
+import MeetingNotes from '../MeetingNotes/MeetingNotes.jsx';
 
 import './App.css';
 import SearchProfiles from '../SearchProfiles/SearchProfiles';
@@ -121,8 +122,12 @@ function App() {
               <RegisterPage />
             }
           </Route>
-          <ProtectedRoute exact path = "/addmeeting">
+          <ProtectedRoute exact path = "/meeting/add">
             <AddMeeting />
+          </ProtectedRoute>
+          {/* TODO: useParams to route this to /meetingnotes/:id */}
+          <ProtectedRoute exact path = "/meeting/notes"> 
+            <MeetingNotes />
           </ProtectedRoute>
           <Route
             exact
