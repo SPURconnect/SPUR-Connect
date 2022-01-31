@@ -31,25 +31,9 @@ function* getMeetings(){
   };
 };
 
-// function* getParticipant(action){
-//   try{
-//     const response = yield axios({
-//       method: 'GET',
-//       url: `api/meetings/participant/${action.payload}`,
-//     })
-//     yield put({
-//       type: 'SET_PARTICIPANT',
-//       payload: response.data
-//     })
-//   }catch(error) {
-//     console.log('getParticipant catch error', error);
-//   }
-// }
-
 function* meetingSaga(){
   yield takeEvery('ADD_MEETING', addMeeting);
   yield takeEvery('GET_MEETINGS', getMeetings);
-  // yield takeEvery('GET_PARTICIPANT', getParticipant);
 };
 
 export default meetingSaga;
