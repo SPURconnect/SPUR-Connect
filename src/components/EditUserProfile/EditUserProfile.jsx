@@ -34,6 +34,7 @@ function EditUserProfile (){
         youtube: editProfile.youtube,
         portfolio: editProfile.portfolio,
         location_city: editProfile.location_city,
+        location_zip: editProfile.location_zip,
         location_state: editProfile.location_state,
         about_me: editProfile.about_me,
         industry: editProfile.industry_name
@@ -41,6 +42,45 @@ function EditUserProfile (){
     })
     history.push('/user')
   }
+  const handlePhoto = (e) => {
+    dispatch({
+      type: 'SET_PHOTO',
+      payload: e.target.value
+    })
+  }
+
+  const handleFirstName = (e) => {
+    dispatch({
+      type: 'SET_FIRST_NAME',
+      payload: e.target.value
+    })
+  }
+  const handleLastName = (e) => {
+    dispatch({
+      type: 'SET_LAST_NAME',
+      payload: e.target.value
+    })
+  }
+  const handleIndustry = (e) => {
+    dispatch({
+      type: 'SET_INDUSTRY',
+      payload: e.target.value
+    })
+  }
+  const handleEmail = (e) => {
+    dispatch({
+      type: 'SET_EMAIL',
+      payload: e.target.value
+    })
+    
+  }
+  const handleLinkedin = (e) => {
+    dispatch({
+      type: 'SET_LINKEDIN',
+      payload: e.target.value
+    })
+  }
+
 
   return(
 

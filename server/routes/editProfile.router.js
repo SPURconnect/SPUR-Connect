@@ -57,9 +57,10 @@ router.put('/:id', rejectUnauthenticated,(req, res) => {
         "instagram"=$7,
         "portfolio"=$8,
         "location_city"=$9,
-        "location_state"=$10, 
-        "about_me"=$11,
-    WHERE "user_id" = $12
+        "location_zip"=$10
+        "location_state"=$11, 
+        "about_me"=$12,
+    WHERE "user_id" = $13
     `;
   const sqlValues = [
     req.body.email,
@@ -69,6 +70,7 @@ router.put('/:id', rejectUnauthenticated,(req, res) => {
     req.body.instagram,
     req.body.portfolio,
     req.body.location_city,
+    req.body.location_zip,
     req.body.location_state,
     req.body.about_me,
     req.params.id
