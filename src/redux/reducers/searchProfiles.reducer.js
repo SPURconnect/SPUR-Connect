@@ -4,6 +4,8 @@ const searchProfilesReducer = (state = [], action) => {
       return action.payload;
     case 'CLEAR_PROFILES':
       return [];
+    case 'SORT_BY_INDUSTRY':
+      return action.payload;
     default:
       return state;
   }

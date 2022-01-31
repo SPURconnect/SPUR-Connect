@@ -34,13 +34,13 @@ function SearchProfiles(props) {
   }
 
   const handleIndustryChange = (event) =>  {
-    event.preventDefault();
-    console.log(event.target.value)
-    let filteredSearch = searchProfilesReducer.filter(industry => industry.industry_id === event.target.value);
-    console.log(filteredSearch);
+    let filteredSearch = searchProfilesReducer.filter(industry => industry.industry_id == event.target.value);
     for (let i = 0; i < filteredSearch.length; i++) {
+      let index = searchProfilesReducer.indexOf(filteredSearch[i]);
+      searchProfilesReducer.splice(index, 1);
       searchProfilesReducer.unshift(filteredSearch[i]);
     }
+    console.log(searchProfilesReducer);
     return searchProfilesReducer;
   }
 
