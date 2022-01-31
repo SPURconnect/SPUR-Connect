@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import AddMeeting from '../AddMeeting/AddMeeting.jsx';
+import MeetingNotes from '../MeetingNotes/MeetingNotes.jsx';
 
 import './App.css';
 
@@ -97,6 +98,10 @@ function App() {
           </Route>
           <ProtectedRoute exact path = "/addmeeting">
             <AddMeeting />
+          </ProtectedRoute>
+          {/* TODO: useParams to route this to /meetingnotes/:id */}
+          <ProtectedRoute exact path = "/meetingnotes"> 
+            <MeetingNotes />
           </ProtectedRoute>
           <Route
             exact
