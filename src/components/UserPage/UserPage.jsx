@@ -20,6 +20,9 @@ function UserPage() {
 
   console.log('##### userProfile',userProfile);
 
+  const onEditClick = ()=>{
+    history.push (`/edit/${userProfile.user_id}`)
+  }
 
 
   return (
@@ -29,16 +32,20 @@ function UserPage() {
       {/* To do: Need to figure out how to get the picture to render */}
       {userProfile.map((profile)=>{
         return <ul key ={profile.id} value={profile.id}>
-          {profile.first_name}  {profile.last_name}
+         {profile.first_name}  {profile.last_name}
           <li>{profile.location_city}, {profile.location_state}</li>
-          <li>{profile.industry_name}</li>
+          <li>{profile.industry_name} </li>
           <li>{profile.email}</li>
           <li>{profile.linkedin}</li>
           <li>{profile.portfolio}</li>
           <li>{profile.about_me}</li>
           
           </ul>
+          
       })}
+      <div>
+        <button onClick={onEditClick}>Edit Profile Information</button>
+      </div>
       <LogOutButton className="btn" />
     </div>
   );

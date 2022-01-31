@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import TESTMessages from '../TESTMessages/TESTMessages';
 import AddMeeting from '../AddMeeting/AddMeeting.jsx';
+import EditUserProfile from '../EditUserProfile/EditUserProfile';
 
 import './App.css';
 import SearchProfiles from '../SearchProfiles/SearchProfiles';
@@ -92,6 +93,12 @@ function App() {
             path="/messages"
           >
             <TESTMessages />
+          </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact path="/edit/:id">
+          <EditUserProfile />
+
           </ProtectedRoute>
 
           <Route
