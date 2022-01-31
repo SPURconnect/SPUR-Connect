@@ -1,7 +1,7 @@
 import react from 'react';
 import { Box, Typography } from '@mui/material';
 
-export default function TestMsgCompon({timestamp, message}) {
+export default function MessagesMsg({timestamp, message}) {
 
   return(
     <Box>

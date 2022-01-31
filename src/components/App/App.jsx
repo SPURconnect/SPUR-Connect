@@ -19,8 +19,8 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import TESTMessages from '../TESTMessages/TESTMessages';
-import TESTMsgConvo from '../TESTMsgConvo/TESTMsgConvo';
+import MessagesConvo from '../MessagesConvo/MessagesConvo';
+import MessagesView from '../MessagesView/MessagesView';
 import AddMeeting from '../AddMeeting/AddMeeting.jsx';
 
 import './App.css';
@@ -92,8 +92,15 @@ function App() {
             exact
             path="/messages"
           >
-            <TESTMsgConvo />
-            {/* <TESTMessages /> */}
+            <MessagesView />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/messages/convo/:id"
+          >
+            <MessagesConvo />
           </ProtectedRoute>
 
           <Route

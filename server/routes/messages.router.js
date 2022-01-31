@@ -31,29 +31,26 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     }
   
     //Use uniqUsers to group message history into nested object arrays
-    // console.log(uniqUsers)
     let sortedConvos = [];
     
+    //For each unique conversation with another user
     for(let user of uniqUsers){
       let uniqConvo = {
         uniqUser: user,
         messages: []
       };
-
+      //loop through all the messages from DB and push them into the conversation object
       for (let msg of result.rows){
         if(msg.sender_id  == user || msg.recipient_id == user){
           uniqConvo.messages.push(msg)
         }
-      }
-
-        sortedConvos.push(uniqConvo)
-      }
-
-    // res.send(result.rows)
+      };
+      //push the conversation object into the final object array
+      sortedConvos.push(uniqConvo)
+    }
+    //Send to client
     res.send(sortedConvos)
   })
-
-
   .catch((error) => {
     console.log('error fetching user messages', error)
     res.sendStatus(500);
@@ -65,7 +62,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   const sqlValues = [
     req.body.content, 
     req.body.timestamp, 
-    req.body.recipient_id, 
+    req.body.recipient_id.id, 
     req.user.id
   ];
   const sqlQuery = `

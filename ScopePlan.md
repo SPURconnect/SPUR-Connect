@@ -7,19 +7,19 @@
   [ 👍 ] Test msg pieces
   [ 👍 ] create dummy messages
 
-[ ] Convo View
-  [ ] Convo List
+[ 👍 ] Convo View
+  [ 👍 ] Convo List
     [ ] Avatar (links to prof)
-    [ ] Msg summary
+    [ ] User name
+    [ 👍 ] Msg summary
     [ ] Icon?
 
-  [ ] Server-side
+  [ 👍 ] Server-side
   handle the message sorting on server
     [ 👍 ] FETCH_MESSAGES dispatch
     [ 👍 ] grab all users
     [ 👍 ] sorts timestamp asc
-  [ ]
-    [ ] chunk by other user
+    [ 👍 ] chunk by other user
 
 
 ## Kayla
