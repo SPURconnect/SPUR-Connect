@@ -7,8 +7,11 @@
   [ 👍 ] Test msg pieces
   [ 👍 ] create dummy messages
 
-  [ ] Convo w User card
-  [ ] Convo View
+[ ] Convo View
+  [ ] Convo List
+    [ ] Avatar (links to prof)
+    [ ] Msg summary
+    [ ] Icon?
 
   [ ] Server-side
   handle the message sorting on server
@@ -18,7 +21,6 @@
   [ ]
     [ ] chunk by other user
 
-    
 
 ## Kayla
   [ ]

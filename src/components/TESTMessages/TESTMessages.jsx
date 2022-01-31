@@ -3,10 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import TESTMsgCompon from '../TESTMsgCompon/TESTMsgCompon';
 
-// RCE CSS
-import 'react-chat-elements/dist/main.css';
-// MessageBox component
-import { MessageBox } from 'react-chat-elements';
+
 
 export default function TESTMessages() {
   //alias HOOKs
