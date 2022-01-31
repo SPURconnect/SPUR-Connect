@@ -21,7 +21,7 @@ function UserPage() {
   console.log('##### userProfile',userProfile);
 
   const onEditClick = ()=>{
-    history.push (`/edit/${userProfile.user_id}`)
+    history.push (`/edit/${user.id}`)
   }
 
 

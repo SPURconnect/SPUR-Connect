@@ -45,6 +45,8 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 
 //this put route is to help edit a players stats
 router.put('/:id', rejectUnauthenticated,(req, res) => {
+  console.log('In PUT @@@@@ req.params.id', req.params.id);
+  
   const sqlText = `
     UPDATE "profiles"
     SET
@@ -57,9 +59,9 @@ router.put('/:id', rejectUnauthenticated,(req, res) => {
         "instagram"=$7,
         "portfolio"=$8,
         "location_city"=$9,
-        "location_zip"=$10
+        "location_zip"=$10,
         "location_state"=$11, 
-        "about_me"=$12,
+        "about_me"=$12
     WHERE "user_id" = $13
     `;
   const sqlValues = [
@@ -67,6 +69,8 @@ router.put('/:id', rejectUnauthenticated,(req, res) => {
     req.body.photo,
     req.body.facebook,
     req.body.linkedin,
+    req.body.twitter,
+    req.body.youtube,
     req.body.instagram,
     req.body.portfolio,
     req.body.location_city,
@@ -80,7 +84,7 @@ router.put('/:id', rejectUnauthenticated,(req, res) => {
       const sqlText2 = `
     UPDATE "industry"
     SET
-        "industry_name"=$1 
+          "industry_name"=$1 
     WHERE "id" = $2
     `;
       const sqlValues2 = [

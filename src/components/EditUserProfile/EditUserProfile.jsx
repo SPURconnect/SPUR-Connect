@@ -10,7 +10,7 @@ function EditUserProfile (){
   console.log('params:');
   console.log(params);
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const editProfile = useSelector((store) => store.editProfileReducer)
 
   useEffect(() => {
@@ -19,6 +19,8 @@ function EditUserProfile (){
       payload: params.id
     })
   }, [params.id])
+
+  console.log('!!!!!!! editProfile reducer', editProfile);
 
   const handleUpdateSubmit = (e)=>{
     e.preventDefault();
@@ -48,7 +50,12 @@ function EditUserProfile (){
       payload: e.target.value
     })
   }
-
+  const handleEmail = (e) => {
+    dispatch({
+      type: 'SET_EMAIL',
+      payload: e.target.value
+    })
+  }
   const handleFirstName = (e) => {
     dispatch({
       type: 'SET_FIRST_NAME',
@@ -61,26 +68,67 @@ function EditUserProfile (){
       payload: e.target.value
     })
   }
+  const handleLocationCity = (e) => {
+    dispatch({
+      type: 'SET_LOCATION_CITY',
+      payload: e.target.value
+    })
+  }
+  const handleLocationState = (e) => {
+    dispatch({
+      type: 'SET_LOCATION_STATE',
+      payload: e.target.value
+    })
+  }
+  const handleLocationZip = (e) => {
+    dispatch({
+      type: 'SET_LOCATION_ZIP',
+      payload: e.target.value
+    })
+  }
   const handleIndustry = (e) => {
     dispatch({
       type: 'SET_INDUSTRY',
       payload: e.target.value
     })
   }
-  const handleEmail = (e) => {
-    dispatch({
-      type: 'SET_EMAIL',
-      payload: e.target.value
-    })
-    
-  }
+  
   const handleLinkedin = (e) => {
     dispatch({
       type: 'SET_LINKEDIN',
       payload: e.target.value
     })
   }
-
+  const handleFacebook = (e) => {
+    dispatch({
+      type: 'SET_FACEBOOK',
+      payload: e.target.value
+    })
+  }
+  const handleTwitter = (e) => {
+    dispatch({
+      type: 'SET_TWITTER',
+      payload: e.target.value
+    })
+  }
+  const handleYouTube = (e) => {
+    dispatch({
+      type: 'SET_YOUTUBE',
+      payload: e.target.value
+    })
+  }
+  const handlePortfolio = (e) => {
+    dispatch({
+      type: 'SET_PORTFOLIO',
+      payload: e.target.value
+    })
+  }
+  const handleAboutMe = (e) => {
+    dispatch({
+      type: 'SET_ABOUT_ME',
+      payload: e.target.value
+    })
+  }
 
   return(
 
@@ -94,9 +142,26 @@ function EditUserProfile (){
         sx={{ mt: 3 }}
       >
         <TextField
-          placeholder="Name"
-          value
-          onChange
+          placeholder="Photo-url"
+          value={editProfile.photo}
+          onChange={handlePhoto}
+        />
+      </Box>
+      <div>
+        <button onClick={handleUpdateSubmit}>Update</button>
+        <button onClick={() => history.push('/user')}>Cancel</button>
+      </div>
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        // minHeight="0vh"
+        sx={{ mt: 3 }}
+      >
+        <TextField
+          placeholder="Email"
+          value={editProfile.email}
+          onChange={handleEmail}
         />
       </Box>
       <Box
@@ -107,9 +172,37 @@ function EditUserProfile (){
         sx={{ mt: 3 }}
       >
         <TextField
-          placeholder="Location"
-          value
-          onChange
+          placeholder="First Name"
+          value={editProfile.first_name}
+          onChange={handleFirstName}
+        />
+        <TextField
+          placeholder="Last Name"
+          value={editProfile.last_name}
+          onChange={handleLastName}
+        />
+      </Box>
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        // minHeight="0vh"
+        sx={{ mt: 3 }}
+      >
+        <TextField
+          placeholder="City"
+          value={editProfile.location_city}
+          onChange = {handleLocationCity}
+        />
+        <TextField
+          placeholder="State"
+          value={editProfile.location_state}
+          onChange={handleLocationState}
+        />
+        <TextField
+          placeholder="Zip"
+          value={editProfile.location_zip}
+          onChange={handleLocationZip} 
         />
       </Box>
       <Box
@@ -121,21 +214,8 @@ function EditUserProfile (){
       >
         <TextField
           placeholder="Industry"
-          value
-          onChange
-        />
-      </Box>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        // minHeight="0vh"
-        sx={{ mt: 3 }}
-      >
-        <TextField
-          placeholder="Email"
-          value
-          onChange
+          value={editProfile.industry_name}
+          onChange={handleIndustry}
         />
       </Box>
       <Box
@@ -147,8 +227,23 @@ function EditUserProfile (){
       >
         <TextField
           placeholder="Linkedin"
-          value
-          onChange
+          value = {editProfile.linkedin}
+          onChange = {handleLinkedin}
+        />
+        <TextField
+          placeholder="Facebook"
+          value={editProfile.facebook}
+          onChange={handleFacebook}
+        />
+        <TextField
+          placeholder="Twitter"
+          value={editProfile.twitter}
+          onChange={handleTwitter}
+        />
+        <TextField
+          placeholder="YouTube"
+          value={editProfile.youtube}
+          onChange={handleYouTube}
         />
       </Box>
       <Box
@@ -160,20 +255,26 @@ function EditUserProfile (){
       >
         <TextField
           placeholder="Portfolio"
-          value
-          onChange
+          value = {editProfile.portfolio}
+          onChange={handlePortfolio}
         />
       </Box>
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        // minHeight="0vh"
+        sx={{ mt: 3 }}
+      >
       <textarea
         aria-label="empty textarea"
-        value
+        value = {editProfile.about_me}
         placeholder="About me"
-        onChange
+        onChange={handleAboutMe}
         style={{ width: 200 }}
       />
-      
-      <button onClick={handleUpdateSubmit}>Update</button>
-      <button onClick={() => history.push('/user')}>Cancel</button>
+      </Box>
+     
     </div>
   )
 }

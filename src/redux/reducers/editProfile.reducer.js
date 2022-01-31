@@ -1,6 +1,7 @@
 const editProfileReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SET_EDIT_PROFILE':
+
       return {
         email: action.payload.email,
         photo: action.payload.photo,
@@ -15,8 +16,7 @@ const editProfileReducer = (state = {}, action) => {
         about_me: action.payload.about_me,
         industry: action.payload.industry_name
       }
-    case 'SAGA_EDIT_PROFILE_INFO':
-      return action.payload
+
     case 'SET_EMAIL':
       return{...state, email:action.payload}
     case 'SET_PHOTO':
