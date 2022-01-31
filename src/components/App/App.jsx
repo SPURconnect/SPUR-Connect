@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import TESTMessages from '../TESTMessages/TESTMessages';
+import TESTMsgConvo from '../TESTMsgConvo/TESTMsgConvo';
 import AddMeeting from '../AddMeeting/AddMeeting.jsx';
 
 import './App.css';
@@ -91,7 +92,8 @@ function App() {
             exact
             path="/messages"
           >
-            <TESTMessages />
+            <TESTMsgConvo />
+            {/* <TESTMessages /> */}
           </ProtectedRoute>
 
           <Route
