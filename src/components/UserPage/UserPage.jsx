@@ -36,7 +36,7 @@ function UserPage() {
           <li>{profile.location_city}, {profile.location_state}</li>
           <li>{profile.industry_name} </li>
           <li>{profile.email}</li>
-          <li>{profile.linkedin}</li>
+          <li>{profile.linkedin}, {profile.twitter}, {profile.instagram}, {profile.youtube}, {profile.facebook}</li>
           <li>{profile.portfolio}</li>
           <li>{profile.about_me}</li>
           

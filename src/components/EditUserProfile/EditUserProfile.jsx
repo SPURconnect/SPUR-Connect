@@ -34,6 +34,7 @@ function EditUserProfile (){
         linkedin: editProfile.linkedin,
         twitter: editProfile.twitter,
         youtube: editProfile.youtube,
+        instagram: editProfile.instagram,
         portfolio: editProfile.portfolio,
         location_city: editProfile.location_city,
         location_zip: editProfile.location_zip,

@@ -1,6 +1,8 @@
 const editProfileReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SET_EDIT_PROFILE':
+      console.log('$$$$ in EditProfile reducer', action.payload);
+      
 
       return {
         email: action.payload.email,
@@ -9,6 +11,7 @@ const editProfileReducer = (state = {}, action) => {
         linkedin: action.payload.linkedin,
         twitter: action.payload.twitter,
         youtube: action.payload.youtube,
+        instagram:action.payload.instagram,
         portfolio: action.payload.portfolio,
         location_city: action.payload.location_city,
         location_zip: action.payload.location_zip,
@@ -16,9 +19,11 @@ const editProfileReducer = (state = {}, action) => {
         about_me: action.payload.about_me,
         industry: action.payload.industry_name
       }
-
+      
+    case 'SAGA_EDIT_PROFILE_INFO':
+      return action.payload
     case 'SET_EMAIL':
-      return{...state, email:action.payload}
+      return{...state, email: action.payload}
     case 'SET_PHOTO':
       return { ...state, photo: action.payload }
     case 'SET_FIRST_NAME':
@@ -33,6 +38,8 @@ const editProfileReducer = (state = {}, action) => {
       return { ...state, twitter: action.payload }
     case 'SET_YOUTUBE':
       return { ...state, youtube: action.payload }
+    case 'SET_INSTAGRAM':
+      return { ...state, instagram: action.payload }
     case 'SET_PORTFOLIO':
       return { ...state, portfolio: action.payload }
     case 'SET_LOCATION_CITY':
