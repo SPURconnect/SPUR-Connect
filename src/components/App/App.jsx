@@ -21,6 +21,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import AddMeeting from '../AddMeeting/AddMeeting.jsx';
+import MeetingHistory from '../MeetingHistory/MeetingHistory';
 
 import './App.css';
 
@@ -35,6 +36,7 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
+    dispatch({ type: 'GET_MEETINGS' });
     dispatch({
       type: 'SET_WHERE',
       payload: locationToSend
@@ -104,8 +106,11 @@ function App() {
               <RegisterPage />
             }
           </Route>
-          <ProtectedRoute exact path = "/addmeeting">
+          <ProtectedRoute exact path = "/meeting/add">
             <AddMeeting />
+          </ProtectedRoute>
+          <ProtectedRoute exact path = "/meeting">
+            <MeetingHistory />
           </ProtectedRoute>
           <Route
             exact
