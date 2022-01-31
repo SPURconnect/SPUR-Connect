@@ -31,8 +31,6 @@ function MeetingHistoryItem({ item }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const participant = useSelector((store) => store.participantMeeting);
-
   // handles whether the card is expanded or not
   const [expanded, setExpanded] = React.useState(false);
   const handleExpandClick = () => {
@@ -41,24 +39,16 @@ function MeetingHistoryItem({ item }) {
 
   useEffect(() => {
     dispatch({ type: 'GET_MEETINGS' });
-    getParticipantDetails();
   }, [dispatch]);
-
-  const getParticipantDetails = () => {
-    dispatch({
-      type: 'GET_PARTICIPANT',
-      payload: item.participant_id
-    })
-  }
 
   const handleGoToMeetingDetails = () => {
     history.push(`/meeting/notes/${item.id}`);
   }
 
+  // TODO finish delete route
   const handleDeleteMeeting = () => {
 
   }
-
 
   return (
     <div style={{ paddingBottom: '4px' }}>
@@ -70,7 +60,8 @@ function MeetingHistoryItem({ item }) {
             <Avatar
               sx={{ bgcolor: grey[500], width: '75px', height: '75px' }}
               aria-label="profile image"
-              src={item.img}
+              // TODO filter through profile reducer for participant image
+              // src={item.img}
             >
             </Avatar>
           }
