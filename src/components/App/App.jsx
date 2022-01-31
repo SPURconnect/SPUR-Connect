@@ -96,11 +96,11 @@ function App() {
               <RegisterPage />
             }
           </Route>
-          <ProtectedRoute exact path = "/addmeeting">
+          <ProtectedRoute exact path = "/meeting/add">
             <AddMeeting />
           </ProtectedRoute>
           {/* TODO: useParams to route this to /meetingnotes/:id */}
-          <ProtectedRoute exact path = "/meetingnotes"> 
+          <ProtectedRoute exact path = "/meeting/notes"> 
             <MeetingNotes />
           </ProtectedRoute>
           <Route
