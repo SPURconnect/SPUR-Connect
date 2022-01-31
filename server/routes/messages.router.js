@@ -31,32 +31,29 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     }
   
     //Use uniqUsers to group message history into nested object arrays
-    console.log(uniqUsers)
+    // console.log(uniqUsers)
     let sortedConvos = [];
-    for(let i in uniqUsers){
-      let messages = []
-      
-      for (let y in result.rows){
-        if ((result.rows[y].sender_id || result.rows[y].recipient_id) === uniqUsers[i]){
-          
-          // messages = [...messages, result.rows[y]]
-          // messages.push(result.rows[y])
+    
+    for(let user of uniqUsers){
+      let uniqConvo = {
+        uniqUser: user,
+        messages: []
+      };
+
+      for (let msg of result.rows){
+        if(msg.sender_id  == user || msg.recipient_id == user){
+          uniqConvo.messages.push(msg)
         }
       }
 
-      let uniqConvo = {
-        uniqUser: uniqUsers[i],
-        messages: messages
+        sortedConvos.push(uniqConvo)
       }
 
-      sortedConvos.push(uniqConvo)
-    }
-    console.log(sortedConvos);
-
+    // res.send(result.rows)
     res.send(sortedConvos)
   })
 
-  
+
   .catch((error) => {
     console.log('error fetching user messages', error)
     res.sendStatus(500);
