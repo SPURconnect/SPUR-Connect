@@ -10,7 +10,7 @@ searchProfilesRouter.get('/:input', (req, res) => {
     return;
   }
   else  {
-  console.log(req.params.input)
+  
   
   const query = `
     SELECT * FROM "profiles"

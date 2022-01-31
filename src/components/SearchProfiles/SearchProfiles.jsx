@@ -34,14 +34,11 @@ function SearchProfiles(props) {
   }
 
   const handleIndustryChange = (event) =>  {
-    let filteredSearch = searchProfilesReducer.filter(industry => industry.industry_id == event.target.value);
-    for (let i = 0; i < filteredSearch.length; i++) {
-      let index = searchProfilesReducer.indexOf(filteredSearch[i]);
-      searchProfilesReducer.splice(index, 1);
-      searchProfilesReducer.unshift(filteredSearch[i]);
-    }
-    console.log(searchProfilesReducer);
-    return searchProfilesReducer;
+    event.preventDefault();
+    dispatch({
+      type: 'SORT_BY_INDUSTRY',
+      payload: event.target.value
+    });
   }
 
 
@@ -51,7 +48,7 @@ function SearchProfiles(props) {
     <div>
       <input onChange={(event) => handleQueryChange(event)}></input>
       <select onChange={(event) => handleIndustryChange(event)}>
-        <option>Filter By Industry</option>
+        <option disabled>Filter By Industry</option>
         {industriesReducer.map((industry) =>  {
             return  (
               <option key={industry.id} value={industry.id}>{industry.industry_name}</option>
