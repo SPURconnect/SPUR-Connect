@@ -4,7 +4,7 @@ const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const { response } = require('express');
 
-router.get('/', rejectUnauthenticated, async (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
   const queryText = `
       SELECT * FROM "user_meetings"
       WHERE "user_id"=$1
