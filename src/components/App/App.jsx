@@ -5,6 +5,9 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
+// import for toast notifications see MeetingHistoryItem 
+  // handleDeleteMeeting function for example
+import { Toaster } from 'react-hot-toast';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -52,6 +55,7 @@ function App() {
   return (
     <Router>
       <div>
+      <div><Toaster /></div>
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
