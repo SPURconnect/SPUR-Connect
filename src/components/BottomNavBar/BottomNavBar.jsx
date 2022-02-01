@@ -40,6 +40,7 @@ function BottomNavBar() {
   const updateWhereReducer = (prop) => {
     switch (prop) {
       case 'meeting':
+        dispatch({ type: 'GET_MEETINGS' });
         history.push('/meeting');
         break;
       case 'searchProfiles':

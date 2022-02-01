@@ -55,7 +55,6 @@ function UserDetail ({profile}){
     },
   }));
 
-
   return(
     <div>
       <img className = 'photoSize'src={profile.photo}/>
