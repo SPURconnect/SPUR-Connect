@@ -25,6 +25,7 @@ import AddMeeting from '../AddMeeting/AddMeeting.jsx';
 import EditUserProfile from '../EditUserProfile/EditUserProfile';
 import MeetingHistory from '../MeetingHistory/MeetingHistory';
 import MeetingNotes from '../MeetingNotes/MeetingNotes.jsx';
+import SelectedMeeting from '../SelectedMeeting/SelectedMeeting';
 
 import './App.css';
 import SearchProfiles from '../SearchProfiles/SearchProfiles';
@@ -112,6 +113,14 @@ function App() {
             exact path="/edit/:id">
           <EditUserProfile />
 
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/meetingdetails"
+          >
+            <SelectedMeeting />
           </ProtectedRoute>
 
           <Route

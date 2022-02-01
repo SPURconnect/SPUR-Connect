@@ -11,6 +11,7 @@ import editProfileReducer from './editProfile.reducer';
 import notes from './notes.reducer';
 import allProfilesReducer from './allProfiles.reducer';
 
+
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -21,7 +22,7 @@ const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
   userProfileReducer, 
-  editProfileReducer,//to help edited profile
+  editProfileReducer, // to help edited profile
   searchProfilesReducer,
   industriesReducer,
   messagesReducer,

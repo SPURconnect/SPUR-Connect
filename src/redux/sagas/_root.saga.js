@@ -10,6 +10,7 @@ import messagesPOST from './POSTmessages.saga';
 import meetingSaga from './meeting.saga';
 import editProfileSaga from './editProfile.saga';
 
+
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
@@ -22,13 +23,13 @@ export default function* rootSaga() {
     loginSaga(), // login saga is now registered
     registrationSaga(),
     userSaga(),
-    userProfile(),//This is to grab the users profile information
-    editProfileSaga(), //This is to edit the user profiles
+    userProfile(), // This is to grab the users profile information
+    editProfileSaga(), // This is to edit the user profiles
     searchProfilesSaga(),
     industriesSaga(),
     messagesGET(),
     messagesPOST(),
     meetingSaga(), // saga for meetings
-
+    selectedmeetingSaga(), // saga for selected meeting details
   ]);
 }
