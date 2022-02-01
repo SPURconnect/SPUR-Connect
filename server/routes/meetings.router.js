@@ -10,8 +10,10 @@ router.get('/', rejectUnauthenticated, (req, res) => {
       WHERE "user_id"=$1
   `;
   pool.query(queryText, [req.user.id])
+  
     .then((dbRes) => {
       res.send(dbRes.rows);
+      console.log('In get meeting router', dbRes.rows);
     })
     .catch(dbErr => {
       console.log('/meetings GET error:', dbErr);

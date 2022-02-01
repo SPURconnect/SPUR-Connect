@@ -12,13 +12,14 @@ function SelectedMeeting() {
   const meetings = useSelector(store => store.meetings);
 
    useEffect(() => {
-    dispatch({
-      type: 'GET_SELECTED_MEETINGS',
+    
+    dispatch({      
+      type: 'GET_MEETINGS',
       payload: params.id
     })
   }, []);
 
-
+   console.log('reducer data', meetings)
 /* const backpage = (e) =>  {
     history.push('/meetinghistory');
   
@@ -29,35 +30,14 @@ const edit = (e) =>  {
   
   }   */
 
+
   
-
-  /*const handleNoteChange = (e) => {
-    dispatch({
-      type: 'EDIT_NOTES',
-      payload: e.target.value
-    })
-  } */
-
-  /* const handleSaveNotes = (e) => {
-    e.preventDefault();
-    dispatch({
-      type: 'SAVE_NOTES',
-      payload: {
-        id: params.id,
-        notes: notes.notes
-      }
-    })
-  }; */
-
- /*  function handleClearNotes(){
-    dispatch({
-      type: 'CLEAR_EDIT_NOTES',
-    })
-    //TODO: Save notes after??
-  }; */
-
   return (
+
+    //map this out
     <div>
+       
+     
       <Box
         display="flex"
         justifyContent="center"
@@ -75,13 +55,33 @@ const edit = (e) =>  {
         justifyContent="center"
         alignItems="center"
       >
-        <TextField
-          multiline={true} //Allows changing height of TextField.
-          rows={15} //Change height of TextField here.
-          placeholder='Meeting Details'
-          value={meetings.summary}
-          sx={{mt: 1, width: 250,}} //Change width of TextField here.
-        />
+          {meetings.map(meetings => 
+           
+           (<TextField key={meetings.id} value={meetings.meeting_title}></TextField>)
+           
+          )}
+
+          {meetings.map(meetings => 
+           
+           (<TextField key={meetings.id} value={meetings.meetup_location} sx={{mt: 1, width: 350,}} multiline={true} //Allows changing height of TextField.
+            rows={1}> //Chang>Location</TextField>)
+           
+          )}
+
+          {meetings.map(meetings => 
+           
+           (<TextField key={meetings.id} value={meetings.date} sx={{mt: 1, width: 250,}}></TextField>)
+           
+          )}
+        {meetings.map(meetings => 
+           
+           (<TextField key={meetings.id} value={meetings.summary} sx={{mt: 1, width: 250,}}></TextField>)
+           
+          )}<br></br>
+
+          
+           
+              
       </Box>
      
       
