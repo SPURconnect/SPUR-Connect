@@ -31,9 +31,42 @@ function* getMeetings(){
   };
 };
 
+function* fetchNotes(action){
+  try{
+    const response = yield axios({
+      method: 'GET',
+      url: `/api/meetings/notes/3`, //TODO: useParams
+    })
+    yield put({
+      type: 'SET_NOTES',
+      payload: response.data
+    })
+  }catch(error){
+    console.log('fetchNotes catch error:', error);
+  };
+};
+
+function* saveNotes(action){
+  try{
+    const response = yield axios({
+      method: 'PUT',
+      url: `/api/meetings/notes/3`, //TODO: useParams
+      data: action.payload
+    })
+    yield put({
+      type: 'FETCH_NOTES',
+      payload: response.data
+    })
+  }catch(error){
+    console.log('saveNotes catch error:', error);
+  };
+};
+
 function* meetingSaga(){
   yield takeEvery('ADD_MEETING', addMeeting);
   yield takeEvery('GET_MEETINGS', getMeetings);
+  yield takeEvery('FETCH_NOTES', fetchNotes);
+  yield takeEvery('SAVE_NOTES', saveNotes);
 };
 
 export default meetingSaga;

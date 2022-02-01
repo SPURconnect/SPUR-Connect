@@ -1,7 +1,12 @@
 import { all } from 'redux-saga/effects';
+import industriesSaga from './industries.saga';
 import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
+import searchProfilesSaga from './searchProfiles.saga';
 import userSaga from './user.saga';
+import userProfile from './userProfile.saga';
+import messagesGET from './GETmessages.saga';
+import messagesPOST from './POSTmessages.saga';
 import meetingSaga from './meeting.saga';
 
 // rootSaga is the primary saga.
@@ -16,6 +21,11 @@ export default function* rootSaga() {
     loginSaga(), // login saga is now registered
     registrationSaga(),
     userSaga(),
+    userProfile()//This is to grab the users profile information
+    searchProfilesSaga(),
+    industriesSaga(),
+    messagesGET(),
+    messagesPOST(),
     meetingSaga(), // saga for meetings
   ]);
 }

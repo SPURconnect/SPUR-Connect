@@ -46,79 +46,79 @@ function AddMeeting(){
   return(
     <div>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <Button
-        onClick={goToProfile}
-      >
-        Back
-      </Button>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        // minHeight="0vh"
-        sx={{mt: 3}}
-      >
-        <Typography
-          variant="h3"
-          component="div"
-        >
-          Schedule a Meeting
-        </Typography>
-      </Box>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        // minHeight="0vh"
-        sx={{mt: 3}}
-      >
-        <TextField
-          placeholder="Add a Title"
-          value={meetingTitle}
-          onChange={handleSetMeetingTitle}
-        />
-      </Box>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        // minHeight="0vh"
-        sx={{mt: 3}}
-      >
-        <TextField
-          placeholder="Add a Location"
-          value={location}
-          onChange={handleSetLocation}
-        />
-      </Box>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        // minHeight="0vh"
-        sx={{mt: 3}}
-      >
-          <DateTimePicker
-            label="Date&Time of Meeting"
-            value={date}
-            onChange={handleSetDate}
-            renderInput={(params) => <TextField {...params} />}
-          />
-      </Box>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        // minHeight="0vh"
-        sx={{mt: 3}}
-      >
         <Button
-          variant="contained"
-          onClick={addMeeting}
+          onClick={goToProfile}
         >
-          Schedule
+          Back
         </Button>
-      </Box>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          // minHeight="0vh"
+          sx={{mt: 3}}
+        >
+          <Typography
+            variant="h3"
+            component="div"
+          >
+            Schedule a Meeting
+          </Typography>
+        </Box>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          // minHeight="0vh"
+          sx={{mt: 3}}
+        >
+          <TextField
+            placeholder="Add a Title"
+            value={meetingTitle}
+            onChange={handleSetMeetingTitle}
+          />
+        </Box>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          // minHeight="0vh"
+          sx={{mt: 3}}
+        >
+          <TextField
+            placeholder="Add a Location"
+            value={location}
+            onChange={handleSetLocation}
+          />
+        </Box>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          // minHeight="0vh"
+          sx={{mt: 3}}
+        >
+            <DateTimePicker
+              label="Date&Time of Meeting"
+              value={date}
+              onChange={handleSetDate}
+              renderInput={(params) => <TextField {...params} />}
+            />
+        </Box>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          // minHeight="0vh"
+          sx={{mt: 3}}
+        >
+          <Button
+            variant="contained"
+            onClick={addMeeting}
+          >
+            Schedule
+          </Button>
+        </Box>
       </LocalizationProvider>
     </div>
   )
