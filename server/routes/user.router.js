@@ -30,11 +30,11 @@ router.post('/register', (req, res, next) => {
       const createdUserId = result.rows[0].id
       // Now handle the profile table reference
       const insertUserProfileQuery = `
-            INSERT INTO "profiles" ("user_id", "email", "location_city", "location_state", "location_zip", "industry_id")
-            VALUES  ($1, $2, $3, $4, $5, $6);
+            INSERT INTO "profiles" ("user_id", "email","first_name", "last_name", "location_city", "location_state", "location_zip", "industry_id")
+            VALUES  ($1, $2, $3, $4, $5, $6, $7, $8);
             `;
       // SECOND QUERY ADDS USER Profile
-      pool.query(insertUserProfileQuery, [createdUserId, req.body.email, req.body.location_city, req.body.location_state, req.body.location_zip, req.body.industry_id])
+      pool.query(insertUserProfileQuery, [createdUserId, req.body.email,req.body.first_name, req.body.last_name, req.body.location_city, req.body.location_state, req.body.location_zip, req.body.industry_id])
         .then((dbRes) => {
           //Now that both are done, send back success!
           res.sendStatus(201);

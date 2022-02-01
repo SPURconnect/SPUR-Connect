@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
@@ -8,9 +9,11 @@ function RegisterForm() {
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [zip, setZip] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [industry, setIndustry] = useState(1);
   const errors = useSelector((store) => store.errors);
-  const industriesReducer = useSelector(store => store.industriesReducer);
+  const industriesReducer = useSelector((store) => store.industriesReducer);
   const dispatch = useDispatch();
 
   const registerUser = (event) => {
@@ -25,19 +28,22 @@ function RegisterForm() {
         location_city: city,
         location_state: state,
         location_zip: zip,
-        industry_name:industry
-  
-      },
+        industry_id:industry,
+        first_name: firstName,
+        last_name: lastName
+      }
     });
   }; // end registerUser
 
-  const handleIndustryChange = (event) => {
+
+  useEffect(() => {
+    dispatch({ type: 'FETCH_INDUSTRIES' })
+  }, []);
+
+  function chooseIndustry(event) {
     event.preventDefault();
-    dispatch({
-      type: 'SORT_BY_INDUSTRY',
-      payload: event.target.value
-    });
-  }
+    setIndustry(event.target.value)
+  };
 
   return (
     <form className="formPanel" onSubmit={registerUser}>
@@ -72,6 +78,30 @@ function RegisterForm() {
           />
         </label>
       </div>
+        <div>
+          <label htmlFor="firstName">
+            First Name:<br></br>
+            <input
+              type="firstName"
+              name="firstName"
+              value={firstName}
+              required
+              onChange={(event) => setFirstName(event.target.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <label htmlFor="lastName">
+            Last Name:<br></br>
+            <input
+              type="lastName"
+              name="lastName"
+              value={lastName}
+              required
+              onChange={(event) => setLastName(event.target.value)}
+            />
+          </label>
+        </div>
       <div>
         <label htmlFor="email">
           Email:<br></br>
@@ -120,19 +150,18 @@ function RegisterForm() {
             />
           </label>
         </div>
-      <div><br></br>
+      <div>
         <label htmlFor="Industry">
-        Industry:<br></br>
-          <select onChange={(event) => handleIndustryChange(event)}>
-            <option disabled>Filter By Industry</option>
-            {industriesReducer.map((industry) => {
-              return (
-                <option key={industry.id} value={industry.id}>{industry.industry_name}</option>
-              )
-            })}
+        Choose an Industry:<br></br>
+            <select value={industry} onChange={(event) => chooseIndustry(event)}>
+              <option disabled>Filter By Industry</option>
+              {industriesReducer.map((industry) => {
+                return (
+                  <option key={industry.id} value={industry.id}>{industry.industry_name}</option>
+                )
+              })}
             </select>
         </label>
-        
       </div>
       <div>
         <input className="btn" type="submit" name="submit" value="Register" />
