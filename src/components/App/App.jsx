@@ -19,8 +19,11 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import TESTMessages from '../TESTMessages/TESTMessages';
+import MessagesConvo from '../MessagesConvo/MessagesConvo';
+import MessagesView from '../MessagesView/MessagesView';
 import AddMeeting from '../AddMeeting/AddMeeting.jsx';
+import EditUserProfile from '../EditUserProfile/EditUserProfile';
+import MeetingHistory from '../MeetingHistory/MeetingHistory';
 import MeetingNotes from '../MeetingNotes/MeetingNotes.jsx';
 import SelectedMeeting from '../SelectedMeeting/SelectedMeeting';
 
@@ -32,12 +35,14 @@ function App() {
 
   const user = useSelector(store => store.user);
   // gets the location of where the user is in the app based on the url
-    // splices it to work with the reducer set up
-    // see BottomNavBar for other side of this code
+  // splices it to work with the reducer set up
+  // see BottomNavBar for other side of this code
   const locationToSend = window.location.hash.replace('#/', '');
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
+    dispatch({ type: 'FETCH_ALL_PROFILES' });
+    dispatch({ type: 'GET_MEETINGS' });
     dispatch({
       type: 'SET_WHERE',
       payload: locationToSend
@@ -80,7 +85,7 @@ function App() {
           >
             <InfoPage />
           </ProtectedRoute>
-          
+
           <ProtectedRoute
             exact
             path="/searchProfiles"
@@ -93,7 +98,21 @@ function App() {
             exact
             path="/messages"
           >
-            <TESTMessages />
+            <MessagesView />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/messages/convo/:id"
+          >
+            <MessagesConvo />
+          </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact path="/edit/:id">
+          <EditUserProfile />
+
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -131,11 +150,14 @@ function App() {
               <RegisterPage />
             }
           </Route>
-          <ProtectedRoute exact path = "/meeting/add">
+          <ProtectedRoute exact path="/meeting/add">
             <AddMeeting />
           </ProtectedRoute>
+          <ProtectedRoute exact path="/meeting">
+            <MeetingHistory />
+          </ProtectedRoute>
           {/* TODO: useParams to route this to /meetingnotes/:id */}
-          <ProtectedRoute exact path = "/meeting/notes"> 
+          <ProtectedRoute exact path="/meeting/notes">
             <MeetingNotes />
           </ProtectedRoute>
           <Route

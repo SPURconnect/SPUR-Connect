@@ -2,6 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
+const { response } = require('express');
 
 router.get('/', rejectUnauthenticated, (req, res) => {
   const queryText = `
@@ -32,10 +33,10 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     req.body.location
   ];
   pool.query(queryText, queryValues)
-    .then((dbRes) =>{
+    .then((dbRes) => {
       res.sendStatus(201);
     })
-    .catch((dbErr) =>{
+    .catch((dbErr) => {
       console.log('/meetings POST error:', dbErr);
       res.sendStatus(500);
     });

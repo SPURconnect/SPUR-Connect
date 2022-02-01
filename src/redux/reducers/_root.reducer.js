@@ -7,7 +7,9 @@ import industriesReducer from './industries.reducer';
 import messagesReducer from './messages.reducer';
 import whereReducer from './where.reducer';
 import meetings from './meetings.reducer';
+import editProfileReducer from './editProfile.reducer';
 import notes from './notes.reducer';
+import allProfilesReducer from './allProfiles.reducer';
 
 
 // rootReducer is the primary reducer for our entire project
@@ -20,13 +22,14 @@ const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
   userProfileReducer, 
+  editProfileReducer, // to help edited profile
   searchProfilesReducer,
   industriesReducer,
   messagesReducer,
   whereReducer,
   meetings, // contains users meetings
-  notes, //contains notes for meetings
-  
+  notes, // contains notes for meetings
+  allProfilesReducer, // contains all the profiles of users
 });
 
 export default rootReducer;

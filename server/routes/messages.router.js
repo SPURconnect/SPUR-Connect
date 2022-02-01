@@ -14,7 +14,42 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
   pool.query(sqlQuery, sqlValues)
   .then((result) => {
-    res.send(result.rows)
+
+    //Grabs Unique Users that req.user has talked to and stashes them in Array
+    let uniqUsers = [];
+    for (let i in result.rows){
+      if (result.rows[i].sender_id != req.user.id){
+        if (uniqUsers.includes(result.rows[i].sender_id) === false){
+          uniqUsers.push(result.rows[i].sender_id)
+        }
+      }
+      if (result.rows[i].recipient_id != req.user.id){
+        if (uniqUsers.includes(result.rows[i].recipient_id) === false){
+          uniqUsers.push(result.rows[i].recipient_id)
+        }
+      }  
+    }
+  
+    //Use uniqUsers to group message history into nested object arrays
+    let sortedConvos = [];
+    
+    //For each unique conversation with another user
+    for(let user of uniqUsers){
+      let uniqConvo = {
+        uniqUser: user,
+        messages: []
+      };
+      //loop through all the messages from DB and push them into the conversation object
+      for (let msg of result.rows){
+        if(msg.sender_id  == user || msg.recipient_id == user){
+          uniqConvo.messages.push(msg)
+        }
+      };
+      //push the conversation object into the final object array
+      sortedConvos.push(uniqConvo)
+    }
+    //Send to client
+    res.send(sortedConvos)
   })
   .catch((error) => {
     console.log('error fetching user messages', error)
@@ -27,7 +62,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   const sqlValues = [
     req.body.content, 
     req.body.timestamp, 
-    req.body.recipient_id, 
+    req.body.recipient_id.id, 
     req.user.id
   ];
   const sqlQuery = `
