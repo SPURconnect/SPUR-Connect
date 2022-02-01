@@ -7,7 +7,6 @@ function LogOutButton(props) {
   const handleLogOut = () => {
     dispatch({ type: 'LOGOUT' });
     dispatch({ type: 'CLEAR_MEETINGS' });
-    dispatch({ type: 'LOGOUT' });
   }
 
   return (
