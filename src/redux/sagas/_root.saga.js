@@ -8,7 +8,7 @@ import userProfile from './userProfile.saga';
 import messagesGET from './GETmessages.saga';
 import messagesPOST from './POSTmessages.saga';
 import meetingSaga from './meeting.saga';
-import selectedmeetingSaga from './selectmeetingdetails.saga'
+
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.

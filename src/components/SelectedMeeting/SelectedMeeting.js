@@ -9,10 +9,13 @@ function SelectedMeeting() {
   const history = useHistory();
   const dispatch = useDispatch();
   const params = useParams();
-  const selectmeetingsReducer = useSelector(store => store.selectmeetingsReducer);
+  const meetings = useSelector(store => store.meetings);
 
    useEffect(() => {
-    fetchSelectMeeting();
+    dispatch({
+      type: 'GET_SELECTED_MEETINGS',
+      payload: params.id
+    })
   }, []);
 
 
@@ -26,12 +29,7 @@ const edit = (e) =>  {
   
   }   */
 
-  function fetchSelectMeeting() {
-    dispatch({
-      type: 'GET_SELECTED_MEETINGS',
-      payload: params.id
-    })
-  };
+  
 
   /*const handleNoteChange = (e) => {
     dispatch({
@@ -80,8 +78,8 @@ const edit = (e) =>  {
         <TextField
           multiline={true} //Allows changing height of TextField.
           rows={15} //Change height of TextField here.
-          placeholder='Notes'
-          value={selectmeetingsReducer.summary}
+          placeholder='Meeting Details'
+          value={meetings.summary}
           sx={{mt: 1, width: 250,}} //Change width of TextField here.
         />
       </Box>

@@ -8,7 +8,7 @@ import messagesReducer from './messages.reducer';
 import whereReducer from './where.reducer';
 import meetings from './meetings.reducer';
 import notes from './notes.reducer';
-import selectmeetingsReducer from './selectedmeetings.reducer';
+
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -26,7 +26,7 @@ const rootReducer = combineReducers({
   whereReducer,
   meetings, // contains users meetings
   notes, //contains notes for meetings
-  selectmeetingsReducer,
+  
 });
 
 export default rootReducer;
