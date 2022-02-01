@@ -6,7 +6,7 @@ function RegisterForm() {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [location, setLocation] = useState('');
-  const [industry, setIndustry] = useState('');
+  const [industry, setIndustry] = useState(1);
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 
@@ -19,7 +19,8 @@ function RegisterForm() {
         username: username,
         password: password,
         email: email,
-        location_city: location,      
+        location_city: location,
+        industry_id: industry,
       },
     });
   }; // end registerUser
@@ -74,7 +75,7 @@ function RegisterForm() {
           Location/City:<br></br>
           <input
             type="location"
-            name="locaiton"
+            name="location"
             value={location}
             required
             onChange={(event) => setLocation(event.target.value)}

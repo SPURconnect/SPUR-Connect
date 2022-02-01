@@ -118,7 +118,7 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/meetingdetails"
+            path="/meeting/details"
           >
             <SelectedMeeting />
           </ProtectedRoute>

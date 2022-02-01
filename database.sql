@@ -67,6 +67,7 @@ VALUES
 ('Software Engineer'),
 ('Sales'),('Healthcare'),('Manufacturing'),('Finance'),('Agriculture'), ('Information Technology'),('Automobile Manufacturing'), ('Telecommunication'), ('Food Industry'), ('Cannabis Industry'), ('Online Conferencing Industry'), ('Online Dating Industry'), ('HR & Recruitment Services'), ('Real Estate'), ('Apparel Manufacturing'), ('Tourism'), ('Entertainment');
 
+-- dummy data for user profiles, need to make users first to see these
 INSERT INTO "profiles" ("first_name", "last_name","photo", "email", "industry_id", "facebook", "linkedin", "twitter", "youtube", "instagram", "portfolio", "location_city", "location_zip", "location_state", "availability","about_me", "user_id")
 VALUES
 ('Michael', 'Huso', 'https://media-exp1.licdn.com/dms/image/C5103AQFPCPSPUSF63w/profile-displayphoto-shrink_800_800/0/1516847683228?e=1648684800&v=beta&t=Md2_WFzOlbaA8s6RrDDR4MACwISNowrQJyhERp7kfL0','test1@aol.com', 1, 'facebook.com/test1', 'linkedin.com/test1', 'twitter.com/test1', 'youtube.com/test1', 'instagram.com/test1', 'test1.com', 'Mounds View', 55112, 'Minnesota', true,'I like stuff and other stuff', 1),
@@ -75,3 +76,10 @@ VALUES
 ('Kayla', 'Mir','duncan.jpeg', 'test4@aol.com', 4, 'facebook.com/test4', 'linkedin.com/test4', 'twitter.com/test4', 'youtube.com/test4', 'instagram.com/test4', 'test4.com', 'Minneapolis', 55407, 'Minnesota', true, 'I like stuff and other stuff',4),
 ('Nicholas', 'Ilacqua','duncan.jpeg', 'test5@aol.com', 5, 'facebook.com/test5', 'linkedin.com/test5', 'twitter.com/test5', 'youtube.com/test5', 'instagram.com/test5', 'test5.com', 'Minneapolis', 55407, 'Minnesota', true,'I like stuff and other stuff',  5),
 ('Duncan', 'Nielsen', 'https://media-exp1.licdn.com/dms/image/C5103AQFPCPSPUSF63w/profile-displayphoto-shrink_800_800/0/1516847683228?e=1648684800&v=beta&t=Md2_WFzOlbaA8s6RrDDR4MACwISNowrQJyhERp7kfL0', 'test6@aol.com', 6, 'facebook.com/test6', 'linkedin.com/test6', 'twitter.com/test6', 'youtube.com/test6', 'instagram.com/test6', 'test6.com', 'Eden Prairie', 55347, 'Minnesota', true,'I like stuff and other stuff', 6);
+
+-- dummy data for meetings
+INSERT INTO "user_meetings" ("summary", "meetup_location", "date", "meeting_title", "user_id", "participant_id")
+VALUES
+('Worked on files for app', 'Coffee Shop Downtown Minneapolis', '2/1/2022 11:32AM', 'Meeting w/ Vic', '1', '2'),
+('Met at coffee shop about new prototype', 'Coffee Shop Downtown', '2/1/2022 09:12AM', 'Meeting w/ Joe', '1', '3'),
+('Met for doc review', 'Office', '2/3/2022 09:12AM', 'Meeting w/ Kayla', '1', '4');
