@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { Box, Button, TextField, Typography } from '@mui/material';
+import './EditUserProfile.css'
 
 
 function EditUserProfile (){
@@ -29,6 +30,8 @@ function EditUserProfile (){
       payload: {
         id: params.id, 
         email: editProfile.email, 
+        first_name: editProfile.first_name,
+        last_name: editProfile.last_name,
         photo: editProfile.photo,
         facebook: editProfile.facebook,
         linkedin: editProfile.linkedin,
@@ -39,8 +42,9 @@ function EditUserProfile (){
         location_city: editProfile.location_city,
         location_zip: editProfile.location_zip,
         location_state: editProfile.location_state,
+        location_state: editProfile.location_state,
         about_me: editProfile.about_me,
-        industry: editProfile.industry_name
+        industry_name: editProfile.industry_name
       }
     })
     history.push('/user')
@@ -135,7 +139,7 @@ function EditUserProfile (){
 
     <div>
       <div>
-        <img src={editProfile.photo} />
+        <img className ='photoSize'src={editProfile.photo} />
       </div>
       <Box
         display="flex"

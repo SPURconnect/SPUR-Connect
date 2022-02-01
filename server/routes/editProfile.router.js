@@ -52,21 +52,25 @@ router.put('/:id', rejectUnauthenticated,(req, res) => {
     SET
         "email"=$1, 
         "photo"=$2,
-        "facebook"=$3,
-        "linkedin"=$4,
-        "twitter"=$5,
-        "youtube"=$6,
-        "instagram"=$7,
-        "portfolio"=$8,
-        "location_city"=$9,
-        "location_zip"=$10,
-        "location_state"=$11, 
-        "about_me"=$12
-    WHERE "user_id" = $13
+        "first_name"=$3, 
+        "last_name"=$4,
+        "facebook"=$5,
+        "linkedin"=$6,
+        "twitter"=$7,
+        "youtube"=$8,
+        "instagram"=$9,
+        "portfolio"=$10,
+        "location_city"=$11,
+        "location_zip"=$12,
+        "location_state"=$13, 
+        "about_me"=$14
+    WHERE "user_id" = $15
     `;
   const sqlValues = [
     req.body.email,
     req.body.photo,
+    req.body.first_name,
+    req.body.last_name,
     req.body.facebook,
     req.body.linkedin,
     req.body.twitter,

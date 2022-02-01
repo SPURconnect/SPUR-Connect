@@ -10,7 +10,7 @@ function UserDetail ({profile}){
 
   return(
     <div>
-      <img src={profile.photo}/>
+      <img className = 'photoSize'src={profile.photo}/>
       <h3>{profile.first_name}  {profile.last_name}</h3>
       <ul>
         <li>{profile.location_city}, {profile.location_state}</li>

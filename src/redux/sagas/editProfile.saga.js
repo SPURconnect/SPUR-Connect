@@ -28,7 +28,7 @@ function* editProfileInfo(action) {
       data: action.payload
     })
     yield put({
-      type: 'SAGA_FETCH_PROFILE_TO_EDIT',
+      type: 'SAGA_FETCH_USER_PROFILES',
       payload: action.payload.id
     })
   } catch (err) {
