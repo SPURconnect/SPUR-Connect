@@ -18,7 +18,7 @@ export default function TESTMsgConvo() {
   const history = useHistory();
   //REDUX store
   const conversations = useSelector((store) => store.messagesReducer);
-  // const profiles = useSelector((store) => store.profileReducer);
+  const profiles = useSelector((store) => store.allProfilesReducer);
 
 
   useEffect(() => {
@@ -40,12 +40,15 @@ export default function TESTMsgConvo() {
                   </IconButton>
                 }>
               <ListItemAvatar>
-                <Avatar>
-                  <FaceIcon />
-                </Avatar>
+                {profiles.filter(prof => (prof.id == convo.uniqUser)).map(profile => {
+                  return <Avatar src={profile.photo}/>
+                })}
+
               </ListItemAvatar>
               <ListItemText
-                primary={convo.uniqUser}
+                primary={profiles.filter(prof => (prof.id == convo.uniqUser)).map(profile => {
+                  return `${profile.first_name} ${profile.last_name}`
+                })}
                 secondary={convo.messages[0].content}
               />
             </ListItem>
