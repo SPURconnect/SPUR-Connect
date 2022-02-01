@@ -4,19 +4,19 @@ import { useHistory, useParams } from 'react-router-dom';
 import { Box, Button, TextField, Typography } from '@mui/material';
 
 
-function MeetingNotes() {
+function SelectedMeeting() {
 
   const history = useHistory();
   const dispatch = useDispatch();
   const params = useParams();
-  const notes = useSelector(store => store.notes);
+  const selectmeetingsReducer = useSelector(store => store.selectmeetingsReducer);
 
-  /* useEffect(() => {
+   useEffect(() => {
     fetchSelectMeeting();
   }, []);
 
 
-const backpage = (e) =>  {
+/* const backpage = (e) =>  {
     history.push('/meetinghistory');
   
   }
@@ -24,7 +24,7 @@ const backpage = (e) =>  {
 const edit = (e) =>  {
     history.push('/meetingdetails');
   
-  }  
+  }   */
 
   function fetchSelectMeeting() {
     dispatch({
@@ -33,7 +33,7 @@ const edit = (e) =>  {
     })
   };
 
-  const handleNoteChange = (e) => {
+  /*const handleNoteChange = (e) => {
     dispatch({
       type: 'EDIT_NOTES',
       payload: e.target.value
@@ -69,7 +69,7 @@ const edit = (e) =>  {
           variant="h6"
           component="h6"
         >
-          Notes
+          Selected Meeting Details
         </Typography>
       </Box>
       <Box
@@ -81,33 +81,14 @@ const edit = (e) =>  {
           multiline={true} //Allows changing height of TextField.
           rows={15} //Change height of TextField here.
           placeholder='Notes'
-          value={notes.notes || ''}
-          onChange={handleNoteChange}
+          value={selectmeetingsReducer.summary}
           sx={{mt: 1, width: 250,}} //Change width of TextField here.
         />
       </Box>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Button
-          variant=""
-          onClick={handleClearNotes}
-          sx={{mt: 2, mr: 2}}
-        >
-          Clear
-        </Button>
-        <Button //TODO: Add sweetalerts or something to notify changes saved.
-          variant="contained"
-          onClick={handleSaveNotes}
-          sx={{mt: 2, ml: 10}}
-        >
-          Save
-        </Button>
-      </Box>
+     
+      
     </div>
   )
 };
 
-export default MeetingNotes;
+export default SelectedMeeting;
