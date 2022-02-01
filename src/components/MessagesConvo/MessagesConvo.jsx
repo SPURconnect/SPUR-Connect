@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import MessagesMsg from '../MessagesMsg/MessagesMsg';
 
-
+import { Box } from '@mui/material';
 
 export default function MessagesConvo() {
   //alias HOOKs
@@ -13,23 +13,21 @@ export default function MessagesConvo() {
   //REDUX store
   const userMessages = useSelector((store) => store.messagesReducer);
   //filter for specific messages
-  const userConvo = userMessages.filter((convo) => (convo.uniqUser === convoWithUserID.id));
-  
+  const userConvo = userMessages.filter((convo) => (convo.uniqUser == convoWithUserID.id));
 
   const [message, setMessage] = useState('');
 
-
-    useEffect(() => {
-      dispatch({
-        type: "FETCH_MESSAGES"
-      })
-    }, [])
+    // useEffect(() => {
+    //   dispatch({
+    //     type: "FETCH_MESSAGES"
+    //   })
+    // }, [])
 
   const handleSendMessage = () => {
     let outboundMessage = {
       content: message,
       timestamp: new Date(),
-      recipient_id: convoWithUserID //TODO: useParams to capture target recipient
+      recipient_id: convoWithUserID
       // sender_id: req.user.id on serverside
     }
     dispatch({
@@ -41,11 +39,12 @@ export default function MessagesConvo() {
 
   return(
     <>
-    {userConvo.messages.map((msg) => {
+    {userConvo[0].messages.map((msg) => {
       return <MessagesMsg key={msg.id} timestamp={msg.timestamp} message={msg.content} />
     })}
     
-    <p>Test messages!</p>
+
+    <Box>
     <input 
       value = {message}
       onChange={(e) => setMessage(e.target.value)}
@@ -54,6 +53,7 @@ export default function MessagesConvo() {
       onClick={handleSendMessage}>
       Send
     </button>
+    </Box>
     </>
   )
 }
