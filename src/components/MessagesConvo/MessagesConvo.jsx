@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import MessagesMsg from '../MessagesMsg/MessagesMsg';
 
-import { Box } from '@mui/material';
+import { Box, List } from '@mui/material';
 
 export default function MessagesConvo() {
   //alias HOOKs
@@ -39,11 +39,12 @@ export default function MessagesConvo() {
 
   return(
     <>
-    {userConvo[0].messages.map((msg) => {
-      return <MessagesMsg key={msg.id} timestamp={msg.timestamp} message={msg.content} />
-    })}
+    <List>
+      {userConvo[0].messages.map((msg) => {
+        return <MessagesMsg key={msg.id} timestamp={msg.timestamp} message={msg.content} />
+      })}
+    </List>
     
-
     <Box>
     <input 
       value = {message}

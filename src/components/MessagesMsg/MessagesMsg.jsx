@@ -1,12 +1,16 @@
 import react from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, List, ListItem, ListItemText } from '@mui/material';
 
 export default function MessagesMsg({timestamp, message}) {
 
   return(
     <Box>
-      <p>{message}</p>
-      <p>{timestamp}</p>
+        <ListItem>
+          <ListItemText
+            primary={message}
+            secondary={timestamp.slice(0, 10)}
+          />
+        </ListItem>
     </Box>
   )
 }
