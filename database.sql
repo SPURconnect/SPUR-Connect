@@ -28,7 +28,7 @@ CREATE TABLE "profiles" (
     "instagram" VARCHAR (1000),
     "portfolio" VARCHAR (1000),
     "location_city" VARCHAR (1000),
-    "location_zip" INTEGER  NOT NULL,
+    "location_zip" VARCHAR (15) NOT NULL,
     "location_state" VARCHAR (1000) NOT NULL,
     "availability" BOOLEAN DEFAULT true,
     "user_id" INT REFERENCES "user" (id) ON DELETE CASCADE NOT NULL,
