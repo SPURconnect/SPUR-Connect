@@ -122,6 +122,12 @@ function EditUserProfile (){
       payload: e.target.value
     })
   }
+  const handleInstagram = (e) => {
+    dispatch({
+      type: 'SET_INSTAGRAM',
+      payload: e.target.value
+    })
+  }
   const handlePortfolio = (e) => {
     dispatch({
       type: 'SET_PORTFOLIO',
@@ -146,7 +152,7 @@ function EditUserProfile (){
         justifyContent="center"
         alignItems="center"
         // minHeight="0vh"
-        sx={{ mt: 3 }}
+        sx={{ mt: 0 }}
       >
         <TextField
           placeholder="Photo-url"
@@ -163,7 +169,7 @@ function EditUserProfile (){
         justifyContent="center"
         alignItems="center"
         // minHeight="0vh"
-        sx={{ mt: 3 }}
+        sx={{ mt: 0 }}
       >
         <TextField
           placeholder="Email"
@@ -176,7 +182,7 @@ function EditUserProfile (){
         justifyContent="center"
         alignItems="center"
         // minHeight="0vh"
-        sx={{ mt: 3 }}
+        sx={{ mt: 0 }}
       >
         <TextField
           placeholder="First Name"
@@ -194,7 +200,7 @@ function EditUserProfile (){
         justifyContent="center"
         alignItems="center"
         // minHeight="0vh"
-        sx={{ mt: 3 }}
+        sx={{ mt: 0}}
       >
         <TextField
           placeholder="City"
@@ -217,7 +223,7 @@ function EditUserProfile (){
         justifyContent="center"
         alignItems="center"
         // minHeight="0vh"
-        sx={{ mt: 3 }}
+        sx={{ mt: 0 }}
       >
         <TextField
           placeholder="Industry"
@@ -230,7 +236,7 @@ function EditUserProfile (){
         justifyContent="center"
         alignItems="center"
         // minHeight="0vh"
-        sx={{ mt: 3 }}
+        sx={{ mt: 0 }}
       >
         <TextField
           placeholder="Linkedin"
@@ -252,18 +258,10 @@ function EditUserProfile (){
           value={editProfile.youtube}
           onChange={handleYouTube}
         />
-      </Box>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        // minHeight="0vh"
-        sx={{ mt: 3 }}
-      >
         <TextField
-          placeholder="Portfolio"
-          value = {editProfile.portfolio}
-          onChange={handlePortfolio}
+        placeholder="YouTube"
+        value={editProfile.instagram}
+        onChange={handleInstagram}
         />
       </Box>
       <Box
@@ -271,15 +269,20 @@ function EditUserProfile (){
         justifyContent="center"
         alignItems="center"
         // minHeight="0vh"
-        sx={{ mt: 3 }}
+        sx={{ mt: 0 }}
       >
-      <textarea
-        aria-label="empty textarea"
-        value = {editProfile.about_me}
-        placeholder="About me"
-        onChange={handleAboutMe}
-        style={{ width: 200 }}
-      />
+        <TextField
+          placeholder="Portfolio"
+          value = {editProfile.portfolio}
+          onChange={handlePortfolio}
+        />
+        <textarea
+          aria-label="empty textarea"
+          value={editProfile.about_me}
+          placeholder="About me"
+          onChange={handleAboutMe}
+          style={{ width: 200 }}
+        />
       </Box>
      
     </div>

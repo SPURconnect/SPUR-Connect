@@ -21,9 +21,6 @@ function UserPage() {
 
   console.log('##### userProfile',userProfile);
 
-
-
-
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
