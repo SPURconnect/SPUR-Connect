@@ -26,26 +26,28 @@ router.post('/register', (req, res, next) => {
   pool.query(queryText, [username, password])
     .then(result => {
       console.log('User Id:', result.rows[0].id)
-    //ID is here!!
-    
+      //ID is here!!
       const createdUserId = result.rows[0].id
       // Now handle the profile table reference
-          const insertUserProfileQuery = `
-            INSERT INTO "profiles" ("user_id", "email", "location_city")
-            VALUES  ($1, $2, $3);
-            `
-            // SECOND QUERY ADDS USER Profile
-            pool.query(insertUserProfileQuery, [createdUserId, req.body.email, req.body.location_city])
-          }) 
-            .then((dbres) => {
-              //Now that both are done, send back success!
-              res.sendStatus(201);
-            }).catch(err => {
-              // catch for second query
-              console.log(err);
-              res.sendStatus(500);
-            })
-    
+      const insertUserProfileQuery = `
+            INSERT INTO "profiles" ("user_id", "email", "location_city", "industry_id")
+            VALUES  ($1, $2, $3, $4);
+            `;
+      // SECOND QUERY ADDS USER Profile
+      pool.query(insertUserProfileQuery, [createdUserId, req.body.email, req.body.location_city, req.body.industry_id])
+        .then((dbRes) => {
+          //Now that both are done, send back success!
+          res.sendStatus(201);
+        }).catch(err => {
+          // catch for second query
+          console.log(err);
+          res.sendStatus(500);
+        })
+    }).catch(err => {
+      // catch for first query
+      console.log(err);
+      res.sendStatus(500);
+    })
 });
 
 // Handles login form authenticate/login POST
