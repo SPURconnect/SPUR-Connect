@@ -33,10 +33,10 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
         ON "profiles"."user_id"="user"."id"
       WHERE "user"."id"=$1;
   `;
-  const sqlValues = [req.user.id]
+  const sqlValues = [req.params.id]
   pool.query(sqlText, sqlValues)
     .then((dbRes) => {
-      res.send(dbRes.rows)
+      res.send(dbRes.rows[0])
     })
     .catch((dbErr) => {
       res.sendStatus(500)

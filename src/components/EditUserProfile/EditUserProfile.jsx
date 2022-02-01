@@ -134,7 +134,9 @@ function EditUserProfile (){
   return(
 
     <div>
-      
+      <div>
+        <img src={editProfile.photo} />
+      </div>
       <Box
         display="flex"
         justifyContent="center"

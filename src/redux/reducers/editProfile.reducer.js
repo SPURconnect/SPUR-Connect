@@ -17,7 +17,9 @@ const editProfileReducer = (state = {}, action) => {
         location_zip: action.payload.location_zip,
         location_state: action.payload.location_state,
         about_me: action.payload.about_me,
-        industry: action.payload.industry_name
+        industry_name: action.payload.industry_name,
+        first_name:action.payload.first_name,
+        last_name:action.payload.last_name
       }
       
     case 'SAGA_EDIT_PROFILE_INFO':
