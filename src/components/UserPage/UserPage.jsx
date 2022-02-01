@@ -2,6 +2,7 @@ import React, {useEffect}from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector, useDispatch} from 'react-redux';
 import { useHistory } from 'react-router-dom'; 
+import UserDetail from '../UserDetail/UserDetail';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -20,25 +21,15 @@ function UserPage() {
 
   console.log('##### userProfile',userProfile);
 
-
-
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
       {/* To do: Need to figure out how to get the picture to render */}
       {userProfile.map((profile)=>{
-        return <ul key ={profile.id} value={profile.id}>
-          {profile.first_name}  {profile.last_name}
-          <li>{profile.location_city}, {profile.location_state}</li>
-          <li>{profile.industry_name}</li>
-          <li>{profile.email}</li>
-          <li>{profile.linkedin}</li>
-          <li>{profile.portfolio}</li>
-          <li>{profile.about_me}</li>
-          
-          </ul>
+        return <UserDetail key ={profile.id} profile={profile}/>
       })}
+
       <LogOutButton className="btn" />
     </div>
   );

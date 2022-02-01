@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import MessagesConvo from '../MessagesConvo/MessagesConvo';
 import MessagesView from '../MessagesView/MessagesView';
 import AddMeeting from '../AddMeeting/AddMeeting.jsx';
+import EditUserProfile from '../EditUserProfile/EditUserProfile';
 import MeetingHistory from '../MeetingHistory/MeetingHistory';
 import MeetingNotes from '../MeetingNotes/MeetingNotes.jsx';
 
@@ -105,6 +106,12 @@ function App() {
             path="/messages/convo/:id"
           >
             <MessagesConvo />
+          </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact path="/edit/:id">
+          <EditUserProfile />
+
           </ProtectedRoute>
 
           <Route
