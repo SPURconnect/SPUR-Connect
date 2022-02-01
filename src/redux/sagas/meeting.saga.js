@@ -66,7 +66,7 @@ function* meetingSaga(){
   yield takeEvery('ADD_MEETING', addMeeting);
   yield takeEvery('GET_MEETINGS', getMeetings);
   yield takeEvery('FETCH_NOTES', fetchNotes);
-  yield takeEvery('SAVE_NOTES', saveNotes)
+  yield takeEvery('SAVE_NOTES', saveNotes);
 };
 
 export default meetingSaga;

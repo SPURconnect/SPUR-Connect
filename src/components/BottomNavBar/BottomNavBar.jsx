@@ -39,8 +39,8 @@ function BottomNavBar() {
     // AND THE COLOR CONDITIONAL ON THE BUTTONS
   const updateWhereReducer = (prop) => {
     switch (prop) {
-      case 'addMeeting':
-        history.push('/addMeeting');
+      case 'meeting':
+        history.push('/meeting');
         break;
       case 'searchProfiles':
         history.push('/searchProfiles');
@@ -76,16 +76,16 @@ function BottomNavBar() {
             <Grid container spacing={2} style={{ margin: 'auto' }}>
               <Grid item xs={3}>
                 <IconButton
-                  onClick={() => updateWhereReducer('addMeeting')}
+                  onClick={() => updateWhereReducer('meeting')}
                   size="large"
                   // checks if the string from the reducer has any / in it, if it does that means it has params
                     // if it has params it will slice the word starting at the index of 0 to the index of / - 1
-                    // will turn addMeeting/17 into addMeeting and then render colors based on that
+                    // will turn meeting/17 into meeting and then render colors based on that
                   color={
                     whereReducer.includes('/') ? 
-                      whereReducer.slice(0, whereReducer.indexOf('/', - 1)) == 'addMeeting' ? 'secondary' : 'inherit' 
+                      whereReducer.slice(0, whereReducer.indexOf('/', - 1)) == 'meeting' ? 'secondary' : 'inherit' 
                       : 
-                      whereReducer === 'addMeeting' ? 'secondary' : 'inherit'
+                      whereReducer === 'meeting' ? 'secondary' : 'inherit'
                   }
                 >
                   <CalendarTodayOutlinedIcon />
