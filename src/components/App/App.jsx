@@ -21,6 +21,8 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import TESTMessages from '../TESTMessages/TESTMessages';
 import AddMeeting from '../AddMeeting/AddMeeting.jsx';
+import MeetingHistory from '../MeetingHistory/MeetingHistory';
+import MeetingNotes from '../MeetingNotes/MeetingNotes.jsx';
 
 import './App.css';
 import SearchProfiles from '../SearchProfiles/SearchProfiles';
@@ -30,12 +32,13 @@ function App() {
 
   const user = useSelector(store => store.user);
   // gets the location of where the user is in the app based on the url
-    // splices it to work with the reducer set up
-    // see BottomNavBar for other side of this code
+  // splices it to work with the reducer set up
+  // see BottomNavBar for other side of this code
   const locationToSend = window.location.hash.replace('#/', '');
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
+    dispatch({ type: 'GET_MEETINGS' });
     dispatch({
       type: 'SET_WHERE',
       payload: locationToSend
@@ -78,7 +81,7 @@ function App() {
           >
             <InfoPage />
           </ProtectedRoute>
-          
+
           <ProtectedRoute
             exact
             path="/searchProfiles"
@@ -121,8 +124,15 @@ function App() {
               <RegisterPage />
             }
           </Route>
-          <ProtectedRoute exact path = "/addmeeting">
+          <ProtectedRoute exact path="/meeting/add">
             <AddMeeting />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/meeting">
+            <MeetingHistory />
+          </ProtectedRoute>
+          {/* TODO: useParams to route this to /meetingnotes/:id */}
+          <ProtectedRoute exact path="/meeting/notes">
+            <MeetingNotes />
           </ProtectedRoute>
           <Route
             exact

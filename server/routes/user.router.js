@@ -23,13 +23,29 @@ router.post('/register', (req, res, next) => {
 
   const queryText = `INSERT INTO "user" (username, password)
     VALUES ($1, $2) RETURNING id`;
-  pool
-    .query(queryText, [username, password])
-    .then(() => res.sendStatus(201))
-    .catch((err) => {
-      console.log('User registration failed: ', err);
-      res.sendStatus(500);
-    });
+  pool.query(queryText, [username, password])
+    .then(result => {
+      console.log('User Id:', result.rows[0].id)
+    //ID is here!!
+    
+      const createdUserId = result.rows[0].id
+      // Now handle the profile table reference
+          const insertUserProfileQuery = `
+            INSERT INTO "profiles" ("user_id", "email", "location_city")
+            VALUES  ($1, $2, $3);
+            `
+            // SECOND QUERY ADDS USER Profile
+            pool.query(insertUserProfileQuery, [createdUserId, req.body.email, req.body.location_city])
+          }) 
+            .then((dbres) => {
+              //Now that both are done, send back success!
+              res.sendStatus(201);
+            }).catch(err => {
+              // catch for second query
+              console.log(err);
+              res.sendStatus(500);
+            })
+    
 });
 
 // Handles login form authenticate/login POST
