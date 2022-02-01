@@ -1,48 +1,51 @@
 import react, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
-import TESTMsgCompon from '../TESTMsgCompon/TESTMsgCompon';
+import MessagesMsg from '../MessagesMsg/MessagesMsg';
 
-// RCE CSS
-import 'react-chat-elements/dist/main.css';
-// MessageBox component
-import { MessageBox } from 'react-chat-elements';
+import { Box, List } from '@mui/material';
 
-export default function TESTMessages() {
+export default function MessagesConvo() {
   //alias HOOKs
   const dispatch = useDispatch();
+  const convoWithUserID = useParams();
   //REDUX store
   const userMessages = useSelector((store) => store.messagesReducer);
+  //filter for specific messages
+  const userConvo = userMessages.filter((convo) => (convo.uniqUser == convoWithUserID.id));
 
   const [message, setMessage] = useState('');
 
-
-    useEffect(() => {
-      dispatch({
-        type: "FETCH_MESSAGES"
-      })
-    }, [])
+    // useEffect(() => {
+    //   dispatch({
+    //     type: "FETCH_MESSAGES"
+    //   })
+    // }, [])
 
   const handleSendMessage = () => {
     let outboundMessage = {
       content: message,
       timestamp: new Date(),
-      recipient_id: 4 //TODO: useParams to capture target recipient
+      recipient_id: convoWithUserID
       // sender_id: req.user.id on serverside
     }
     dispatch({
       type: "POST_MESSAGE",
       payload: outboundMessage
     })
+    setMessage('');
   };
 
   return(
     <>
-    {userMessages.map((msg) => {
-      return <TESTMsgCompon key={msg.id} timestamp={msg.timestamp} message={msg.content} />
-    })}
+    <List>
+      {userConvo[0].messages.map((msg) => {
+        return <MessagesMsg key={msg.id} timestamp={msg.timestamp} message={msg.content} />
+      })}
+    </List>
     
-    <p>Test messages!</p>
+    <Box>
     <input 
       value = {message}
       onChange={(e) => setMessage(e.target.value)}
@@ -51,6 +54,7 @@ export default function TESTMessages() {
       onClick={handleSendMessage}>
       Send
     </button>
+    </Box>
     </>
   )
 }
