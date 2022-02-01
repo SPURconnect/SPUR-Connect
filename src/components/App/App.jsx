@@ -32,8 +32,8 @@ function App() {
 
   const user = useSelector(store => store.user);
   // gets the location of where the user is in the app based on the url
-    // splices it to work with the reducer set up
-    // see BottomNavBar for other side of this code
+  // splices it to work with the reducer set up
+  // see BottomNavBar for other side of this code
   const locationToSend = window.location.hash.replace('#/', '');
 
   useEffect(() => {
@@ -81,7 +81,7 @@ function App() {
           >
             <InfoPage />
           </ProtectedRoute>
-          
+
           <ProtectedRoute
             exact
             path="/searchProfiles"
@@ -124,13 +124,14 @@ function App() {
               <RegisterPage />
             }
           </Route>
-          <ProtectedRoute exact path = "/meeting/add">
+          <ProtectedRoute exact path="/meeting/add">
             <AddMeeting />
           </ProtectedRoute>
-          <ProtectedRoute exact path = "/meeting">
+          <ProtectedRoute exact path="/meeting">
             <MeetingHistory />
+          </ProtectedRoute>
           {/* TODO: useParams to route this to /meetingnotes/:id */}
-          <ProtectedRoute exact path = "/meeting/notes"> 
+          <ProtectedRoute exact path="/meeting/notes">
             <MeetingNotes />
           </ProtectedRoute>
           <Route
