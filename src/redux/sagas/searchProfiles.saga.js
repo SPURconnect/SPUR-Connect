@@ -18,7 +18,7 @@ function* fetchProfiles(action) {
 }
 
 function* fetchAllProfiles(action) {
-  let search = { input: action.payload };
+  
   try {
       const profiles = yield axios({
         method: 'GET',
@@ -31,10 +31,24 @@ function* fetchAllProfiles(action) {
       console.log('GET Profiles error', err);
   }
 }
+function* fetchSingleProfile(action) {
+  console.log(action.payload)
+  try {
+    const singleProfile = yield axios({
+      method: "GET",
+      url: `/api/singleProfile/${action.payload}`,
+    });
+    yield put({ type: "SET_SINGLE_PROFILE", payload: singleProfile.data });
+  } catch (err) {
+    console.log("GET fetchSingleProfile error", err);
+  }
+}
+
 
 function* searchProfilesSaga() {
-  yield takeEvery('FETCH_PROFILES', fetchProfiles);
-  yield takeEvery('FETCH_ALL_PROFILES', fetchAllProfiles);
+  yield takeEvery("FETCH_PROFILES", fetchProfiles);
+  yield takeEvery("FETCH_ALL_PROFILES", fetchAllProfiles);
+  yield takeEvery('FETCH_SINGLE_PROFILE', fetchSingleProfile)
 }
 
 export default searchProfilesSaga;

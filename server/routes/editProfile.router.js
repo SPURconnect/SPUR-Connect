@@ -104,6 +104,29 @@ router.put('/:id', rejectUnauthenticated,(req, res) => {
     })
 })
 
+router.put('/', rejectUnauthenticated,(req, res) => {
+  console.log("In PUT @@@@@ req.body.availability", req.body.availability);
+  
+  const sqlText = `
+    UPDATE "profiles"
+    SET
+        "availability"=$1
+    WHERE "user_id" = $2;
+    `;
+  const sqlValues = [
+    req.body.availability,
+    req.user.id
+  ]
+  pool.query(sqlText, sqlValues)
+    .then((dbRes) => {
+      res.sendStatus(200)
+    })
+    .catch((dbErr) => {
+      console.log('In Put Error', dbErr);
+      res.sendStatus(500)
+    })
+})
+
 
 
 

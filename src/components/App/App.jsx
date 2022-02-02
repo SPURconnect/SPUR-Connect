@@ -32,6 +32,7 @@ import SelectedMeeting from '../SelectedMeeting/SelectedMeeting';
 
 import './App.css';
 import SearchProfiles from '../SearchProfiles/SearchProfiles';
+import SearchProfilesDetails from '../SearchProfilesDetails/SearchProfilesDetails'
 
 function App() {
   const dispatch = useDispatch();
@@ -55,7 +56,9 @@ function App() {
   return (
     <Router>
       <div>
-      <div><Toaster /></div>
+        <div>
+          <Toaster />
+        </div>
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -90,11 +93,12 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
-          <ProtectedRoute
-            exact
-            path="/searchProfiles"
-          >
+          <ProtectedRoute exact path="/searchProfiles">
             <SearchProfiles />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/searchProfiles/:id">
+            <SearchProfilesDetails />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -114,9 +118,10 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
-            exact path="/edit/:id">
-          <EditUserProfile />
-
+            exact
+            path="/edit/:id"
+          >
+            <EditUserProfile />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -127,32 +132,26 @@ function App() {
             <SelectedMeeting />
           </ProtectedRoute>
 
-          <Route
-            exact
-            path="/login"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+          <Route exact path="/login">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the login page
               <LoginPage />
-            }
+            )}
           </Route>
 
-          <Route
-            exact
-            path="/registration"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+          <Route exact path="/registration">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect them to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the registration page
               <RegisterPage />
-            }
+            )}
           </Route>
           <ProtectedRoute exact path="/meeting/add">
             <AddMeeting />
@@ -164,18 +163,15 @@ function App() {
           <ProtectedRoute exact path="/meeting/notes">
             <MeetingNotes />
           </ProtectedRoute>
-          <Route
-            exact
-            path="/home"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+          <Route exact path="/home">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect them to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the Landing page
               <LandingPage />
-            }
+            )}
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
@@ -185,7 +181,6 @@ function App() {
         </Switch>
 
         <BottomNavBar />
-
       </div>
     </Router>
   );
