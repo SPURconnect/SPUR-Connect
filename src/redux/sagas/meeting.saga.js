@@ -50,11 +50,12 @@ function* fetchNotes(action){
   try{
     const response = yield axios({
       method: 'GET',
-      url: `/api/meetings/notes/3`, //TODO: useParams
+      url: `/api/meetings/notes/${action.payload}`,
     })
+    console.log(response.data.meeting_notes);
     yield put({
       type: 'SET_NOTES',
-      payload: response.data
+      payload: response.data.meeting_notes
     })
   }catch(error){
     console.log('fetchNotes catch error:', error);
@@ -65,12 +66,12 @@ function* saveNotes(action){
   try{
     const response = yield axios({
       method: 'PUT',
-      url: `/api/meetings/notes/3`, //TODO: useParams
+      url: `/api/meetings/notes/${action.payload.id}`, 
       data: action.payload
     })
     yield put({
       type: 'FETCH_NOTES',
-      payload: response.data
+      payload: response.data.id
     })
   }catch(error){
     console.log('saveNotes catch error:', error);

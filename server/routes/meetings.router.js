@@ -44,7 +44,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 //Get notes for selected meeting.
 router.get('/notes/:id', rejectUnauthenticated, (req, res) => {
   const sqlText = `
-    SELECT "summary" FROM "user_meetings"
+    SELECT "meeting_notes" FROM "user_meetings"
     WHERE "id" = $1;
   `;
   const sqlValues = [
@@ -64,8 +64,9 @@ router.get('/notes/:id', rejectUnauthenticated, (req, res) => {
 router.put('/notes/:id', rejectUnauthenticated, (req, res) => {
   const sqlText = `
     UPDATE "user_meetings" 
-    SET "summary" = $1
-    WHERE "id" = $2;
+    SET "meeting_notes" = $1
+    WHERE "id" = $2
+    RETURNING "id";
   `;
   const sqlValues = [
     req.body.notes,
@@ -73,7 +74,7 @@ router.put('/notes/:id', rejectUnauthenticated, (req, res) => {
   ];
   pool.query(sqlText, sqlValues)
     .then((dbRes) => {
-      res.sendStatus(200);
+      res.send(dbRes.rows[0]);
     })
     .catch((dbErr) => {
       console.log('/meetings/notes/:id PUT error:', dbErr);
