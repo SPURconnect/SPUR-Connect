@@ -1,8 +1,9 @@
-import { useEffect} from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { Box, Button, TextField, Typography } from '@mui/material';
-
+import toast from 'react-hot-toast';
+import MeetingNavBar from '../MeetingNavBar/MeetingNavBar';
 
 function MeetingNotes() {
 
@@ -10,6 +11,7 @@ function MeetingNotes() {
   const dispatch = useDispatch();
   const params = useParams();
   const notes = useSelector(store => store.notes);
+  const meetings = useSelector(store => store.meetings);
 
   useEffect(() => {
     fetchNotes();
@@ -29,18 +31,29 @@ function MeetingNotes() {
     })
   }
 
+  // sets current meeting for toast notification
+  let currentMeeting;
+  for (let meeting of meetings) {
+    console.log(params.id)
+    if (Number(params.id) === meeting.id) {
+      currentMeeting = meeting;
+    }
+  }
+
   const handleSaveNotes = (e) => {
     e.preventDefault();
     dispatch({
       type: 'SAVE_NOTES',
       payload: {
         id: params.id,
-        notes: notes.notes
+        notes: notes.notes !== null ? notes.notes : ''
       }
     })
+    toast.success(`${currentMeeting.meeting_title} updated!`)
+    history.push(`/meeting/details/${params.id}`);
   };
 
-  function handleClearNotes(){
+  function handleClearNotes() {
     dispatch({
       type: 'CLEAR_EDIT_NOTES',
     })
@@ -49,52 +62,56 @@ function MeetingNotes() {
 
   return (
     <div>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Typography
-          variant="h6"
-          component="h6"
+      {/* have to give it a prop that matches the logic in the MeetingNavBar component */}
+      <MeetingNavBar prop={'notes'} />
+      <div style={{ marginTop: '12vh' }}>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
         >
-          Notes
-        </Typography>
-      </Box>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <TextField
-          multiline={true} //Allows changing height of TextField.
-          rows={15} //Change height of TextField here.
-          placeholder='Notes'
-          value={notes.notes || ''}
-          onChange={handleNoteChange}
-          sx={{mt: 1, width: 250,}} //Change width of TextField here.
-        />
-      </Box>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Button
-          variant=""
-          onClick={handleClearNotes}
-          sx={{mt: 2, mr: 2}}
+          <Typography
+            variant="h6"
+            component="h6"
+          >
+            Notes
+          </Typography>
+        </Box>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
         >
-          Clear
-        </Button>
-        <Button //TODO: Add sweetalerts or something to notify changes saved.
-          variant="contained"
-          onClick={handleSaveNotes}
-          sx={{mt: 2, ml: 10}}
+          <TextField
+            multiline={true} //Allows changing height of TextField.
+            rows={15} //Change height of TextField here.
+            placeholder='Notes'
+            value={notes.notes || ''}
+            onChange={handleNoteChange}
+            sx={{ mt: 1, width: 250, }} //Change width of TextField here.
+          />
+        </Box>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
         >
-          Save
-        </Button>
-      </Box>
+          <Button
+            variant=""
+            onClick={handleClearNotes}
+            sx={{ mt: 2, mr: 2 }}
+          >
+            Clear
+          </Button>
+          <Button //TODO: Add sweetalerts or something to notify changes saved.
+            variant="contained"
+            onClick={handleSaveNotes}
+            sx={{ mt: 2, ml: 10 }}
+          >
+            Save
+          </Button>
+        </Box>
+      </div>
     </div>
   )
 };
