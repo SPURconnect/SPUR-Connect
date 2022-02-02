@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import MessagesMsg from '../MessagesMsg/MessagesMsg';
+import MessageSendModal from '../MessageSendModal/MessageSendModal';
 
 import { Box, List } from '@mui/material';
 
@@ -17,11 +18,11 @@ export default function MessagesConvo() {
 
   const [message, setMessage] = useState('');
 
-    // useEffect(() => {
-    //   dispatch({
-    //     type: "FETCH_MESSAGES"
-    //   })
-    // }, [])
+    useEffect(() => {
+      dispatch({
+        type: "FETCH_MESSAGES"
+      })
+    }, [])
 
   const handleSendMessage = () => {
     let outboundMessage = {
@@ -45,7 +46,9 @@ export default function MessagesConvo() {
       })}
     </List>
     
-    <Box>
+    <MessageSendModal buttonText={"Reply"} sendTo={convoWithUserID}/>
+
+    {/* <Box>
     <input 
       value = {message}
       onChange={(e) => setMessage(e.target.value)}
@@ -54,7 +57,7 @@ export default function MessagesConvo() {
       onClick={handleSendMessage}>
       Send
     </button>
-    </Box>
+    </Box> */}
     </>
   )
 }
