@@ -3,11 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { Box, Button, Stack, TextField, Typography, IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import SelectedMeetingEdit from '../SelectedMeetingEdit/SelectedMeetingEdit';
 
 
 
-function SelectedMeeting() {
+function SelectedMeetingEdit() {
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -45,7 +44,7 @@ function SelectedMeeting() {
         <IconButton
         size='large'
         sx={{width: '10%', margin: 'auto', paddingTop: '2vh'}}
-        onClick={() => history.push('/meeting/details/edit')}
+        onClick={() => history.push('/meeting/detail/edit')}
       >
         <EditIcon 
           fontSize='inherit'
@@ -83,4 +82,4 @@ function SelectedMeeting() {
   )
 };
 
-export default SelectedMeeting;
+export default SelectedMeetingEdit;

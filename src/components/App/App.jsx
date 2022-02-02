@@ -26,6 +26,7 @@ import EditUserProfile from '../EditUserProfile/EditUserProfile';
 import MeetingHistory from '../MeetingHistory/MeetingHistory';
 import MeetingNotes from '../MeetingNotes/MeetingNotes.jsx';
 import SelectedMeeting from '../SelectedMeeting/SelectedMeeting';
+import SelectedMeetingEdit from '../SelectedMeetingEdit/SelectedMeetingEdit';
 
 import './App.css';
 import SearchProfiles from '../SearchProfiles/SearchProfiles';
@@ -121,6 +122,13 @@ function App() {
             path="/meeting/details"
           >
             <SelectedMeeting />
+          </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/meeting/details/edit"
+          >
+            <SelectedMeetingEdit />
           </ProtectedRoute>
 
           <Route
