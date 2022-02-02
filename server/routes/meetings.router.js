@@ -94,6 +94,22 @@ router.delete('/', rejectUnauthenticated, (req, res) => {
       console.log('/meetings/notes/:id PUT error:', dbErr);
       res.sendStatus(500);
     });
-})
+});
+
+//Get selected photos.
+router.get('/photos/:id', rejectUnauthenticated, (req,res) =>{
+  const sqlText = `
+    SELECT * FROM "meeting_uploads"
+    WHERE "meeting_id"=$1;
+  `;
+  pool.query(sqlText, [req.params.id])
+    .then((dbRes) =>{
+      res.send(dbRes.rows);
+    })
+    .catch((dbErr) => {
+      console.log('/meetings/photos/:id GET error:', dbErr);
+      resSendStatus(500);
+    });
+});
 
 module.exports = router;
