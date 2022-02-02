@@ -84,6 +84,7 @@ VALUES
 ('Met at coffee shop about new prototype', 'Coffee Shop Downtown', '2/1/2022 09:12AM', 'Meeting w/ Joe', '1', '3'),
 ('Met for doc review', 'Office', '2/3/2022 09:12AM', 'Meeting w/ Kayla', '1', '4');
 
+-- dummy data for conversations
 INSERT INTO "public"."user_messages"("content", "sender_id", "recipient_id", "timestamp") 
 VALUES
 ('Hello!', 1, 2, '2022-01-27 02:24:04-06'),

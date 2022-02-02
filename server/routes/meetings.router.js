@@ -2,7 +2,6 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
-const { response } = require('express');
 
 router.get('/', rejectUnauthenticated, (req, res) => {
   const queryText = `
@@ -81,5 +80,20 @@ router.put('/notes/:id', rejectUnauthenticated, (req, res) => {
       res.sendStatus(500);
     });
 });
+
+router.delete('/', rejectUnauthenticated, (req, res) => {
+  const sqlText = `
+    DELETE FROM "user_meetings"
+      WHERE "id"=$1;
+  `;
+  pool.query(sqlText, [req.body.id])
+    .then((dbRes) => {
+      res.sendStatus(200);
+    })
+    .catch((dbErr) => {
+      console.log('/meetings/notes/:id PUT error:', dbErr);
+      res.sendStatus(500);
+    });
+})
 
 module.exports = router;

@@ -31,6 +31,21 @@ function* getMeetings(){
   };
 };
 
+function* deleteMeeting(action){
+  try{
+    yield axios({
+      method: 'DELETE',
+      url: '/api/meetings',
+      data: action.payload,
+    })
+    yield put({
+      type: 'GET_MEETINGS'
+    })
+  } catch(error){
+    console.log('deleteMeeting catch error:', error);
+  }
+}
+
 function* fetchNotes(action){
   try{
     const response = yield axios({
@@ -67,6 +82,7 @@ function* meetingSaga(){
   yield takeEvery('GET_MEETINGS', getMeetings);
   yield takeEvery('FETCH_NOTES', fetchNotes);
   yield takeEvery('SAVE_NOTES', saveNotes);
+  yield takeEvery('DELETE_MEETING', deleteMeeting);
 };
 
 export default meetingSaga;
