@@ -115,42 +115,42 @@ function RegisterForm() {
         </label>
       </div>
       <div>
-          <label htmlFor="Location/City">
-          Location/City:<br></br>
-          <input
-              type="Location/City"
-              name="Location/City"
+          <label>
+            <br></br>
+            <TextField
+              id="outlined-helperText"
+              label="Location/City"
+              defaultValue="Default Value"
               value={city}
-            required
               onChange={(event) => setCity(event.target.value)}
-          />
-        </label>
-      </div>
+            />
+          </label>
+        </div>
         <div>
-          <label htmlFor="Location/State">
-            Location/State:<br></br>
-            <input
-              type="Location/State"
-              name="Location/State"
+          <label>
+            <br></br>
+            <TextField
+              id="outlined-helperText"
+              label="Location/State"
+              defaultValue="Default Value"
               value={state}
-              required
               onChange={(event) => setState(event.target.value)}
             />
           </label>
         </div>
         <div>
-          <label htmlFor="Location/Zip">
-            Location/Zip:<br></br>
-            <input
-              type="Location/Zip"
-              name="Location/Zip"
+          <label>
+            <br></br>
+            <TextField
+              id="outlined-helperText"
+              label="Location/Zip"
+              defaultValue="Default Value"
               value={zip}
-              required
               onChange={(event) => setZip(event.target.value)}
             />
           </label>
         </div>
-      <div>
+        <div>
         <label htmlFor="Industry">
         Choose an Industry:<br></br>
             <select value={industry} onChange={(event) => chooseIndustry(event)}>
