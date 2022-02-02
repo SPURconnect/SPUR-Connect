@@ -3,7 +3,12 @@ import {useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { string } from 'prop-types';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardContent from '@mui/material/CardContent';
+import Avatar from '@mui/material/Avatar';
+import Typography from '@mui/material/Typography';
+import { grey } from '@mui/material/colors';
 
 function SearchProfiles(props) {
  
@@ -31,7 +36,7 @@ function SearchProfiles(props) {
       payload: cleanString
       })
     }
-  }
+  };
 
   const handleIndustryChange = (event) =>  {
     event.preventDefault();
@@ -39,10 +44,11 @@ function SearchProfiles(props) {
       type: 'SORT_BY_INDUSTRY',
       payload: event.target.value
     });
-  }
+  };
 
-
-
+  const handleCardClick = (event) =>  {
+    // TODO: history.push() to user profile 
+  };
 
   return (
     <div>
@@ -57,10 +63,33 @@ function SearchProfiles(props) {
       </select>
         
       {searchProfilesReducer.map((item, index) =>    
-                    <p key={index}>{item.first_name}</p>
-                )}
+        <div 
+          onClick={() => handleCardClick(item)}
+          style={{ paddingBottom: '4px' }}>
+          <Card 
+            sx={{ maxWidth: '100%', boxShadow: 3 }} 
+            
+            >
+            <CardHeader
+              sx={{ paddingBottom: '0px' }}
+              // onClick={handleExpandClick}
+              avatar={
+                <Avatar
+                  sx={{ bgcolor: grey[500], width: '75px', height: '75px' }}
+                  aria-label="profile image"
+                  src={item.photo}
+                >
+                </Avatar>
+              }
+              title={item.first_name + ' ' + item.last_name}
+              subheader={item.industry_name}
+            />             
+          </Card>
+        </div>
+      )}
     </div>
   );
 }
 
 export default SearchProfiles;
+

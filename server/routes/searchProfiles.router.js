@@ -13,6 +13,8 @@ searchProfilesRouter.get('/:input', (req, res) => {
 
     const query = `
     SELECT * FROM "profiles"
+    JOIN "industry" 
+    ON "profiles"."industry_id"="industry"."id"
       WHERE "location_city" LIKE $1
         OR  "location_state" LIKE $1
         OR  "location_zip" LIKE $1
