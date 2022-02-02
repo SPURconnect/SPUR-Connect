@@ -29,6 +29,7 @@ import EditUserProfile from '../EditUserProfile/EditUserProfile';
 import MeetingHistory from '../MeetingHistory/MeetingHistory';
 import MeetingNotes from '../MeetingNotes/MeetingNotes.jsx';
 import SelectedMeeting from '../SelectedMeeting/SelectedMeeting';
+import MeetingPhotos from '../MeetingPhotos/MeetingPhotos.jsx';
 
 import './App.css';
 import SearchProfiles from '../SearchProfiles/SearchProfiles';
@@ -160,9 +161,13 @@ function App() {
           <ProtectedRoute exact path="/meeting">
             <MeetingHistory />
           </ProtectedRoute>
-          {/* TODO: useParams to route this to /meetingnotes/:id */}
+          {/* TODO: useParams to route this to /meeting/notes/:id */}
           <ProtectedRoute exact path="/meeting/notes">
             <MeetingNotes />
+          </ProtectedRoute>
+          {/* TODO: useParams to route this to /meeting/photos/:id */}
+          <ProtectedRoute exact path="/meeting/photos">
+            <MeetingPhotos />
           </ProtectedRoute>
           <Route
             exact

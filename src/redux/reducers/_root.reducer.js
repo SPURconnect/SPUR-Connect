@@ -10,7 +10,7 @@ import meetings from './meetings.reducer';
 import editProfileReducer from './editProfile.reducer';
 import notes from './notes.reducer';
 import allProfilesReducer from './allProfiles.reducer';
-import photosReducer from './photos.reducer.js';
+import photos from './photos.reducer.js';
 
 
 // rootReducer is the primary reducer for our entire project
