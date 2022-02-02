@@ -36,6 +36,8 @@ app.use('/api/searchProfiles', searchProfilesRouter);
 app.use('/api/industry', industriesRouter);
 app.use('/api/messages', messagesRouter);
 app.use('/api/meetings', meetingsRouter);
+app.use('/api/meetings/edit', meetingsRouter);
+
 
 
 // Serve static files

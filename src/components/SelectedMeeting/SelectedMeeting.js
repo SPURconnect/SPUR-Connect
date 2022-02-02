@@ -23,6 +23,16 @@ function SelectedMeeting() {
   }, []);
 
    console.log('reducer data', meetings)
+/* const backpage = (e) =>  {
+    history.push('/meetinghistory');
+  
+  }
+
+const edit = (e) =>  {
+    history.push('/meetingdetails');
+  
+  }   */
+
 
   
   return (
@@ -45,7 +55,7 @@ function SelectedMeeting() {
         <IconButton
         size='large'
         sx={{width: '10%', margin: 'auto', paddingTop: '2vh'}}
-        onClick={() => history.push('/meeting/details/edit')}
+        onClick={() => history.push(`/meetings/edit/${params.id}`)}
       >
         <EditIcon 
           fontSize='inherit'

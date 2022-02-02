@@ -1,4 +1,4 @@
-import { useEffect} from 'react';
+import { useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { Box, Button, Stack, TextField, Typography, IconButton } from '@mui/material';
@@ -13,13 +13,37 @@ function SelectedMeetingEdit() {
   const params = useParams();
   const meetings = useSelector(store => store.meetings);
 
-   useEffect(() => {
+
+  const [location, setLocation] = useState('');
+  const [date, setDate] = useState('');
+  const [summary, setSummary] = useState('');
+  const [notes, setNotes] = useState('');
+
+  /*  useEffect(() => {
     
     dispatch({      
       type: 'GET_MEETINGS',
       payload: params.id
     })
-  }, []);
+  }, []); */
+
+  
+
+  const editDeatils = (e) => {
+   e.preventDefault();
+      dispatch({
+        type: 'EDIT_MEETING_DETAILS',
+        payload: {
+          meetup_location: location,
+          date: date,
+          summary: summary,
+          notes: notes,
+          id: params.id,
+        }
+    
+      })
+    }
+
 
    console.log('reducer data', meetings)
 
@@ -41,15 +65,7 @@ function SelectedMeetingEdit() {
         >
           Selected Meeting Details
         </Typography>
-        <IconButton
-        size='large'
-        sx={{width: '10%', margin: 'auto', paddingTop: '2vh'}}
-        onClick={() => history.push('/meeting/detail/edit')}
-      >
-        <EditIcon 
-          fontSize='inherit'
-        />
-      </IconButton>
+        
       </Box>
       <Box
         display="flex"
@@ -57,23 +73,46 @@ function SelectedMeetingEdit() {
         alignItems="center"
       >
 
-         
-         {
-           meetings.map(meetings => 
-            (<Stack key={meetings.id}> 
-             <h5>Meeting Title</h5>
-              <p>{meetings.meeting_title}</p>
-              <h5>Meeting Location</h5>
-              <p>{meetings.meetup_location}</p> 
-              <h5>Schedule</h5>
-              <p>{meetings.date}</p> 
-              <h5>Summary</h5>
-              <p>{meetings.summary}</p>
-            
+          <TextField
+          multiline={true} //Allows changing height of TextField.
+          rows={15} //Change height of TextField here.
+          placeholder='Location'
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+          sx={{mt: 1, width: 250,}} //Change width of TextField here.
+        />
 
-            </Stack>)
-           )}
-                            
+<TextField
+          multiline={true} //Allows changing height of TextField.
+          rows={15} //Change height of TextField here.
+          placeholder='date'
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          sx={{mt: 1, width: 250,}} //Change width of TextField here.
+        /><br></br>
+
+
+<TextField
+          multiline={true} //Allows changing height of TextField.
+          rows={15} //Change height of TextField here.
+          placeholder='summary'
+          value={summary}
+          onChange={(e) => setSummary(e.target.value)}
+          sx={{mt: 1, width: 250,}} //Change width of TextField here.
+        /><br></br>
+        <TextField
+          multiline={true} //Allows changing height of TextField.
+          rows={15} //Change height of TextField here.
+          placeholder='notes'
+          value={notes}
+          onChange={(e) => setNotes(e.target.value)}
+          sx={{mt: 1, width: 250,}} //Change width of TextField here.
+        /><br></br>
+
+              <Button
+               variant="contained"
+               style={{ backgroundColor: '#A663CC', color: 'White' }}               
+               onClick={(e) => { editDeatils(e) }}>Add</Button>        
               
       </Box>
      

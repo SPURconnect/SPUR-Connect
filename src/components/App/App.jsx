@@ -8,6 +8,7 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 
+
 import Nav from '../Nav/Nav';
 import BottomNavBar from '../BottomNavBar/BottomNavBar';
 
@@ -31,8 +32,10 @@ import SelectedMeetingEdit from '../SelectedMeetingEdit/SelectedMeetingEdit';
 import './App.css';
 import SearchProfiles from '../SearchProfiles/SearchProfiles';
 
+
 function App() {
   const dispatch = useDispatch();
+  
 
   const user = useSelector(store => store.user);
   // gets the location of where the user is in the app based on the url
@@ -119,14 +122,15 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/meeting/details"
+            path="/meetings/:id"
           >
             <SelectedMeeting />
           </ProtectedRoute>
+          
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/meeting/details/edit"
+            path="/meetings/edit/:id"
           >
             <SelectedMeetingEdit />
           </ProtectedRoute>
