@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@mui/material/TextField'
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import NativeSelect from '@mui/material/NativeSelect';
 
 
 function RegisterForm() {
@@ -152,15 +155,28 @@ function RegisterForm() {
         </div>
         <div>
         <label htmlFor="Industry">
-        Choose an Industry:<br></br>
-            <select value={industry} onChange={(event) => chooseIndustry(event)}>
-              <option disabled>Filter By Industry</option>
-              {industriesReducer.map((industry) => {
-                return (
-                  <option key={industry.id} value={industry.id}>{industry.industry_name}</option>
-                )
-              })}
-            </select>
+          <br></br>
+            <FormControl fullWidth>
+              <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                Choose an Industry:
+              </InputLabel>
+              <NativeSelect
+                defaultValue={30}
+                inputProps={{
+                  name: 'Industry',
+                  id: 'uncontrolled-native',
+                }}
+                value={industry}
+                onChange={(event) => chooseIndustry(event)}
+              >
+                <option disabled>Choose an Industry</option>
+                {industriesReducer.map((industry) => {
+                  return (
+                    <option key={industry.id} value={industry.id}>{industry.industry_name}</option>
+                  )
+                })}
+              </NativeSelect>
+            </FormControl>
         </label>
       </div>
       <div>
