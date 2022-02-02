@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import TextField from '@mui/material/TextField'
 
 
 function RegisterForm() {
@@ -55,63 +56,62 @@ function RegisterForm() {
         </h3>
       )}
       <div>
-        <label htmlFor="username">
-          Username:<br></br>
-          <input
-            type="text"
-            name="username"
-            value={username}
-            required
-            onChange={(event) => setUsername(event.target.value)}
-          />
+        <label>
+            <TextField
+              id="outlined-helperText"
+              label="Username"
+              defaultValue="Default Value"
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
+            />
         </label>
       </div>
       <div>
-        <label htmlFor="password">
-          Password:<br></br>
-          <input
-            type="password"
-            name="password"
-            value={password}
-            required
-            onChange={(event) => setPassword(event.target.value)}
-          />
+        <label>
+            <br></br>
+            <TextField
+              id="outlined-helperText"
+              label="Password"
+              defaultValue="Default Value"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
         </label>
       </div>
         <div>
-          <label htmlFor="firstName">
-            First Name:<br></br>
-            <input
-              type="firstName"
-              name="firstName"
+          <label>
+            <br></br>
+            <TextField
+              id="outlined-helperText"
+              label="First Name"
+              defaultValue="Default Value"
               value={firstName}
-              required
               onChange={(event) => setFirstName(event.target.value)}
             />
           </label>
         </div>
         <div>
-          <label htmlFor="lastName">
-            Last Name:<br></br>
-            <input
-              type="lastName"
-              name="lastName"
+          <label>
+            <br></br>
+            <TextField
+              id="outlined-helperText"
+              label="Last Name"
+              defaultValue="Default Value"
               value={lastName}
-              required
               onChange={(event) => setLastName(event.target.value)}
             />
           </label>
         </div>
       <div>
-        <label htmlFor="email">
-          Email:<br></br>
-          <input
-            type="email"
-            name="email"
-            value={email}
-            required
-            onChange={(event) => setEmail(event.target.value)}
-          />
+        <label>
+            <br></br>
+            <TextField
+              id="outlined-helperText"
+              label="Email"
+              defaultValue="Default Value"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
         </label>
       </div>
       <div>
