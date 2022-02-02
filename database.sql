@@ -83,3 +83,35 @@ VALUES
 ('Worked on files for app', 'Coffee Shop Downtown Minneapolis', '2/1/2022 11:32AM', 'Meeting w/ Vic', '1', '2'),
 ('Met at coffee shop about new prototype', 'Coffee Shop Downtown', '2/1/2022 09:12AM', 'Meeting w/ Joe', '1', '3'),
 ('Met for doc review', 'Office', '2/3/2022 09:12AM', 'Meeting w/ Kayla', '1', '4');
+
+-- dummy data for conversations
+INSERT INTO "public"."user_messages"("content", "sender_id", "recipient_id", "timestamp") 
+VALUES
+('Hello!', 1, 2, '2022-01-27 02:24:04-06'),
+('Oh, Hi.', 2, 1, '2022-01-27 02:24:12-06'),
+('Hey stranger', 2, 3, '2022-01-27 02:24:04-06'),
+('Don''t ever come to St. Louis again.', 3, 2, '2022-01-27 02:24:17-06'),
+('Hello!', 1, 4, '2022-01-27 02:24:04-06'),
+('Business talk only', 4, 1, '2022-01-27 02:25:15-06'),
+('Cool', 1, 5, '2022-01-27 02:24:04-06'),
+('What''s cool? Weird way to start a conversation.', 5, 1, '2022-01-27 02:24:41-06'),
+('Dummy message', 1, 6, '2022-01-27 02:24:04-06'),
+('Uh.. Rude?', 6, 1, '2022-01-27 02:24:17-06'),
+('GIT CONVERSATION INIT', 2, 4, '2022-01-27 02:24:04-06'),
+('NPM INSTALL JOKE LULZ', 4, 2, '2022-01-27 02:24:55-06'),
+('Up late, St Louis is cold.', 2, 5, '2022-01-27 02:24:04-06'),
+('Try minneapolis, dang.', 5, 2, '2022-01-27 02:24:59-06'),
+('Let''s talk business ideas.', 2, 6, '2022-01-27 02:24:04-06'),
+('Okay, livestream gluten free bread cooking app?', 6, 2, '2022-01-27 02:26:22-06'),
+('You try coming up with a bunch of overtures', 3, 4, '2022-01-27 02:24:04-06'),
+('I just say ''no, u''', 4, 3, '2022-01-27 02:26:04-06'),
+('Simultaneous friend messaging', 3, 5, '2022-01-27 02:24:04-06'),
+('Simultaneous friend becoming ', 5, 3, '2022-01-27 02:24:16-06'),
+('Quantum message sending', 3, 6, '2022-01-27 02:24:04-06'),
+('Quantum message sending', 6, 3, '2022-01-27 02:24:15-06'),
+('Quantum message sending', 4, 5, '2022-01-27 02:24:04-06'),
+('Quantum message sending', 5, 4, '2022-01-27 02:24:15-06'),
+('Quantum message sending', 4, 6, '2022-01-27 02:24:04-06'),
+('Quantum message sending', 6, 4, '2022-01-27 02:24:15-06'),
+('Quantum message sending', 5, 6, '2022-01-27 02:24:04-06'),
+('Quantum message sending', 6, 5, '2022-01-27 02:24:15-06');
