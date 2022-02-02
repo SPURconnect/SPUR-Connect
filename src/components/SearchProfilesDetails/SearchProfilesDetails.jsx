@@ -45,6 +45,9 @@ function SearchProfilesDetails() {
         <li>{singleProfileReducer.portfolio}</li>
         <li>{singleProfileReducer.about_me}</li>
       </ul>
+
+
+      <button>Start Meeting</button><button>Message</button>
     </div>
   );
 }
