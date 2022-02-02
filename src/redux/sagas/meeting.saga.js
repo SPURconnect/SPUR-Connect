@@ -77,12 +77,28 @@ function* saveNotes(action){
   };
 };
 
+function* fetchPhotos(action){
+  try{
+    const response = yield axios({
+      method: 'GET',
+      url: `/api/meetings/photos/${action.payload}`, //TODO: useParams
+    })
+    yield put({
+      type: 'SET_PHOTOS',
+      payload: response.data
+    })
+  }catch(error){
+    console.log('fetchPhotos catch error:', error);
+  };
+};
+
 function* meetingSaga(){
   yield takeEvery('ADD_MEETING', addMeeting);
   yield takeEvery('GET_MEETINGS', getMeetings);
   yield takeEvery('FETCH_NOTES', fetchNotes);
   yield takeEvery('SAVE_NOTES', saveNotes);
   yield takeEvery('DELETE_MEETING', deleteMeeting);
+  yield takeEvery('FETCH_PHOTOS', fetchPhotos);
 };
 
 export default meetingSaga;
