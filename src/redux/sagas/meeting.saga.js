@@ -74,7 +74,7 @@ function* editMeetingDetails(action){
     console.log('in response data editMeeting details',response.data);
     yield put({
       type: 'EDIT_MEETING_DETAILS',
-      payload: response.data
+      payload: response.data.id
     })
   }catch(error){
     console.log('EDIT_MEETING_DETAILS catch error:', error);
