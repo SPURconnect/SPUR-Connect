@@ -85,6 +85,7 @@ function MeetingNotes() {
 
   return (
     <div>
+      {/* have to give it a prop that matches the logic in the MeetingNavBar component */}
       <MeetingNavBar prop={'notes'} />
       <div style={{ marginTop: '12vh' }}>
         <Box
