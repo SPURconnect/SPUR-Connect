@@ -4,29 +4,6 @@ import { useHistory, useParams } from 'react-router-dom';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import toast from 'react-hot-toast';
 import MeetingNavBar from '../MeetingNavBar/MeetingNavBar';
-// MUI imports
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import IconButton from '@mui/material/IconButton';
-import TextSnippetOutlinedIcon from '@mui/icons-material/TextSnippetOutlined';
-import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
-import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
-import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
-import Grid from '@mui/material/Grid';
-import { green, grey } from '@mui/material/colors';
-// MUI theme
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: grey[600],
-    },
-    secondary: {
-      main: green[500],
-    },
-    contrastThreshold: 3,
-    tonalOffset: 0.2,
-  },
-});
 
 function MeetingNotes() {
 

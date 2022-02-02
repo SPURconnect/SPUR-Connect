@@ -156,7 +156,7 @@ function EditUserProfile (){
       >
         <TextField
           placeholder="Photo-url"
-          value={editProfile.photo || ''}
+          value={editProfile.photo}
           onChange={handlePhoto}
         />
       </Box>
@@ -173,7 +173,7 @@ function EditUserProfile (){
       >
         <TextField
           placeholder="Email"
-          value={editProfile.email || ''}
+          value={editProfile.email}
           onChange={handleEmail}
         />
       </Box>
