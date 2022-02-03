@@ -80,6 +80,7 @@ function MeetingHistoryItem({ item }) {
     toast.success(`${item.meeting_title} deleted!`)
   }
 
+
   return (
     <div style={{ paddingBottom: '4px' }}>
       <Card sx={{ maxWidth: '100%', boxShadow: 3 }} >

@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useHistory, useParams} from 'react-router-dom';
 import {Box, Button, TextField, Typography} from '@mui/material';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
@@ -11,9 +11,20 @@ function AddMeeting(){
 
   const history = useHistory();
   const dispatch = useDispatch();
+  const params = useParams();
+  const singleProfileReducer = useSelector((store) => store.singleProfileReducer);
   const [meetingTitle, setMeetingTitle] = useState('');
+  const [summary, setSummary] = useState('');
   const [location, setLocation] = useState('');
-  const [date, setDate] = useState(new Date('2014-08-18T21:11:54')); //TODO: This needs to default to current time... somehow. Duncan can figure this one out.
+  const [date, setDate] = useState(new Date()); 
+
+  useEffect(() => {
+    
+    dispatch({
+      type: 'FETCH_SINGLE_PROFILE',
+      payload: params.id
+    })
+  }, [params.id])
 
   function handleSetMeetingTitle(event){
     setMeetingTitle(event.target.value);
@@ -22,6 +33,9 @@ function AddMeeting(){
   function handleSetLocation(event){
     setLocation(event.target.value);
   };
+  function handleSummary(event) {
+    setSummary(event.target.value);
+  };
 
   function handleSetDate(newValue){
     console.log(newValue);
@@ -29,14 +43,14 @@ function AddMeeting(){
   };
 
   function goToProfile(){
-    //history.push(`/profiles/${params.id}`);  TODO: Set this up to head back to the profile you came from.
+    history.push(`/searchProfiles/${params.id}`);
   };
 
   function addMeeting(){
       console.log(meetingTitle, location, date)
       dispatch({
         type: 'ADD_MEETING',
-        payload: {meetingTitle: meetingTitle, location: location, date: date, participant: '5'}// TODO: Change "participant" to current useParams to match whatever user profile we were selected on.
+        payload: {meetingTitle: meetingTitle, summary: summary, location: location, date: date, participant: params.id}// 
       });
       setMeetingTitle('');
       setLocation('');
@@ -89,6 +103,19 @@ function AddMeeting(){
             placeholder="Add a Location"
             value={location}
             onChange={handleSetLocation}
+          />
+        </Box>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          // minHeight="0vh"
+          sx={{ mt: 3 }}
+        >
+          <TextField
+            placeholder="Add a Summary"
+            value={summary}
+            onChange={handleSummary}
           />
         </Box>
         <Box
