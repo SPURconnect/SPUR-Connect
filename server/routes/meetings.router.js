@@ -9,8 +9,10 @@ router.get('/', rejectUnauthenticated, (req, res) => {
       WHERE "user_id"=$1
   `;
   pool.query(queryText, [req.user.id])
+  
     .then((dbRes) => {
       res.send(dbRes.rows);
+      console.log('In get meeting router', dbRes.rows);
     })
     .catch(dbErr => {
       console.log('/meetings GET error:', dbErr);
@@ -82,6 +84,28 @@ router.put('/notes/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
+
+router.put('/edit/:id', rejectUnauthenticated, (req, res) => {
+  const sqlText = `
+    UPDATE "user_meetings" 
+    SET "meetup_location" = $1, "date" = $2, "summary" = $3, "notes" = $4
+    WHERE "id" = $5;
+  `;
+  const sqlValues = [
+    req.body.meetup_location, req.body.date, req.body.summary, req.body.notes,
+    req.params.id
+  ];
+  pool.query(sqlText, sqlValues)
+    .then((dbRes) => {
+      res.sendStatus(200);
+    })
+    .catch((dbErr) => {
+      console.log('/meeting/details/edit:id PUT error:', dbErr);
+      res.sendStatus(500);
+    });
+});
+
+
 router.delete('/', rejectUnauthenticated, (req, res) => {
   const sqlText = `
     DELETE FROM "user_meetings"
@@ -96,5 +120,6 @@ router.delete('/', rejectUnauthenticated, (req, res) => {
       res.sendStatus(500);
     });
 })
+
 
 module.exports = router;

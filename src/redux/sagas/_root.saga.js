@@ -30,5 +30,6 @@ export default function* rootSaga() {
     messagesGET(),
     messagesPOST(),
     meetingSaga(), // saga for meetings
+
   ]);
 }

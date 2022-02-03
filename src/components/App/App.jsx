@@ -11,6 +11,7 @@ import { Toaster } from 'react-hot-toast';
 
 import { useDispatch, useSelector } from 'react-redux';
 
+
 import Nav from '../Nav/Nav';
 import BottomNavBar from '../BottomNavBar/BottomNavBar';
 
@@ -29,13 +30,16 @@ import EditUserProfile from '../EditUserProfile/EditUserProfile';
 import MeetingHistory from '../MeetingHistory/MeetingHistory';
 import MeetingNotes from '../MeetingNotes/MeetingNotes.jsx';
 import SelectedMeeting from '../SelectedMeeting/SelectedMeeting';
+import SelectedMeetingEdit from '../SelectedMeetingEdit/SelectedMeetingEdit';
 
 import './App.css';
 import SearchProfiles from '../SearchProfiles/SearchProfiles';
 import SearchProfilesDetails from '../SearchProfilesDetails/SearchProfilesDetails'
 
+
 function App() {
   const dispatch = useDispatch();
+  
 
   const user = useSelector(store => store.user);
   // gets the location of where the user is in the app based on the url
@@ -127,9 +131,18 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/meeting/details"
+
+            path="/meeting/:id"
           >
             <SelectedMeeting />
+          </ProtectedRoute>
+          
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/meeting/edit/:id"
+          >
+            <SelectedMeetingEdit />
           </ProtectedRoute>
 
           <Route exact path="/login">
