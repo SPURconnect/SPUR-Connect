@@ -141,11 +141,10 @@ function EditUserProfile (){
     })
   }
 
-  return(
-
+  return (
     <div>
       <div>
-        <img className ='photoSize'src={editProfile.photo} />
+        <img className="photoSize" src={editProfile.photo} />
       </div>
       <Box
         display="flex"
@@ -156,13 +155,13 @@ function EditUserProfile (){
       >
         <TextField
           placeholder="Photo-url"
-          value={editProfile.photo}
+          value={editProfile.photo || ''}
           onChange={handlePhoto}
         />
       </Box>
       <div>
         <button onClick={handleUpdateSubmit}>Update</button>
-        <button onClick={() => history.push('/user')}>Cancel</button>
+        <button onClick={() => history.push("/user")}>Cancel</button>
       </div>
       <Box
         display="flex"
@@ -173,7 +172,7 @@ function EditUserProfile (){
       >
         <TextField
           placeholder="Email"
-          value={editProfile.email}
+          value={editProfile.email || ''}
           onChange={handleEmail}
         />
       </Box>
@@ -186,12 +185,12 @@ function EditUserProfile (){
       >
         <TextField
           placeholder="First Name"
-          value={editProfile.first_name}
+          value={editProfile.first_name || ''}
           onChange={handleFirstName}
         />
         <TextField
           placeholder="Last Name"
-          value={editProfile.last_name}
+          value={editProfile.last_name || ''}
           onChange={handleLastName}
         />
       </Box>
@@ -200,22 +199,22 @@ function EditUserProfile (){
         justifyContent="center"
         alignItems="center"
         // minHeight="0vh"
-        sx={{ mt: 0}}
+        sx={{ mt: 0 }}
       >
         <TextField
           placeholder="City"
-          value={editProfile.location_city}
-          onChange = {handleLocationCity}
+          value={editProfile.location_city || ''}
+          onChange={handleLocationCity}
         />
         <TextField
           placeholder="State"
-          value={editProfile.location_state}
+          value={editProfile.location_state || ''}
           onChange={handleLocationState}
         />
         <TextField
           placeholder="Zip"
-          value={editProfile.location_zip}
-          onChange={handleLocationZip} 
+          value={editProfile.location_zip || ''}
+          onChange={handleLocationZip}
         />
       </Box>
       <Box
@@ -227,7 +226,7 @@ function EditUserProfile (){
       >
         <TextField
           placeholder="Industry"
-          value={editProfile.industry_name}
+          value={editProfile.industry_name || ''}
           onChange={handleIndustry}
         />
       </Box>
@@ -240,28 +239,28 @@ function EditUserProfile (){
       >
         <TextField
           placeholder="Linkedin"
-          value = {editProfile.linkedin}
-          onChange = {handleLinkedin}
+          value={editProfile.linkedin || ''}
+          onChange={handleLinkedin}
         />
         <TextField
           placeholder="Facebook"
-          value={editProfile.facebook}
+          value={editProfile.facebook || ''}
           onChange={handleFacebook}
         />
         <TextField
           placeholder="Twitter"
-          value={editProfile.twitter}
+          value={editProfile.twitter || ''}
           onChange={handleTwitter}
         />
         <TextField
           placeholder="YouTube"
-          value={editProfile.youtube}
+          value={editProfile.youtube || ''}
           onChange={handleYouTube}
         />
         <TextField
-        placeholder="YouTube"
-        value={editProfile.instagram}
-        onChange={handleInstagram}
+          placeholder="YouTube"
+          value={editProfile.instagram || ''}
+          onChange={handleInstagram}
         />
       </Box>
       <Box
@@ -273,20 +272,19 @@ function EditUserProfile (){
       >
         <TextField
           placeholder="Portfolio"
-          value = {editProfile.portfolio}
+          value={editProfile.portfolio || ''}
           onChange={handlePortfolio}
         />
         <textarea
           aria-label="empty textarea"
-          value={editProfile.about_me}
+          value={editProfile.about_me || ''} 
           placeholder="About me"
           onChange={handleAboutMe}
           style={{ width: 200 }}
         />
       </Box>
-     
     </div>
-  )
+  );
 }
 
 export default EditUserProfile;

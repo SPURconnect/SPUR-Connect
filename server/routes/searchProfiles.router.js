@@ -13,6 +13,8 @@ searchProfilesRouter.get('/:input', (req, res) => {
 
     const query = `
     SELECT * FROM "profiles"
+    JOIN "industry" 
+    ON "profiles"."industry_id"="industry"."id"
       WHERE "location_city" LIKE $1
         OR  "location_state" LIKE $1
         OR  "location_zip" LIKE $1
@@ -35,6 +37,23 @@ searchProfilesRouter.get('/', (req, res) => {
   const query = `
       SELECT * FROM "profiles"`;
   pool.query(query)
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.log('ERROR: GET searchProfiles', err);
+      res.sendStatus(500)
+    })
+}
+);
+
+searchProfilesRouter.get('/:id', (req, res) => {
+  console.log('searchProfilesRouter', req.params.id)
+  const query = `
+      SELECT * FROM "profiles"
+        WHERE "user_id"=$1`;
+  const queryValues = [req.params.id];
+  pool.query(query, queryValues)
     .then(result => {
       res.send(result.rows);
     })

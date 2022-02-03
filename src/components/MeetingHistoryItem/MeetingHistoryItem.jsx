@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import toast from 'react-hot-toast';
 // MUI imports
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
@@ -15,6 +16,12 @@ import Typography from '@mui/material/Typography';
 import { grey } from '@mui/material/colors';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DeleteIcon from '@mui/icons-material/Delete';
+// MUI dialog imports
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 // MUI expand styler
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -30,24 +37,47 @@ const ExpandMore = styled((props) => {
 function MeetingHistoryItem({ item }) {
   const dispatch = useDispatch();
   const history = useHistory();
-
+  // reducer for all the profiles
+  const allProfiles = useSelector((store) => store.allProfilesReducer);
+  // piece of state for current profile being displayed
+  const [currentProfile, setCurrentProfile] = useState('');
   // handles whether the card is expanded or not
   const [expanded, setExpanded] = React.useState(false);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+  // handles the state of MUI dialog
+  const [open, setOpen] = useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   useEffect(() => {
     dispatch({ type: 'GET_MEETINGS' });
+    displayProfileImage();
   }, [dispatch]);
 
   const handleGoToMeetingDetails = () => {
     history.push(`/meeting/notes/${item.id}`);
   }
 
-  // TODO finish delete route
-  const handleDeleteMeeting = () => {
+  const displayProfileImage = () => {
+    for (let profile of allProfiles) {
+      if (profile.user_id === item.participant_id) {
+        setCurrentProfile(profile);
+      }
+    }
+  }
 
+  const handleDeleteMeeting = () => {
+    dispatch({
+      type: 'DELETE_MEETING',
+      payload: item
+    })
+    toast.success(`${item.meeting_title} deleted!`)
   }
 
   return (
@@ -60,8 +90,7 @@ function MeetingHistoryItem({ item }) {
             <Avatar
               sx={{ bgcolor: grey[500], width: '75px', height: '75px' }}
               aria-label="profile image"
-              // TODO filter through profile reducer for participant image
-              // src={item.img}
+              src={currentProfile.photo}
             >
             </Avatar>
           }
@@ -96,13 +125,34 @@ function MeetingHistoryItem({ item }) {
               color='error'
               aria-label='delete'
               sx={{ float: 'right' }}
-              onClick={() => handleDeleteMeeting()}
+              onClick={handleClickOpen}
             >
               <DeleteIcon />
             </IconButton>
           </CardContent>
         </Collapse>
       </Card>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Delete Meeting?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are you sure you want to delete this meeting?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Disagree</Button>
+          <Button onClick={() => handleDeleteMeeting()} autoFocus>
+            Agree
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   )
 }

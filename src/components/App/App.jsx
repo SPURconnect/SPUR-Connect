@@ -5,6 +5,9 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
+// import for toast notifications see MeetingHistoryItem 
+  // handleDeleteMeeting function for example
+import { Toaster } from 'react-hot-toast';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -31,6 +34,7 @@ import SelectedMeetingEdit from '../SelectedMeetingEdit/SelectedMeetingEdit';
 
 import './App.css';
 import SearchProfiles from '../SearchProfiles/SearchProfiles';
+import SearchProfilesDetails from '../SearchProfilesDetails/SearchProfilesDetails'
 
 
 function App() {
@@ -56,6 +60,9 @@ function App() {
   return (
     <Router>
       <div>
+        <div>
+          <Toaster />
+        </div>
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -90,11 +97,12 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
-          <ProtectedRoute
-            exact
-            path="/searchProfiles"
-          >
+          <ProtectedRoute exact path="/searchProfiles">
             <SearchProfiles />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/searchProfiles/:id">
+            <SearchProfilesDetails />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -114,14 +122,16 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
-            exact path="/edit/:id">
-          <EditUserProfile />
-
+            exact
+            path="/edit/:id"
+          >
+            <EditUserProfile />
           </ProtectedRoute>
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
+
             path="/meeting/:id"
           >
             <SelectedMeeting />
@@ -135,32 +145,26 @@ function App() {
             <SelectedMeetingEdit />
           </ProtectedRoute>
 
-          <Route
-            exact
-            path="/login"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+          <Route exact path="/login">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the login page
               <LoginPage />
-            }
+            )}
           </Route>
 
-          <Route
-            exact
-            path="/registration"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+          <Route exact path="/registration">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect them to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the registration page
               <RegisterPage />
-            }
+            )}
           </Route>
           <ProtectedRoute exact path="/meeting/add">
             <AddMeeting />
@@ -169,21 +173,18 @@ function App() {
             <MeetingHistory />
           </ProtectedRoute>
           {/* TODO: useParams to route this to /meetingnotes/:id */}
-          <ProtectedRoute exact path="/meeting/notes">
+          <ProtectedRoute exact path="/meeting/notes/:id">
             <MeetingNotes />
           </ProtectedRoute>
-          <Route
-            exact
-            path="/home"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+          <Route exact path="/home">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect them to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the Landing page
               <LandingPage />
-            }
+            )}
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
@@ -193,7 +194,6 @@ function App() {
         </Switch>
 
         <BottomNavBar />
-
       </div>
     </Router>
   );

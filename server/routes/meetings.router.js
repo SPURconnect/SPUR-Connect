@@ -2,7 +2,6 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
-const { response } = require('express');
 
 router.get('/', rejectUnauthenticated, (req, res) => {
   const queryText = `
@@ -47,7 +46,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 //Get notes for selected meeting.
 router.get('/notes/:id', rejectUnauthenticated, (req, res) => {
   const sqlText = `
-    SELECT "summary" FROM "user_meetings"
+    SELECT "meeting_notes" FROM "user_meetings"
     WHERE "id" = $1;
   `;
   const sqlValues = [
@@ -67,8 +66,9 @@ router.get('/notes/:id', rejectUnauthenticated, (req, res) => {
 router.put('/notes/:id', rejectUnauthenticated, (req, res) => {
   const sqlText = `
     UPDATE "user_meetings" 
-    SET "summary" = $1
-    WHERE "id" = $2;
+    SET "meeting_notes" = $1
+    WHERE "id" = $2
+    RETURNING "id";
   `;
   const sqlValues = [
     req.body.notes,
@@ -76,7 +76,7 @@ router.put('/notes/:id', rejectUnauthenticated, (req, res) => {
   ];
   pool.query(sqlText, sqlValues)
     .then((dbRes) => {
-      res.sendStatus(200);
+      res.send(dbRes.rows[0]);
     })
     .catch((dbErr) => {
       console.log('/meetings/notes/:id PUT error:', dbErr);
@@ -84,7 +84,8 @@ router.put('/notes/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.put('/:id', rejectUnauthenticated, (req, res) => {
+
+router.put('/edit/:id', rejectUnauthenticated, (req, res) => {
   const sqlText = `
     UPDATE "user_meetings" 
     SET "meetup_location" = $1, "date" = $2, "summary" = $3, "notes" = $4
@@ -103,5 +104,22 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
       res.sendStatus(500);
     });
 });
+
+
+router.delete('/', rejectUnauthenticated, (req, res) => {
+  const sqlText = `
+    DELETE FROM "user_meetings"
+      WHERE "id"=$1;
+  `;
+  pool.query(sqlText, [req.body.id])
+    .then((dbRes) => {
+      res.sendStatus(200);
+    })
+    .catch((dbErr) => {
+      console.log('/meetings/notes/:id PUT error:', dbErr);
+      res.sendStatus(500);
+    });
+})
+
 
 module.exports = router;

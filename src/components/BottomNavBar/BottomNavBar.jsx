@@ -12,8 +12,7 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import ForumOutlinedIcon from '@mui/icons-material/ForumOutlined';
 import Grid from '@mui/material/Grid';
 import { green, grey } from '@mui/material/colors';
-// imported styles
-import './BottomNavBar.css';
+import { Typography } from '@mui/material';
 // MUI theme
 const theme = createTheme({
   palette: {
@@ -21,7 +20,7 @@ const theme = createTheme({
       main: grey[600],
     },
     secondary: {
-      main: green[500],
+      main: green[300],
     },
     contrastThreshold: 3,
     tonalOffset: 0.2,
@@ -40,6 +39,7 @@ function BottomNavBar() {
   const updateWhereReducer = (prop) => {
     switch (prop) {
       case 'meeting':
+        dispatch({ type: 'GET_MEETINGS' });
         history.push('/meeting');
         break;
       case 'searchProfiles':
@@ -73,11 +73,16 @@ function BottomNavBar() {
           }}
         >
           <Box sx={{ flexGrow: 1 }} >
-            <Grid container spacing={2} style={{ margin: 'auto' }}>
+            <Grid container spacing={2} sx={{ margin: 'auto' }}>
               <Grid item xs={3}>
                 <IconButton
                   onClick={() => updateWhereReducer('meeting')}
                   size="large"
+                  sx={{
+                    paddingTop: 0,
+                    paddingBottom: 0,
+                    display: 'block'
+                  }}
                   // checks if the string from the reducer has any / in it, if it does that means it has params
                     // if it has params it will slice the word starting at the index of 0 to the index of / - 1
                     // will turn meeting/17 into meeting and then render colors based on that
@@ -90,11 +95,30 @@ function BottomNavBar() {
                 >
                   <CalendarTodayOutlinedIcon />
                 </IconButton>
+                <Typography
+                  fontSize={11}
+                  color={
+                    whereReducer.includes('/') ? 
+                      whereReducer.slice(0, whereReducer.indexOf('/', - 1)) == 'meeting' ? 'secondary' : 'inherit' 
+                      : 
+                      whereReducer === 'meeting' ? 'secondary' : 'inherit'
+                  }
+                  sx={{
+                    paddingLeft: '2px'
+                  }}
+                >
+                  Meetings
+                </Typography>
               </Grid>
               <Grid item xs={3}>
                 <IconButton
                   onClick={() => updateWhereReducer('searchProfiles')}
                   size="large"
+                  sx={{
+                    paddingTop: 0,
+                    paddingBottom: 0,
+                    display: 'block'
+                  }}
                   color={
                     whereReducer.includes('/') ? 
                       whereReducer.slice(0, whereReducer.indexOf('/', - 1)) == 'searchProfiles' ? 'secondary' : 'inherit' 
@@ -104,11 +128,30 @@ function BottomNavBar() {
                 >
                   <MapOutlinedIcon />
                 </IconButton>
+                <Typography
+                  fontSize={11}
+                  color={
+                    whereReducer.includes('/') ? 
+                      whereReducer.slice(0, whereReducer.indexOf('/', - 1)) == 'searchProfiles' ? 'secondary' : 'inherit' 
+                      : 
+                      whereReducer === 'searchProfiles' ? 'secondary' : 'inherit'
+                  }
+                  sx={{
+                    paddingLeft: '5px'
+                  }}
+                >
+                  Search
+                </Typography>
               </Grid>
               <Grid item xs={3}>
                 <IconButton
                   onClick={() => updateWhereReducer('messages')}
                   size="large"
+                  sx={{
+                    paddingTop: 0,
+                    paddingBottom: 0,
+                    display: 'block'
+                  }}
                   color={
                     whereReducer.includes('/') ? 
                       whereReducer.slice(0, whereReducer.indexOf('/', - 1)) == 'messages' ? 'secondary' : 'inherit' 
@@ -118,11 +161,27 @@ function BottomNavBar() {
                 >
                   <ForumOutlinedIcon />
                 </IconButton>
+                <Typography
+                  fontSize={11}
+                  color={
+                    whereReducer.includes('/') ? 
+                      whereReducer.slice(0, whereReducer.indexOf('/', - 1)) == 'messages' ? 'secondary' : 'inherit' 
+                      : 
+                      whereReducer === 'messages' ? 'secondary' : 'inherit'
+                  }
+                >
+                  Messages
+                </Typography>
               </Grid>
               <Grid item xs={2}>
                 <IconButton
                   onClick={() => updateWhereReducer('user')}
                   size="large"
+                  sx={{
+                    paddingTop: 0,
+                    paddingBottom: 0,
+                    display: 'block'
+                  }}
                   color={
                     whereReducer.includes('/') ? 
                       whereReducer.slice(0, whereReducer.indexOf('/', - 1)) == 'user' ? 'secondary' : 'inherit' 
@@ -132,6 +191,20 @@ function BottomNavBar() {
                 >
                   <AccountCircleOutlinedIcon />
                 </IconButton>
+                <Typography
+                  fontSize={11}
+                  sx={{
+                    paddingLeft: '7px'
+                  }}
+                  color={
+                    whereReducer.includes('/') ? 
+                      whereReducer.slice(0, whereReducer.indexOf('/', - 1)) == 'user' ? 'secondary' : 'inherit' 
+                      : 
+                      whereReducer === 'user' ? 'secondary' : 'inherit'
+                  }
+                >
+                  Profile
+                </Typography>
               </Grid>
             </Grid>
           </Box>

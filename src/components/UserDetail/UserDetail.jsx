@@ -13,6 +13,15 @@ function UserDetail ({profile}){
   const history = useHistory();
   const dispatch = useDispatch(); 
 
+  const user = useSelector((store) => store.user);
+
+  useEffect(() => {
+    dispatch({
+      type: 'SAGA_FETCH_PROFILE_TO_EDIT',
+      payload: user.id
+    })
+  }, [user.id])
+
   const AntSwitch = styled(Switch)(({ theme }) => ({
     width: 28,
     height: 16,
@@ -55,6 +64,25 @@ function UserDetail ({profile}){
     },
   }));
 
+  const setAvailability = (event) => {
+    event.preventDefault();
+    dispatch({
+      type: "SAGA_EDIT_PROFILE_AVAILABILITY",
+      payload: { availability: !profile.availability }
+    });
+  }
+
+  const setSwitch = () => {
+    if (profile.availability) {
+      return <Switch 
+        defaultChecked
+        inputProps={{ 'aria-label': 'ant design' }} />
+    }
+    else {
+      return <Switch 
+        inputProps={{ 'aria-label': 'ant design' }} />
+    }
+  }
 
   return(
     <div>
@@ -68,12 +96,10 @@ function UserDetail ({profile}){
         <li>{profile.portfolio}</li>
         <li>{profile.about_me}</li>
       </ul>
-      <FormGroup>
+      <FormGroup onChange={(event) => setAvailability(event)}>
         <Stack direction="row" spacing={1} alignItems="center">
           <h3>Availability</h3>
-          <Typography>Off</Typography>
-          <AntSwitch defaultChecked inputProps={{ 'aria-label': 'ant design' }} />
-          <Typography>On</Typography>
+          {setSwitch()}
         </Stack>
       </FormGroup>
 

@@ -31,15 +31,31 @@ function* getMeetings(){
   };
 };
 
+function* deleteMeeting(action){
+  try{
+    yield axios({
+      method: 'DELETE',
+      url: '/api/meetings',
+      data: action.payload,
+    })
+    yield put({
+      type: 'GET_MEETINGS'
+    })
+  } catch(error){
+    console.log('deleteMeeting catch error:', error);
+  }
+}
+
 function* fetchNotes(action){
   try{
     const response = yield axios({
       method: 'GET',
-      url: `/api/meetings/notes/3`, //TODO: useParams
+      url: `/api/meetings/notes/${action.payload}`,
     })
+    console.log(response.data.meeting_notes);
     yield put({
       type: 'SET_NOTES',
-      payload: response.data
+      payload: response.data.meeting_notes
     })
   }catch(error){
     console.log('fetchNotes catch error:', error);
@@ -50,12 +66,12 @@ function* saveNotes(action){
   try{
     const response = yield axios({
       method: 'PUT',
-      url: `/api/meetings/notes/3`, //TODO: useParams
+      url: `/api/meetings/notes/${action.payload.id}`, 
       data: action.payload
     })
     yield put({
       type: 'FETCH_NOTES',
-      payload: response.data
+      payload: response.data.id
     })
   }catch(error){
     console.log('saveNotes catch error:', error);
@@ -88,6 +104,7 @@ function* meetingSaga(){
   yield takeEvery('FETCH_NOTES', fetchNotes);
   yield takeEvery('SAVE_NOTES', saveNotes);
   yield takeEvery('EDIT_MEETING_DETAILS', editMeetingDetails);
+  yield takeEvery('DELETE_MEETING', deleteMeeting);
 };
 
 export default meetingSaga;
