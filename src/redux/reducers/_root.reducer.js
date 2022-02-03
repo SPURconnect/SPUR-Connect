@@ -10,7 +10,7 @@ import meetings from './meetings.reducer';
 import editProfileReducer from './editProfile.reducer';
 import notes from './notes.reducer';
 import allProfilesReducer from './allProfiles.reducer';
-
+import singleProfileReducer from './singleProfile.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -30,6 +30,7 @@ const rootReducer = combineReducers({
   meetings, // contains users meetings
   notes, // contains notes for meetings
   allProfilesReducer, // contains all the profiles of users
+  singleProfileReducer, 
 });
 
 export default rootReducer;

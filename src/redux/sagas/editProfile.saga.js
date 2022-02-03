@@ -36,9 +36,28 @@ function* editProfileInfo(action) {
   }
 } 
 
+function* editProfileAvailability(action) {
+  console.log('in editProfileAvailability action.payload', action.payload)
+  try {
+    yield axios({
+      method: 'PUT',
+      url: `/api/editProfile`,
+      data: action.payload
+    })
+    yield put({
+      type: 'SAGA_FETCH_USER_PROFILES',
+      payload: action.payload.id
+    })
+  } catch (err) {
+    console.log('in editProfileAvailability saga err',err )
+  }
+} 
+
+
 
 function* editProfileSaga() {
   yield takeLatest('SAGA_FETCH_PROFILE_TO_EDIT', fetchProfileToEdit),
-  yield takeLatest('SAGA_EDIT_PROFILE_INFO', editProfileInfo )
+  yield takeLatest('SAGA_EDIT_PROFILE_INFO', editProfileInfo),
+  yield takeLatest('SAGA_EDIT_PROFILE_AVAILABILITY', editProfileAvailability)
 }
 export default editProfileSaga;

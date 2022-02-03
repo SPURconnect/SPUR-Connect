@@ -21,9 +21,11 @@ function* fetchUserProfile() {
 
 
 
+
+
 function* userProfile() {
   yield takeLatest('SAGA_FETCH_USER_PROFILES', fetchUserProfile )
-
+  
 };
 
 export default userProfile;
