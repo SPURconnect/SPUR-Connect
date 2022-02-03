@@ -38,10 +38,7 @@ function LoginForm() {
       )}
       <div>
         <label htmlFor="username">
-          Username:<br></br>
-                <br></br>
                 <TextField
-                  id="outlined-helperText"
                   type="text"
                   label="Username"
                   defaultValue="Default Value"
@@ -54,10 +51,7 @@ function LoginForm() {
       <div>
         <br></br>
         <label htmlFor="password">
-          Password:<br></br>
-            <br></br>
             <TextField
-              id="outlined-helperText"
               type="password"
               label="Password"
               defaultValue="Default Value"

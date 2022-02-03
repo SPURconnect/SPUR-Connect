@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Box, Button, TextField, ListItemAvatar, Avatar } from '@mui/material';
 import './EditUserProfile.css'
 
 
@@ -144,7 +144,11 @@ function EditUserProfile (){
   return (
     <div>
       <div>
-        <img className="photoSize" src={editProfile.photo} />
+        <ListItemAvatar>
+          <Avatar 
+          sx={{ width: 200, height: 200 }}
+          src={editProfile.photo} />
+        </ListItemAvatar>
       </div>
       <Box
         display="flex"
@@ -159,10 +163,6 @@ function EditUserProfile (){
           onChange={handlePhoto}
         />
       </Box>
-      <div>
-        <button onClick={handleUpdateSubmit}>Update</button>
-        <button onClick={() => history.push("/user")}>Cancel</button>
-      </div>
       <Box
         display="flex"
         justifyContent="center"
@@ -275,13 +275,27 @@ function EditUserProfile (){
           value={editProfile.portfolio || ''}
           onChange={handlePortfolio}
         />
-        <textarea
+        <TextField
           aria-label="empty textarea"
           value={editProfile.about_me || ''} 
           placeholder="About me"
           onChange={handleAboutMe}
           style={{ width: 200 }}
         />
+      </Box>
+      <Box>
+        <Button
+          variant="contained"
+          onClick={handleUpdateSubmit}
+        >
+          Update
+        </Button>
+        <Button
+          variant="contained"
+          onClick={() => history.push("/user")}
+        >
+          Cancel
+        </Button>
       </Box>
     </div>
   );

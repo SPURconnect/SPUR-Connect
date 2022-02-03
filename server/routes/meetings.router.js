@@ -7,6 +7,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   const queryText = `
       SELECT * FROM "user_meetings"
       WHERE "user_id"=$1
+      ORDER BY "date" DESC
   `;
   pool.query(queryText, [req.user.id])
   

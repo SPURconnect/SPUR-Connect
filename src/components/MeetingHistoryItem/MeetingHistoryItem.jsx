@@ -80,6 +80,14 @@ function MeetingHistoryItem({ item }) {
     toast.success(`${item.meeting_title} deleted!`)
   }
 
+  let theDate = item.date;
+  // let cleanTime = theDate.toLocaleTimeString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'})
+  console.log(item.date)
+  let cleanTime = new Date(item.date);
+  console.log(theDate)
+  console.log(cleanTime)
+  let bestTime = cleanTime.toLocaleTimeString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'});
+  console.log(bestTime);
 
   return (
     <div style={{ paddingBottom: '4px' }}>
@@ -96,7 +104,7 @@ function MeetingHistoryItem({ item }) {
             </Avatar>
           }
           title={item.meeting_title}
-          subheader={item.date}
+          subheader={bestTime}
         />
         <CardActions
           disableSpacing

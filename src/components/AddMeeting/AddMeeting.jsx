@@ -5,7 +5,7 @@ import {Box, Button, TextField, Typography} from '@mui/material';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
-
+import { List, ListItem, ListItemAvatar, ListItemText, Avatar, IconButton } from '@mui/material';
 
 function AddMeeting(){
 
@@ -38,8 +38,10 @@ function AddMeeting(){
   };
 
   function handleSetDate(newValue){
+    let cleanTime = newValue.toLocaleTimeString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'})
     console.log(newValue);
-    setDate(newValue);
+    console.log(cleanTime);
+    setDate(cleanTime);
   };
 
   function goToProfile(){
@@ -54,7 +56,7 @@ function AddMeeting(){
       });
       setMeetingTitle('');
       setLocation('');
-      goToProfile(); //Will send you back to the profile you came from once params are setup.
+      // goToProfile(); //Will send you back to the profile you came from once params are setup.
   }
 
   return(
@@ -73,11 +75,38 @@ function AddMeeting(){
           sx={{mt: 3}}
         >
           <Typography
-            variant="h3"
+            variant="h5"
             component="div"
           >
-            Schedule a Meeting
+            Schedule a meeting with: 
           </Typography>
+        </Box>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          // minHeight="0vh"
+          sx={{ mt: 3 }}
+        >
+        <Typography
+          variant="h5"
+          component="div"
+        >
+            {singleProfileReducer.first_name} {singleProfileReducer.last_name}
+        </Typography>
+        </Box>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          // minHeight="0vh"
+          sx={{ mt: 3 }}
+        >
+          <ListItemAvatar>
+            <Avatar 
+            sx={{ width: 100, height: 100 }}
+            src={singleProfileReducer.photo}/>
+          </ListItemAvatar>
         </Box>
         <Box
           display="flex"
