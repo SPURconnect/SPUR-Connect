@@ -84,7 +84,6 @@ router.put('/notes/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
-
 router.put('/edit/:id', rejectUnauthenticated, (req, res) => {
   const sqlText = `
     UPDATE "user_meetings" 
