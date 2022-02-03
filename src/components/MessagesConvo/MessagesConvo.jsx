@@ -5,7 +5,8 @@ import { useParams } from 'react-router-dom';
 import MessagesMsg from '../MessagesMsg/MessagesMsg';
 import MessageSendModal from '../MessageSendModal/MessageSendModal';
 
-import { Box, List } from '@mui/material';
+import { Grid, TextField, Button, Box, List } from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
 
 export default function MessagesConvo() {
   //alias HOOKs
@@ -40,24 +41,39 @@ export default function MessagesConvo() {
 
   return(
     <>
+    <Box>
     <List>
       {userConvo[0].messages.map((msg) => {
         return <MessagesMsg key={msg.id} timestamp={msg.timestamp} message={msg.content} />
       })}
     </List>
-    
+    </Box>
     <MessageSendModal buttonText={"Reply"} sendTo={convoWithUserID}/>
 
-    {/* <Box>
-    <input 
-      value = {message}
-      onChange={(e) => setMessage(e.target.value)}
-    />
-    <button
-      onClick={handleSendMessage}>
-      Send
-    </button>
-    </Box> */}
+    <Box
+      display="flex"
+      position="fixed" 
+      color="primary" 
+      sx={{top: 'auto', bottom: '10%'}}
+    >
+      <Grid container>
+        <Grid item xs={11}>
+          <TextField
+            fullWidth
+            value = {message}
+            onChange={(e) => setMessage(e.target.value)}
+          />
+        </Grid>
+        <Grid item xs={1}>
+          <Button
+            variant="contained"
+            onClick={handleSendMessage}
+          >  <SendIcon/>
+          </Button>
+        </Grid>
+      </Grid>
+      
+    </Box>
     </>
   )
 }

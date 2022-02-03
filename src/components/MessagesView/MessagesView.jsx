@@ -73,7 +73,7 @@ export default function MessagesView() {
 
 {/* CARD VS LIST */}
 
-      <List>
+      {/* <List>
         {conversations.map(convo => {
           return <ListItem
                   sx={{ 
@@ -105,7 +105,7 @@ export default function MessagesView() {
               />
             </ListItem>
           })}
-      </List>
+      </List> */}
 
     </>
   )
