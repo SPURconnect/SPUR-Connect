@@ -41,6 +41,7 @@ app.use("/api/singleProfile", singleProfileRouter);
 
 
 
+
 // Serve static files
 app.use(express.static('build'));
 

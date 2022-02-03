@@ -1,7 +1,12 @@
+import * as React from 'react';
 import { useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { Box, Button, Stack, TextField, Typography, IconButton } from '@mui/material';
+import StaticDateRangePicker from '@mui/lab/StaticDateRangePicker';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DatePicker from '@mui/lab/DatePicker';
 import EditIcon from '@mui/icons-material/Edit';
 import MeetingNavBar from '../MeetingNavBar/MeetingNavBar';
 
@@ -18,18 +23,8 @@ function SelectedMeetingEdit() {
   const [location, setLocation] = useState('');
   const [date, setDate] = useState('');
   const [summary, setSummary] = useState('');
-  const [notes, setNotes] = useState('');
-
-  /*  useEffect(() => {
     
-    dispatch({      
-      type: 'GET_MEETINGS',
-      payload: params.id
-    })
-  }, []); */
-
-  
-
+console.log('meeting reducer')
   const editDeatils = (e) => {
    e.preventDefault();
       dispatch({
@@ -38,7 +33,6 @@ function SelectedMeetingEdit() {
           meetup_location: location,
           date: date,
           summary: summary,
-          notes: notes,
           id: params.id,
         }
     
@@ -53,7 +47,8 @@ function SelectedMeetingEdit() {
 
     //map this out, research stack
     <div>
-      <MeetingNavBar prop={'details'}/>
+       <MeetingNavBar prop={'details'} />
+      
       <div style={{marginTop: '86px'}}>
      
       <Box
@@ -65,7 +60,7 @@ function SelectedMeetingEdit() {
           variant="h6"
           component="h6"
         >
-          Selected Meeting Details
+          Meeting Details
         </Typography>
         
       </Box>
@@ -77,48 +72,70 @@ function SelectedMeetingEdit() {
 
           <TextField
           multiline={true} //Allows changing height of TextField.
-          rows={15} //Change height of TextField here.
+          rows={1} //Change height of TextField here.
           placeholder='Location'
           value={location}
           onChange={(e) => setLocation(e.target.value)}
           sx={{mt: 1, width: 250,}} //Change width of TextField here.
         />
+      </Box>
+        
+        <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+     <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <DatePicker
+        label="Meeting Date"
+        value={date}
+        onChange={(newDate) => {
+          setDate(newDate);
+        }}
+        renderInput={(params) => <TextField {...params} />}
+      />
+    </LocalizationProvider>
+    </Box>
+    
+    <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
 
-<TextField
+         <TextField
           multiline={true} //Allows changing height of TextField.
-          rows={15} //Change height of TextField here.
-          placeholder='date'
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-          sx={{mt: 1, width: 250,}} //Change width of TextField here.
-        /><br></br>
-
-
-<TextField
-          multiline={true} //Allows changing height of TextField.
-          rows={15} //Change height of TextField here.
+          rows={5} //Change height of TextField here.
           placeholder='summary'
           value={summary}
           onChange={(e) => setSummary(e.target.value)}
           sx={{mt: 1, width: 250,}} //Change width of TextField here.
         /><br></br>
-        <TextField
-          multiline={true} //Allows changing height of TextField.
-          rows={15} //Change height of TextField here.
-          placeholder='notes'
-          value={notes}
-          onChange={(e) => setNotes(e.target.value)}
-          sx={{mt: 1, width: 250,}} //Change width of TextField here.
-        /><br></br>
+
+</Box>
+       
+       <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+
 
               <Button
                variant="contained"
-               style={{ backgroundColor: '#A663CC', color: 'White' }}               
+               style={{ backgroundColor: '#0583f2', color: 'White' }}               
                onClick={(e) => { editDeatils(e) }}>Add</Button>        
               
       </Box>
      </div>
-      
+     
+       
+
+
+       
+       
+       
+    
     </div>
   )
 };
