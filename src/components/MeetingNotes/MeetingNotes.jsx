@@ -62,7 +62,7 @@ function MeetingNotes() {
         </Typography>
       </Box>
       <Box
-        display="column"
+        display="flex"
         justifyContent="center"
         alignItems="center"
       >
