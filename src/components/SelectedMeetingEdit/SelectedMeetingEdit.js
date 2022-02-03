@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { Box, Button, Stack, TextField, Typography, IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
+import MeetingNavBar from '../MeetingNavBar/MeetingNavBar';
 
 
 
@@ -52,7 +53,8 @@ function SelectedMeetingEdit() {
 
     //map this out, research stack
     <div>
-       
+      <MeetingNavBar prop={'details'}/>
+      <div style={{marginTop: '86px'}}>
      
       <Box
         display="flex"
@@ -115,7 +117,7 @@ function SelectedMeetingEdit() {
                onClick={(e) => { editDeatils(e) }}>Add</Button>        
               
       </Box>
-     
+     </div>
       
     </div>
   )

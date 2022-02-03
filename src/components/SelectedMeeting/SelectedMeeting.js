@@ -4,6 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { Box, Button, Stack, TextField, Typography, IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import SelectedMeetingEdit from '../SelectedMeetingEdit/SelectedMeetingEdit';
+import MeetingNavBar from '../MeetingNavBar/MeetingNavBar';
 
 
 
@@ -39,8 +40,8 @@ const edit = (e) =>  {
 
     //map this out, research stack
     <div>
-       
-     
+       <MeetingNavBar prop={'details'}/>
+     <div style={{marginTop: '86px'}}>
       <Box
         display="flex"
         justifyContent="center"
@@ -55,7 +56,7 @@ const edit = (e) =>  {
         <IconButton
         size='large'
         sx={{width: '10%', margin: 'auto', paddingTop: '2vh'}}
-        onClick={() => history.push(`/meetings/edit/${params.id}`)}
+        onClick={() => history.push(`/meeting/edit/${params.id}`)}
       >
         <EditIcon 
           fontSize='inherit'
@@ -87,7 +88,7 @@ const edit = (e) =>  {
                             
               
       </Box>
-     
+     </div>
       
     </div>
   )

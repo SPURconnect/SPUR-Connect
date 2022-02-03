@@ -70,10 +70,18 @@ function BottomNavBar() {
             top: 'auto',
             bottom: 0,
             height: '9%',
+            minHeight: '66px'
           }}
         >
           <Box sx={{ flexGrow: 1 }} >
-            <Grid container spacing={2} sx={{ margin: 'auto' }}>
+            <Grid 
+              container 
+              spacing={1} 
+              sx={{ 
+                margin: 'auto', 
+                paddingLeft: '10px' 
+              }}
+            >
               <Grid item xs={3}>
                 <IconButton
                   onClick={() => updateWhereReducer('meeting')}
@@ -93,7 +101,7 @@ function BottomNavBar() {
                       whereReducer === 'meeting' ? 'secondary' : 'inherit'
                   }
                 >
-                  <CalendarTodayOutlinedIcon />
+                  <CalendarTodayOutlinedIcon fontSize="large"/>
                 </IconButton>
                 <Typography
                   fontSize={11}
@@ -104,7 +112,7 @@ function BottomNavBar() {
                       whereReducer === 'meeting' ? 'secondary' : 'inherit'
                   }
                   sx={{
-                    paddingLeft: '2px'
+                    paddingLeft: '7px'
                   }}
                 >
                   Meetings
@@ -126,7 +134,7 @@ function BottomNavBar() {
                       whereReducer === 'searchProfiles' ? 'secondary' : 'inherit'
                   }
                 >
-                  <MapOutlinedIcon />
+                  <MapOutlinedIcon fontSize="large"/>
                 </IconButton>
                 <Typography
                   fontSize={11}
@@ -137,7 +145,7 @@ function BottomNavBar() {
                       whereReducer === 'searchProfiles' ? 'secondary' : 'inherit'
                   }
                   sx={{
-                    paddingLeft: '5px'
+                    paddingLeft: '12px'
                   }}
                 >
                   Search
@@ -159,10 +167,13 @@ function BottomNavBar() {
                       whereReducer === 'messages' ? 'secondary' : 'inherit'
                   }
                 >
-                  <ForumOutlinedIcon />
+                  <ForumOutlinedIcon fontSize="large"/>
                 </IconButton>
                 <Typography
                   fontSize={11}
+                  sx={{
+                    paddingLeft: '4px'
+                  }}
                   color={
                     whereReducer.includes('/') ? 
                       whereReducer.slice(0, whereReducer.indexOf('/', - 1)) == 'messages' ? 'secondary' : 'inherit' 
@@ -189,12 +200,12 @@ function BottomNavBar() {
                       whereReducer === 'user' ? 'secondary' : 'inherit'
                   }
                 >
-                  <AccountCircleOutlinedIcon />
+                  <AccountCircleOutlinedIcon fontSize="large"/>
                 </IconButton>
                 <Typography
                   fontSize={11}
                   sx={{
-                    paddingLeft: '7px'
+                    paddingLeft: '13px'
                   }}
                   color={
                     whereReducer.includes('/') ? 
