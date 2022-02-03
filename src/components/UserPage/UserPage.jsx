@@ -22,7 +22,7 @@ function UserPage() {
 
   return (
     <div className="container">
-      <h2>Welcome, {user.username}!</h2>
+
       {userProfile.map((profile)=>{
         return <UserDetail key ={profile.id} profile={profile}/>
       })}

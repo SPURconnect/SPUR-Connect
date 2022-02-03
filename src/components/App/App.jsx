@@ -160,7 +160,7 @@ function App() {
             <MeetingHistory />
           </ProtectedRoute>
           {/* TODO: useParams to route this to /meetingnotes/:id */}
-          <ProtectedRoute exact path="/meeting/notes">
+          <ProtectedRoute exact path="/meeting/notes/:id">
             <MeetingNotes />
           </ProtectedRoute>
           <Route exact path="/home">
