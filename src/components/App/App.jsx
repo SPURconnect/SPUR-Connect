@@ -122,7 +122,7 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/meetings/:id"
+            path="/meeting/:id"
           >
             <SelectedMeeting />
           </ProtectedRoute>
@@ -130,7 +130,7 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/meetings/edit/:id"
+            path="/meeting/edit/:id"
           >
             <SelectedMeetingEdit />
           </ProtectedRoute>
