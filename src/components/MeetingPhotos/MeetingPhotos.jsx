@@ -21,7 +21,7 @@ function MeetingPhotos() {
   function fetchPhotos() {
     dispatch({
       type: 'FETCH_PHOTOS',
-      payload: 1 //Use Params
+      payload: 5 //TODO: Replace "5" with useParams for current selected meeting.
     })
   };
 
@@ -31,7 +31,7 @@ function MeetingPhotos() {
       console.log(inputPhoto);
       dispatch({
         type: 'ADD_PHOTO',
-        payload: inputPhoto
+        payload: {image: inputPhoto, id: 5} //TODO: Replace "5" with useParams for current selected meeting.
       });
     };
   };

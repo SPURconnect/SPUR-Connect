@@ -5,7 +5,7 @@ const router = express.Router();
 const cloudinaryUpload = require('../modules/cloudinary-config');
 
 //TODO: Target /:id for selected meeting param.
-router.get('/photos', rejectUnauthenticated, (req,res) =>{
+router.get('/:id', rejectUnauthenticated, (req,res) =>{
   const sqlText = `
     SELECT * FROM "meeting_uploads"
     WHERE "meeting_id"=$1;
@@ -15,30 +15,27 @@ router.get('/photos', rejectUnauthenticated, (req,res) =>{
       res.send(dbRes.rows);
     })
     .catch((dbErr) => {
-      console.log('/meetings/photos/:id GET error:', dbErr);
+      console.log('/uploads/:id GET error:', dbErr);
       resSendStatus(500);
     });
 });
 
-router.post('/', rejectUnauthenticated, cloudinaryUpload.single('image'), async (req, res) => {
-  // const imageDescription = req.body.description;
-  // after the image uploads, we have access to req.file:
-  console.log('nifty! req.file:', req.file)
+router.post('/:id', rejectUnauthenticated, cloudinaryUpload.single('image'), async (req, res) => {
+  console.log('req.file:', req.file)
   const imageUrl = req.file.path;
-  const userId = req.user.id;
   const sqlText = `
-    INSERT INTO "image"
-      ("description", "image_path", "owner_id")
+    INSERT INTO "meeting_uploads"
+      ("image_title", "image_url", "meeting_id")
       VALUES
       ($1, $2, $3);
   `;
-  const sqlValues = [imageDescription, imageUrl, userId];
+  const sqlValues = ["Placeholder Title", imageUrl, req.params.id];
   pool.query(sqlText, sqlValues)
     .then((dbRes) => {
       res.sendStatus(201);
     })
     .catch((dbErr) => {
-      console.error('db error in POST /api/images', dbErr)
+      console.error('/uploads/:id POST error:', dbErr)
       res.sendStatus(500);
     })
 });

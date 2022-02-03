@@ -7,12 +7,10 @@ function* addPhoto(action){
       'content-type': 'multipart/form-data'
     };
     const imageForm = new FormData();
-    imageForm.append('image', action.payload);
-    // imageForm.append('description', action.payload.imageDescription);
-    console.log("addPhoto payload:", action.payload);
+    imageForm.append('image', action.payload.image);
     const response = yield axios({
       method: 'POST',
-      url: `/api/uploads`,
+      url: `/api/uploads/${action.payload.id}`,
       headers: headers, 
       data: imageForm
     })
@@ -28,7 +26,7 @@ function* fetchPhotos(action){
   try{
     const response = yield axios({
       method: 'GET',
-      url: `/api/meetings/photos/${action.payload}`, //TODO: useParams
+      url: `/api/uploads/${action.payload}`, //TODO: useParams
     })
     yield put({
       type: 'SET_PHOTOS',
