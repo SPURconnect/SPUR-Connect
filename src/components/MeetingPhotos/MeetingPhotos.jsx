@@ -12,7 +12,7 @@ function MeetingPhotos() {
   const history = useHistory();
   const dispatch = useDispatch();
   const params = useParams();
-  const [inputPhoto, setInputPhoto] = useState(null);
+  const [inputPhoto, setInputPhoto] = useState('');
 
   useEffect(() => {
     fetchPhotos();
@@ -27,13 +27,12 @@ function MeetingPhotos() {
 
   
   function handleAddPhoto(){
-    if(inputPhoto != null){
+    if(inputPhoto != ''){
       console.log(inputPhoto);
       dispatch({
         type: 'ADD_PHOTO',
         payload: inputPhoto
       });
-      // setInputPhoto(null);
     };
   };
 
@@ -53,7 +52,7 @@ function MeetingPhotos() {
         <input 
           type="file"
           accept="image/png, image/jpeg"
-          onChange={e => setInputPhoto(e.target.value)}
+          onChange={(e) => setInputPhoto(e.target.files[0])}
         >
        </input>
       </Box>
