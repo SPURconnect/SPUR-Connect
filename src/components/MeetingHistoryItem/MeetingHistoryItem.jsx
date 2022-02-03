@@ -61,7 +61,7 @@ function MeetingHistoryItem({ item }) {
   }, [dispatch]);
 
   const handleGoToMeetingDetails = () => {
-    history.push(`/meeting/notes/${item.id}`);
+    history.push(`/meeting/${item.id}`);
   }
 
   const displayProfileImage = () => {

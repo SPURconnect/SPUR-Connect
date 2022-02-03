@@ -41,10 +41,18 @@ function MeetingNavBar({prop}) {
             bottom: 'auto',
             top: 0,
             height: '9%',
+            minHeight: '70px'
           }}
         >
           <Box sx={{ flexGrow: 1 }} >
-            <Grid container spacing={2} style={{ margin: 'auto' }}>
+            <Grid 
+              container 
+              spacing={1} 
+              style={{ 
+                margin: 'auto', 
+                paddingLeft: '10px' 
+              }}
+            >
               <Grid item xs={3}>
                 <IconButton
                   onClick={() => history.push('/meeting')}
@@ -53,16 +61,16 @@ function MeetingNavBar({prop}) {
                   sx={{
                     paddingBottom: 0,
                     paddingTop: 0,
-                    display: 'block'
+                    display: 'block',
                   }}
                 >
-                  <ArrowBackOutlinedIcon />
+                  <ArrowBackOutlinedIcon fontSize="large"/>
                 </IconButton>
                 <Typography
                   fontSize={11}
                   color='inherit'
                   sx={{
-                    paddingLeft: '12px'
+                    paddingLeft: '18px'
                   }}
                 >
                   Back
@@ -85,7 +93,7 @@ function MeetingNavBar({prop}) {
                       'inherit'
                   }
                 >
-                  <GridViewOutlinedIcon />
+                  <GridViewOutlinedIcon fontSize="large"/>
                 </IconButton>
                 <Typography
                   fontSize={11}
@@ -96,7 +104,7 @@ function MeetingNavBar({prop}) {
                       'inherit'
                   }
                   sx={{
-                    paddingLeft: '7px'
+                    paddingLeft: '13px'
                   }}
                 >
                   Details
@@ -118,7 +126,7 @@ function MeetingNavBar({prop}) {
                       'inherit'
                   }
                 >
-                  <TextSnippetOutlinedIcon />
+                  <TextSnippetOutlinedIcon fontSize="large"/>
                 </IconButton>
                 <Typography
                   fontSize={11}
@@ -129,7 +137,7 @@ function MeetingNavBar({prop}) {
                       'inherit'
                   }
                   sx={{
-                    paddingLeft: '9px'
+                    paddingLeft: '14px'
                   }}
                 >
                   Notes
@@ -152,7 +160,7 @@ function MeetingNavBar({prop}) {
                       'inherit'
                   }
                 >
-                  <CameraAltOutlinedIcon />
+                  <CameraAltOutlinedIcon fontSize="large"/>
                 </IconButton>
                 <Typography
                   fontSize={11}
@@ -163,7 +171,7 @@ function MeetingNavBar({prop}) {
                       'inherit'
                   }
                   sx={{
-                    paddingLeft: '7px'
+                    paddingLeft: '12px'
                   }}
                 >
                   Photos
