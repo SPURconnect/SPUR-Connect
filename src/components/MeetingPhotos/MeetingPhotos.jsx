@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { Box, Button, } from '@mui/material';
-import {} from "@cloudinary/url-gen";
-import PhotosUploaderContainer from '../PhotoUploader/PhotoUploader';
+
 
 //https://api.cloudinary.com/v1_1/${cloudName}/upload
 

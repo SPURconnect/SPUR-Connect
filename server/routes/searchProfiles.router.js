@@ -15,11 +15,13 @@ searchProfilesRouter.get('/:input', (req, res) => {
     SELECT * FROM "profiles"
     JOIN "industry" 
     ON "profiles"."industry_id"="industry"."id"
-      WHERE "location_city" LIKE $1
-        OR  "location_state" LIKE $1
-        OR  "location_zip" LIKE $1
-        OR  "first_name" LIKE $1
-        OR  "last_name" LIKE $1;
+      WHERE UPPER("location_city") LIKE UPPER($1)
+        OR  UPPER("location_state") LIKE UPPER($1)
+        OR  UPPER("location_zip") LIKE UPPER($1)
+        OR  UPPER("first_name") LIKE UPPER($1)
+        OR  UPPER("last_name") LIKE UPPER($1)
+        OR  UPPER("industry_name") LIKE UPPER($1);
+
     `;
     const queryValues = [`%${req.params.input}%`];
     pool.query(query, queryValues)

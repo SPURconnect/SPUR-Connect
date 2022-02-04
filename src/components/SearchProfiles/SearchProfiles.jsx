@@ -9,11 +9,14 @@ import CardContent from '@mui/material/CardContent';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { grey } from '@mui/material/colors';
+import { TextField } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+import { InputAdornment, Box } from '@mui/material';
 
 function SearchProfiles(props) {
  
   const store = useSelector((store) => store);
-  const [heading, setHeading] = useState('Functional Component');
+  const [selected, setSelected] = useState(0);
   const dispatch = useDispatch();
   const searchProfilesReducer = useSelector(store => store.searchProfilesReducer);
   const industriesReducer = useSelector(store => store.industriesReducer);
@@ -31,7 +34,6 @@ function SearchProfiles(props) {
   }, []);
 
   const handleQueryChange = (event) => {
-    let cleanString = event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1);
     event.preventDefault();
     if (event.target.value === '')  {
       dispatch({
@@ -41,37 +43,67 @@ function SearchProfiles(props) {
     else  {
     dispatch({
       type: 'FETCH_PROFILES',
-      payload: cleanString
+      payload: event.target.value
       })
+      // dispatch({
+      //   type: 'SORT_BY_INDUSTRY',
+      //   payload: selected
+      // });
     }
   };
 
-  const handleIndustryChange = (event) =>  {
-    event.preventDefault();
-    dispatch({
-      type: 'SORT_BY_INDUSTRY',
-      payload: event.target.value
-    });
-  };
+  // const handleIndustryChange = (event) =>  {
+  //   event.preventDefault();
+  //   setSelected(event.target.value);
+  //   dispatch({
+  //     type: 'SORT_BY_INDUSTRY',
+  //     payload: event.target.value
+  //   });
+  // };
 
   const handleCardClick = (profile) =>  {
     history.push(`/searchProfiles/${profile.id}`) 
   };
 
+  
+
   return (
     <div>
-      <input onChange={(event) => handleQueryChange(event)}></input>
-      <select onChange={(event) => handleIndustryChange(event)}>
-        <option disabled>Filter By Industry</option>
+      <h1></h1>
+      <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          // minHeight="0vh"
+          sx={{ mt: 3 }}
+        >
+        <TextField 
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            )
+          }}
+          sx={{width: '90%'}}
+          type="text"  
+          onChange={(event) => handleQueryChange(event)} 
+          variant="outlined"
+          size="small"
+          placeholder='Search by industry, name, or location'
+          /></Box>
+      {/* <select controlled value={selected} onChange={(event) => handleIndustryChange(event)}>
+        <option value={0}>Filter By Industry</option>
         {industriesReducer.map((industry) =>  {
             return  (
               <option key={industry.id} value={industry.id}>{industry.industry_name}</option>
             )
         })}
-      </select>
+      </select> */}
         
       {searchProfilesReducer.map((item, index) =>    
         <div 
+          key={item.id}
           onClick={() => handleCardClick(item)}
           style={{ paddingBottom: '4px' }}>
           <Card 
