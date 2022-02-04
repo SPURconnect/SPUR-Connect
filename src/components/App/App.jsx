@@ -166,7 +166,7 @@ function App() {
               <RegisterPage />
             )}
           </Route>
-          <ProtectedRoute exact path="/meeting/add">
+          <ProtectedRoute exact path="/meeting/add/:id">
             <AddMeeting />
           </ProtectedRoute>
           <ProtectedRoute exact path="/meeting">

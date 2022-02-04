@@ -7,6 +7,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   const queryText = `
       SELECT * FROM "user_meetings"
       WHERE "user_id"=$1
+      ORDER BY "date" DESC
   `;
   pool.query(queryText, [req.user.id])
   
@@ -23,11 +24,12 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 //POST meeting to database.
 router.post('/', rejectUnauthenticated, (req, res) => {
   const queryText = `
-    INSERT INTO "user_meetings" ("user_id", "participant_id", "meeting_title", "date", "meetup_location")
-    VALUES ($1, $2, $3, $4, $5);
+    INSERT INTO "user_meetings" ("user_id","summary", "participant_id", "meeting_title", "date", "meetup_location")
+    VALUES ($1, $2, $3, $4, $5, $6);
   `;
   const queryValues = [
     req.user.id,
+    req.body.summary,
     req.body.participant,
     req.body.meetingTitle,
     req.body.date,

@@ -4,10 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom'; 
 import { styled } from '@mui/material/styles';
 import FormGroup from '@mui/material/FormGroup';
+import { Box, Button, TextField, Typography, ListItemAvatar, Avatar } from '@mui/material';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+
 
 function UserDetail ({profile}){
   const history = useHistory();
@@ -86,7 +87,11 @@ function UserDetail ({profile}){
 
   return(
     <div>
-      <img className = 'photoSize'src={profile.photo}/>
+      <ListItemAvatar>
+        <Avatar 
+        sx={{ width: 200, height: 200 }}
+        src={profile.photo} />
+      </ListItemAvatar>
       <h3>{profile.first_name}  {profile.last_name}</h3>
       <ul>
         <li>{profile.location_city}, {profile.location_state}</li>
@@ -104,7 +109,12 @@ function UserDetail ({profile}){
       </FormGroup>
 
     <div>
-      <button onClick={()=> history.push(`/edit/${profile.id}`)}>Edit Profile Information</button>
+        <Button
+          variant="contained"
+          onClick={()=> history.push(`/edit/${profile.id}`)}
+        >
+          Edit Profile Information
+        </Button>
     </div>
     </div>
   )

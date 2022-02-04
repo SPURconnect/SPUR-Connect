@@ -3,6 +3,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector, useDispatch} from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom'; 
 import UserDetail from '../UserDetail/UserDetail';
+import { Box, Button, TextField, ListItemAvatar, Avatar } from '@mui/material';
 
 function SearchProfilesDetails() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -25,8 +26,11 @@ function SearchProfilesDetails() {
 
   return (
     <div className="container">
-      
-        <img className="photoSize" src={singleProfileReducer.photo}/>
+      <ListItemAvatar>
+        <Avatar
+        sx={{ width: 200, height: 200 }}
+        src={singleProfileReducer.photo} />
+      </ListItemAvatar>
       <h3>
         {singleProfileReducer.first_name} {singleProfileReducer.last_name}
       </h3>
@@ -45,9 +49,7 @@ function SearchProfilesDetails() {
         <li>{singleProfileReducer.portfolio}</li>
         <li>{singleProfileReducer.about_me}</li>
       </ul>
-
-
-      <button>Start Meeting</button><button>Message</button>
+      <button onClick={() => history.push(`/meeting/add/${params.id}`)}>Start Meeting</button><button>Message</button>
     </div>
   );
 }
