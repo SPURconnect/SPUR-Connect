@@ -10,6 +10,7 @@ import messagesPOST from './POSTmessages.saga';
 import meetingSaga from './meeting.saga';
 import editProfileSaga from './editProfile.saga';
 import uploadsSaga from './uploads.saga';
+import meetingDetailsSaga from './meetingDetails.saga';
 
 
 // rootSaga is the primary saga.
@@ -32,5 +33,6 @@ export default function* rootSaga() {
     messagesPOST(),
     meetingSaga(), // saga for meetings
     uploadsSaga(), 
+    meetingDetailsSaga(),
   ]);
 }

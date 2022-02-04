@@ -86,6 +86,28 @@ router.put('/notes/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
+//Get meeting details for selected meeting.
+router.get('/edit/:id', rejectUnauthenticated, (req, res) => {
+  console.log('in meeting router get meeting detail ', req.params.id);
+  const sqlText = `
+  SELECT "meetup_location","date","summary"
+  FROM "user_meetings"
+      WHERE "id" = $1;
+  `;
+  const sqlValues = [
+    req.params.id
+  ];
+  pool.query(sqlText, sqlValues)
+    .then((dbRes) => {
+      res.send(dbRes.rows[0]);
+    })
+    .catch((dbErr) => {
+      console.log('/meetings/notes/:id GET error:', dbErr);
+      res.sendStatus(500);
+    });
+});
+
+
 router.put('/edit/:id', rejectUnauthenticated, (req, res) => {
   const sqlText = `
     UPDATE "user_meetings" 
