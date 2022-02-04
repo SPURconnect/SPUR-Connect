@@ -4,32 +4,38 @@ import { TableCell, TableRow, Box, Typography, List, ListItem, ListItemText } fr
 export default function MessagesMsg({timestamp, message, alignment}) {
 
   return(
-    <Box>
-      <TableRow>
+    <>
+      <TableRow
+        width="95%"
+      >
         <TableCell
-          width="95%"
-          align={alignment}
-          sx={{}}
-        >
-          {message}
-        </TableCell>
-      </TableRow>
-      <TableRow>
-        <TableCell
-          width="95%"
-          sx={{}}
+          sx={{mx: 0, my: 0, py: 0, px: 0, width: "95%"}}
           align={alignment}
         >
-          {timestamp}
+        <List><ListItem>
+          <ListItemText
+            sx={{mx: 0, my: 0, paddingx: 0, paddingy: 0}}
+            align={alignment}
+            primary={message}
+            secondary={timestamp.slice(0, 10)}
+          />
+        </ListItem></List>
         </TableCell>
       </TableRow>
-    </Box>
+     
+    </>
   )
 }
 
-
-          // <ListItemText
-            
-          //   primary={message}
-          //   secondary={timestamp.slice(0, 10)}
-          // />
+//        <TableRow
+//         width="100%"
+//       >
+//         <TableCell
+//           width="95%"
+//           sx={{}}
+//           align={alignment}
+//         >
+//           {timestamp}
+//         </TableCell>
+//       </TableRow>
+          

@@ -45,16 +45,18 @@ export default function MessagesConvo() {
     >
     {/* conditionally send align prop  */}
     <Box>
-    <TableContainer>
+    <TableContainer
+      width="95%"
+    >
     <Table>
       <TableBody>
         {userConvo[0].messages.map((msg) => {
-          return msg.sender_id == convoWithUserID ?
+          return msg.sender_id == convoWithUserID.id ?
             <MessagesMsg 
               key={msg.id} 
               timestamp={msg.timestamp} 
               message={msg.content} 
-              alignment={'left'}  
+              alignment={'left'}
             />
           :
             <MessagesMsg 
