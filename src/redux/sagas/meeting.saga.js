@@ -78,24 +78,6 @@ function* saveNotes(action){
   };
 };
 
-function* editMeetingDetails(action){
-  console.log('in action payload editMeeting details', action.payload);
-  try{
-
-    const response = yield axios({
-      method: 'PUT',
-      url: `/api/meetings/edit/${action.payload.id}`, 
-      data: action.payload
-    })
-    console.log('in response data editMeeting details',response.data);
-    yield put({
-      type: 'EDIT_MEETING_DETAILS',
-      payload: response.data.id
-    })
-  }catch(error){
-    console.log('EDIT_MEETING_DETAILS catch error:', error);
-  };
-};
 
 
 function* meetingSaga(){
@@ -103,7 +85,6 @@ function* meetingSaga(){
   yield takeEvery('GET_MEETINGS', getMeetings);
   yield takeEvery('FETCH_NOTES', fetchNotes);
   yield takeEvery('SAVE_NOTES', saveNotes);
-  yield takeEvery('EDIT_MEETING_DETAILS', editMeetingDetails);
   yield takeEvery('DELETE_MEETING', deleteMeeting);
 };
 

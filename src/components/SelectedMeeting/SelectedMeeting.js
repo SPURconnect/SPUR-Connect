@@ -41,7 +41,6 @@ const edit = (e) =>  {
     //map this out, research stack
     <div>
        <MeetingNavBar prop={'details'}/>
-     <div style={{marginTop: '86px'}}>
       <Box
         display="flex"
         justifyContent="center"
@@ -67,6 +66,9 @@ const edit = (e) =>  {
         display="flex"
         justifyContent="center"
         alignItems="center"
+        sx={{
+          maxWidth: '100vw'
+        }}
       >
 
          
@@ -88,8 +90,6 @@ const edit = (e) =>  {
                             
               
       </Box>
-     </div>
-      
     </div>
   )
 };

@@ -50,7 +50,7 @@ function MeetingNotes() {
       }
     })
     toast.success(`${currentMeeting.meeting_title} updated!`)
-    history.push(`/meeting/details/${params.id}`);
+    history.push(`/meeting/${params.id}`);
   };
 
   function handleClearNotes() {
@@ -64,54 +64,55 @@ function MeetingNotes() {
     <div>
       {/* have to give it a prop that matches the logic in the MeetingNavBar component */}
       <MeetingNavBar prop={'notes'} />
-      <div style={{ marginTop: '12vh' }}>
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        sx={{
+          paddingTop: '5vh'
+        }}
+      >
+        <Typography
+          variant="h6"
+          component="h6"
         >
-          <Typography
-            variant="h6"
-            component="h6"
-          >
-            Notes
-          </Typography>
-        </Box>
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
+          Notes
+        </Typography>
+      </Box>
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <TextField
+          multiline={true} //Allows changing height of TextField.
+          rows={15} //Change height of TextField here.
+          placeholder='Notes'
+          value={notes.notes || ''}
+          onChange={handleNoteChange}
+          sx={{ mt: 1, width: 250, }} //Change width of TextField here.
+        />
+      </Box>
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Button
+          variant=""
+          onClick={handleClearNotes}
+          sx={{ mt: 2, mr: 2 }}
         >
-          <TextField
-            multiline={true} //Allows changing height of TextField.
-            rows={15} //Change height of TextField here.
-            placeholder='Notes'
-            value={notes.notes || ''}
-            onChange={handleNoteChange}
-            sx={{ mt: 1, width: 250, }} //Change width of TextField here.
-          />
-        </Box>
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
+          Clear
+        </Button>
+        <Button //TODO: Add sweetalerts or something to notify changes saved.
+          variant="contained"
+          onClick={handleSaveNotes}
+          sx={{ mt: 2, ml: 10 }}
         >
-          <Button
-            variant=""
-            onClick={handleClearNotes}
-            sx={{ mt: 2, mr: 2 }}
-          >
-            Clear
-          </Button>
-          <Button //TODO: Add sweetalerts or something to notify changes saved.
-            variant="contained"
-            onClick={handleSaveNotes}
-            sx={{ mt: 2, ml: 10 }}
-          >
-            Save
-          </Button>
-        </Box>
-      </div>
+          Save
+        </Button>
+      </Box>
     </div>
   )
 };

@@ -12,7 +12,7 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import ForumOutlinedIcon from '@mui/icons-material/ForumOutlined';
 import Grid from '@mui/material/Grid';
 import { green, grey } from '@mui/material/colors';
-import { Typography } from '@mui/material';
+import { Toolbar, Typography } from '@mui/material';
 // MUI theme
 const theme = createTheme({
   palette: {
@@ -63,6 +63,7 @@ function BottomNavBar() {
   return (
     <div className="navBar">
       <ThemeProvider theme={theme}>
+        <Toolbar sx={{height: '9vh'}}/>
         <AppBar
           position="fixed"
           color="primary"
