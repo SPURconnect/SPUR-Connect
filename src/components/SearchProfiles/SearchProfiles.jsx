@@ -7,11 +7,23 @@ import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import Avatar from '@mui/material/Avatar';
-import Typography from '@mui/material/Typography';
 import { grey } from '@mui/material/colors';
 import { TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { InputAdornment, Box } from '@mui/material';
+import InfoIcon from '@mui/icons-material/Info';
+import { InputAdornment, Box, Grid, Typography, Modal, IconButton, Paper } from '@mui/material';
+import './SearchProfiles.css';
+
+const style = {
+  position: 'absolute',
+  top: '20%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  p: 4,
+};
 
 function SearchProfiles(props) {
  
@@ -21,6 +33,9 @@ function SearchProfiles(props) {
   const searchProfilesReducer = useSelector(store => store.searchProfilesReducer);
   const industriesReducer = useSelector(store => store.industriesReducer);
   const history = useHistory();
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   useEffect(() => {
     dispatch({ 
@@ -65,6 +80,15 @@ function SearchProfiles(props) {
     history.push(`/searchProfiles/${profile.id}`) 
   };
 
+  const ifNoSearch = () =>  {
+    if (searchProfilesReducer.length === 0) {
+      return <p className="justBeCentered">There's nothing here!<br /><br /> Try searching for potential connections.</p>
+    }
+    else {
+      return;
+    }
+  }
+
   
 
   return (
@@ -91,7 +115,49 @@ function SearchProfiles(props) {
           variant="outlined"
           size="small"
           placeholder='Search by industry, name, or location'
-          /></Box>
+          />
+          <IconButton 
+            variant="contained"
+            color="primary"
+            size="small"
+            onClick={handleOpen}
+          ><InfoIcon /></IconButton>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="search-info"
+            aria-describedby="search-info"
+          >
+          <Box sx={style}>
+            <Grid container style={{ Paper }}>
+
+              <Grid item xs={1}/>
+
+              <Grid item xs={10}
+                sx={{marginTop: 2, marginBottom: 2}} 
+              >
+                <Typography>
+                  Hello?
+                </Typography>
+              </Grid>
+
+              <Grid item xs={1}/>
+
+              <Grid item xs={6}/>
+
+              <Grid item xs={6}
+                sx={{marginTop: 2, marginBottom: 2}} 
+              >
+                <Typography>
+                  Hello?
+                </Typography>
+              </Grid>
+
+            </Grid>
+          
+          </Box>
+        </Modal>
+      </Box>
       {/* <select controlled value={selected} onChange={(event) => handleIndustryChange(event)}>
         <option value={0}>Filter By Industry</option>
         {industriesReducer.map((industry) =>  {
@@ -100,6 +166,8 @@ function SearchProfiles(props) {
             )
         })}
       </select> */}
+      
+        {ifNoSearch()}
         
       {searchProfilesReducer.map((item, index) =>    
         <div 
