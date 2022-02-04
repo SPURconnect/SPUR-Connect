@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { Box, Button, } from '@mui/material'
+import { Box, Button, } from '@mui/material';
+
 
 //https://api.cloudinary.com/v1_1/${cloudName}/upload
 
