@@ -3,6 +3,9 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector, useDispatch} from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom'; 
 import UserDetail from '../UserDetail/UserDetail';
+import MessageSendModal from '../MessageSendModal/MessageSendModal';
+
+//MUI STUFF
 import { Box, Button, TextField, ListItemAvatar, Avatar } from '@mui/material';
 
 function SearchProfilesDetails() {
@@ -49,7 +52,10 @@ function SearchProfilesDetails() {
         <li>{singleProfileReducer.portfolio}</li>
         <li>{singleProfileReducer.about_me}</li>
       </ul>
-      <button onClick={() => history.push(`/meeting/add/${params.id}`)}>Start Meeting</button><button>Message</button>
+      <button onClick={() => history.push(`/meeting/add/${params.id}`)}>Start Meeting</button>
+      <button> Placeholder Send </button>
+      {/* <MessageSendModal buttonText="Send Message" sendTo={params.id} /> */}
+      
     </div>
   );
 }

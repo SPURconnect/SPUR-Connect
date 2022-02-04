@@ -12,7 +12,7 @@ import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
 import Grid from '@mui/material/Grid';
 import { green, grey } from '@mui/material/colors';
-import { Typography } from '@mui/material';
+import { Toolbar, Typography } from '@mui/material';
 // MUI theme
 const theme = createTheme({
   palette: {
@@ -27,7 +27,7 @@ const theme = createTheme({
   },
 });
 
-function MeetingNavBar({prop}) {
+function MeetingNavBar({ prop }) {
   const history = useHistory();
   const params = useParams();
 
@@ -45,12 +45,12 @@ function MeetingNavBar({prop}) {
           }}
         >
           <Box sx={{ flexGrow: 1 }} >
-            <Grid 
-              container 
-              spacing={1} 
-              style={{ 
-                margin: 'auto', 
-                paddingLeft: '10px' 
+            <Grid
+              container
+              spacing={1}
+              style={{
+                margin: 'auto',
+                paddingLeft: '10px'
               }}
             >
               <Grid item xs={3}>
@@ -64,7 +64,7 @@ function MeetingNavBar({prop}) {
                     display: 'block',
                   }}
                 >
-                  <ArrowBackOutlinedIcon fontSize="large"/>
+                  <ArrowBackOutlinedIcon fontSize="large" />
                 </IconButton>
                 <Typography
                   fontSize={11}
@@ -78,7 +78,7 @@ function MeetingNavBar({prop}) {
               </Grid>
               <Grid item xs={3}>
                 <IconButton
-                  onClick={() => history.push(`/meeting/details/${params.id}`)}
+                  onClick={() => history.push(`/meeting/${params.id}`)}
                   size="large"
                   color='inherit'
                   sx={{
@@ -89,18 +89,18 @@ function MeetingNavBar({prop}) {
                   color={
                     prop === 'details' ?
                       'secondary'
-                      : 
+                      :
                       'inherit'
                   }
                 >
-                  <GridViewOutlinedIcon fontSize="large"/>
+                  <GridViewOutlinedIcon fontSize="large" />
                 </IconButton>
                 <Typography
                   fontSize={11}
                   color={
                     prop === 'details' ?
                       'secondary'
-                      : 
+                      :
                       'inherit'
                   }
                   sx={{
@@ -122,18 +122,18 @@ function MeetingNavBar({prop}) {
                   color={
                     prop === 'notes' ?
                       'secondary'
-                      : 
+                      :
                       'inherit'
                   }
                 >
-                  <TextSnippetOutlinedIcon fontSize="large"/>
+                  <TextSnippetOutlinedIcon fontSize="large" />
                 </IconButton>
                 <Typography
                   fontSize={11}
                   color={
                     prop === 'notes' ?
                       'secondary'
-                      : 
+                      :
                       'inherit'
                   }
                   sx={{
@@ -156,18 +156,18 @@ function MeetingNavBar({prop}) {
                   color={
                     prop === 'photos' ?
                       'secondary'
-                      : 
+                      :
                       'inherit'
                   }
                 >
-                  <CameraAltOutlinedIcon fontSize="large"/>
+                  <CameraAltOutlinedIcon fontSize="large" />
                 </IconButton>
                 <Typography
                   fontSize={11}
                   color={
                     prop === 'photos' ?
                       'secondary'
-                      : 
+                      :
                       'inherit'
                   }
                   sx={{
@@ -180,6 +180,7 @@ function MeetingNavBar({prop}) {
             </Grid>
           </Box>
         </AppBar>
+        <Toolbar sx={{ height: '10vh' }}/>
       </ThemeProvider>
     </div >
   )
