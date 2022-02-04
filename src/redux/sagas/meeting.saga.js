@@ -84,7 +84,7 @@ function* editMeetingDetails(action){
 
     const response = yield axios({
       method: 'PUT',
-      url: `/api/meetings/edit/${action.payload.id}`, //TODO: useParams
+      url: `/api/meetings/edit/${action.payload.id}`, 
       data: action.payload
     })
     console.log('in response data editMeeting details',response.data);

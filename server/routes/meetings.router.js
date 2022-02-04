@@ -86,15 +86,15 @@ router.put('/notes/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
-
 router.put('/edit/:id', rejectUnauthenticated, (req, res) => {
   const sqlText = `
     UPDATE "user_meetings" 
-    SET "meetup_location" = $1, "date" = $2, "summary" = $3, "notes" = $4
-    WHERE "id" = $5;
+    SET "meetup_location" = $1, "date" = $2, "summary" = $3
+    WHERE "id" = $4;
+    
   `;
   const sqlValues = [
-    req.body.meetup_location, req.body.date, req.body.summary, req.body.notes,
+    req.body.meetup_location, req.body.date, req.body.summary, 
     req.params.id
   ];
   pool.query(sqlText, sqlValues)
