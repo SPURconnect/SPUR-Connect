@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import MessagesMsg from '../MessagesMsg/MessagesMsg';
 import MessageSendModal from '../MessageSendModal/MessageSendModal';
 
-import { Grid, TextField, Button, Box, List } from '@mui/material';
+import { TableContainer, Table, TableBody, Grid, TextField, Button, Box, List } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 
 export default function MessagesConvo() {
@@ -40,14 +40,35 @@ export default function MessagesConvo() {
   };
 
   return(
-    <>
+    <Box container flex
+      sx={{width: '100%'}}
+    >
+    {/* conditionally send align prop  */}
     <Box>
-    <List>
-      {userConvo[0].messages.map((msg) => {
-        return <MessagesMsg key={msg.id} timestamp={msg.timestamp} message={msg.content} />
-      })}
-    </List>
+    <TableContainer>
+    <Table>
+      <TableBody>
+        {userConvo[0].messages.map((msg) => {
+          return msg.sender_id == convoWithUserID ?
+            <MessagesMsg 
+              key={msg.id} 
+              timestamp={msg.timestamp} 
+              message={msg.content} 
+              alignment={'left'}  
+            />
+          :
+            <MessagesMsg 
+              key={msg.id} 
+              timestamp={msg.timestamp} 
+              message={msg.content} 
+              alignment={'right'}  
+            />
+        })}
+      </TableBody>
+    </Table>
+    </TableContainer>
     </Box>
+
     <MessageSendModal buttonText={"Reply"} sendTo={convoWithUserID}/>
 
     <Box
@@ -74,6 +95,6 @@ export default function MessagesConvo() {
       </Grid>
       
     </Box>
-    </>
+    </Box>
   )
 }

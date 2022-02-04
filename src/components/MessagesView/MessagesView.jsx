@@ -35,6 +35,7 @@ export default function MessagesView() {
         conversations.map(convo => {
           return <Card 
             sx={{ bgcolor: grey[500], maxWidth: '100%', boxShadow: 3, paddingBottom: '12px', my: '4px', mx: '3px' }} 
+            key={convo.uniqUser}
             >
               <CardHeader
                 sx={{ paddingBottom: '0px' }}
@@ -70,42 +71,6 @@ export default function MessagesView() {
           </Typography>
       }
       </div>
-
-{/* CARD VS LIST */}
-
-      {/* <List>
-        {conversations.map(convo => {
-          return <ListItem
-                  sx={{ 
-                    bgcolor: grey[300], 
-                    maxWidth: '100%', 
-                    boxShadow: 3, 
-                    paddingBottom: '12px', 
-                    my: '4px', 
-                    mx: '3px' 
-                  }} 
-                  key={convo.uniqUser}
-                  onClick={(e) => {history.push(`/messages/convo/${convo.uniqUser}`)}}
-                  secondaryAction={
-                  <IconButton edge="end" aria-label="options">
-                    <MoreVertIcon />
-                  </IconButton>
-                }>
-              <ListItemAvatar>
-                {profiles.filter(prof => (prof.id == convo.uniqUser)).map(profile => {
-                  return <Avatar src={profile.photo}/>
-                })}
-
-              </ListItemAvatar>
-              <ListItemText
-                primary={profiles.filter(prof => (prof.id == convo.uniqUser)).map(profile => {
-                  return `${profile.first_name} ${profile.last_name}`
-                })}
-                secondary={convo.messages[0].content.slice(0, 35)}
-              />
-            </ListItem>
-          })}
-      </List> */}
 
     </>
   )

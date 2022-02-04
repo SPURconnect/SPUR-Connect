@@ -1,17 +1,35 @@
 import react from 'react';
-import { Box, Typography, List, ListItem, ListItemText } from '@mui/material';
+import { TableCell, TableRow, Box, Typography, List, ListItem, ListItemText } from '@mui/material';
 
-export default function MessagesMsg({timestamp, message}) {
+export default function MessagesMsg({timestamp, message, alignment}) {
 
   return(
     <Box>
-        <ListItem>
-          <ListItemText
-            sx={{alignItems: 'right'}}
-            primary={message}
-            secondary={timestamp.slice(0, 10)}
-          />
-        </ListItem>
+      <TableRow>
+        <TableCell
+          width="95%"
+          align={alignment}
+          sx={{}}
+        >
+          {message}
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell
+          width="95%"
+          sx={{}}
+          align={alignment}
+        >
+          {timestamp}
+        </TableCell>
+      </TableRow>
     </Box>
   )
 }
+
+
+          // <ListItemText
+            
+          //   primary={message}
+          //   secondary={timestamp.slice(0, 10)}
+          // />
