@@ -47,5 +47,22 @@ searchProfilesRouter.get('/', (req, res) => {
 }
 );
 
+searchProfilesRouter.get('/:id', (req, res) => {
+  console.log('searchProfilesRouter', req.params.id)
+  const query = `
+      SELECT * FROM "profiles"
+        WHERE "user_id"=$1`;
+  const queryValues = [req.params.id];
+  pool.query(query, queryValues)
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.log('ERROR: GET searchProfiles', err);
+      res.sendStatus(500)
+    })
+}
+);
+
 
 module.exports = searchProfilesRouter;

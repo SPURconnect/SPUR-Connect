@@ -49,18 +49,29 @@ CREATE TABLE "user_meetings" (
     "id" SERIAL PRIMARY KEY,
     "summary" VARCHAR (1000),
     "meetup_location" VARCHAR (255) NOT NULL,
-    "date" VARCHAR (255) NOT NULL,
+    "date" TIMESTAMP WITH TIME ZONE  NOT NULL,
     "meeting_title" VARCHAR (255) NOT NULL,
     "user_id" INT REFERENCES "user" (id) ON DELETE CASCADE NOT NULL,
-    "participant_id" INTEGER NOT NULL
+    "participant_id" INTEGER NOT NULL,
+    "meeting_notes" VARCHAR (1000)
 );
 
 CREATE TABLE "meeting_uploads"(
 	"id" SERIAL PRIMARY KEY,
 	"image_url" VARCHAR (255) NOT NULL,
 	"meeting_id" INT REFERENCES "user_meetings" (id) ON DELETE CASCADE NOT NULL,
- 	"image_title" VARCHAR (80) NOT NULL
+  "image_title" VARCHAR (80) NOT NULL
 );
+
+-- dummy users! all passwords '1234'
+INSERT INTO "user" ("username", "password")
+VALUES
+('testuser0', '$2a$10$JElypO6zB15H59KVSsc5R.a6k8Y3PS8qlPQ29H79zUbmEjj6dAaom'),
+('testUser1', '$2a$10$abmyEv9kcY3wm7CwhIQ9fu8DvwOZnAqDbLybetoHl7N5FzrfaLAPO'),
+('testUser2', '$2a$10$cbD7IpSAhKbsVckG3AUh0.SloLK9aM4tIom.W1KfINd1t4p1vyrie'),
+('testUser3', '$2a$10$47ix/4rxZXU5uppu2UtQfuCmB7F1oyFoKuzeOlxpvq62rWaac3C22'),
+('testUser4', '$2a$10$ttWC3MHHpVYSO1npEPVcMu6G3p8d8y9Cravau9ArZ9ptMfGWzAoLO'),
+('testUser5', '$2a$10$8hgUv.nEk2jo5C0ghtEBPeabN2RvwHriBsYy02WTfSq7YL2T6doMW');
 
 INSERT INTO "industry" ("industry_name") 
 VALUES 
@@ -115,3 +126,12 @@ VALUES
 ('Quantum message sending', 6, 4, '2022-01-27 02:24:15-06'),
 ('Quantum message sending', 5, 6, '2022-01-27 02:24:04-06'),
 ('Quantum message sending', 6, 5, '2022-01-27 02:24:15-06');
+
+INSERT INTO "user" ("username", "password")
+VALUES
+('testuser0', '$2a$10$JElypO6zB15H59KVSsc5R.a6k8Y3PS8qlPQ29H79zUbmEjj6dAaom'),
+('testUser1', '$2a$10$abmyEv9kcY3wm7CwhIQ9fu8DvwOZnAqDbLybetoHl7N5FzrfaLAPO'),
+('testUser2', '$2a$10$cbD7IpSAhKbsVckG3AUh0.SloLK9aM4tIom.W1KfINd1t4p1vyrie'),
+('testUser3', '$2a$10$47ix/4rxZXU5uppu2UtQfuCmB7F1oyFoKuzeOlxpvq62rWaac3C22'),
+('testUser4', '$2a$10$ttWC3MHHpVYSO1npEPVcMu6G3p8d8y9Cravau9ArZ9ptMfGWzAoLO'),
+('testUser5', '$2a$10$8hgUv.nEk2jo5C0ghtEBPeabN2RvwHriBsYy02WTfSq7YL2T6doMW');

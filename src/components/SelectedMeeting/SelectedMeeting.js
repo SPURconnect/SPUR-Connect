@@ -1,7 +1,11 @@
 import { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Box, Button, Stack, TextField, Typography, IconButton } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import SelectedMeetingEdit from '../SelectedMeetingEdit/SelectedMeetingEdit';
+import MeetingNavBar from '../MeetingNavBar/MeetingNavBar';
+
 
 
 function SelectedMeeting() {
@@ -12,13 +16,14 @@ function SelectedMeeting() {
   const meetings = useSelector(store => store.meetings);
 
    useEffect(() => {
-    dispatch({
-      type: 'GET_SELECTED_MEETINGS',
+    
+    dispatch({      
+      type: 'GET_MEETINGS',
       payload: params.id
     })
   }, []);
 
-
+   console.log('reducer data', meetings)
 /* const backpage = (e) =>  {
     history.push('/meetinghistory');
   
@@ -29,35 +34,14 @@ const edit = (e) =>  {
   
   }   */
 
+
   
-
-  /*const handleNoteChange = (e) => {
-    dispatch({
-      type: 'EDIT_NOTES',
-      payload: e.target.value
-    })
-  } */
-
-  /* const handleSaveNotes = (e) => {
-    e.preventDefault();
-    dispatch({
-      type: 'SAVE_NOTES',
-      payload: {
-        id: params.id,
-        notes: notes.notes
-      }
-    })
-  }; */
-
- /*  function handleClearNotes(){
-    dispatch({
-      type: 'CLEAR_EDIT_NOTES',
-    })
-    //TODO: Save notes after??
-  }; */
-
   return (
+
+    //map this out, research stack
     <div>
+       <MeetingNavBar prop={'details'}/>
+     <div style={{marginTop: '86px'}}>
       <Box
         display="flex"
         justifyContent="center"
@@ -69,21 +53,42 @@ const edit = (e) =>  {
         >
           Selected Meeting Details
         </Typography>
+        <IconButton
+        size='large'
+        sx={{width: '10%', margin: 'auto', paddingTop: '2vh'}}
+        onClick={() => history.push(`/meeting/edit/${params.id}`)}
+      >
+        <EditIcon 
+          fontSize='inherit'
+        />
+      </IconButton>
       </Box>
       <Box
         display="flex"
         justifyContent="center"
         alignItems="center"
       >
-        <TextField
-          multiline={true} //Allows changing height of TextField.
-          rows={15} //Change height of TextField here.
-          placeholder='Meeting Details'
-          value={meetings.summary}
-          sx={{mt: 1, width: 250,}} //Change width of TextField here.
-        />
+
+         
+         {
+           meetings.map(meetings => 
+            (<Stack key={meetings.id}> 
+             <h5>Meeting Title</h5>
+              <p>{meetings.meeting_title}</p>
+              <h5>Meeting Location</h5>
+              <p>{meetings.meetup_location}</p> 
+              <h5>Schedule</h5>
+              <p>{meetings.date}</p> 
+              <h5>Summary</h5>
+              <p>{meetings.summary}</p>
+            
+
+            </Stack>)
+           )}
+                            
+              
       </Box>
-     
+     </div>
       
     </div>
   )

@@ -17,9 +17,17 @@ function SearchProfiles(props) {
   const dispatch = useDispatch();
   const searchProfilesReducer = useSelector(store => store.searchProfilesReducer);
   const industriesReducer = useSelector(store => store.industriesReducer);
+  const history = useHistory();
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_INDUSTRIES' })
+    dispatch({ 
+      type: 'FETCH_INDUSTRIES' 
+    })
+    return () =>  {
+      dispatch({
+        type: 'CLEAR_PROFILES'
+      })
+    }
   }, []);
 
   const handleQueryChange = (event) => {
@@ -46,8 +54,8 @@ function SearchProfiles(props) {
     });
   };
 
-  const handleCardClick = (event) =>  {
-    // TODO: history.push() to user profile 
+  const handleCardClick = (profile) =>  {
+    history.push(`/searchProfiles/${profile.id}`) 
   };
 
   return (
@@ -68,11 +76,9 @@ function SearchProfiles(props) {
           style={{ paddingBottom: '4px' }}>
           <Card 
             sx={{ maxWidth: '100%', boxShadow: 3 }} 
-            
             >
             <CardHeader
               sx={{ paddingBottom: '0px' }}
-              // onClick={handleExpandClick}
               avatar={
                 <Avatar
                   sx={{ bgcolor: grey[500], width: '75px', height: '75px' }}

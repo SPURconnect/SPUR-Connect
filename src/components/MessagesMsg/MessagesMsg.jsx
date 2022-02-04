@@ -7,6 +7,7 @@ export default function MessagesMsg({timestamp, message}) {
     <Box>
         <ListItem>
           <ListItemText
+            sx={{alignItems: 'right'}}
             primary={message}
             secondary={timestamp.slice(0, 10)}
           />

@@ -13,7 +13,6 @@ function UserPage() {
 
 
   useEffect(() => {
-    //Need to Get Courts and put it here
     dispatch({
       type: 'SAGA_FETCH_USER_PROFILES'
     })
@@ -23,9 +22,7 @@ function UserPage() {
 
   return (
     <div className="container">
-      <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
-      {/* To do: Need to figure out how to get the picture to render */}
+
       {userProfile.map((profile)=>{
         return <UserDetail key ={profile.id} profile={profile}/>
       })}

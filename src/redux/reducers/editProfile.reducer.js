@@ -25,7 +25,7 @@ const editProfileReducer = (state = {}, action) => {
     case 'SAGA_EDIT_PROFILE_INFO':
       return action.payload
     case 'SET_EMAIL':
-      return{...state, email: action.payload}
+      return {...state, email: action.payload}
     case 'SET_PHOTO':
       return { ...state, photo: action.payload }
     case 'SET_FIRST_NAME':
@@ -54,6 +54,8 @@ const editProfileReducer = (state = {}, action) => {
       return { ...state, about_me: action.payload }
     case 'SET_INDUSTRY':
       return { ...state, industry_name: action.payload }
+    case 'SET_AVAILABILITY':
+      return { ...state, availability: action.payload }
     default:
       return state;
   }
