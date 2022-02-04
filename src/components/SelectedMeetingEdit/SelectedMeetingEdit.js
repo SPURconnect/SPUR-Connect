@@ -20,10 +20,7 @@ function SelectedMeetingEdit() {
   const meetings = useSelector(store => store.meetings);
   const meetingDetailsReducer = useSelector(store => store.meetingDetailsReducer);
 
-/* 
-  const [location, setLocation] = useState('');
-  const [date, setDate] = useState('');
-  const [summary, setSummary] = useState(''); */
+
 
   useEffect(() => {
     dispatch({
