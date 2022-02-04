@@ -120,8 +120,8 @@ function MeetingHistoryItem({ item }) {
           </ExpandMore>
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <CardContent sx={{ textAlign: 'center' }}>
-            <Typography>{item.summary}</Typography><br />
+          <CardContent sx={{ textAlign: 'center', padding: '0px' }}>
+            <Typography sx={{ margin: '0px 0px 10px 0px'}}>{item.summary}</Typography>
             <Button
               variant='contained'
               size='small'
