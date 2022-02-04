@@ -15,7 +15,9 @@ const searchProfilesRouter = require('./routes/searchProfiles.router');
 const industriesRouter = require('./routes/industries.router');
 const messagesRouter = require('./routes/messages.router');
 const meetingsRouter = require('./routes/meetings.router.js');
+const uploadsRouter = require('./routes/uploads.router.js');
 const singleProfileRouter = require("./routes/singleProfile.router");
+
 
 
 // Body parser middleware
@@ -37,8 +39,8 @@ app.use('/api/searchProfiles', searchProfilesRouter);
 app.use('/api/industry', industriesRouter);
 app.use('/api/messages', messagesRouter);
 app.use('/api/meetings', meetingsRouter);
+app.use('/api/uploads', uploadsRouter);
 app.use("/api/singleProfile", singleProfileRouter);
-
 
 
 

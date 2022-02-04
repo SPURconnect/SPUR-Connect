@@ -9,6 +9,7 @@ import messagesGET from './GETmessages.saga';
 import messagesPOST from './POSTmessages.saga';
 import meetingSaga from './meeting.saga';
 import editProfileSaga from './editProfile.saga';
+import uploadsSaga from './uploads.saga';
 
 
 // rootSaga is the primary saga.
@@ -30,6 +31,6 @@ export default function* rootSaga() {
     messagesGET(),
     messagesPOST(),
     meetingSaga(), // saga for meetings
-
+    uploadsSaga(), 
   ]);
 }

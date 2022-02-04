@@ -121,7 +121,7 @@ router.delete('/', rejectUnauthenticated, (req, res) => {
       console.log('/meetings/notes/:id PUT error:', dbErr);
       res.sendStatus(500);
     });
-})
+});
 
 
 module.exports = router;

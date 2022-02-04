@@ -29,8 +29,10 @@ import AddMeeting from '../AddMeeting/AddMeeting.jsx';
 import EditUserProfile from '../EditUserProfile/EditUserProfile';
 import MeetingHistory from '../MeetingHistory/MeetingHistory';
 import MeetingNotes from '../MeetingNotes/MeetingNotes.jsx';
+import MeetingPhotos from '../MeetingPhotos/MeetingPhotos.jsx';
 import SelectedMeeting from '../SelectedMeeting/SelectedMeeting';
 import SelectedMeetingEdit from '../SelectedMeetingEdit/SelectedMeetingEdit';
+
 
 import './App.css';
 import SearchProfiles from '../SearchProfiles/SearchProfiles';
@@ -166,20 +168,26 @@ function App() {
               <RegisterPage />
             )}
           </Route>
+
           <ProtectedRoute exact path="/meeting/add/:id">
             <AddMeeting />
           </ProtectedRoute>
+
           <ProtectedRoute exact path="/meeting">
             <MeetingHistory />
           </ProtectedRoute>
-          {/* TODO: useParams to route this to /meetingnotes/:id */}
+
           <ProtectedRoute exact path="/meeting/notes/:id">
             <MeetingNotes />
           </ProtectedRoute>
+
+          <ProtectedRoute exact path="/meeting/photos/:id">
+            <MeetingPhotos />
+          </ProtectedRoute>
+
           <Route exact path="/home">
             {user.id ? (
-              // If the user is already logged in,
-              // redirect them to the /user page
+              // If the user is already logged in, redirect them to the /user page
               <Redirect to="/user" />
             ) : (
               // Otherwise, show the Landing page
