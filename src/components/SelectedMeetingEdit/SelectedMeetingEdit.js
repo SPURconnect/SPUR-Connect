@@ -109,6 +109,7 @@ console.log('meeting reducer')
         <Typography
           variant="h6"
           component="h6"
+          sx={{mt: 1}}
         >
           Meeting Details
         </Typography>
@@ -118,6 +119,7 @@ console.log('meeting reducer')
         display="flex"
         justifyContent="center"
         alignItems="center"
+        sx={{mt: 3}}
       >
 
           <TextField
@@ -134,6 +136,7 @@ console.log('meeting reducer')
         display="flex"
         justifyContent="center"
         alignItems="center"
+        sx={{mt: 3}}
       >
          <DateTimePicker
               label="Date&Time of Meeting"
@@ -148,6 +151,7 @@ console.log('meeting reducer')
         display="flex"
         justifyContent="center"
         alignItems="center"
+        sx={{mt: 3}}
       >
 
          <TextField
@@ -156,7 +160,7 @@ console.log('meeting reducer')
           placeholder='summary'
           value={meetingDetailsReducer.summary}
           onChange={handleSummary}
-          sx={{mt: 1, width: 250,}} //Change width of TextField here.
+          sx={{mt: 3, width: 350,}} //Change width of TextField here.
         /><br></br>
 
 </Box>
@@ -165,13 +169,14 @@ console.log('meeting reducer')
         display="flex"
         justifyContent="center"
         alignItems="center"
+        sx={{mt: 3}}
       >
 
 
               <Button
                variant="contained"
                style={{ backgroundColor: '#0583f2', color: 'White' }}               
-               onClick={saveMeetingDeatils}>Add</Button>        
+               onClick={saveMeetingDeatils}>Update</Button>        
               
       </Box>
      </div>
