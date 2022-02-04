@@ -31,16 +31,19 @@ function SelectedMeetingEdit() {
   }, [params.id]);
 
   
-  /* function handleSetDate(newValue, e){
+  function handleSetDate(newValue){
     let cleanTime = newValue.toLocaleTimeString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'})
     console.log(newValue);
     console.log(cleanTime);
     setDate(cleanTime);
+    
     dispatch({
       type: 'SET_DATE',
-      payload: e.target.value
+      payload: cleanTime
     })
-  }; */
+
+
+  }; 
 
 
   
@@ -52,16 +55,13 @@ function SelectedMeetingEdit() {
     })
   }
 
-   const handleDate = (e, newValue) => {
+   /* const handleDate = (e) => {
     dispatch({
       type: 'SET_DATE',
       payload: e.target.value
     })
-    let cleanTime = newValue.toLocaleTimeString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'})
-    console.log(newValue);
-    console.log(cleanTime);
-    setDate(cleanTime);
-  } 
+   
+  }  */
 
   const handleSummary = (e) => {
     dispatch({
@@ -138,7 +138,7 @@ console.log('meeting reducer')
          <DateTimePicker
               label="Date&Time of Meeting"
               value={meetingDetailsReducer.date}
-              onChange={handleDate}
+              onChange={handleSetDate}
               renderInput={(params) => <TextField {...params} />}
             />
      
