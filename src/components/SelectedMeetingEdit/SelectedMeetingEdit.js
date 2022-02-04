@@ -6,7 +6,7 @@ import { Box, Button, Stack, TextField, Typography, IconButton } from '@mui/mate
 import StaticDateRangePicker from '@mui/lab/StaticDateRangePicker';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import DatePicker from '@mui/lab/DatePicker';
+import DateTimePicker from '@mui/lab/DateTimePicker';
 import EditIcon from '@mui/icons-material/Edit';
 import MeetingNavBar from '../MeetingNavBar/MeetingNavBar';
 
@@ -19,6 +19,7 @@ function SelectedMeetingEdit() {
   const params = useParams();
   const meetings = useSelector(store => store.meetings);
   const meetingDetailsReducer = useSelector(store => store.meetingDetailsReducer);
+  const [date, setDate] = useState(new Date()); 
 
 
 
@@ -30,6 +31,19 @@ function SelectedMeetingEdit() {
   }, [params.id]);
 
   
+  /* function handleSetDate(newValue, e){
+    let cleanTime = newValue.toLocaleTimeString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'})
+    console.log(newValue);
+    console.log(cleanTime);
+    setDate(cleanTime);
+    dispatch({
+      type: 'SET_DATE',
+      payload: e.target.value
+    })
+  }; */
+
+
+  
 
   const handleMeetupLocation = (e) => {
     dispatch({
@@ -38,12 +52,16 @@ function SelectedMeetingEdit() {
     })
   }
 
-  const handleDate = (e) => {
+   const handleDate = (e, newValue) => {
     dispatch({
       type: 'SET_DATE',
       payload: e.target.value
     })
-  }
+    let cleanTime = newValue.toLocaleTimeString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'})
+    console.log(newValue);
+    console.log(cleanTime);
+    setDate(cleanTime);
+  } 
 
   const handleSummary = (e) => {
     dispatch({
@@ -78,6 +96,7 @@ console.log('meeting reducer')
 
     //map this out, research stack
     <div>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
        <MeetingNavBar prop={'details'} />
       
       <div style={{marginTop: '86px'}}>
@@ -116,14 +135,13 @@ console.log('meeting reducer')
         justifyContent="center"
         alignItems="center"
       >
-     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <DatePicker
-        label="Meeting Date"
-        value={meetingDetailsReducer.date}
-        onChange={handleDate}
-        renderInput={(params) => <TextField {...params} />}
-      />
-    </LocalizationProvider>
+         <DateTimePicker
+              label="Date&Time of Meeting"
+              value={meetingDetailsReducer.date}
+              onChange={handleDate}
+              renderInput={(params) => <TextField {...params} />}
+            />
+     
     </Box>
     
     <Box
@@ -162,7 +180,7 @@ console.log('meeting reducer')
 
 
        
-       
+     </LocalizationProvider>
        
     
     </div>
