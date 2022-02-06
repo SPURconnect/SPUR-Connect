@@ -145,13 +145,11 @@ function UserDetail ({profile}){
       {/* Row 4 */}
       <Grid item xs={.5}/>
       <Grid item xs={5.25} mt="15px">
-        <AlternateEmailIcon/>
-        {profile.email}
+        <AlternateEmailIcon/> {profile.email}
       </Grid>
       <Grid item xs={.5}/>
       <Grid item xs={5.25} mt="15px">
-        <YouTubeIcon/>
-        {profile.youtube}
+        <YouTubeIcon/> {profile.youtube}
       </Grid>
       <Grid item xs={.5}/>
       
@@ -160,13 +158,11 @@ function UserDetail ({profile}){
       {/* Row 5 */}
       <Grid item xs={.5}/>
       <Grid item xs={5.25} mt="15px">
-        <FacebookIcon/>
-        {profile.facebook}
+        <FacebookIcon/> {profile.facebook}
       </Grid>
       <Grid item xs={.5}/>
       <Grid item xs={5.25} mt="15px">
-        <InstagramIcon/>
-        {profile.instagram}
+        <InstagramIcon/> {profile.instagram}
       </Grid>
       <Grid item xs={.5}/>
       
@@ -175,13 +171,11 @@ function UserDetail ({profile}){
       {/* Row 6 */}
       <Grid item xs={.5}/>
       <Grid item xs={5.25} mt="15px">
-        <LinkedInIcon/>
-        {profile.linkedin}
+        <LinkedInIcon/> {profile.linkedin}
       </Grid>
       <Grid item xs={.5}/>
       <Grid item xs={5.25} mt="15px">
-        <TwitterIcon/>
-        {profile.twitter}
+        <TwitterIcon/> {profile.twitter}
       </Grid>
       <Grid item xs={.5}/>        
       {/*  */}
@@ -189,8 +183,7 @@ function UserDetail ({profile}){
       {/* Row 7 */}
       <Grid item xs={.5}/>
       <Grid item xs={5.25} mt="15px">
-        <GitHubIcon/>
-        {profile.portfolio}
+        <GitHubIcon/> {profile.portfolio}
       </Grid>
       <Grid item xs={.5}/>
       <Grid item xs={5.25} mt="15px">
