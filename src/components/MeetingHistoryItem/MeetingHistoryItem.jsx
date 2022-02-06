@@ -2,26 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import toast from 'react-hot-toast';
+
 // MUI imports
+
+import { TableRow, TableCell, Button, Card, CardHeader, CardContent, CardActions, Collapse, Avatar, IconButton,
+Typography, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
-import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import { grey } from '@mui/material/colors';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DeleteIcon from '@mui/icons-material/Delete';
-// MUI dialog imports
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+
 // MUI expand styler
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -91,6 +81,9 @@ function MeetingHistoryItem({ item }) {
 
   return (
     <div style={{ paddingBottom: '4px' }}>
+    {/* <TableRow>
+      <TableCell> */}
+
       <Card sx={{ maxWidth: '100%', boxShadow: 3 }} >
         <CardHeader
           sx={{ paddingBottom: '0px' }}
@@ -162,6 +155,8 @@ function MeetingHistoryItem({ item }) {
           </Button>
         </DialogActions>
       </Dialog>
+      {/* </TableCell>
+      </TableRow> */}
     </div>
   )
 }

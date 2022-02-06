@@ -40,6 +40,10 @@ export default function MessagesConvo() {
   };
 
   return(
+    <Grid container maxHeight="88%">
+      <Grid item xs={.5}/>
+      
+      <Grid item xs={11}>
     <Box container flex
       sx={{width: '100%'}}
     >
@@ -73,6 +77,8 @@ export default function MessagesConvo() {
 
     <MessageSendModal buttonText={"Reply"} sendTo={convoWithUserID}/>
 
+
+
     <Box
       display="flex"
       position="fixed" 
@@ -98,5 +104,9 @@ export default function MessagesConvo() {
       
     </Box>
     </Box>
+
+    </Grid>
+      <Grid item xs={.5}/>
+    </Grid>
   )
 }
