@@ -29,7 +29,7 @@ export default function MessagesConvo() {
     let outboundMessage = {
       content: message,
       timestamp: new Date(),
-      recipient_id: convoWithUserID
+      recipient_id: convoWithUserID.id
       // sender_id: req.user.id on serverside
     }
     dispatch({
@@ -40,73 +40,73 @@ export default function MessagesConvo() {
   };
 
   return(
+    <>
     <Grid container maxHeight="88%">
-      <Grid item xs={.5}/>
       
-      <Grid item xs={11}>
-    <Box container flex
-      sx={{width: '100%'}}
-    >
-    {/* conditionally send align prop  */}
-    <Box>
-    <TableContainer
-      width="95%"
-    >
-    <Table>
-      <TableBody>
-        {userConvo[0].messages.map((msg) => {
-          return msg.sender_id == convoWithUserID.id ?
-            <MessagesMsg 
-              key={msg.id} 
-              timestamp={msg.timestamp} 
-              message={msg.content} 
-              alignment={'left'}
-            />
-          :
-            <MessagesMsg 
-              key={msg.id} 
-              timestamp={msg.timestamp} 
-              message={msg.content} 
-              alignment={'right'}  
-            />
-        })}
-      </TableBody>
-    </Table>
-    </TableContainer>
-    </Box>
+      {/*  */}
+      <Grid item xs={.5}/>
 
-    <MessageSendModal buttonText={"Reply"} sendTo={convoWithUserID}/>
+      <Grid item xs={11}>    
+        <TableContainer
+          width="95%"
+        >
+        <Table>
+          <TableBody>
+            {userConvo[0].messages.map((msg) => {
+              return msg.sender_id == convoWithUserID.id ?
+                <MessagesMsg 
+                  key={msg.id} 
+                  timestamp={msg.timestamp} 
+                  message={msg.content} 
+                  alignment={'left'}
+                />
+              :
+                <MessagesMsg 
+                  key={msg.id} 
+                  timestamp={msg.timestamp} 
+                  message={msg.content} 
+                  alignment={'right'}  
+                />
+            })}
+          </TableBody>
+        </Table>
+        </TableContainer>
+      </Grid>
 
+      <Grid item xs={.5}/>
+      {/*  */}
+    </Grid>
 
-
+      {/* <MessageSendModal buttonText={"Reply"} sendTo={convoWithUserID}/> */}
+      
     <Box
-      display="flex"
       position="fixed" 
-      color="primary" 
       sx={{top: 'auto', bottom: '10%'}}
     >
-      <Grid container>
-        <Grid item xs={11}>
+      
           <TextField
             fullWidth
+            multiline
             value = {message}
             onChange={(e) => setMessage(e.target.value)}
           />
-        </Grid>
-        <Grid item xs={1}>
+        
           <Button
             variant="contained"
             onClick={handleSendMessage}
-          >  <SendIcon/>
+          > <SendIcon/>
           </Button>
-        </Grid>
-      </Grid>
-      
+        
     </Box>
-    </Box>
-
-    </Grid>
-      <Grid item xs={.5}/>
-    </Grid>
+    </>
   )
 }
+
+{/* <Grid container>
+        <Grid item xs={.5}/>
+        <Grid item xs={9}>
+        </Grid>
+        <Grid item xs={.5}/>
+        <Grid item xs={2}>  
+        </Grid>
+      </Grid> */}
