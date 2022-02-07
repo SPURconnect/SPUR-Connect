@@ -41,11 +41,6 @@ function SearchProfiles(props) {
     dispatch({ 
       type: 'FETCH_INDUSTRIES' 
     })
-    return () =>  {
-      dispatch({
-        type: 'CLEAR_PROFILES'
-      })
-    }
   }, []);
 
   const handleQueryChange = (event) => {
