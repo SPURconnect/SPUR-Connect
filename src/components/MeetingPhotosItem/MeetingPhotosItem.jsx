@@ -10,11 +10,20 @@ function MeetingPhotosItem({photo}) {
   const dispatch = useDispatch();
   const params = useParams();
 
+  const openInNewTab = () => {
+    const newWindow = window.open(photo.image_url, '_blank', 'noopener,noreferrer')
+    if (newWindow) newWindow.opener = null
+  }
+
   function handleDeleteButton(){
     dispatch({
       type: 'DELETE_PHOTO',
-      payload: photo.id //TODO: Pass Params for FETCH_PHOTOS on return.
+      payload: {id: photo.id, paramsid: params.id}
     })
+  }
+
+  function handleCardClick(){
+    history.push()
   }
 
   return (
@@ -29,16 +38,17 @@ function MeetingPhotosItem({photo}) {
             component="img"
             height="140"
             image={photo.image_url}
-            // alt=""
+            alt="Open Full Size Image"
+            onClick={openInNewTab}
           />
-          <CardContent>
-            {/* <Typography gutterBottom variant="h5" component="div">
+          {/* <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
               Image Title?
-            </Typography> */}
-          </CardContent>
+            </Typography>
+          </CardContent> */}
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="secondary" variant="contained" onClick={handleDeleteButton}>
+          <Button size="small" color="error" variant="contained" onClick={handleDeleteButton} sx={{ml: 3.2}}> 
             Delete
           </Button>
         </CardActions>

@@ -16,7 +16,7 @@ router.get('/:id', rejectUnauthenticated, (req,res) =>{
     })
     .catch((dbErr) => {
       console.log('/uploads/:id GET error:', dbErr);
-      resSendStatus(500);
+      res.sendStatus(500);
     });
 });
 

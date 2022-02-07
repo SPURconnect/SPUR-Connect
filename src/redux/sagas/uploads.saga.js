@@ -41,11 +41,11 @@ function* deletePhoto(action){
   try{
     const response = yield axios({
       method: 'DELETE',
-      url: `/api/uploads/${action.payload}`,
+      url: `/api/uploads/${action.payload.id}`,
     })
     yield put({
       type: 'FETCH_PHOTOS',
-      //TODO: payload: useParams here
+      payload: action.payload.paramsid
     })
   }catch(error){
     console.log('deletePhoto catch error:', error);
