@@ -31,6 +31,7 @@ function MeetingPhotosItem({photo}) {
       display="flex"
       justifyContent="center"
       alignItems="center"
+      sx={{mt: 1}}
     >
       <Card sx={{ maxWidth: 450 }}>
         <CardActionArea>

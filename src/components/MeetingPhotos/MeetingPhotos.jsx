@@ -41,6 +41,20 @@ function MeetingPhotos() {
         display="flex"
         justifyContent="center"
         alignItems="center"
+        sx={{mt: 1}}
+      >
+        <input 
+          type="file"
+          accept="image/png, image/jpeg"
+          onChange={(e) => setInputPhoto(e.target.files[0])}
+        >
+       </input>
+      </Box>
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        sx={{mt: 1}}
       >
         <Button
           variant="contained"
@@ -48,12 +62,6 @@ function MeetingPhotos() {
         >
           Add Photo
         </Button>
-        <input 
-          type="file"
-          accept="image/png, image/jpeg"
-          onChange={(e) => setInputPhoto(e.target.files[0])}
-        >
-       </input>
       </Box>
       {photos.map((photo) =>{
         return(
