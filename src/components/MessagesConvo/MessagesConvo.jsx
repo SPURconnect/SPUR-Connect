@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import MessagesMsg from '../MessagesMsg/MessagesMsg';
+import MessageSendModal from '../MessageSendModal/MessageSendModal';
 
-import { Box, List } from '@mui/material';
+import { TableContainer, Table, TableBody, Grid, TextField, Button, Box, List } from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
 
 export default function MessagesConvo() {
   //alias HOOKs
@@ -17,17 +19,17 @@ export default function MessagesConvo() {
 
   const [message, setMessage] = useState('');
 
-    // useEffect(() => {
-    //   dispatch({
-    //     type: "FETCH_MESSAGES"
-    //   })
-    // }, [])
+    useEffect(() => {
+      dispatch({
+        type: "FETCH_MESSAGES"
+      })
+    }, [])
 
   const handleSendMessage = () => {
     let outboundMessage = {
       content: message,
       timestamp: new Date(),
-      recipient_id: convoWithUserID
+      recipient_id: convoWithUserID.id
       // sender_id: req.user.id on serverside
     }
     dispatch({
@@ -39,21 +41,69 @@ export default function MessagesConvo() {
 
   return(
     <>
-    <List>
-      {userConvo[0].messages.map((msg) => {
-        return <MessagesMsg key={msg.id} timestamp={msg.timestamp} message={msg.content} />
-      })}
-    </List>
-    
-    <Box>
-    <input 
-      value = {message}
-      onChange={(e) => setMessage(e.target.value)}
-    />
-    <button
-      onClick={handleSendMessage}>
-      Send
-    </button>
+    <Grid container maxHeight="88%">
+      
+      {/*  */}
+      <Grid item xs={.5}/>
+
+      <Grid item xs={11}>    
+        <TableContainer
+          width="95%"
+          sx={{
+            paddingBottom: "20%"
+          }}
+        >
+        <Table>
+          <TableBody>
+            {userConvo[0].messages.map((msg) => {
+              return msg.sender_id == convoWithUserID.id ?
+                <MessagesMsg 
+                  key={msg.id} 
+                  timestamp={msg.timestamp} 
+                  message={msg.content} 
+                  alignment={'left'}
+                />
+              :
+                <MessagesMsg 
+                  key={msg.id} 
+                  timestamp={msg.timestamp} 
+                  message={msg.content} 
+                  alignment={'right'}  
+                />
+            })}
+          </TableBody>
+        </Table>
+        </TableContainer>
+      </Grid>
+
+      <Grid item xs={.5}/>
+      {/*  */}
+    </Grid>
+
+      {/* <MessageSendModal buttonText={"Reply"} sendTo={convoWithUserID}/> */}
+      
+      <Box
+        position="fixed"
+        sx={{
+          top: 'auto',
+          bottom: '9%',
+          width: '100%',
+          display: 'inline-block',
+          backgroundColor: 'white',
+          paddingBottom: '2%'
+        }}
+      >
+        <TextField
+          sx={{width: '75%', paddingLeft: '5%'}}
+          multiline
+          value = {message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+        <Button
+          variant="contained"
+          onClick={handleSendMessage}
+        > <SendIcon/>
+        </Button>
     </Box>
     </>
   )

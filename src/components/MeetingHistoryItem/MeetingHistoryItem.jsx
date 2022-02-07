@@ -2,26 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import toast from 'react-hot-toast';
+
 // MUI imports
+
+import { TableRow, TableCell, Button, Card, CardHeader, CardContent, CardActions, Collapse, Avatar, IconButton,
+Typography, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
-import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import { grey } from '@mui/material/colors';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DeleteIcon from '@mui/icons-material/Delete';
-// MUI dialog imports
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+
 // MUI expand styler
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -61,7 +51,7 @@ function MeetingHistoryItem({ item }) {
   }, [dispatch]);
 
   const handleGoToMeetingDetails = () => {
-    history.push(`/meeting/notes/${item.id}`);
+    history.push(`/meeting/${item.id}`);
   }
 
   const displayProfileImage = () => {
@@ -80,6 +70,15 @@ function MeetingHistoryItem({ item }) {
     toast.success(`${item.meeting_title} deleted!`)
   }
 
+  let theDate = item.date;
+  // let cleanTime = theDate.toLocaleTimeString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'})
+  // console.log(item.date)
+  let cleanTime = new Date(item.date);
+  // console.log(theDate)
+  // console.log(cleanTime)
+  let bestTime = cleanTime.toLocaleTimeString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'});
+  // console.log(bestTime);
+
   return (
     <div style={{ paddingBottom: '4px' }}>
       <Card sx={{ maxWidth: '100%', boxShadow: 3 }} >
@@ -95,7 +94,7 @@ function MeetingHistoryItem({ item }) {
             </Avatar>
           }
           title={item.meeting_title}
-          subheader={item.date}
+          subheader={bestTime}
         />
         <CardActions
           disableSpacing
@@ -111,8 +110,8 @@ function MeetingHistoryItem({ item }) {
           </ExpandMore>
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <CardContent sx={{ textAlign: 'center' }}>
-            <Typography>{item.summary}</Typography><br />
+          <CardContent sx={{ textAlign: 'center', padding: '0px' }}>
+            <Typography sx={{ margin: '0px 0px 10px 0px'}}>{item.summary}</Typography>
             <Button
               variant='contained'
               size='small'

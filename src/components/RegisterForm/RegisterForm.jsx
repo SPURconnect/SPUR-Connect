@@ -61,7 +61,6 @@ function RegisterForm() {
       <div>
         <label>
             <TextField
-              id="outlined-helperText"
               label="Username"
               defaultValue="Default Value"
               value={username}
@@ -73,7 +72,6 @@ function RegisterForm() {
         <label>
             <br></br>
             <TextField
-              id="outlined-helperText"
               label="Password"
               defaultValue="Default Value"
               value={password}
@@ -85,7 +83,6 @@ function RegisterForm() {
           <label>
             <br></br>
             <TextField
-              id="outlined-helperText"
               label="First Name"
               defaultValue="Default Value"
               value={firstName}
@@ -97,7 +94,6 @@ function RegisterForm() {
           <label>
             <br></br>
             <TextField
-              id="outlined-helperText"
               label="Last Name"
               defaultValue="Default Value"
               value={lastName}
@@ -109,7 +105,6 @@ function RegisterForm() {
         <label>
             <br></br>
             <TextField
-              id="outlined-helperText"
               label="Email"
               defaultValue="Default Value"
               value={email}
@@ -121,7 +116,6 @@ function RegisterForm() {
           <label>
             <br></br>
             <TextField
-              id="outlined-helperText"
               label="Location/City"
               defaultValue="Default Value"
               value={city}
@@ -133,7 +127,6 @@ function RegisterForm() {
           <label>
             <br></br>
             <TextField
-              id="outlined-helperText"
               label="Location/State"
               defaultValue="Default Value"
               value={state}
@@ -145,7 +138,6 @@ function RegisterForm() {
           <label>
             <br></br>
             <TextField
-              id="outlined-helperText"
               label="Location/Zip"
               defaultValue="Default Value"
               value={zip}
@@ -157,14 +149,13 @@ function RegisterForm() {
         <label htmlFor="Industry">
           <br></br>
             <FormControl fullWidth>
-              <InputLabel variant="standard" htmlFor="uncontrolled-native">
+              <InputLabel variant="standard">
                 Choose an Industry:
               </InputLabel>
               <NativeSelect
                 defaultValue={30}
                 inputProps={{
                   name: 'Industry',
-                  id: 'uncontrolled-native',
                 }}
                 value={industry}
                 onChange={(event) => chooseIndustry(event)}

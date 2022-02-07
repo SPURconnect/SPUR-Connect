@@ -7,23 +7,48 @@ import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import Avatar from '@mui/material/Avatar';
-import Typography from '@mui/material/Typography';
 import { grey } from '@mui/material/colors';
+import { TextField } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+import InfoIcon from '@mui/icons-material/Info';
+import { InputAdornment, Box, Grid, Typography, Modal, IconButton, Paper } from '@mui/material';
+import './SearchProfiles.css';
+
+const style = {
+  position: 'absolute',
+  top: '20%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  p: 4,
+};
 
 function SearchProfiles(props) {
  
   const store = useSelector((store) => store);
-  const [heading, setHeading] = useState('Functional Component');
+  const [selected, setSelected] = useState(0);
   const dispatch = useDispatch();
   const searchProfilesReducer = useSelector(store => store.searchProfilesReducer);
   const industriesReducer = useSelector(store => store.industriesReducer);
+  const history = useHistory();
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_INDUSTRIES' })
+    dispatch({ 
+      type: 'FETCH_INDUSTRIES' 
+    })
+    return () =>  {
+      dispatch({
+        type: 'CLEAR_PROFILES'
+      })
+    }
   }, []);
 
   const handleQueryChange = (event) => {
-    let cleanString = event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1);
     event.preventDefault();
     if (event.target.value === '')  {
       dispatch({
@@ -33,46 +58,127 @@ function SearchProfiles(props) {
     else  {
     dispatch({
       type: 'FETCH_PROFILES',
-      payload: cleanString
+      payload: event.target.value
       })
+      // dispatch({
+      //   type: 'SORT_BY_INDUSTRY',
+      //   payload: selected
+      // });
     }
   };
 
-  const handleIndustryChange = (event) =>  {
-    event.preventDefault();
-    dispatch({
-      type: 'SORT_BY_INDUSTRY',
-      payload: event.target.value
-    });
+  // const handleIndustryChange = (event) =>  {
+  //   event.preventDefault();
+  //   setSelected(event.target.value);
+  //   dispatch({
+  //     type: 'SORT_BY_INDUSTRY',
+  //     payload: event.target.value
+  //   });
+  // };
+
+  const handleCardClick = (profile) =>  {
+    history.push(`/searchProfiles/${profile.id}`) 
   };
 
-  const handleCardClick = (event) =>  {
-    // TODO: history.push() to user profile 
-  };
+  const ifNoSearch = () =>  {
+    if (searchProfilesReducer.length === 0) {
+      return <p className="justBeCentered">There's nothing here!<br /><br /> Try searching for potential connections.</p>
+    }
+    else {
+      return;
+    }
+  }
+
+  
 
   return (
     <div>
-      <input onChange={(event) => handleQueryChange(event)}></input>
-      <select onChange={(event) => handleIndustryChange(event)}>
-        <option disabled>Filter By Industry</option>
+
+      <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          // minHeight="0vh"
+          sx={{ mt: 3 }}
+        >
+        <TextField 
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            )
+          }}
+          sx={{width: '90%'}}
+          type="text"  
+          onChange={(event) => handleQueryChange(event)} 
+          variant="outlined"
+          size="small"
+          placeholder='Search by industry, name, or location'
+          />
+          <IconButton 
+            variant="contained"
+            color="primary"
+            size="small"
+            onClick={handleOpen}
+          ><InfoIcon /></IconButton>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="search-info"
+            aria-describedby="search-info"
+          >
+          <Box sx={style}>
+            <Grid container style={{ Paper }}>
+
+              <Grid item xs={1}/>
+
+              <Grid item xs={10}
+                sx={{marginTop: 2, marginBottom: 2}} 
+              >
+                <Typography>
+                  Hello?
+                </Typography>
+              </Grid>
+
+              <Grid item xs={1}/>
+
+              <Grid item xs={6}/>
+
+              <Grid item xs={6}
+                sx={{marginTop: 2, marginBottom: 2}} 
+              >
+                <Typography>
+                  Hello?
+                </Typography>
+              </Grid>
+
+            </Grid>
+          
+          </Box>
+        </Modal>
+      </Box>
+      {/* <select controlled value={selected} onChange={(event) => handleIndustryChange(event)}>
+        <option value={0}>Filter By Industry</option>
         {industriesReducer.map((industry) =>  {
             return  (
               <option key={industry.id} value={industry.id}>{industry.industry_name}</option>
             )
         })}
-      </select>
+      </select> */}
+      
+        {ifNoSearch()}
         
       {searchProfilesReducer.map((item, index) =>    
         <div 
+          key={item.id}
           onClick={() => handleCardClick(item)}
           style={{ paddingBottom: '4px' }}>
           <Card 
             sx={{ maxWidth: '100%', boxShadow: 3 }} 
-            
             >
             <CardHeader
               sx={{ paddingBottom: '0px' }}
-              // onClick={handleExpandClick}
               avatar={
                 <Avatar
                   sx={{ bgcolor: grey[500], width: '75px', height: '75px' }}

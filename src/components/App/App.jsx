@@ -11,6 +11,7 @@ import { Toaster } from 'react-hot-toast';
 
 import { useDispatch, useSelector } from 'react-redux';
 
+
 import Nav from '../Nav/Nav';
 import BottomNavBar from '../BottomNavBar/BottomNavBar';
 
@@ -28,14 +29,19 @@ import AddMeeting from '../AddMeeting/AddMeeting.jsx';
 import EditUserProfile from '../EditUserProfile/EditUserProfile';
 import MeetingHistory from '../MeetingHistory/MeetingHistory';
 import MeetingNotes from '../MeetingNotes/MeetingNotes.jsx';
-import SelectedMeeting from '../SelectedMeeting/SelectedMeeting';
 import MeetingPhotos from '../MeetingPhotos/MeetingPhotos.jsx';
+import SelectedMeeting from '../SelectedMeeting/SelectedMeeting';
+import SelectedMeetingEdit from '../SelectedMeetingEdit/SelectedMeetingEdit';
+
 
 import './App.css';
 import SearchProfiles from '../SearchProfiles/SearchProfiles';
+import SearchProfilesDetails from '../SearchProfilesDetails/SearchProfilesDetails'
+
 
 function App() {
   const dispatch = useDispatch();
+  
 
   const user = useSelector(store => store.user);
   // gets the location of where the user is in the app based on the url
@@ -56,7 +62,9 @@ function App() {
   return (
     <Router>
       <div>
-      <div><Toaster /></div>
+        <div>
+          <Toaster />
+        </div>
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -91,11 +99,12 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
-          <ProtectedRoute
-            exact
-            path="/searchProfiles"
-          >
+          <ProtectedRoute exact path="/searchProfiles">
             <SearchProfiles />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/searchProfiles/:id">
+            <SearchProfilesDetails />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -115,72 +124,75 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
-            exact path="/edit/:id">
-          <EditUserProfile />
-
+            exact
+            path="/edit/:id"
+          >
+            <EditUserProfile />
           </ProtectedRoute>
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/meeting/details"
+
+            path="/meeting/:id"
           >
             <SelectedMeeting />
           </ProtectedRoute>
-
-          <Route
+          
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
             exact
-            path="/login"
+            path="/meeting/edit/:id"
           >
-            {user.id ?
-              // If the user is already logged in, 
+            <SelectedMeetingEdit />
+          </ProtectedRoute>
+
+          <Route exact path="/login">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the login page
               <LoginPage />
-            }
+            )}
           </Route>
 
-          <Route
-            exact
-            path="/registration"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+          <Route exact path="/registration">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect them to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the registration page
               <RegisterPage />
-            }
+            )}
           </Route>
-          <ProtectedRoute exact path="/meeting/add">
+
+          <ProtectedRoute exact path="/meeting/add/:id">
             <AddMeeting />
           </ProtectedRoute>
+
           <ProtectedRoute exact path="/meeting">
             <MeetingHistory />
           </ProtectedRoute>
-          {/* TODO: useParams to route this to /meeting/notes/:id */}
-          <ProtectedRoute exact path="/meeting/notes">
+
+          <ProtectedRoute exact path="/meeting/notes/:id">
             <MeetingNotes />
           </ProtectedRoute>
-          {/* TODO: useParams to route this to /meeting/photos/:id */}
-          <ProtectedRoute exact path="/meeting/photos">
+
+          <ProtectedRoute exact path="/meeting/photos/:id">
             <MeetingPhotos />
           </ProtectedRoute>
-          <Route
-            exact
-            path="/home"
-          >
-            {user.id ?
-              // If the user is already logged in, 
-              // redirect them to the /user page
+
+          <Route exact path="/home">
+            {user.id ? (
+              // If the user is already logged in, redirect them to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the Landing page
               <LandingPage />
-            }
+            )}
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
@@ -190,7 +202,6 @@ function App() {
         </Switch>
 
         <BottomNavBar />
-
       </div>
     </Router>
   );

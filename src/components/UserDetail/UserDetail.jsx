@@ -2,84 +2,189 @@ import React, { useEffect } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom'; 
+
+//MUI Stuff
 import { styled } from '@mui/material/styles';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import { Grid, FormControlLabel, Switch, Stack, FormGroup, Box, Button, TextField, Typography, 
+  ListItemAvatar, Avatar } from '@mui/material';
+
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+////
 
 function UserDetail ({profile}){
   const history = useHistory();
   const dispatch = useDispatch(); 
 
-  const AntSwitch = styled(Switch)(({ theme }) => ({
-    width: 28,
-    height: 16,
-    padding: 0,
-    display: 'flex',
-    '&:active': {
-      '& .MuiSwitch-thumb': {
-        width: 15,
-      },
-      '& .MuiSwitch-switchBase.Mui-checked': {
-        transform: 'translateX(9px)',
-      },
-    },
-    '& .MuiSwitch-switchBase': {
-      padding: 2,
-      '&.Mui-checked': {
-        transform: 'translateX(12px)',
-        color: '#fff',
-        '& + .MuiSwitch-track': {
-          opacity: 1,
-          backgroundColor: theme.palette.mode === 'dark' ? '#177ddc' : '#1890ff',
-        },
-      },
-    },
-    '& .MuiSwitch-thumb': {
-      boxShadow: '0 2px 4px 0 rgb(0 35 11 / 20%)',
-      width: 12,
-      height: 12,
-      borderRadius: 6,
-      transition: theme.transitions.create(['width'], {
-        duration: 200,
-      }),
-    },
-    '& .MuiSwitch-track': {
-      borderRadius: 16 / 2,
-      opacity: 1,
-      backgroundColor:
-        theme.palette.mode === 'dark' ? 'rgba(255,255,255,.35)' : 'rgba(0,0,0,.25)',
-      boxSizing: 'border-box',
-    },
-  }));
+  const user = useSelector((store) => store.user);
+
+  useEffect(() => {
+    dispatch({
+      type: 'SAGA_FETCH_PROFILE_TO_EDIT',
+      payload: user.id
+    })
+  }, [user.id])
+
+  const setAvailability = (event) => {
+    event.preventDefault();
+    dispatch({
+      type: "SAGA_EDIT_PROFILE_AVAILABILITY",
+      payload: { availability: !profile.availability }
+    });
+  }
+
+  const setSwitch = () => {
+    if (profile.availability) {
+      return <Switch 
+        defaultChecked
+        inputProps={{ 'aria-label': 'ant design' }} />
+    }
+    else {
+      return <Switch 
+        inputProps={{ 'aria-label': 'ant design' }} />
+    }
+  }
 
   return(
-    <div>
-      <img className = 'photoSize'src={profile.photo}/>
-      <h3>{profile.first_name}  {profile.last_name}</h3>
-      <ul>
-        <li>{profile.location_city}, {profile.location_state}</li>
-        <li>{profile.industry_name} </li>
-        <li>{profile.email}</li>
-        <li>{profile.linkedin}, {profile.twitter}, {profile.instagram}, {profile.youtube}, {profile.facebook}</li>
-        <li>{profile.portfolio}</li>
-        <li>{profile.about_me}</li>
-      </ul>
-      <FormGroup>
-        <Stack direction="row" spacing={1} alignItems="center">
-          <h3>Availability</h3>
-          <Typography>Off</Typography>
-          <AntSwitch defaultChecked inputProps={{ 'aria-label': 'ant design' }} />
-          <Typography>On</Typography>
-        </Stack>
-      </FormGroup>
+    <Grid container>
+      {/* Row 1 */}
+      <Grid item xs={3}/>
+      <Grid item xs={6} mt="10px" align="center">
+        <ListItemAvatar>
+          <Avatar
+          sx={{ width: 175, height: 175 }}
+          src={profile.photo} />
+        </ListItemAvatar>
+      </Grid>
+      <Grid item xs={3}/>
+      {/*  */}
 
-    <div>
-      <button onClick={()=> history.push(`/edit/${profile.id}`)}>Edit Profile Information</button>
-    </div>
-    </div>
+      {/* Row 2 */}
+      <Grid item xs={3}/>
+      <Grid item xs={6} align="center">
+        <h3>
+          {profile.first_name} {profile.last_name}
+        </h3>
+      </Grid>
+      <Grid item xs={3}/>
+      {/*  */}
+
+      {/* Row 2 */}
+      <Grid item xs={.5}/>
+      <Grid item xs={4.5}>
+        {profile.industry_name}
+      </Grid>
+      <Grid item xs={.5}/>
+      <Grid item xs={6} align="right">
+        {profile.location_city}, 
+          {profile.location_state}
+      </Grid>
+      <Grid item xs={.5}/>
+      {/*  */}
+
+      {/* Row 3 */}
+      <Grid item xs={.5}/>
+      <Grid item xs={11} mt="15px">
+        <TextField
+        multiline
+        label={`About ${profile.first_name}`}
+        fullWidth
+        value={profile.about_me}/>
+      </Grid>
+      <Grid item xs={.5}/>
+      
+      {/*  */}
+    
+      {/* Row 4 */}
+      <Grid item xs={.5}/>
+      <Grid item xs={5.25} mt="15px">
+        <GitHubIcon/> {profile.portfolio}
+      </Grid>
+      <Grid item xs={.5}/>
+      <Grid item xs={5.25} mt="15px">
+        <YouTubeIcon/> {profile.youtube}
+      </Grid>
+      <Grid item xs={.5}/>
+      
+      {/*  */}
+
+      {/* Row 5 */}
+      <Grid item xs={.5}/>
+      <Grid item xs={5.25} mt="15px">
+        <FacebookIcon/> {profile.facebook}
+      </Grid>
+      <Grid item xs={.5}/>
+      <Grid item xs={5.25} mt="15px">
+        <InstagramIcon/> {profile.instagram}
+      </Grid>
+      <Grid item xs={.5}/>
+      
+      {/*  */}
+
+      {/* Row 6 */}
+      <Grid item xs={.5}/>
+      <Grid item xs={5.25} mt="15px">
+        <LinkedInIcon/> {profile.linkedin}
+      </Grid>
+      <Grid item xs={.5}/>
+      <Grid item xs={5.25} mt="15px">
+        <TwitterIcon/> {profile.twitter}
+      </Grid>
+      <Grid item xs={.5}/>        
+      {/*  */}
+
+      {/* Row 7 */}
+      {/* <Grid item xs={.5}/>
+      <Grid item xs={5.25} mt="15px">
+        <GitHubIcon/> {profile.portfolio}
+      </Grid>
+      <Grid item xs={.5}/>
+      <Grid item xs={5.25} mt="15px">
+        
+      </Grid>
+      <Grid item xs={.5}/>         */}
+      
+      {/*  */}
+
+      {/* Row 8 */}
+      <Grid item xs={.5}/>
+      <Grid item xs={11}>
+        <FormGroup onChange={(event) => setAvailability(event)}>
+          <Stack direction="row" spacing={1} alignItems="center">
+            <h4>Show in searches. <br/>
+              Allow meeting/messages.</h4>
+            {setSwitch()}
+          </Stack>
+        </FormGroup>
+      </Grid>
+      <Grid item xs={.5}/>
+      {/*  */}
+  
+      {/* Row 9 */}
+      <Grid item xs={.5}/>
+      <Grid item xs={5.25}>
+        <Button
+          size="small"
+          variant="contained"
+          onClick={()=> history.push(`/edit/${profile.id}`)}
+        >
+          Edit Profile Info
+        </Button>
+      </Grid>
+      <Grid item xs={.5}/>
+      <Grid item xs={5.25}>
+        <LogOutButton className="btn" />
+      </Grid>
+      
+      <Grid item xs={.5}/>
+      {/*  */}
+
+    </Grid>
   )
 }
 

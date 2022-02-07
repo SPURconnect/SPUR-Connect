@@ -4,6 +4,9 @@ import { useHistory, useParams } from 'react-router-dom';
 import { Box, Button, } from '@mui/material';
 import MeetingPhotosItem from '../MeetingPhotosItem/MeetingPhotosItem.jsx';
 import { DropzoneArea, DropzoneDialog } from 'material-ui-dropzone';
+import MeetingNavBar from '../MeetingNavBar/MeetingNavBar';
+
+//https://api.cloudinary.com/v1_1/${cloudName}/upload
 
 function MeetingPhotos() {
   
@@ -39,6 +42,7 @@ function MeetingPhotos() {
 
   return (
     <div>
+      <MeetingNavBar prop={'photos'} />
       <Box
         display="flex"
         justifyContent="center"

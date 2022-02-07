@@ -7,10 +7,13 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   const queryText = `
       SELECT * FROM "user_meetings"
       WHERE "user_id"=$1
+      ORDER BY "date" DESC
   `;
   pool.query(queryText, [req.user.id])
+  
     .then((dbRes) => {
       res.send(dbRes.rows);
+      console.log('In get meeting router', dbRes.rows);
     })
     .catch(dbErr => {
       console.log('/meetings GET error:', dbErr);
@@ -21,11 +24,12 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 //POST meeting to database.
 router.post('/', rejectUnauthenticated, (req, res) => {
   const queryText = `
-    INSERT INTO "user_meetings" ("user_id", "participant_id", "meeting_title", "date", "meetup_location")
-    VALUES ($1, $2, $3, $4, $5);
+    INSERT INTO "user_meetings" ("user_id","summary", "participant_id", "meeting_title", "date", "meetup_location")
+    VALUES ($1, $2, $3, $4, $5, $6);
   `;
   const queryValues = [
     req.user.id,
+    req.body.summary,
     req.body.participant,
     req.body.meetingTitle,
     req.body.date,
@@ -44,7 +48,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 //Get notes for selected meeting.
 router.get('/notes/:id', rejectUnauthenticated, (req, res) => {
   const sqlText = `
-    SELECT "summary" FROM "user_meetings"
+    SELECT "meeting_notes" FROM "user_meetings"
     WHERE "id" = $1;
   `;
   const sqlValues = [
@@ -64,8 +68,9 @@ router.get('/notes/:id', rejectUnauthenticated, (req, res) => {
 router.put('/notes/:id', rejectUnauthenticated, (req, res) => {
   const sqlText = `
     UPDATE "user_meetings" 
-    SET "summary" = $1
-    WHERE "id" = $2;
+    SET "meeting_notes" = $1
+    WHERE "id" = $2
+    RETURNING "id";
   `;
   const sqlValues = [
     req.body.notes,
@@ -73,13 +78,57 @@ router.put('/notes/:id', rejectUnauthenticated, (req, res) => {
   ];
   pool.query(sqlText, sqlValues)
     .then((dbRes) => {
-      res.sendStatus(200);
+      res.send(dbRes.rows[0]);
     })
     .catch((dbErr) => {
       console.log('/meetings/notes/:id PUT error:', dbErr);
       res.sendStatus(500);
     });
 });
+
+//Get meeting details for selected meeting.
+router.get('/edit/:id', rejectUnauthenticated, (req, res) => {
+  console.log('in meeting router get meeting detail ', req.params.id);
+  const sqlText = `
+  SELECT "meetup_location","date","summary"
+  FROM "user_meetings"
+      WHERE "id" = $1;
+  `;
+  const sqlValues = [
+    req.params.id
+  ];
+  pool.query(sqlText, sqlValues)
+    .then((dbRes) => {
+      res.send(dbRes.rows[0]);
+    })
+    .catch((dbErr) => {
+      console.log('/meetings/notes/:id GET error:', dbErr);
+      res.sendStatus(500);
+    });
+});
+
+
+router.put('/edit/:id', rejectUnauthenticated, (req, res) => {
+  const sqlText = `
+    UPDATE "user_meetings" 
+    SET "meetup_location" = $1, "date" = $2, "summary" = $3
+    WHERE "id" = $4;
+    
+  `;
+  const sqlValues = [
+    req.body.meetup_location, req.body.date, req.body.summary, 
+    req.params.id
+  ];
+  pool.query(sqlText, sqlValues)
+    .then((dbRes) => {
+      res.sendStatus(200);
+    })
+    .catch((dbErr) => {
+      console.log('/meeting/details/edit:id PUT error:', dbErr);
+      res.sendStatus(500);
+    });
+});
+
 
 router.delete('/', rejectUnauthenticated, (req, res) => {
   const sqlText = `
@@ -95,5 +144,6 @@ router.delete('/', rejectUnauthenticated, (req, res) => {
       res.sendStatus(500);
     });
 });
+
 
 module.exports = router;
