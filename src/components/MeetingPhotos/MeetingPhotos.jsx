@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { Box, Button, } from '@mui/material';
 import MeetingPhotosItem from '../MeetingPhotosItem/MeetingPhotosItem.jsx';
-import { DropzoneArea, DropzoneDialogBase } from 'material-ui-dropzone';
+import { DropzoneArea, DropzoneDialog } from 'material-ui-dropzone';
 
 function MeetingPhotos() {
   
@@ -11,6 +11,7 @@ function MeetingPhotos() {
   const dispatch = useDispatch();
   const params = useParams();
   const [inputPhoto, setInputPhoto] = useState('');
+  const [dialogOpen, setDialogOpen] = useState(false);
   const photos = useSelector((store) => store.photos);
 
 
@@ -44,6 +45,22 @@ function MeetingPhotos() {
         alignItems="center"
         sx={{mt: 1}}
       >
+        <button onClick={() => setDialogOpen(true)}>Upload</button>
+        <DropzoneDialog
+        acceptedFiles={['image/*']}
+        cancelButtonText={"cancel"}
+        submitButtonText={"submit"}
+        maxFileSize={5000000}
+        open={dialogOpen}
+        onClose={() => setDialogOpen(false)}
+        onSave={(files) => {
+          console.log('Files:', files[0]);
+          setDialogOpen(false);
+          handleEditBanner(files[0]);
+        }}
+        showPreviews={true}
+        showFileNamesInPreview={true}
+      />
         <input 
           type="file"
           accept="image/png, image/jpeg"

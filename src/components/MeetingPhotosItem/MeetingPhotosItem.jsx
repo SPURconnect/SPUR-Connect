@@ -22,10 +22,6 @@ function MeetingPhotosItem({photo}) {
     })
   }
 
-  function handleCardClick(){
-    history.push()
-  }
-
   return (
     <Box
       display="flex"
@@ -33,7 +29,7 @@ function MeetingPhotosItem({photo}) {
       alignItems="center"
       sx={{mt: 1}}
     >
-      <Card sx={{ maxWidth: 450 }}>
+      <Card sx={{ maxWidth: '100%', boxshadow: 3 }}>
         <CardActionArea>
           <CardMedia
             component="img"
