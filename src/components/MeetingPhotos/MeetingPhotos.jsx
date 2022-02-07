@@ -30,12 +30,12 @@ function MeetingPhotos() {
   };
 
   
-  function handleAddPhoto(inputPhoto){
-    if(inputPhoto != ''){
-      console.log('inputPhoto: ', inputPhoto);
+  function handleAddPhoto(file){
+    if(file != ''){
+      console.log('inputPhoto: ', file);
       dispatch({
         type: 'ADD_PHOTO',
-        payload: {image: inputPhoto, id: params.id}
+        payload: {image: file, id: params.id}
       });
     };
   };
@@ -49,47 +49,21 @@ function MeetingPhotos() {
         alignItems="center"
         sx={{mt: 1}}
       >
-        <button onClick={() => setDialogOpen(true)}>Upload</button>
+        <Button variant="contained" onClick={() => setDialogOpen(true)}>Upload</Button>
         <DropzoneDialog
-        acceptedFiles={['image/*']}
-        cancelButtonText={"cancel"}
-        submitButtonText={"submit"}
-        maxFileSize={5000000}
-        open={dialogOpen}
-        onClose={() => setDialogOpen(false)}
-        onSave={(files) => {
-          console.log('Files:', files[0]);
-          setDialogOpen(false);
-          handleAddPhoto(files[0]);
+          acceptedFiles={['image/*']}
+          cancelButtonText={"cancel"}
+          submitButtonText={"submit"}
+          maxFileSize={5000000}
+          open={dialogOpen}
+          onClose={() => setDialogOpen(false)}
+          onSave={(files) => {
+            setDialogOpen(false);
+            handleAddPhoto(files[0]);
         }}
         showPreviews={true}
         showFileNamesInPreview={true}
       />
-        <input 
-          type="file"
-          accept="image/png, image/jpeg"
-          onChange={(e) => setInputPhoto(e.target.files[0])}
-        >
-        </input>
-        {/* <DropzoneArea
-          acceptedFiles={['image/*']}
-          dropzoneText={"Drag and drop an image here or click"}
-          onChange={(files) => setInputPhoto(files)}
-          sx={{}}
-        /> */}
-      </Box>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        sx={{mt: 1}}
-      >
-        <Button
-          variant="contained"
-          onClick={handleAddPhoto}
-        >
-          Submit
-        </Button>
       </Box>
       {photos.map((photo) =>{
         return(
