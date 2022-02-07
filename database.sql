@@ -59,7 +59,8 @@ CREATE TABLE "meeting_uploads"(
 	"id" SERIAL PRIMARY KEY,
 	"image_url" VARCHAR (255) NOT NULL,
 	"meeting_id" INT REFERENCES "user_meetings" (id) ON DELETE CASCADE NOT NULL,
- 	"image_title" VARCHAR (80) NOT NULL
+ 	"image_title" VARCHAR (80) NOT NULL,
+    "user_id" INT REFERENCES "user" (id) ON DELETE CASCADE
 );
 
 INSERT INTO "industry" ("industry_name") 

@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { Box, Button, } from '@mui/material';
-import {} from "@cloudinary/url-gen";
 import MeetingPhotosItem from '../MeetingPhotosItem/MeetingPhotosItem.jsx';
+import { DropzoneArea, DropzoneDialogBase } from 'material-ui-dropzone';
 
 function MeetingPhotos() {
   
@@ -12,6 +12,7 @@ function MeetingPhotos() {
   const params = useParams();
   const [inputPhoto, setInputPhoto] = useState('');
   const photos = useSelector((store) => store.photos);
+
 
   useEffect(() => {
     fetchPhotos();
@@ -48,7 +49,13 @@ function MeetingPhotos() {
           accept="image/png, image/jpeg"
           onChange={(e) => setInputPhoto(e.target.files[0])}
         >
-       </input>
+        </input>
+        {/* <DropzoneArea
+          acceptedFiles={['image/*']}
+          dropzoneText={"Drag and drop an image here or click"}
+          onChange={(files) => setInputPhoto(files)}
+          sx={{}}
+        /> */}
       </Box>
       <Box
         display="flex"
@@ -60,7 +67,7 @@ function MeetingPhotos() {
           variant="contained"
           onClick={handleAddPhoto}
         >
-          Add Photo
+          Submit
         </Button>
       </Box>
       {photos.map((photo) =>{

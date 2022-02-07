@@ -43,9 +43,9 @@ router.post('/:id', rejectUnauthenticated, cloudinaryUpload.single('image'), asy
 router.delete('/:id', rejectUnauthenticated, (req, res) =>{
   const sqlText = `
     DELETE FROM "meeting_uploads"
-    WHERE "id"=$1;
+    WHERE "id"=$1 AND "user_id"=$2;
   `;
-  pool.query(sqlText, [req.params.id])
+  pool.query(sqlText, [req.params.id, req.user.id])
     .then((dbRes) => {
       res.sendStatus(200);
     })
