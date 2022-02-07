@@ -49,6 +49,9 @@ export default function MessagesConvo() {
       <Grid item xs={11}>    
         <TableContainer
           width="95%"
+          sx={{
+            paddingBottom="20%"
+          }}
         >
         <Table>
           <TableBody>
@@ -79,34 +82,29 @@ export default function MessagesConvo() {
 
       {/* <MessageSendModal buttonText={"Reply"} sendTo={convoWithUserID}/> */}
       
-    <Box
-      position="fixed" 
-      sx={{top: 'auto', bottom: '10%'}}
-    >
-      
-          <TextField
-            fullWidth
-            multiline
-            value = {message}
-            onChange={(e) => setMessage(e.target.value)}
-          />
-        
-          <Button
-            variant="contained"
-            onClick={handleSendMessage}
-          > <SendIcon/>
-          </Button>
-        
+      <Box
+        position="fixed"
+        sx={{
+          top: 'auto',
+          bottom: '9%',
+          width: '100%',
+          display: 'inline-block',
+          backgroundColor: 'white',
+          paddingBottom: '2%'
+        }}
+      >
+        <TextField
+          sx={{width: '75%', paddingLeft: '5%'}}
+          multiline
+          value = {message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+        <Button
+          variant="contained"
+          onClick={handleSendMessage}
+        > <SendIcon/>
+        </Button>
     </Box>
     </>
   )
 }
-
-{/* <Grid container>
-        <Grid item xs={.5}/>
-        <Grid item xs={9}>
-        </Grid>
-        <Grid item xs={.5}/>
-        <Grid item xs={2}>  
-        </Grid>
-      </Grid> */}

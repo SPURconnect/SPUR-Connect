@@ -56,7 +56,7 @@ function AddMeeting(){
       });
       setMeetingTitle('');
       setLocation('');
-      // goToProfile(); //Will send you back to the profile you came from once params are setup.
+      history.push('/meeting');
   }
 
   return(
