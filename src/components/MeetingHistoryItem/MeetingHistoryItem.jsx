@@ -81,9 +81,6 @@ function MeetingHistoryItem({ item }) {
 
   return (
     <div style={{ paddingBottom: '4px' }}>
-    {/* <TableRow>
-      <TableCell> */}
-
       <Card sx={{ maxWidth: '100%', boxShadow: 3 }} >
         <CardHeader
           sx={{ paddingBottom: '0px' }}
@@ -155,8 +152,6 @@ function MeetingHistoryItem({ item }) {
           </Button>
         </DialogActions>
       </Dialog>
-      {/* </TableCell>
-      </TableRow> */}
     </div>
   )
 }

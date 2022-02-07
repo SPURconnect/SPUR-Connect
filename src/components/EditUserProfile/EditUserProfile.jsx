@@ -156,7 +156,7 @@ function EditUserProfile (){
       {/* Row 1 */}
       <Grid item xs={3}/>
         
-      <Grid item xs={6} mt="10px">
+      <Grid item xs={6} mt="10px" align="center">
         <ListItemAvatar>
           <Avatar 
           sx={{ width: 175, height: 175 }}

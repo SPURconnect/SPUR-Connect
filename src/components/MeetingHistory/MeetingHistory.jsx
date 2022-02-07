@@ -34,13 +34,11 @@ function MeetingHistory() {
       </Box>
 
       {/* Grid Body Container */}
-    <Grid container maxHeight="85%">
-      <Grid item xs={.5}/>
-      <Grid item xs={11}>
-        {/* <TableContainer maxHeight="78%">
-          <TableBody> */}
+      <Grid container maxHeight="85%">
+        <Grid item xs={.5} />
+        <Grid item xs={11}>
           <Toolbar sx={{ height: '9vh' }} />
-      
+
           {meetings?.length > 0 ?
             meetings?.map((item) => {
               return (
@@ -50,23 +48,16 @@ function MeetingHistory() {
               )
             })
             :
-            <TableRow>
-              <TableCell>
-                <Typography
-                  sx={{ padding: '30vh 20vw', opacity: '60%' }}
-                >
-                  There are no meetings to display.
-                </Typography>
-              </TableCell>
-            </TableRow>
-            
+            <Typography
+              sx={{ padding: '30vh 20vw', opacity: '60%' }}
+            >
+              There are no meetings to display.
+            </Typography>
           }
-          {/* </TableBody>
-        </TableContainer> */}
+        </Grid>
+        <Grid item xs={.5} />
+
       </Grid>
-      <Grid item xs={.5}/>
-      
-    </Grid>
     </>
   )
 }
