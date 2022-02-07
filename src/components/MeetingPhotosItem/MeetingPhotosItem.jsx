@@ -18,7 +18,7 @@ function MeetingPhotosItem({photo}) {
   function handleDeleteButton(){
     dispatch({
       type: 'DELETE_PHOTO',
-      payload: {id: photo.id, paramsid: params.id}
+      payload: {id: photo.id}
     })
   }
 

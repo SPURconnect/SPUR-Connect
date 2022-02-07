@@ -13,7 +13,7 @@ function MeetingPhotos() {
   const history = useHistory();
   const dispatch = useDispatch();
   const params = useParams();
-  const [inputPhoto, setInputPhoto] = useState('');
+  // const [inputPhoto, setInputPhoto] = useState('');
   const [dialogOpen, setDialogOpen] = useState(false);
   const photos = useSelector((store) => store.photos);
 
@@ -25,17 +25,17 @@ function MeetingPhotos() {
   function fetchPhotos() {
     dispatch({
       type: 'FETCH_PHOTOS',
-      payload: 5 //TODO: Replace "5" with useParams for current selected meeting.
+      payload: params.id
     })
   };
 
   
-  function handleAddPhoto(){
+  function handleAddPhoto(inputPhoto){
     if(inputPhoto != ''){
-      console.log(inputPhoto);
+      console.log('inputPhoto: ', inputPhoto);
       dispatch({
         type: 'ADD_PHOTO',
-        payload: {image: inputPhoto, id: 5} //TODO: Replace "5" with useParams for current selected meeting.
+        payload: {image: inputPhoto, id: params.id}
       });
     };
   };
@@ -60,7 +60,7 @@ function MeetingPhotos() {
         onSave={(files) => {
           console.log('Files:', files[0]);
           setDialogOpen(false);
-          handleEditBanner(files[0]);
+          handleAddPhoto(files[0]);
         }}
         showPreviews={true}
         showFileNamesInPreview={true}
