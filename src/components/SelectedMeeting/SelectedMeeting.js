@@ -5,7 +5,7 @@ import { Box, Button, Stack, TextField, Typography, IconButton } from '@mui/mate
 import EditIcon from '@mui/icons-material/Edit';
 import SelectedMeetingEdit from '../SelectedMeetingEdit/SelectedMeetingEdit';
 import MeetingNavBar from '../MeetingNavBar/MeetingNavBar';
-
+import { ListItemAvatar, Avatar } from '@mui/material';
 
 
 function SelectedMeeting() {
@@ -14,14 +14,20 @@ function SelectedMeeting() {
   const dispatch = useDispatch();
   const params = useParams();
   const meetings = useSelector(store => store.meetings);
+  const singleProfileReducer = useSelector((store) => store.singleProfileReducer);
 
    useEffect(() => {
     
     dispatch({      
       type: 'GET_SINGLE_MEETING',
       payload: params.id
+    }),
+    dispatch({      
+      type: 'FETCH_SINGLE_PROFILE',
+      payload: meetings[0].participant_id
     })
-  }, [params.id]);
+
+  }, [params.id, meetings[0].participant_id]);
 
    console.log('reducer data', meetings)
 /* const backpage = (e) =>  {
@@ -33,7 +39,12 @@ const edit = (e) =>  {
     history.push('/meetingdetails');
   
   }   */
-
+  const fixTheTime = (param) => {
+    let theDate = param.date;
+    let cleanTime = new Date(param.date);
+    let bestTime = cleanTime.toLocaleTimeString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'});
+    return bestTime;
+  }
 
   
   return (
@@ -70,25 +81,34 @@ const edit = (e) =>  {
           maxWidth: '100vw'
         }}
       >
-
-         
-         {
-           meetings.map(meetings => 
+        {
+          meetings.map(meetings => 
             (<Stack key={meetings.id}> 
-             <h5>Meeting Title</h5>
+              <h5>Meeting Title</h5>
               <p>{meetings.meeting_title}</p>
+              <h5>You're meeting with:</h5>
+              <p>{singleProfileReducer.first_name + ' ' + singleProfileReducer.last_name}</p>
+              <Box
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                // minHeight="0vh"
+                sx={{ mt: 3 }}
+              >
+                <ListItemAvatar>
+                  <Avatar
+                    sx={{ width: 100, height: 100 }}
+                    src={singleProfileReducer.photo} />
+                </ListItemAvatar>
+              </Box>
               <h5>Meeting Location</h5>
               <p>{meetings.meetup_location}</p> 
               <h5>Schedule</h5>
-              <p>{meetings.date}</p> 
+              <p>{fixTheTime(meetings.date)}</p> 
               <h5>Summary</h5>
               <p>{meetings.summary}</p>
-            
-
             </Stack>)
-           )}
-                            
-              
+            )}
       </Box>
     </div>
   )

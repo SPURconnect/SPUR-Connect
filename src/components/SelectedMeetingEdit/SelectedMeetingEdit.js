@@ -73,7 +73,7 @@ function SelectedMeetingEdit() {
 
     
 console.log('meeting reducer')
-  const saveMeetingDeatils = (e) => {
+  const saveMeetingDetails = (e) => {
    e.preventDefault();
       dispatch({
         type: 'SAVE_MEETING_DETAILS',
@@ -88,9 +88,9 @@ console.log('meeting reducer')
       history.push(`/meeting/${params.id}`);
     }
 
-
-   console.log('reducer data', meetings)
-
+  const cancelTheUpdate = () => {
+    history.push(`/meeting/${params.id}`);
+  }
   
   return (
 
@@ -176,7 +176,11 @@ console.log('meeting reducer')
               <Button
                variant="contained"
                style={{ backgroundColor: '#0583f2', color: 'White' }}               
-               onClick={saveMeetingDeatils}>Update</Button>        
+               onClick={saveMeetingDetails}>Update</Button>
+               <Button
+               variant="contained"
+               style={{ backgroundColor: '#FF0000', color: 'White' }}               
+               onClick={cancelTheUpdate}>Cancel</Button>         
               
       </Box>
      </div>
