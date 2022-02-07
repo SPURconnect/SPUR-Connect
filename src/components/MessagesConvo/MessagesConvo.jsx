@@ -50,7 +50,7 @@ export default function MessagesConvo() {
         <TableContainer
           width="95%"
           sx={{
-            paddingBottom="20%"
+            paddingBottom: "20%"
           }}
         >
         <Table>
