@@ -93,7 +93,7 @@ function SearchProfiles(props) {
 
   return (
     <div>
-      <h1></h1>
+
       <Box
           display="flex"
           justifyContent="center"

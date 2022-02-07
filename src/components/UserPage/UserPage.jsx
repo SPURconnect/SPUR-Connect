@@ -26,8 +26,7 @@ function UserPage() {
       {userProfile.map((profile)=>{
         return <UserDetail key ={profile.id} profile={profile}/>
       })}
-
-      <LogOutButton className="btn" />
+      
     </div>
   );
 }

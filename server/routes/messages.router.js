@@ -62,7 +62,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   const sqlValues = [
     req.body.content, 
     req.body.timestamp, 
-    req.body.recipient_id.id, 
+    req.body.recipient_id, 
     req.user.id
   ];
   const sqlQuery = `

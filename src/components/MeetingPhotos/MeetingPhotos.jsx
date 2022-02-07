@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { Box, Button, } from '@mui/material';
-
+import MeetingNavBar from '../MeetingNavBar/MeetingNavBar';
 
 //https://api.cloudinary.com/v1_1/${cloudName}/upload
 
@@ -39,6 +39,7 @@ function MeetingPhotos() {
 
   return (
     <div>
+      <MeetingNavBar prop={'photos'} />
       <Box
         display="flex"
         justifyContent="center"

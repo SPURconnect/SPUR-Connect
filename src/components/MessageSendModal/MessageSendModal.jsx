@@ -33,7 +33,7 @@ export default function MessageSendModal({buttonText, sendTo}) {
     let outboundMessage = {
       content: message,
       timestamp: new Date(),
-      recipient_id: sendTo
+      recipient_id: sendTo.id
       // sender_id: req.user.id on serverside
     }
     dispatch({

@@ -40,7 +40,7 @@ const edit = (e) =>  {
 
     //map this out, research stack
     <div>
-       <MeetingNavBar prop={'details'}/>
+      <MeetingNavBar prop={'details'}/>
       <Box
         display="flex"
         justifyContent="center"
