@@ -18,10 +18,10 @@ function SelectedMeeting() {
    useEffect(() => {
     
     dispatch({      
-      type: 'GET_MEETINGS',
+      type: 'GET_SINGLE_MEETING',
       payload: params.id
     })
-  }, []);
+  }, [params.id]);
 
    console.log('reducer data', meetings)
 /* const backpage = (e) =>  {

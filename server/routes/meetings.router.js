@@ -21,6 +21,24 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     });
 });
 
+router.get('/:id', rejectUnauthenticated, (req, res) => {
+
+  const queryText = `
+      SELECT * FROM "user_meetings"
+      WHERE "id"=$1 AND "user_id"=$2
+  `;
+  pool.query(queryText, [req.params.id, req.user.id])
+  
+    .then((dbRes) => {
+      res.send(dbRes.rows);
+      console.log('In get meeting router', dbRes.rows);
+    })
+    .catch(dbErr => {
+      console.log('/meetings GET error:', dbErr);
+      res.sendStatus(500);
+    });
+});
+
 //POST meeting to database.
 router.post('/', rejectUnauthenticated, (req, res) => {
   const queryText = `
