@@ -16,7 +16,7 @@ router.get('/:id', rejectUnauthenticated, (req,res) =>{
     })
     .catch((dbErr) => {
       console.log('/uploads/:id GET error:', dbErr);
-      resSendStatus(500);
+      res.sendStatus(500);
     });
 });
 
@@ -37,7 +37,21 @@ router.post('/:id', rejectUnauthenticated, cloudinaryUpload.single('image'), asy
     .catch((dbErr) => {
       console.error('/uploads/:id POST error:', dbErr)
       res.sendStatus(500);
+    });
+});
+
+router.delete('/:id', rejectUnauthenticated, (req, res) =>{
+  const sqlText = `
+    DELETE FROM "meeting_uploads"
+    WHERE "id"=$1 AND "user_id"=$2;
+  `;
+  pool.query(sqlText, [req.params.id, req.user.id])
+    .then((dbRes) => {
+      res.sendStatus(200);
     })
+    .catch((dbErr) =>{
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;
