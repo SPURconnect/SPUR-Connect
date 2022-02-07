@@ -37,7 +37,21 @@ router.post('/:id', rejectUnauthenticated, cloudinaryUpload.single('image'), asy
     .catch((dbErr) => {
       console.error('/uploads/:id POST error:', dbErr)
       res.sendStatus(500);
+    });
+});
+
+router.delete('/:id', rejectUnauthenticated, (req, res) =>{
+  const sqlText = `
+    DELETE FROM "meeting_uploads"
+    WHERE "id"=$1;
+  `;
+  pool.query(sqlText, [req.params.id])
+    .then((dbRes) => {
+      res.sendStatus(200);
     })
+    .catch((dbErr) =>{
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;

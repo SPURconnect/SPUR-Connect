@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { Box, Button, } from '@mui/material';
 import {} from "@cloudinary/url-gen";
-import PhotosUploaderContainer from '../PhotoUploader/PhotoUploader';
-
-//https://api.cloudinary.com/v1_1/${cloudName}/upload
+import MeetingPhotosItem from '../MeetingPhotosItem/MeetingPhotosItem.jsx';
 
 function MeetingPhotos() {
   
@@ -13,6 +11,7 @@ function MeetingPhotos() {
   const dispatch = useDispatch();
   const params = useParams();
   const [inputPhoto, setInputPhoto] = useState('');
+  const photos = useSelector((store) => store.photos);
 
   useEffect(() => {
     fetchPhotos();
@@ -56,7 +55,11 @@ function MeetingPhotos() {
         >
        </input>
       </Box>
-      {/* map through photos for <MeetingPhotoItem />*/}
+      {photos.map((photo) =>{
+        return(
+            <MeetingPhotosItem key={photo.id} photo={photo} />
+        )
+      })}
     </div>
   )
 };

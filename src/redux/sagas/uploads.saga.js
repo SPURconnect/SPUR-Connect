@@ -37,9 +37,25 @@ function* fetchPhotos(action){
   };
 };
 
+function* deletePhoto(action){
+  try{
+    const response = yield axios({
+      method: 'DELETE',
+      url: `/api/uploads/${action.payload}`,
+    })
+    yield put({
+      type: 'FETCH_PHOTOS',
+      //TODO: payload: useParams here
+    })
+  }catch(error){
+    console.log('deletePhoto catch error:', error);
+  };
+};
+
 function* uploadsSaga(){
   yield takeEvery('ADD_PHOTO', addPhoto);
   yield takeEvery('FETCH_PHOTOS', fetchPhotos);
+  yield takeEvery('DELETE_PHOTO', deletePhoto);
 };
 
 export default uploadsSaga;
