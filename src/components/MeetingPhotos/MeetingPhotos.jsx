@@ -56,7 +56,7 @@ function MeetingPhotos() {
           accept="image/png, image/jpeg"
           onChange={(e) => setInputPhoto(e.target.files[0])}
         >
-       </input>
+        </input>
       </Box>
       {/* map through photos for <MeetingPhotoItem />*/}
     </div>
