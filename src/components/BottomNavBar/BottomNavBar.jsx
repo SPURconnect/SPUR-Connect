@@ -14,18 +14,18 @@ import Grid from '@mui/material/Grid';
 import { green, grey } from '@mui/material/colors';
 import { Toolbar, Typography } from '@mui/material';
 // MUI theme
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: grey[600],
-    },
-    secondary: {
-      main: green[300],
-    },
-    contrastThreshold: 3,
-    tonalOffset: 0.2,
-  },
-});
+// const theme = createTheme({
+//   palette: {
+//     primary: {
+//       main: grey[600],
+//     },
+//     secondary: {
+//       main: green[300],
+//     },
+//     contrastThreshold: 3,
+//     tonalOffset: 0.2,
+//   },
+// });
 
 function BottomNavBar() {
   const history = useHistory();
@@ -65,11 +65,11 @@ function BottomNavBar() {
 
   return (
     <div className="navBar">
-      <ThemeProvider theme={theme}>
+      {/* <ThemeProvider theme={theme}> */}
         <Toolbar sx={{height: '9vh'}}/>
         <AppBar
           position="fixed"
-          color="primary"
+          color="info"
           sx={{
             top: 'auto',
             bottom: 0,
@@ -224,7 +224,7 @@ function BottomNavBar() {
             </Grid>
           </Box>
         </AppBar>
-      </ThemeProvider>
+      {/* </ThemeProvider> */}
     </div>
   );
 }

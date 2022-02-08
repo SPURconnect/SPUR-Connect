@@ -43,6 +43,7 @@ function UserDetail ({profile}){
     if (profile.availability) {
       return <Switch 
         defaultChecked
+        color="secondary"
         inputProps={{ 'aria-label': 'ant design' }} />
     }
     else {
