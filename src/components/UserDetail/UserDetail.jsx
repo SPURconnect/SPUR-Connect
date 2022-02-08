@@ -175,8 +175,8 @@ function UserDetail({ profile }) {
 
 
       {/* Row 8 */}
-      <Grid item xs={.5} />
-      <Grid item xs={11}>
+      <Grid item xs={1.5} />
+      <Grid item xs={10}>
         <FormGroup onChange={(event) => setAvailability(event)}>
           <Stack direction="row" spacing={1} alignItems="center">
             <h4>Show in searches. <br />

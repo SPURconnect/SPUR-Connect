@@ -110,7 +110,11 @@ function SearchProfilesDetails() {
             multiline
             // label={`About ${singleProfileReducer.first_name}`}
             fullWidth
-            value={singleProfileReducer.about_me} />
+            value={singleProfileReducer.about_me}
+            sx={{
+              backgroundColor: 'white'
+            }}
+          />
         </Grid>
         <Grid item xs={.5} />
 
