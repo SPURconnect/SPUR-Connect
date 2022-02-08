@@ -56,6 +56,13 @@ function AddMeeting(){
       });
       setMeetingTitle('');
       setLocation('');
+      dispatch({
+        type: 'CLEAR_PROFILES'
+      });
+      dispatch({
+        type: 'SET_WHERE',
+        payload: 'meeting'
+      });
       history.push('/meeting');
   }
 

@@ -41,11 +41,6 @@ function SearchProfiles(props) {
     dispatch({ 
       type: 'FETCH_INDUSTRIES' 
     })
-    return () =>  {
-      dispatch({
-        type: 'CLEAR_PROFILES'
-      })
-    }
   }, []);
 
   const handleQueryChange = (event) => {
@@ -129,31 +124,16 @@ function SearchProfiles(props) {
             aria-describedby="search-info"
           >
           <Box sx={style}>
-            <Grid container style={{ Paper }}>
-
-              <Grid item xs={1}/>
-
-              <Grid item xs={10}
-                sx={{marginTop: 2, marginBottom: 2}} 
-              >
-                <Typography>
-                  Hello?
-                </Typography>
-              </Grid>
-
-              <Grid item xs={1}/>
-
-              <Grid item xs={6}/>
-
-              <Grid item xs={6}
-                sx={{marginTop: 2, marginBottom: 2}} 
-              >
-                <Typography>
-                  Hello?
-                </Typography>
-              </Grid>
-
-            </Grid>
+            <div className="modalDiv">
+              <h4>Help</h4>
+              <p>Search by first or last name:<br />
+              Ex: "John" "Smith"<br /><br />
+              Search by location(city, state, or ZIP):<br />
+              Ex: "Minneapolis" "Minnesota" "55407"<br /><br />
+              Search by industry name:<br />
+              Ex: "Software Engineer" "Agriculture"
+              </p>      
+            </div>
           
           </Box>
         </Modal>
@@ -188,7 +168,7 @@ function SearchProfiles(props) {
                 </Avatar>
               }
               title={item.first_name + ' ' + item.last_name}
-              subheader={item.industry_name}
+              subheader={item.industry_name + ' - ' + item.location_city + ', ' + item.location_state}
             />             
           </Card>
         </div>

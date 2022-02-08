@@ -40,15 +40,18 @@ function BottomNavBar() {
     switch (prop) {
       case 'meeting':
         dispatch({ type: 'GET_MEETINGS' });
+        dispatch({ type: 'CLEAR_PROFILES' });
         history.push('/meeting');
         break;
       case 'searchProfiles':
         history.push('/searchProfiles');
         break;
       case 'messages':
+        dispatch({ type: 'CLEAR_PROFILES' });
         history.push('/messages');
         break;
       case 'user':
+        dispatch({ type: 'CLEAR_PROFILES' });
         history.push('/user');
         break;
       default:

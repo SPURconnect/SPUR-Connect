@@ -15,12 +15,16 @@ searchProfilesRouter.get('/:input', (req, res) => {
     SELECT * FROM "profiles"
     JOIN "industry" 
     ON "profiles"."industry_id"="industry"."id"
-      WHERE UPPER("location_city") LIKE UPPER($1)
-        OR  UPPER("location_state") LIKE UPPER($1)
-        OR  UPPER("location_zip") LIKE UPPER($1)
-        OR  UPPER("first_name") LIKE UPPER($1)
-        OR  UPPER("last_name") LIKE UPPER($1)
-        OR  UPPER("industry_name") LIKE UPPER($1);
+      WHERE (UPPER("location_city") LIKE UPPER($1) AND "availability" = TRUE)
+        OR  (UPPER("location_state") LIKE UPPER($1) AND "availability" = TRUE)
+        OR  (UPPER("location_zip") LIKE UPPER($1) AND "availability" = TRUE)
+        OR  (UPPER("first_name") LIKE UPPER($1) AND "availability" = TRUE)
+        OR  (UPPER("last_name") LIKE UPPER($1) AND "availability" = TRUE)
+        OR  (UPPER("industry_name") LIKE UPPER($1) AND "availability" = TRUE)
+        OR  (CONCAT (UPPER("first_name"), ' ', UPPER("last_name")) LIKE UPPER($1) AND "availability" = TRUE)
+        OR  (CONCAT (UPPER("location_city"), ', ', UPPER("location_state")) LIKE UPPER($1) AND "availability" = TRUE);
+        
+
 
     `;
     const queryValues = [`%${req.params.input}%`];
