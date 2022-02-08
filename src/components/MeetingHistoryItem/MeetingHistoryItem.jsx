@@ -130,7 +130,7 @@ function MeetingHistoryItem({ item }) {
               <IconButton
                 color='error'
                 aria-label='delete'
-                sx={{ float: 'right', paddingRight: '15px' }}
+                sx={{ float: 'right', padding: '0px 15px' }}
                 onClick={handleClickOpen}
               >
                 <DeleteIcon />
