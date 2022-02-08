@@ -26,72 +26,105 @@ function SelectedMeeting() {
    console.log('reducer data', meetings)
 /* const backpage = (e) =>  {
     history.push('/meetinghistory');
-  
   }
 
 const edit = (e) =>  {
     history.push('/meetingdetails');
   
   }   */
-
+  const fixedDate = (params) => {
+    let theDate = params.date;
+    let cleanTime = new Date(theDate);
+    let bestTime = cleanTime.toLocaleTimeString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'});
+    return bestTime;
+  }
 
   
   return (
-
     //map this out, research stack
     <div>
-      <MeetingNavBar prop={'details'}/>
+      <MeetingNavBar prop={"details"} />
+      <Box display="flex" justifyContent="center" alignItems="center">
+        {meetings.map((meetings) => (
+          <Typography
+            variant="h4"
+            component="h4"
+            sx={{
+              alignItems: "center",
+              paddingTop: "10%",
+              paddingBottom: "10%",
+            }}
+            key={meetings.id}
+          >
+            {meetings.meeting_title}
+          </Typography>
+        ))}
+      </Box>
+
       <Box
         display="flex"
         justifyContent="center"
         alignItems="center"
+        sx={{
+          maxWidth: "100vw",
+        }}
       >
-        <Typography
-          variant="h6"
-          component="h6"
-        >
-          Selected Meeting Details
-        </Typography>
-        <IconButton
-        size='large'
-        sx={{width: '10%', margin: 'auto', paddingTop: '2vh'}}
-        onClick={() => history.push(`/meeting/edit/${params.id}`)}
-      >
-        <EditIcon 
-          fontSize='inherit'
-        />
-      </IconButton>
+        {meetings.map((meetings) => (
+          <Stack key={meetings.id}>
+            <TextField
+              multiline={true}
+              rows={2}
+              sx={{ mt: 1, width: 250 }}
+              label={<span style={{ fontSize: 25 }}>Location</span>}
+              defaultValue={meetings.meetup_location}
+              InputProps={{
+                readOnly: true,
+              }}
+              variant="standard"
+            />
+            <TextField
+              label={<span style={{ fontSize: 25 }}>Time</span>}
+              sx={{ mt: 5, fontsize: 30 }}
+              defaultValue={fixedDate(meetings)}
+              InputProps={{
+                readOnly: true,
+              }}
+              variant="standard"
+            />
+            <Typography variant="h6" component="h6" sx={{ mt: 5 }}>
+              Summary
+            </Typography>
+            <TextField
+              multiline={true}
+              rows={8}
+              sx={{ width: 250, border: 1, padding: "3%" }}
+              defaultValue={meetings.summary}
+              InputProps={{
+                readOnly: true,
+              }}
+              variant="standard"
+            />
+          </Stack>
+        ))}
       </Box>
       <Box
         display="flex"
         justifyContent="center"
         alignItems="center"
         sx={{
-          maxWidth: '100vw'
+          maxWidth: "100vw",
         }}
       >
-
-         
-         {
-           meetings.map(meetings => 
-            (<Stack key={meetings.id}> 
-             <h5>Meeting Title</h5>
-              <p>{meetings.meeting_title}</p>
-              <h5>Meeting Location</h5>
-              <p>{meetings.meetup_location}</p> 
-              <h5>Schedule</h5>
-              <p>{meetings.date}</p> 
-              <h5>Summary</h5>
-              <p>{meetings.summary}</p>
-            
-
-            </Stack>)
-           )}
-                            
-              
+        <Button
+          variant="contained"
+          onClick={() => history.push(`/meeting/edit/${params.id}`)}
+        >
+          Update Details
+        </Button>
       </Box>
     </div>
-  )
+  );
 };
+
 
 export default SelectedMeeting;

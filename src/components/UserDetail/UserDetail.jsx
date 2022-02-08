@@ -82,8 +82,7 @@ function UserDetail ({profile}){
       </Grid>
       <Grid item xs={.5}/>
       <Grid item xs={6} align="right">
-        {profile.location_city}, 
-          {profile.location_state}
+        {profile.location_city + ', ' + profile.location_state}
       </Grid>
       <Grid item xs={.5}/>
       {/*  */}
