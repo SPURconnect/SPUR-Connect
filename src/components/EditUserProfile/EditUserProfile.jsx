@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
 //MUI Stuff
-import { InputAdornment, Grid, Box, Button, TextField, ListItemAvatar, Avatar } from '@mui/material';
+import { InputAdornment, Grid, MenuItem, Box, Button, TextField, ListItemAvatar, Avatar } from '@mui/material';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -19,11 +19,17 @@ function EditUserProfile (){
   const params = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  const editProfile = useSelector((store) => store.editProfileReducer)
+  const editProfile = useSelector((store) => store.editProfileReducer);
+  const industries = useSelector((store) => store.industriesReducer);
+
+  const [industry, setIndustry] = useState(1);
 
   useEffect(() => {
     dispatch({
       type: 'SAGA_FETCH_PROFILE_TO_EDIT'
+    })
+    dispatch({
+      type: 'FETCH_INDUSTRIES'
     })
   }, [])
 
@@ -48,7 +54,7 @@ function EditUserProfile (){
         location_state: editProfile.location_state,
         location_state: editProfile.location_state,
         about_me: editProfile.about_me,
-        industry_name: editProfile.industry_name
+        industry_id: industry
       }
     })
     history.push('/user')
@@ -96,6 +102,7 @@ function EditUserProfile (){
     })
   }
   const handleIndustry = (e) => {
+    setIndustry(e.target.value);
     dispatch({
       type: 'SET_INDUSTRY',
       payload: e.target.value
@@ -199,11 +206,22 @@ function EditUserProfile (){
       <Grid item xs={.5}/>
       <Grid item xs={4} mt="10px" size="small">
         <TextField
+          select
+          fullWidth
           label="Industry"
           placeholder="Industry"
-          value={editProfile.industry_name || ''}
+          value={industry}
           onChange={handleIndustry}
-        />
+        >
+          {industries.map((indus) => {
+                    return <MenuItem 
+                            key={indus.id} 
+                            value={indus.id}
+                          >
+                            {indus.industry_name}
+                          </MenuItem>
+                  })}
+        </TextField>
       </Grid>
 
       <Grid item xs={.5}/>

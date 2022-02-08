@@ -116,7 +116,7 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/user/edit/:id"
+            path="/user/edit/"
           >
             <EditUserProfile />
           </ProtectedRoute>

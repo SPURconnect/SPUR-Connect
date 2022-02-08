@@ -25,7 +25,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
       "profiles"."location_state", 
       "profiles"."availability",
       "profiles"."about_me",
-      "industry"."industry_name",
+      "profiles"."industry_id",
       "user"."id"
     FROM "profiles"
       JOIN "industry"
@@ -105,8 +105,9 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
         "location_city"=$11,
         "location_zip"=$12,
         "location_state"=$13, 
-        "about_me"=$14
-    WHERE "user_id" = $15
+        "about_me"=$14,
+        "industry_id"=$15
+    WHERE "user_id" = $16
     `;
   const sqlValues = [
     req.body.email,
@@ -123,6 +124,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
     req.body.location_zip,
     req.body.location_state,
     req.body.about_me,
+    req.body.industry_id,
     req.user.id
   ]
   pool.query(sqlText, sqlValues)

@@ -15,6 +15,9 @@ function UserDetail ({profile}){
   const dispatch = useDispatch(); 
 
   const user = useSelector((store) => store.user);
+  const industries = useSelector((store) => store.industriesReducer);
+
+  const indusObject = industries.filter(indus => (indus.id == profile.industry_id))
 
   useEffect(() => {
     dispatch({
@@ -71,7 +74,7 @@ function UserDetail ({profile}){
       {/* Row 2 */}
       <Grid item xs={.5}/>
       <Grid item xs={4.5}>
-        {profile.industry_name}
+        {indusObject[0].industry_name}
       </Grid>
       <Grid item xs={.5}/>
       <Grid item xs={6} align="right">
@@ -153,7 +156,7 @@ function UserDetail ({profile}){
         <Button
           size="small"
           variant="contained"
-          onClick={()=> history.push(`/user/edit/${profile.id}`)}
+          onClick={()=> history.push(`/user/edit`)}
         >
           Edit Profile Info
         </Button>
