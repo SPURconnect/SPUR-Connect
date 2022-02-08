@@ -17,27 +17,22 @@ import './EditUserProfile.css'
 function EditUserProfile (){
 
   const params = useParams();
-  console.log('params:');
-  console.log(params);
   const dispatch = useDispatch();
   const history = useHistory();
   const editProfile = useSelector((store) => store.editProfileReducer)
 
   useEffect(() => {
     dispatch({
-      type: 'SAGA_FETCH_PROFILE_TO_EDIT',
-      payload: params.id
+      type: 'SAGA_FETCH_PROFILE_TO_EDIT'
     })
-  }, [params.id])
+  }, [])
 
-  console.log('!!!!!!! editProfile reducer', editProfile);
 
-  const handleUpdateSubmit = (e)=>{
+  const handleUpdateSubmit = (e) => {
     e.preventDefault();
     dispatch({
       type: 'SAGA_EDIT_PROFILE_INFO',
       payload: {
-        id: params.id, 
         email: editProfile.email, 
         first_name: editProfile.first_name,
         last_name: editProfile.last_name,

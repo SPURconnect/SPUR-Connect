@@ -1,16 +1,9 @@
 import React, { useEffect } from 'react';
-import {
-  HashRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-} from 'react-router-dom';
-// import for toast notifications see MeetingHistoryItem 
-  // handleDeleteMeeting function for example
+import { HashRouter as Router, Redirect, Route, Switch,
+  } from 'react-router-dom';
+
 import { Toaster } from 'react-hot-toast';
-
 import { useDispatch, useSelector } from 'react-redux';
-
 
 import Nav from '../Nav/Nav';
 import BottomNavBar from '../BottomNavBar/BottomNavBar';
@@ -33,7 +26,6 @@ import MeetingPhotos from '../MeetingPhotos/MeetingPhotos.jsx';
 import SelectedMeeting from '../SelectedMeeting/SelectedMeeting';
 import SelectedMeetingEdit from '../SelectedMeetingEdit/SelectedMeetingEdit';
 
-
 import './App.css';
 import SearchProfiles from '../SearchProfiles/SearchProfiles';
 import SearchProfilesDetails from '../SearchProfilesDetails/SearchProfilesDetails'
@@ -42,7 +34,6 @@ import SearchProfilesDetails from '../SearchProfilesDetails/SearchProfilesDetail
 function App() {
   const dispatch = useDispatch();
   
-
   const user = useSelector(store => store.user);
   // gets the location of where the user is in the app based on the url
   // splices it to work with the reducer set up
@@ -125,7 +116,7 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/edit/:id"
+            path="/user/edit/:id"
           >
             <EditUserProfile />
           </ProtectedRoute>

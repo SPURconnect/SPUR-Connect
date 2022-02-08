@@ -6,16 +6,8 @@ import SocialIcons from '../SocialIcons/SocialIcons';
 
 //MUI Stuff
 import { styled } from '@mui/material/styles';
-import { Grid, FormControlLabel, Switch, Stack, FormGroup, Box, Button, TextField, Typography, 
-  ListItemAvatar, Avatar } from '@mui/material';
+import { Grid, Switch, Stack, FormGroup, Box, Button, TextField, Typography, ListItemAvatar, Avatar } from '@mui/material';
 
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import YouTubeIcon from '@mui/icons-material/YouTube';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 ////
 
 function UserDetail ({profile}){
@@ -161,7 +153,7 @@ function UserDetail ({profile}){
         <Button
           size="small"
           variant="contained"
-          onClick={()=> history.push(`/edit/${profile.id}`)}
+          onClick={()=> history.push(`/user/edit/${profile.id}`)}
         >
           Edit Profile Info
         </Button>

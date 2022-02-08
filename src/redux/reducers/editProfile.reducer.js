@@ -1,8 +1,6 @@
 const editProfileReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SET_EDIT_PROFILE':
-      console.log('$$$$ in EditProfile reducer', action.payload);
-      
 
       return {
         email: action.payload.email,
