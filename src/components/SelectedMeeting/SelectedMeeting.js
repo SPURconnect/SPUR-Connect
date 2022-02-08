@@ -1,10 +1,12 @@
 import { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { Box, Button, Stack, TextField, Typography, IconButton } from '@mui/material';
+import { Box, Button, Stack, TextField, Typography, IconButton, InputAdornment, Grid } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SelectedMeetingEdit from '../SelectedMeetingEdit/SelectedMeetingEdit';
 import MeetingNavBar from '../MeetingNavBar/MeetingNavBar';
+import EventIcon from '@mui/icons-material/Event';
 
 
 
@@ -23,15 +25,6 @@ function SelectedMeeting() {
     })
   }, [params.id]);
 
-   console.log('reducer data', meetings)
-/* const backpage = (e) =>  {
-    history.push('/meetinghistory');
-  }
-
-const edit = (e) =>  {
-    history.push('/meetingdetails');
-  
-  }   */
   const fixedDate = (params) => {
     let theDate = params.date;
     let cleanTime = new Date(theDate);
@@ -41,10 +34,12 @@ const edit = (e) =>  {
 
   
   return (
-    //map this out, research stack
+    
     <div>
       <MeetingNavBar prop={"details"} />
-      <Box display="flex" justifyContent="center" alignItems="center">
+      <Box display="flex" 
+      justifyContent="center" 
+      alignItems="center">
         {meetings.map((meetings) => (
           <Typography
             variant="h4"
@@ -53,7 +48,7 @@ const edit = (e) =>  {
               alignItems: "center",
               paddingTop: "10%",
               paddingBottom: "10%",
-            }}
+          }}
             key={meetings.id}
           >
             {meetings.meeting_title}
@@ -70,41 +65,72 @@ const edit = (e) =>  {
         }}
       >
         {meetings.map((meetings) => (
-          <Stack key={meetings.id}>
+          <Grid container direction="row" alignItems="center" justifyContent="center">
+          
             <TextField
-              multiline={true}
-              rows={2}
               sx={{ mt: 1, width: 250 }}
-              label={<span style={{ fontSize: 25 }}>Location</span>}
+              label={<span style={{ fontSize: 21 }}>Location</span>}
               defaultValue={meetings.meetup_location}
               InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LocationOnIcon />
+                  </InputAdornment>
+                ),
                 readOnly: true,
-              }}
+                }}
               variant="standard"
             />
             <TextField
-              label={<span style={{ fontSize: 25 }}>Time</span>}
-              sx={{ mt: 5, fontsize: 30 }}
+              label={<span style={{ fontSize: 21 }}>Time</span>}
+              sx={{ mt: 5, width: 250, fontsize: 30}}
               defaultValue={fixedDate(meetings)}
               InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <EventIcon />
+                  </InputAdornment>
+                ),
                 readOnly: true,
               }}
               variant="standard"
             />
-            <Typography variant="h6" component="h6" sx={{ mt: 5 }}>
-              Summary
-            </Typography>
-            <TextField
-              multiline={true}
-              rows={8}
-              sx={{ width: 250, border: 1, padding: "3%" }}
-              defaultValue={meetings.summary}
-              InputProps={{
-                readOnly: true,
+            
+            
+            <Box
+              sx={{
+                outline: "rgb(169,169,169) solid 1px",
+                minHeight: "20vh",
+                width: "82vw",
+                borderRadius: "5px",
+                mt: 5,
               }}
-              variant="standard"
-            />
-          </Stack>
+            >
+              <Typography
+                variant="body2"
+                sx={{
+                  display: "inline-block",
+                  margin: "0px 5px",
+                  padding: "0px 8px",
+                  backgroundColor: "white",
+                  transform: "translate(10px, -50%)",
+                  color: "gray",
+                }}
+              >
+                Summary
+              </Typography>
+              <Typography
+                variant="body1"
+                nowrap
+                sx={{
+                  padding: "0px 10px 10px 10px",
+                  overflow: "auto",
+                }}
+              >
+                {meetings.summary}
+              </Typography>
+            </Box>
+            </Grid>
         ))}
       </Box>
       <Box
@@ -116,10 +142,11 @@ const edit = (e) =>  {
         }}
       >
         <Button
+          sx={{ mt: 4 }}
           variant="contained"
           onClick={() => history.push(`/meeting/edit/${params.id}`)}
         >
-          Update Details
+          Edit Details
         </Button>
       </Box>
     </div>

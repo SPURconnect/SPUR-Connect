@@ -149,9 +149,7 @@ function RegisterForm() {
         <label htmlFor="Industry">
           <br></br>
             <FormControl fullWidth>
-              <InputLabel variant="standard">
-                Choose an Industry:
-              </InputLabel>
+              Choose an Industry:
               <NativeSelect
                 defaultValue={30}
                 inputProps={{

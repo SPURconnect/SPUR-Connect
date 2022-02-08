@@ -70,14 +70,19 @@ function MeetingHistoryItem({ item }) {
     toast.success(`${item.meeting_title} deleted!`)
   }
 
-  let theDate = item.date;
-  // let cleanTime = theDate.toLocaleTimeString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'})
-  // console.log(item.date)
+  const handleGoToProfile = () => {
+    dispatch({
+      type: 'SET_WHERE',
+      payload: 'searchProfiles'
+    });
+    history.push(`/searchProfiles/${currentProfile.id}`);
+    
+  }
+ 
+ 
   let cleanTime = new Date(item.date);
-  // console.log(theDate)
-  // console.log(cleanTime)
   let bestTime = cleanTime.toLocaleTimeString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'});
-  // console.log(bestTime);
+  
 
   return (
     <div style={{ paddingBottom: '4px' }}>
@@ -90,6 +95,7 @@ function MeetingHistoryItem({ item }) {
               sx={{ bgcolor: grey[500], width: '75px', height: '75px' }}
               aria-label="profile image"
               src={currentProfile.photo}
+              onClick={handleGoToProfile}
             >
             </Avatar>
           }
