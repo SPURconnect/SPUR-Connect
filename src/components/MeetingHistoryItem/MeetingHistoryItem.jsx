@@ -102,12 +102,15 @@ function MeetingHistoryItem({ item }) {
         <CardActions
           disableSpacing
           onClick={handleExpandClick}
+          sx={{
+            padding: 0
+          }}
         >
           <ExpandMore
             expand={expanded}
             aria-expanded={expanded}
             aria-label="show more"
-            sx={{ padding: '0px' }}
+            sx={{ padding: '0px 5px' }}
           >
             <ExpandMoreIcon />
           </ExpandMore>

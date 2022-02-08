@@ -90,7 +90,7 @@ function MeetingNotes() {
           placeholder='Notes'
           value={notes.notes || ''}
           onChange={handleNoteChange}
-          sx={{ mt: 1, width: 250, }} //Change width of TextField here.
+          sx={{ mt: 1, width: 250, backgroundColor: 'white' }} //Change width of TextField here.
         />
       </Box>
       <Box

@@ -1,9 +1,10 @@
-import react, {useEffect, useState} from 'react';
+import react, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import MessagesMsg from '../MessagesMsg/MessagesMsg';
 import MessageSendModal from '../MessageSendModal/MessageSendModal';
+import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 
 import { TableContainer, Table, TableBody, Grid, TextField, Button, Box, List } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
@@ -11,6 +12,7 @@ import SendIcon from '@mui/icons-material/Send';
 export default function MessagesConvo() {
   //alias HOOKs
   const dispatch = useDispatch();
+  const history = useHistory();
   const convoWithUserID = useParams();
   //REDUX store
   const userMessages = useSelector((store) => store.messagesReducer);
@@ -19,11 +21,11 @@ export default function MessagesConvo() {
 
   const [message, setMessage] = useState('');
 
-    useEffect(() => {
-      dispatch({
-        type: "FETCH_MESSAGES"
-      })
-    }, [])
+  useEffect(() => {
+    dispatch({
+      type: "FETCH_MESSAGES"
+    })
+  }, [])
 
   const handleSendMessage = () => {
     let outboundMessage = {
@@ -39,49 +41,55 @@ export default function MessagesConvo() {
     setMessage('');
   };
 
-  return(
+  return (
     <>
-    <Grid container maxHeight="88%">
-      
-      {/*  */}
-      <Grid item xs={.5}/>
+      <Button
+        onClick={() => history.push('/messages')}
+      // color='secondary'
+      >
+        <ArrowBackOutlinedIcon sx={{ padding: '10px' }} /> Back
+      </Button>
+      <Grid container maxHeight="88%">
 
-      <Grid item xs={11}>    
-        <TableContainer
-          width="95%"
-          sx={{
-            paddingBottom: "20%"
-          }}
-        >
-        <Table>
-          <TableBody>
-            {userConvo[0].messages.map((msg) => {
-              return msg.sender_id == convoWithUserID.id ?
-                <MessagesMsg 
-                  key={msg.id} 
-                  timestamp={msg.timestamp} 
-                  message={msg.content} 
-                  alignment={'left'}
-                />
-              :
-                <MessagesMsg 
-                  key={msg.id} 
-                  timestamp={msg.timestamp} 
-                  message={msg.content} 
-                  alignment={'right'}  
-                />
-            })}
-          </TableBody>
-        </Table>
-        </TableContainer>
+        {/*  */}
+        <Grid item xs={.5} />
+
+        <Grid item xs={11}>
+          <TableContainer
+            width="95%"
+            sx={{
+              paddingBottom: "20%"
+            }}
+          >
+            <Table>
+              <TableBody>
+                {userConvo[0].messages.map((msg) => {
+                  return msg.sender_id == convoWithUserID.id ?
+                    <MessagesMsg
+                      key={msg.id}
+                      timestamp={msg.timestamp}
+                      message={msg.content}
+                      alignment={'left'}
+                    />
+                    :
+                    <MessagesMsg
+                      key={msg.id}
+                      timestamp={msg.timestamp}
+                      message={msg.content}
+                      alignment={'right'}
+                    />
+                })}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Grid>
+
+        <Grid item xs={.5} />
+        {/*  */}
       </Grid>
 
-      <Grid item xs={.5}/>
-      {/*  */}
-    </Grid>
-
       {/* <MessageSendModal buttonText={"Reply"} sendTo={convoWithUserID}/> */}
-      
+
       <Box
         position="fixed"
         sx={{
@@ -94,9 +102,9 @@ export default function MessagesConvo() {
         }}
       >
         <TextField
-          sx={{width: '75%', marginLeft: '4%', backgroundColor: 'white'}}
+          sx={{ width: '75%', marginLeft: '4%', backgroundColor: 'white' }}
           multiline
-          value = {message}
+          value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
         <Button
@@ -106,9 +114,9 @@ export default function MessagesConvo() {
             margin: '9px 6px'
           }}
           onClick={handleSendMessage}
-        > <SendIcon/>
+        > <SendIcon />
         </Button>
-    </Box>
+      </Box>
     </>
   )
 }

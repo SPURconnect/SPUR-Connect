@@ -90,7 +90,7 @@ export default function MessageSendModal({buttonText, sendTo}) {
               <Button 
                 variant="contained" 
                 size="small"
-                color="success" 
+                color="secondary" 
                 onClick={() => handleSendMessage()}
               > Send 
               </Button>

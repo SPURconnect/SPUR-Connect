@@ -212,7 +212,7 @@ function EditUserProfile (){
 
       {/* Row 3 */}
       <Grid item xs={.5}/>
-      <Grid item xs={4} mt="10px" size="small">
+      <Grid item xs={4} mt="20px" size="small">
         <TextField
           label="Industry"
           placeholder="Industry"
@@ -226,7 +226,7 @@ function EditUserProfile (){
 
       <Grid item xs={.5}/>
 
-      <Grid item xs={6.5} mt="10px" size="small">
+      <Grid item xs={6.5} mt="20px" size="small">
         <TextField
           fullWidth
           label="Email"
@@ -243,7 +243,7 @@ function EditUserProfile (){
       {/* Row 4 */}
       <Grid item xs={.5}/>
       
-      <Grid item xs={4.5} mt="10px" size="small">
+      <Grid item xs={4.5} mt="20px" size="small">
         <TextField
           label="City"
           placeholder="City"
@@ -257,7 +257,7 @@ function EditUserProfile (){
 
       <Grid item xs={.5}/>
 
-      <Grid item xs={3} mt="10px">
+      <Grid item xs={3} mt="20px">
         <TextField
           label="State"
           placeholder="State"
@@ -270,7 +270,7 @@ function EditUserProfile (){
       </Grid>
 
       <Grid item xs={.5}/>
-      <Grid item xs={2.5} mt="10px" size="small">
+      <Grid item xs={2.5} mt="20px" size="small">
         <TextField
           py="5px"
           label="Zip"
@@ -287,9 +287,9 @@ function EditUserProfile (){
       {/*  */}
 
       {/* Row 5 */}
-      <Grid item xs={.5} mt="10px" size="small"/>
+      <Grid item xs={.5} mt="20px" size="small"/>
 
-        <Grid item xs={5.25} mt="10px" size="small">
+        <Grid item xs={5.25} mt="20px" size="small">
           <TextField
             InputProps={{
               startAdornment: (
@@ -308,9 +308,9 @@ function EditUserProfile (){
           />
         </Grid>
 
-      <Grid item xs={.5} mt="10px" size="small"/>
+      <Grid item xs={.5} mt="20px" size="small"/>
 
-      <Grid item xs={5.25} mt="10px" size="small">
+      <Grid item xs={5.25} mt="20px" size="small">
         <TextField
           label="LinkedIn"
           InputProps={{
@@ -329,13 +329,13 @@ function EditUserProfile (){
         />
       </Grid>
 
-      <Grid item xs={.5} mt="10px" size="small"/>
+      <Grid item xs={.5} mt="20px" size="small"/>
       {/*  */}
 
       {/* Row 6 */}
-      <Grid item xs={.5} mt="10px" size="small"/>
+      <Grid item xs={.5} mt="20px" size="small"/>
       
-      <Grid item xs={5.25} mt="10px" size="small">
+      <Grid item xs={5.25} mt="20px" size="small">
         <TextField
           label="Twitter"
           InputProps={{
@@ -354,9 +354,9 @@ function EditUserProfile (){
         />
       </Grid>
 
-      <Grid item xs={.5} mt="10px" size="small"/>
+      <Grid item xs={.5} mt="20px" size="small"/>
 
-      <Grid item xs={5.25} mt="10px" size="small">
+      <Grid item xs={5.25} mt="20px" size="small">
         <TextField
           label="YouTube"
           InputProps={{
@@ -375,13 +375,13 @@ function EditUserProfile (){
         />
       </Grid>
 
-      <Grid item xs={.5} mt="10px" size="small"/>
+      <Grid item xs={.5} mt="20px" size="small"/>
       {/*  */}
 
       {/* Row 7 */}
-      <Grid item xs={.5} mt="10px" size="small"/>
+      <Grid item xs={.5} mt="20px" size="small"/>
       
-      <Grid item xs={5.25} mt="10px" size="small">
+      <Grid item xs={5.25} mt="20px" size="small">
         <TextField
           label="Facebook"
           InputProps={{
@@ -400,9 +400,9 @@ function EditUserProfile (){
         />
       </Grid>
 
-      <Grid item xs={.5} mt="10px" size="small"/>
+      <Grid item xs={.5} mt="20px" size="small"/>
 
-      <Grid item xs={5.25} mt="10px" size="small">
+      <Grid item xs={5.25} mt="20px" size="small">
         <TextField
           label="Instagram"
           InputProps={{
@@ -421,13 +421,13 @@ function EditUserProfile (){
         />
       </Grid>
 
-      <Grid item xs={.5} mt="10px" size="small"/>
+      <Grid item xs={.5} mt="20px" size="small"/>
       {/*  */}
 
       {/* Row 7 */}
-      <Grid item xs={.5} mt="10px" size="small"/>
+      <Grid item xs={.5} mt="20px" size="small"/>
 
-      <Grid item xs={11} mt="10px" size="small">
+      <Grid item xs={11} mt="20px" size="small">
         <TextField
           fullWidth
           multiline
@@ -441,12 +441,12 @@ function EditUserProfile (){
         />
       </Grid>
 
-      <Grid item xs={.5} mt="10px" size="small"/>
+      <Grid item xs={.5} mt="20px" size="small"/>
       {/*  */}
           
       {/* Row 8 */}
-      <Grid item xs={.5} mt="10px" size="small"/>
-      <Grid item xs={7} mt="10px" size="small">
+      <Grid item xs={.5} mt="20px" size="small"/>
+      <Grid item xs={7} mt="20px" size="small">
         <TextField
           label="img url"
           placeholder="Photo-url"
@@ -457,8 +457,8 @@ function EditUserProfile (){
           }}
         />
       </Grid>
-      <Grid item xs={.5} mt="10px" size="small"/>
-      <Grid item xs={3} sx={{padding: '15px 0px'}}>
+      <Grid item xs={.5} mt="20px" size="small"/>
+      <Grid item xs={3} sx={{padding: '25px 0px'}}>
         <Button
           variant="contained"
           onClick={() => history.push("/user")}

@@ -43,7 +43,7 @@ function SearchProfilesDetails() {
       >
         <ArrowBackOutlinedIcon sx={{ padding: '10px' }} /> Back
       </Button>
-      <Grid container >
+      <Grid container sx={{marginBottom: '10px'}}>
         {/* Row 1 */}
         <Grid item xs={3} />
         <Grid item xs={6} mt="10px" align="center">
