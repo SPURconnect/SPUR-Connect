@@ -16,7 +16,9 @@ function* addPhoto(action){
     })
     yield put({
       type: 'FETCH_PHOTOS',
+      payload: response.data.meeting_id
     })
+    console.log('*****', response);
   }catch(error){
     console.log('addPhoto catch error:', error);
   };
@@ -45,8 +47,9 @@ function* deletePhoto(action){
     })
     yield put({
       type: 'FETCH_PHOTOS',
-      payload: action.payload.paramsid
+      payload: response.data.meeting_id
     })
+    console.log('######', response.data)
   }catch(error){
     console.log('deletePhoto catch error:', error);
   };
