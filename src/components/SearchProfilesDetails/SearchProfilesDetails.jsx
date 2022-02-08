@@ -6,6 +6,7 @@ import MessageSendModal from '../MessageSendModal/MessageSendModal';
 
 //MUI STUFF
 import { Grid, Typography, Box, Button, TextField, ListItemAvatar, Avatar } from '@mui/material';
+import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -35,80 +36,88 @@ function SearchProfilesDetails() {
 
 
   return (
-    <Grid container>
-      {/* Row 1 */}
-      <Grid item xs={3} />
-      <Grid item xs={6} mt="10px" align="center">
-        <ListItemAvatar>
-          <Avatar
-            sx={{ width: 175, height: 175 }}
-            src={singleProfileReducer.photo} />
-        </ListItemAvatar>
-      </Grid>
-      <Grid item xs={3} />
-      {/*  */}
+    <>
+      <Button
+        onClick={() => history.push('/searchProfiles')}
+      // color='secondary'
+      >
+        <ArrowBackOutlinedIcon sx={{ padding: '10px' }} /> Back
+      </Button>
+      <Grid container >
+        {/* Row 1 */}
+        <Grid item xs={3} />
+        <Grid item xs={6} mt="10px" align="center">
+          <ListItemAvatar>
+            <Avatar
+              sx={{ width: 175, height: 175 }}
+              src={singleProfileReducer.photo} />
+          </ListItemAvatar>
+        </Grid>
+        <Grid item xs={3} />
+        {/*  */}
 
-      {/* Row 2 */}
-      <Grid item xs={3} />
-      <Grid item xs={6} align="center">
-        <h3>
-          {singleProfileReducer.first_name} {singleProfileReducer.last_name}
-        </h3>
-      </Grid>
-      <Grid item xs={3} />
-      {/*  */}
+        {/* Row 2 */}
+        <Grid item xs={3} />
+        <Grid item xs={6} align="center">
+          <h3>
+            {singleProfileReducer.first_name} {singleProfileReducer.last_name}
+          </h3>
+        </Grid>
+        <Grid item xs={3} />
+        {/*  */}
 
-      {/* Row 2 */}
-      <Grid item xs={.5} />
-      <Grid item xs={4.5} align="center">
-        {singleProfileReducer.industry_name}
-      </Grid>
-      <Grid item xs={.5} />
-      <Grid item xs={6} align="right">
-        {`${singleProfileReducer.location_city},
+        {/* Row 2 */}
+        <Grid item xs={.5} />
+        <Grid item xs={4.5} align="center">
+          {singleProfileReducer.industry_name}
+        </Grid>
+        <Grid item xs={.5} />
+        <Grid item xs={6} align="right">
+          {`${singleProfileReducer.location_city},
           ${singleProfileReducer.location_state}`}
-      </Grid>
-      <Grid item xs={.5} />
-      {/*  */}
+        </Grid>
+        <Grid item xs={.5} />
+        {/*  */}
 
-      {/* Row 3 */}
-      <Grid item xs={.5} />
+        {/* Row 3 */}
+        <Grid item xs={.5} />
 
-      <Grid item xs={5.25} mt="15px" align="center">
-        <Button
-          variant="contained"
-          size="small"
-          onClick={() => history.push(`/meeting/add/${params.id}`)}
-        > Invite to Meet
-        </Button>
-      </Grid>
+        <Grid item xs={5.25} mt="15px" align="center">
+          <Button
+            variant="contained"
+            size="small"
+            onClick={() => history.push(`/meeting/add/${params.id}`)}
+            sx={{
+              color: 'white'
+            }}
+          > Invite to Meet
+          </Button>
+        </Grid>
 
-      <Grid item xs={.5} />
+        <Grid item xs={.5} />
 
-      <Grid item xs={5.25} mt="15px" align="center">
-        <MessageSendModal buttonText="Say Hello" sendTo={params} />
-      </Grid>
+        <Grid item xs={5.25} mt="15px" align="center">
+          <MessageSendModal buttonText="Say Hello" sendTo={params} />
+        </Grid>
 
-      <Grid item xs={.5} />
-      {/*  */}
+        <Grid item xs={.5} />
+        {/*  */}
+        <SocialIcons profile={singleProfileReducer} />
+        {/* Row 4 */}
+        <Grid item xs={.5} />
+        <Grid item xs={11} mt="15px">
+          <TextField
+            multiline
+            // label={`About ${singleProfileReducer.first_name}`}
+            fullWidth
+            value={singleProfileReducer.about_me} />
+        </Grid>
+        <Grid item xs={.5} />
 
-      {/* Row 4 */}
-      <Grid item xs={.5} />
-      <Grid item xs={11} mt="15px">
-        <TextField
-          multiline
-          // label={`About ${singleProfileReducer.first_name}`}
-          fullWidth
-          value={singleProfileReducer.about_me} />
-      </Grid>
-      <Grid item xs={.5} />
+        {/*  */}
 
-      {/*  */}
-
-      <SocialIcons profile={singleProfileReducer}/>
-
-      {/* Row 5 */}
-      {/* <Grid item xs={.5} />
+        {/* Row 5 */}
+        {/* <Grid item xs={.5} />
       <Grid item xs={5.25} mt="15px">
         <GitHubIcon />
         {singleProfileReducer.portfolio}
@@ -119,10 +128,10 @@ function SearchProfilesDetails() {
         {singleProfileReducer.youtube}
       </Grid>
       <Grid item xs={.5} /> */}
-      {/*  */}
+        {/*  */}
 
-      {/* Row 6 */}
-      {/* <Grid item xs={.5} />
+        {/* Row 6 */}
+        {/* <Grid item xs={.5} />
       <Grid item xs={5.25} mt="15px">
         <FacebookIcon />
         {singleProfileReducer.facebook}
@@ -133,10 +142,10 @@ function SearchProfilesDetails() {
         {singleProfileReducer.instagram}
       </Grid>
       <Grid item xs={.5} /> */}
-      {/*  */}
+        {/*  */}
 
-      {/* Row 7 */}
-      {/* <Grid item xs={.5} />
+        {/* Row 7 */}
+        {/* <Grid item xs={.5} />
       <Grid item xs={5.25} mt="15px">
         <LinkedInIcon />
         {singleProfileReducer.linkedin}
@@ -147,10 +156,10 @@ function SearchProfilesDetails() {
         {singleProfileReducer.twitter}
       </Grid>
       <Grid item xs={.5} /> */}
-      {/*  */}
+        {/*  */}
 
-      {/* Row 8 */}
-      {/* <Grid item xs={.5} />
+        {/* Row 8 */}
+        {/* <Grid item xs={.5} />
       <Grid item xs={5.25} mt="15px">
         <GitHubIcon />
         {singleProfileReducer.portfolio}
@@ -161,8 +170,9 @@ function SearchProfilesDetails() {
       </Grid>
       <Grid item xs={.5} /> */}
 
-      {/*  */}
-    </Grid>
+        {/*  */}
+      </Grid>
+    </>
   );
 }
 

@@ -5,12 +5,15 @@ import toast from 'react-hot-toast';
 
 // MUI imports
 
-import { TableRow, TableCell, Button, Card, CardHeader, CardContent, CardActions, Collapse, Avatar, IconButton,
-Typography, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
+import {
+  TableRow, TableCell, Button, Card, CardHeader, CardContent, CardActions, Collapse, Avatar, IconButton,
+  Typography, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle
+} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { grey } from '@mui/material/colors';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { Box } from '@mui/system';
 
 // MUI expand styler
 const ExpandMore = styled((props) => {
@@ -76,7 +79,7 @@ function MeetingHistoryItem({ item }) {
   let cleanTime = new Date(item.date);
   // console.log(theDate)
   // console.log(cleanTime)
-  let bestTime = cleanTime.toLocaleTimeString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'});
+  let bestTime = cleanTime.toLocaleTimeString([], { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' });
   // console.log(bestTime);
 
   return (
@@ -111,23 +114,28 @@ function MeetingHistoryItem({ item }) {
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent sx={{ textAlign: 'center', padding: '0px' }}>
-            <Typography sx={{ margin: '0px 0px 10px 0px'}}>{item.summary}</Typography>
-            <Button
-              variant='contained'
-              size='small'
-              aria-label='go to meeting details'
-              onClick={() => handleGoToMeetingDetails()}
-            >
-              Details
-            </Button>
-            <IconButton
-              color='error'
-              aria-label='delete'
-              sx={{ float: 'right' }}
-              onClick={handleClickOpen}
-            >
-              <DeleteIcon />
-            </IconButton>
+            <Typography sx={{ margin: '0px 0px 10px 0px' }}>{item.summary}</Typography>
+            <Box sx={{padding: '10px 15px 0px 45px'}}>
+              <Button
+                variant='contained'
+                size='small'
+                aria-label='go to meeting details'
+                onClick={() => handleGoToMeetingDetails()}
+                sx={{
+                  color: 'white',
+                }}
+              >
+                Details
+              </Button>
+              <IconButton
+                color='error'
+                aria-label='delete'
+                sx={{ float: 'right', paddingRight: '15px' }}
+                onClick={handleClickOpen}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </Box>
           </CardContent>
         </Collapse>
       </Card>
@@ -146,7 +154,7 @@ function MeetingHistoryItem({ item }) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
+          <Button color='secondary' onClick={handleClose}>Disagree</Button>
           <Button onClick={() => handleDeleteMeeting()} autoFocus>
             Agree
           </Button>

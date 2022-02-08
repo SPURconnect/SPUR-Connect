@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -26,7 +26,7 @@ const style = {
 };
 
 function SearchProfiles(props) {
- 
+
   const store = useSelector((store) => store);
   const [selected, setSelected] = useState(0);
   const dispatch = useDispatch();
@@ -38,22 +38,22 @@ function SearchProfiles(props) {
   const handleClose = () => setOpen(false);
 
   useEffect(() => {
-    dispatch({ 
-      type: 'FETCH_INDUSTRIES' 
+    dispatch({
+      type: 'FETCH_INDUSTRIES'
     })
   }, []);
 
   const handleQueryChange = (event) => {
     event.preventDefault();
-    if (event.target.value === '')  {
+    if (event.target.value === '') {
       dispatch({
         type: 'CLEAR_PROFILES'
       })
     }
-    else  {
-    dispatch({
-      type: 'FETCH_PROFILES',
-      payload: event.target.value
+    else {
+      dispatch({
+        type: 'FETCH_PROFILES',
+        payload: event.target.value
       })
       // dispatch({
       //   type: 'SORT_BY_INDUSTRY',
@@ -71,11 +71,11 @@ function SearchProfiles(props) {
   //   });
   // };
 
-  const handleCardClick = (profile) =>  {
-    history.push(`/searchProfiles/${profile.id}`) 
+  const handleCardClick = (profile) => {
+    history.push(`/searchProfiles/${profile.id}`)
   };
 
-  const ifNoSearch = () =>  {
+  const ifNoSearch = () => {
     if (searchProfilesReducer.length === 0) {
       return <p className="justBeCentered">There's nothing here!<br /><br /> Try searching for potential connections.</p>
     }
@@ -84,19 +84,19 @@ function SearchProfiles(props) {
     }
   }
 
-  
+
 
   return (
     <div>
 
       <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          // minHeight="0vh"
-          sx={{ mt: 3 }}
-        >
-        <TextField 
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        // minHeight="0vh"
+        sx={{ mt: 3 }}
+      >
+        <TextField
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -104,37 +104,37 @@ function SearchProfiles(props) {
               </InputAdornment>
             )
           }}
-          sx={{width: '90%'}}
-          type="text"  
-          onChange={(event) => handleQueryChange(event)} 
+          sx={{ width: '84%', backgroundColor: 'white' }}
+          type="text"
+          onChange={(event) => handleQueryChange(event)}
           variant="outlined"
           size="small"
           placeholder='Search by industry, name, or location'
-          />
-          <IconButton 
-            variant="contained"
-            color="primary"
-            size="small"
-            onClick={handleOpen}
-          ><InfoIcon /></IconButton>
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="search-info"
-            aria-describedby="search-info"
-          >
+        />
+        <IconButton
+          variant="contained"
+          color="primary"
+          size="small"
+          onClick={handleOpen}
+        ><InfoIcon /></IconButton>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="search-info"
+          aria-describedby="search-info"
+        >
           <Box sx={style}>
             <div className="modalDiv">
               <h4>Help</h4>
               <p>Search by first or last name:<br />
-              Ex: "John" "Smith"<br /><br />
-              Search by location(city, state, or ZIP):<br />
-              Ex: "Minneapolis" "Minnesota" "55407"<br /><br />
-              Search by industry name:<br />
-              Ex: "Software Engineer" "Agriculture"
-              </p>      
+                Ex: "John" "Smith"<br /><br />
+                Search by location(city, state, or ZIP):<br />
+                Ex: "Minneapolis" "Minnesota" "55407"<br /><br />
+                Search by industry name:<br />
+                Ex: "Software Engineer" "Agriculture"
+              </p>
             </div>
-          
+
           </Box>
         </Modal>
       </Box>
@@ -146,33 +146,40 @@ function SearchProfiles(props) {
             )
         })}
       </select> */}
-      
-        {ifNoSearch()}
-        
-      {searchProfilesReducer.map((item, index) =>    
-        <div 
-          key={item.id}
-          onClick={() => handleCardClick(item)}
-          style={{ paddingBottom: '4px' }}>
-          <Card 
-            sx={{ maxWidth: '100%', boxShadow: 3 }} 
+
+      {ifNoSearch()}
+
+      <Grid
+        container
+        maxHeight='85%'
+        style={{ paddingTop: '2vh' }}
+      >
+        <Grid item xs={.5} />
+        <Grid item xs={11}>
+          {searchProfilesReducer.map((item, index) =>
+            <Card
+              key={item.id}
+              sx={{ maxWidth: '100%', boxShadow: 3, marginBottom: '4px' }}
+              onClick={() => handleCardClick(item)}
             >
-            <CardHeader
-              sx={{ paddingBottom: '0px' }}
-              avatar={
-                <Avatar
-                  sx={{ bgcolor: grey[500], width: '75px', height: '75px' }}
-                  aria-label="profile image"
-                  src={item.photo}
-                >
-                </Avatar>
-              }
-              title={item.first_name + ' ' + item.last_name}
-              subheader={item.industry_name + ' - ' + item.location_city + ', ' + item.location_state}
-            />             
-          </Card>
-        </div>
-      )}
+              <CardHeader
+                sx={{ paddingBottom: '12px' }}
+                avatar={
+                  <Avatar
+                    sx={{ bgcolor: grey[500], width: '75px', height: '75px' }}
+                    aria-label="profile image"
+                    src={item.photo}
+                  >
+                  </Avatar>
+                }
+                title={item.first_name + ' ' + item.last_name}
+                subheader={item.industry_name + ' - ' + item.location_city + ', ' + item.location_state}
+              />
+            </Card>
+          )}
+        </Grid>
+        <Grid item xs={.5} />
+      </Grid>
     </div>
   );
 }

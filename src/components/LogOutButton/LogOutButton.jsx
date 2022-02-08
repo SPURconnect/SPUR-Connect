@@ -18,7 +18,7 @@ function LogOutButton(props) {
       // className={props.className}
       variant='contained'
       size='small'
-      color='error'
+      color='secondary'
       onClick={() => handleLogOut()}
     >
       Log Out

@@ -36,7 +36,7 @@ function MeetingNavBar({ prop }) {
       {/* <ThemeProvider theme={theme}> */}
         <AppBar
           position="fixed"
-          color="primary"
+          color="info"
           sx={{
             bottom: 'auto',
             top: 0,

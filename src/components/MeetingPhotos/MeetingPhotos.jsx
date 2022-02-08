@@ -9,7 +9,7 @@ import MeetingNavBar from '../MeetingNavBar/MeetingNavBar';
 //https://api.cloudinary.com/v1_1/${cloudName}/upload
 
 function MeetingPhotos() {
-  
+
   const history = useHistory();
   const dispatch = useDispatch();
   const params = useParams();
@@ -29,13 +29,13 @@ function MeetingPhotos() {
     })
   };
 
-  
-  function handleAddPhoto(file){
-    if(file != ''){
+
+  function handleAddPhoto(file) {
+    if (file != '') {
       console.log('inputPhoto: ', file);
       dispatch({
         type: 'ADD_PHOTO',
-        payload: {image: file, id: params.id}
+        payload: { image: file, id: params.id }
       });
     };
   };
@@ -47,9 +47,17 @@ function MeetingPhotos() {
         display="flex"
         justifyContent="center"
         alignItems="center"
-        sx={{mt: 1}}
+        sx={{ mt: 1 }}
       >
-        <Button variant="contained" onClick={() => setDialogOpen(true)}>Upload</Button>
+        <Button
+          variant="contained"
+          onClick={() => setDialogOpen(true)}
+          sx={{
+            color: 'white'
+          }}
+        >
+          Upload
+        </Button>
         <DropzoneDialog
           acceptedFiles={['image/*']}
           cancelButtonText={"cancel"}
@@ -60,14 +68,14 @@ function MeetingPhotos() {
           onSave={(files) => {
             setDialogOpen(false);
             handleAddPhoto(files[0]);
-        }}
-        showPreviews={true}
-        showFileNamesInPreview={true}
-      />
-       </Box>
-      {photos.map((photo) =>{
-        return(
-            <MeetingPhotosItem key={photo.id} photo={photo} />
+          }}
+          showPreviews={true}
+          showFileNamesInPreview={true}
+        />
+      </Box>
+      {photos.map((photo) => {
+        return (
+          <MeetingPhotosItem key={photo.id} photo={photo} />
         )
       })}
     </div>

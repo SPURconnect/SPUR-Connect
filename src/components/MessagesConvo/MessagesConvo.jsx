@@ -89,18 +89,21 @@ export default function MessagesConvo() {
           bottom: '9%',
           width: '100%',
           display: 'inline-block',
-          backgroundColor: 'white',
+          backgroundColor: '#ebeeee',
           paddingBottom: '2%'
         }}
       >
         <TextField
-          sx={{width: '75%', paddingLeft: '5%'}}
+          sx={{width: '75%', marginLeft: '5%', backgroundColor: 'white'}}
           multiline
           value = {message}
           onChange={(e) => setMessage(e.target.value)}
         />
         <Button
           variant="contained"
+          sx={{
+            color: 'white'
+          }}
           onClick={handleSendMessage}
         > <SendIcon/>
         </Button>

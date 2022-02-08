@@ -99,16 +99,16 @@ function MeetingNotes() {
         alignItems="center"
       >
         <Button
-          variant=""
           onClick={handleClearNotes}
           sx={{ mt: 2, mr: 2 }}
+          color='secondary'
         >
           Clear
         </Button>
         <Button //TODO: Add sweetalerts or something to notify changes saved.
           variant="contained"
           onClick={handleSaveNotes}
-          sx={{ mt: 2, ml: 10 }}
+          sx={{ mt: 2, ml: 10, color: 'white' }}
         >
           Save
         </Button>

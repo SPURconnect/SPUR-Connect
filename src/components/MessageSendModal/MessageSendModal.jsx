@@ -47,6 +47,9 @@ export default function MessageSendModal({buttonText, sendTo}) {
     <div>
       <Button 
           variant="contained"
+          sx={{
+            color: 'white'
+          }}
           color="primary"
           size="small"
           onClick={handleOpen}
