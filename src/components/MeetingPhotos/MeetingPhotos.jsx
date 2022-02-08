@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { Box, Button, Backdrop} from '@mui/material';
+import { Box, Button, Backdrop, Grid} from '@mui/material';
 import MeetingPhotosItem from '../MeetingPhotosItem/MeetingPhotosItem.jsx';
 import { DropzoneArea, DropzoneDialog } from 'material-ui-dropzone';
 import MeetingNavBar from '../MeetingNavBar/MeetingNavBar';
@@ -53,7 +53,7 @@ function MeetingPhotos() {
         display="flex"
         justifyContent="center"
         alignItems="center"
-        sx={{mt: 1}}
+        sx={{mt: 2}}
       >
         <Button variant="contained" onClick={() => setDialogOpen(true)}>Upload</Button>
         <DropzoneDialog
@@ -75,11 +75,15 @@ function MeetingPhotos() {
         }}
       />
       </Box>
+      <Grid container maxHeight="88%" sx={{mt: 2}}>
       {photos.map((photo) =>{
         return(
+          <Grid item xs={6}>
             <MeetingPhotosItem key={photo.id} photo={photo} />
+          </Grid>
         )
       })}
+      </Grid>
     </div>
   )
 };
