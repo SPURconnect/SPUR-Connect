@@ -64,7 +64,7 @@ function MeetingPhotos() {
         showPreviews={true}
         showFileNamesInPreview={true}
       />
-      </Box>
+       </Box>
       {photos.map((photo) =>{
         return(
             <MeetingPhotosItem key={photo.id} photo={photo} />

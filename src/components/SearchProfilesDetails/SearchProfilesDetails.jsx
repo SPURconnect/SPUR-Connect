@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import UserDetail from '../UserDetail/UserDetail';
+import SocialIcons from '../SocialIcons/SocialIcons';
 import MessageSendModal from '../MessageSendModal/MessageSendModal';
 
 //MUI STUFF
@@ -97,7 +97,7 @@ function SearchProfilesDetails() {
       <Grid item xs={11} mt="15px">
         <TextField
           multiline
-          label={`About ${singleProfileReducer.first_name}`}
+          // label={`About ${singleProfileReducer.first_name}`}
           fullWidth
           value={singleProfileReducer.about_me} />
       </Grid>
@@ -105,8 +105,10 @@ function SearchProfilesDetails() {
 
       {/*  */}
 
+      <SocialIcons profile={singleProfileReducer}/>
+
       {/* Row 5 */}
-      <Grid item xs={.5} />
+      {/* <Grid item xs={.5} />
       <Grid item xs={5.25} mt="15px">
         <GitHubIcon />
         {singleProfileReducer.portfolio}
@@ -116,12 +118,11 @@ function SearchProfilesDetails() {
         <YouTubeIcon />
         {singleProfileReducer.youtube}
       </Grid>
-      <Grid item xs={.5} />
-
+      <Grid item xs={.5} /> */}
       {/*  */}
 
       {/* Row 6 */}
-      <Grid item xs={.5} />
+      {/* <Grid item xs={.5} />
       <Grid item xs={5.25} mt="15px">
         <FacebookIcon />
         {singleProfileReducer.facebook}
@@ -131,12 +132,11 @@ function SearchProfilesDetails() {
         <InstagramIcon />
         {singleProfileReducer.instagram}
       </Grid>
-      <Grid item xs={.5} />
-
+      <Grid item xs={.5} /> */}
       {/*  */}
 
       {/* Row 7 */}
-      <Grid item xs={.5} />
+      {/* <Grid item xs={.5} />
       <Grid item xs={5.25} mt="15px">
         <LinkedInIcon />
         {singleProfileReducer.linkedin}
@@ -146,7 +146,7 @@ function SearchProfilesDetails() {
         <TwitterIcon />
         {singleProfileReducer.twitter}
       </Grid>
-      <Grid item xs={.5} />
+      <Grid item xs={.5} /> */}
       {/*  */}
 
       {/* Row 8 */}
