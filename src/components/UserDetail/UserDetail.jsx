@@ -103,7 +103,7 @@ function UserDetail ({profile}){
       <SocialIcons profile={profile}/>
 
       {/* Row 4 */}
-      <Grid item xs={.5}/>
+      {/* <Grid item xs={.5}/>
       <Grid item xs={5.25} mt="15px">
         <GitHubIcon/> {profile.portfolio}
       </Grid>
@@ -111,12 +111,12 @@ function UserDetail ({profile}){
       <Grid item xs={5.25} mt="15px">
         <YouTubeIcon/> {profile.youtube}
       </Grid>
-      <Grid item xs={.5}/>
+      <Grid item xs={.5}/> */}
       
       {/*  */}
 
       {/* Row 5 */}
-      <Grid item xs={.5}/>
+      {/* <Grid item xs={.5}/>
       <Grid item xs={5.25} mt="15px">
         <FacebookIcon/> {profile.facebook}
       </Grid>
@@ -124,12 +124,12 @@ function UserDetail ({profile}){
       <Grid item xs={5.25} mt="15px">
         <InstagramIcon/> {profile.instagram}
       </Grid>
-      <Grid item xs={.5}/>
+      <Grid item xs={.5}/> */}
       
       {/*  */}
 
       {/* Row 6 */}
-      <Grid item xs={.5}/>
+      {/* <Grid item xs={.5}/>
       <Grid item xs={5.25} mt="15px">
         <LinkedInIcon/> {profile.linkedin}
       </Grid>
@@ -137,7 +137,7 @@ function UserDetail ({profile}){
       <Grid item xs={5.25} mt="15px">
         <TwitterIcon/> {profile.twitter}
       </Grid>
-      <Grid item xs={.5}/>        
+      <Grid item xs={.5}/>         */}
       
 
       {/* Row 8 */}
