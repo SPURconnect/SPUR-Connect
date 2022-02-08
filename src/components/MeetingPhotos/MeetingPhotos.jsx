@@ -90,6 +90,7 @@ function MeetingPhotos() {
         >
           Submit
         </Button>
+
       </Box>
       {photos.map((photo) =>{
         return(
