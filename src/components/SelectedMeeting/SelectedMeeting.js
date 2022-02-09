@@ -1,4 +1,4 @@
-import { useEffect} from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { Box, Button, Stack, TextField, Typography, IconButton, InputAdornment, Grid } from '@mui/material';
@@ -17,9 +17,9 @@ function SelectedMeeting() {
   const params = useParams();
   const meetings = useSelector(store => store.meetings);
 
-   useEffect(() => {
-    
-    dispatch({      
+  useEffect(() => {
+
+    dispatch({
       type: 'GET_SINGLE_MEETING',
       payload: params.id
     })
@@ -28,18 +28,18 @@ function SelectedMeeting() {
   const fixedDate = (params) => {
     let theDate = params.date;
     let cleanTime = new Date(theDate);
-    let bestTime = cleanTime.toLocaleTimeString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'});
+    let bestTime = cleanTime.toLocaleTimeString([], { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' });
     return bestTime;
   }
 
-  
+
   return (
-    
+
     <div>
       <MeetingNavBar prop={"details"} />
-      <Box display="flex" 
-      justifyContent="center" 
-      alignItems="center">
+      <Box display="flex"
+        justifyContent="center"
+        alignItems="center">
         {meetings.map((meetings) => (
           <Typography
             variant="h4"
@@ -48,7 +48,7 @@ function SelectedMeeting() {
               alignItems: "center",
               paddingTop: "10%",
               paddingBottom: "10%",
-          }}
+            }}
             key={meetings.id}
           >
             {meetings.meeting_title}
@@ -65,22 +65,25 @@ function SelectedMeeting() {
         }}
       >
         {meetings.map((meetings) => (
-          <Grid container direction="row" alignItems="center" justifyContent="center">
-          
-            <TextField
-              sx={{ mt: 1, width: 250 }}
-              label={<span style={{ fontSize: 21 }}>Location</span>}
-              defaultValue={meetings.meetup_location}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <LocationOnIcon />
-                  </InputAdornment>
-                ),
-                readOnly: true,
+          <Grid container direction="column" alignItems="center" justifyContent="center">
+            <Grid item xs={3}>
+              <TextField
+                sx={{ mt: 1, width: 250 }}
+                label={<span style={{ fontSize: 21 }}>Location</span>}
+                defaultValue={meetings.meetup_location}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <LocationOnIcon />
+                    </InputAdornment>
+                  ),
+                  readOnly: true,
                 }}
-              variant="standard"
-            />
+                variant="standard"
+              />
+            </Grid>
+
+            <Grid item xs={3}>
             <TextField
               label={<span style={{ fontSize: 21 }}>Time</span>}
               sx={{ mt: 5, width: 250, fontsize: 30}}
@@ -95,35 +98,39 @@ function SelectedMeeting() {
               }}
               variant="standard"
             />
-            
-            
+            </Grid>
+
+            <Grid item xs={3}>
+            <Typography
+              variant="body2"
+              sx={{
+                display: "inline-block",
+                backgroundColor: "#EBEEEE",
+                transform: "translate(-120px, 180%)",
+                color: "gray",
+              }}
+            >
+              Summary
+            </Typography>
+            </Grid>
+
+            <Grid item xs={3}>
             <Box
               sx={{
                 outline: "rgb(169,169,169) solid 1px",
-                minHeight: "20vh",
+                minHeight: "15vh",
                 width: "82vw",
                 borderRadius: "5px",
                 mt: 5,
+                backgroundColor: 'white'
               }}
             >
-              <Typography
-                variant="body2"
-                sx={{
-                  display: "inline-block",
-                  margin: "0px 5px",
-                  padding: "0px 8px",
-                  backgroundColor: "white",
-                  transform: "translate(10px, -50%)",
-                  color: "gray",
-                }}
-              >
-                Summary
-              </Typography>
+
               <Typography
                 variant="body1"
-                nowrap
+                // nowrap
                 sx={{
-                  padding: "0px 10px 10px 10px",
+                  padding: "7px 10px 10px 10px",
                   overflow: "auto",
                 }}
               >
@@ -131,6 +138,7 @@ function SelectedMeeting() {
               </Typography>
             </Box>
             </Grid>
+          </Grid>
         ))}
       </Box>
       <Box
@@ -142,7 +150,7 @@ function SelectedMeeting() {
         }}
       >
         <Button
-          sx={{ mt: 4 }}
+          sx={{ mt: 4, color: 'white' }}
           variant="contained"
           onClick={() => history.push(`/meeting/edit/${params.id}`)}
         >

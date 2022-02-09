@@ -16,7 +16,7 @@ function UserDetail({ profile }) {
   const user = useSelector((store) => store.user);
   const industries = useSelector((store) => store.industriesReducer);
 
-  const indusObject = industries.filter(indus => (indus.id == profile.industry_id))
+  const indusObject = industries.filter(indus => (indus.id == profile.industry_id));
 
   useEffect(() => {
     dispatch({
@@ -80,7 +80,7 @@ function UserDetail({ profile }) {
       {/* Row 2 */}
       <Grid item xs={.5} />
       <Grid item xs={4.5}>
-        {indusObject[0].industry_name}
+        {indusObject[0]?.industry_name}
       </Grid>
       <Grid item xs={.5} />
       <Grid item xs={6} align="right">
@@ -117,7 +117,7 @@ function UserDetail({ profile }) {
         >
           <Typography
             variant='body1'
-            nowrap
+            // nowrap
             sx={{
               padding: '10px',
               overflow: 'auto',
