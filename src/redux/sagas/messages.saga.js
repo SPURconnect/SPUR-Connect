@@ -18,8 +18,25 @@ function* getMessages() {
   }
 }
 
-function* messagesGET() {
-  yield takeLatest('FETCH_MESSAGES', getMessages);
+function* postMessage(action) {
+  try {
+    const response = yield axios({
+      method: "POST",
+      url: '/api/messages',
+      data: action.payload,
+    })
+    yield put({
+      type: "FETCH_MESSAGES"
+    });
+
+  } catch(error) {
+    console.log('Error fetching Messages from DB', error);
+  }
 }
 
-export default messagesGET;
+function* messagesSaga() {
+  yield takeLatest('FETCH_MESSAGES', getMessages);
+  yield takeLatest('POST_MESSAGE', postMessage);
+}
+
+export default messagesSaga;
