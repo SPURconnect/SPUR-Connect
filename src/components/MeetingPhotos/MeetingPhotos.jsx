@@ -78,8 +78,8 @@ function MeetingPhotos() {
       <Grid container maxHeight="88%" sx={{mt: 2}}>
       {photos.map((photo) =>{
         return(
-          <Grid item xs={6}>
-            <MeetingPhotosItem key={photo.id} photo={photo} />
+          <Grid item xs={6} key={photo.id}>
+            <MeetingPhotosItem photo={photo} />
           </Grid>
         )
       })}

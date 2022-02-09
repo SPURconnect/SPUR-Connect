@@ -38,11 +38,6 @@ function MeetingPhotosItem({photo}) {
             alt="Open Full Size Image"
             onClick={openInNewTab}
           />
-          {/* <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Image Title?
-            </Typography>
-          </CardContent> */}
         </CardActionArea>
         <CardActions>
           <Button size="small" color="error" variant="contained" onClick={handleDeleteButton} sx={{ml: 3.2}}> 
