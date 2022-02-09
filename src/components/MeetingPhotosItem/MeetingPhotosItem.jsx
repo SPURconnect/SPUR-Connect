@@ -19,6 +19,7 @@ function MeetingPhotosItem({photo}) {
   };
 
   function handleDeleteButton(){
+    //TODO: Sweet Alert?????
     dispatch({
       type: 'DELETE_PHOTO',
       payload: {id: photo.id}
