@@ -469,7 +469,6 @@ function EditUserProfile (){
           Cancel
         </Button>
       </Grid>
-
   </Grid>
   );
 }
