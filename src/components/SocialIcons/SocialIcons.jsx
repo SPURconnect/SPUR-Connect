@@ -10,48 +10,52 @@ import './SocialIcons.css';
 
 import { Grid } from '@mui/material';
 
-export default function SocialIcons({profile}) {
-  console.log(profile)
+export default function SocialIcons({ profile }) {
 
-  return(
-    <Grid container justifyContent='center' sx={{textAlign: 'center', padding: '10px 0px 0px'}}>
-
-      <Grid item xs={2} mt="10px">
-        <a href={profile.portfolio}>
-          <img className='socialIcons' src={ExternalLink}/>
-        </a>
-      </Grid>
-
-      <Grid item xs={2} mt="10px">
-        <a href={profile.linkedin}>
-          <img className='socialIcons' src={Linkedin2}/>
-        </a>
-      </Grid>
-
-      <Grid item xs={2} mt="10px">
-        <a href={profile.instagram}>
-          <img className='socialIcons' src={Insta2}/>
-        </a>
-      </Grid>
-
-      <Grid item xs={2} mt="10px">
-        <a href={profile.facebook}>
-          <img className='socialIcons' src={Facebook2}/>
-        </a>
-      </Grid>
-
-      <Grid item xs={2} mt="10px">
-        <a href={profile.twitter}>
-          <img className='socialIcons' src={Twitter2}/>
-        </a>
-      </Grid>
-
-      <Grid item xs={2} mt="10px">
-        <a href={profile.youtube}>
-          <img className='socialIcons' src={Youtube2}/>
-        </a>
-      </Grid>
-
+  return (
+    <Grid container justifyContent='center' sx={{ textAlign: 'center', padding: '10px 0px 0px' }}>
+      {profile.portfolio &&
+        <Grid item xs={2} mt="10px">
+          <a href={profile.portfolio}>
+            <img className='socialIcons' src={ExternalLink} />
+          </a>
+        </Grid>
+      }
+      {profile.linkedin &&
+        <Grid item xs={2} mt="10px">
+          <a href={profile.linkedin}>
+            <img className='socialIcons' src={Linkedin2} />
+          </a>
+        </Grid>
+      }
+      {profile.instagram &&
+        <Grid item xs={2} mt="10px">
+          <a href={profile.instagram}>
+            <img className='socialIcons' src={Insta2} />
+          </a>
+        </Grid>
+      }
+      {profile.facebook &&
+        <Grid item xs={2} mt="10px">
+          <a href={profile.facebook}>
+            <img className='socialIcons' src={Facebook2} />
+          </a>
+        </Grid>
+      }
+      {profile.twitter &&
+        <Grid item xs={2} mt="10px">
+          <a href={profile.twitter}>
+            <img className='socialIcons' src={Twitter2} />
+          </a>
+        </Grid>
+      }
+      {profile.youtube &&
+        <Grid item xs={2} mt="10px">
+          <a href={profile.youtube}>
+            <img className='socialIcons' src={Youtube2} />
+          </a>
+        </Grid>
+      }
     </Grid>
   )
 };
