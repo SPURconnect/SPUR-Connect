@@ -39,8 +39,6 @@ function SearchProfilesDetails() {
     })
   }
 
-  console.log('***************************', history)
-
   return (
     <>
       <Button

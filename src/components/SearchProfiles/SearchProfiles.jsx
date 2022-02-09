@@ -32,6 +32,7 @@ function SearchProfiles(props) {
   const dispatch = useDispatch();
   const searchProfilesReducer = useSelector(store => store.searchProfilesReducer);
   const industriesReducer = useSelector(store => store.industriesReducer);
+  const user = useSelector(store => store.user);
   const history = useHistory();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -156,27 +157,33 @@ function SearchProfiles(props) {
       >
         <Grid item xs={.5} />
         <Grid item xs={11}>
-          {searchProfilesReducer.map((item, index) =>
-            <Card
-              key={item.id}
-              sx={{ maxWidth: '100%', boxShadow: 3, marginBottom: '4px' }}
-              onClick={() => handleCardClick(item)}
-            >
-              <CardHeader
-                sx={{ paddingBottom: '12px' }}
-                avatar={
-                  <Avatar
-                    sx={{ bgcolor: grey[500], width: '75px', height: '75px' }}
-                    aria-label="profile image"
-                    src={item.photo}
-                  >
-                  </Avatar>
-                }
-                title={item.first_name + ' ' + item.last_name}
-                subheader={item.industry_name + ' - ' + item.location_city + ', ' + item.location_state}
-              />
-            </Card>
-          )}
+          {searchProfilesReducer.map((item) => {
+            if (item.user_id === user.id) {
+              return <div key={item.user_id}></div>
+            } else {
+              return (
+                <Card
+                  key={item.user_id}
+                  sx={{ maxWidth: '100%', boxShadow: 3, marginBottom: '4px' }}
+                  onClick={() => handleCardClick(item)}
+                >
+                  <CardHeader
+                    sx={{ paddingBottom: '12px' }}
+                    avatar={
+                      <Avatar
+                        sx={{ bgcolor: grey[500], width: '75px', height: '75px' }}
+                        aria-label="profile image"
+                        src={item.photo}
+                      >
+                      </Avatar>
+                    }
+                    title={item.first_name + ' ' + item.last_name}
+                    subheader={item.industry_name + ' - ' + item.location_city + ', ' + item.location_state}
+                  />
+                </Card>
+              )
+            }
+          })}
         </Grid>
         <Grid item xs={.5} />
       </Grid>
