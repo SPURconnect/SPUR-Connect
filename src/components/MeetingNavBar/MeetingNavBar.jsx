@@ -14,18 +14,18 @@ import Grid from '@mui/material/Grid';
 import { green, grey } from '@mui/material/colors';
 import { Toolbar, Typography } from '@mui/material';
 // MUI theme
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: grey[600],
-    },
-    secondary: {
-      main: green[300],
-    },
-    contrastThreshold: 3,
-    tonalOffset: 0.2,
-  },
-});
+// const theme = createTheme({
+//   palette: {
+//     primary: {
+//       main: grey[600],
+//     },
+//     secondary: {
+//       main: green[300],
+//     },
+//     contrastThreshold: 3,
+//     tonalOffset: 0.2,
+//   },
+// });
 
 function MeetingNavBar({ prop }) {
   const history = useHistory();
@@ -33,10 +33,10 @@ function MeetingNavBar({ prop }) {
 
   return (
     <div>
-      <ThemeProvider theme={theme}>
+      {/* <ThemeProvider theme={theme}> */}
         <AppBar
           position="fixed"
-          color="primary"
+          color="info"
           sx={{
             bottom: 'auto',
             top: 0,
@@ -181,7 +181,7 @@ function MeetingNavBar({ prop }) {
           </Box>
         </AppBar>
         <Toolbar sx={{ height: '10vh' }}/>
-      </ThemeProvider>
+      {/* </ThemeProvider> */}
     </div >
   )
 }

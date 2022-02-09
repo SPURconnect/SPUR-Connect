@@ -45,7 +45,15 @@ function MeetingPhotosItem({photo}) {
           </CardContent> */}
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="error" variant="contained" onClick={handleDeleteButton} sx={{ml: 3.2}}> 
+          <Button 
+            size="small" 
+            color="error" 
+            variant="contained" 
+            onClick={handleDeleteButton} 
+            sx={{
+              ml: 3.2
+            }}
+          > 
             Delete
           </Button>
         </CardActions>

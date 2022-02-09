@@ -30,7 +30,7 @@ export default function MessagesView() {
 
   return(
     <>
-    <Grid container maxHeight="88%">
+    <Grid container maxHeight="88%" sx={{marginTop: '10px'}}>
       <Grid item xs={.5}/>
       
       <Grid item xs={11}>
@@ -38,7 +38,7 @@ export default function MessagesView() {
         {conversations?.length > 0 ?
           conversations.map(convo => {
             return <Card 
-              sx={{ bgcolor: grey[500], maxWidth: '100%', boxShadow: 3, paddingBottom: '12px', my: '4px', mx: '3px' }} 
+              sx={{ maxWidth: '100%', boxShadow: 3, paddingBottom: '12px', my: '4px', mx: '3px' }} 
               key={convo.uniqUser}
               >
                 <CardHeader
