@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
 //MUI Stuff
-import { InputAdornment, Grid, Box, Button, TextField, ListItemAvatar, Avatar } from '@mui/material';
+import { InputAdornment, Grid, MenuItem, Box, Button, TextField, ListItemAvatar, Avatar } from '@mui/material';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -18,27 +18,28 @@ import './EditUserProfile.css'
 function EditUserProfile (){
 
   const params = useParams();
-  console.log('params:');
-  console.log(params);
   const dispatch = useDispatch();
   const history = useHistory();
-  const editProfile = useSelector((store) => store.editProfileReducer)
+  const editProfile = useSelector((store) => store.editProfileReducer);
+  const industries = useSelector((store) => store.industriesReducer);
+
+  const [industry, setIndustry] = useState(1);
 
   useEffect(() => {
     dispatch({
-      type: 'SAGA_FETCH_PROFILE_TO_EDIT',
-      payload: params.id
+      type: 'SAGA_FETCH_PROFILE_TO_EDIT'
     })
-  }, [params.id])
+    dispatch({
+      type: 'FETCH_INDUSTRIES'
+    })
+  }, [])
 
-  console.log('!!!!!!! editProfile reducer', editProfile);
 
-  const handleUpdateSubmit = (e)=>{
+  const handleUpdateSubmit = (e) => {
     e.preventDefault();
     dispatch({
       type: 'SAGA_EDIT_PROFILE_INFO',
       payload: {
-        id: params.id, 
         email: editProfile.email, 
         first_name: editProfile.first_name,
         last_name: editProfile.last_name,
@@ -54,7 +55,7 @@ function EditUserProfile (){
         location_state: editProfile.location_state,
         location_state: editProfile.location_state,
         about_me: editProfile.about_me,
-        industry_name: editProfile.industry_name
+        industry_id: industry
       }
     })
     history.push('/user')
@@ -102,6 +103,7 @@ function EditUserProfile (){
     })
   }
   const handleIndustry = (e) => {
+    setIndustry(e.target.value);
     dispatch({
       type: 'SET_INDUSTRY',
       payload: e.target.value
@@ -214,14 +216,26 @@ function EditUserProfile (){
       <Grid item xs={.5}/>
       <Grid item xs={4} mt="20px" size="small">
         <TextField
+          select
+          fullWidth
           label="Industry"
           placeholder="Industry"
-          value={editProfile.industry_name || ''}
+          value={industry}
           onChange={handleIndustry}
           sx={{
             backgroundColor: 'white'
-          }}
-        />
+             }}
+          >
+          {industries.map((indus) => {
+                    return <MenuItem 
+                            key={indus.id} 
+                            value={indus.id}
+                          >
+                            {indus.industry_name}
+                          </MenuItem>
+                  })}
+        </TextField>
+      
       </Grid>
 
       <Grid item xs={.5}/>

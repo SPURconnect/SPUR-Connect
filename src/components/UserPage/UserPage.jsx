@@ -18,8 +18,6 @@ function UserPage() {
     })
   }, [])
 
-  console.log('##### userProfile', userProfile);
-
   return (
     <div className="container">
       <div

@@ -6,25 +6,17 @@ import SocialIcons from '../SocialIcons/SocialIcons';
 
 //MUI Stuff
 import { styled } from '@mui/material/styles';
-import {
-  Grid, FormControlLabel, Switch, Stack, FormGroup, Box, Button, TextField, Typography,
-  ListItemAvatar, Avatar
-} from '@mui/material';
 
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import YouTubeIcon from '@mui/icons-material/YouTube';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
-////
+import { Grid, Switch, Stack, FormControlLabel, FormGroup, Box, Button, TextField, Typography, ListItemAvatar, Avatar } from '@mui/material';
 
 function UserDetail({ profile }) {
   const history = useHistory();
   const dispatch = useDispatch();
 
   const user = useSelector((store) => store.user);
+  const industries = useSelector((store) => store.industriesReducer);
+
+  const indusObject = industries.filter(indus => (indus.id == profile.industry_id))
 
   useEffect(() => {
     dispatch({
@@ -88,7 +80,7 @@ function UserDetail({ profile }) {
       {/* Row 2 */}
       <Grid item xs={.5} />
       <Grid item xs={4.5}>
-        {profile.industry_name}
+        {indusObject[0].industry_name}
       </Grid>
       <Grid item xs={.5} />
       <Grid item xs={6} align="right">
@@ -203,7 +195,7 @@ function UserDetail({ profile }) {
         <Button
           size="small"
           variant="contained"
-          onClick={() => history.push(`/user/edit/${profile.id}`)}
+          onClick={()=> history.push(`/user/edit`)}
           sx={{
             color: 'white'
           }}
