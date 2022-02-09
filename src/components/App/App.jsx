@@ -6,7 +6,7 @@ import {
   Switch,
 } from 'react-router-dom';
 // import for toast notifications see MeetingHistoryItem 
-  // handleDeleteMeeting function for example
+// handleDeleteMeeting function for example
 import { Toaster } from 'react-hot-toast';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -41,7 +41,7 @@ import SearchProfilesDetails from '../SearchProfilesDetails/SearchProfilesDetail
 
 function App() {
   const dispatch = useDispatch();
-  
+
 
   const user = useSelector(store => store.user);
   // gets the location of where the user is in the app based on the url
@@ -125,7 +125,7 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/edit/:id"
+            path="/user/edit/:id"
           >
             <EditUserProfile />
           </ProtectedRoute>
@@ -138,7 +138,7 @@ function App() {
           >
             <SelectedMeeting />
           </ProtectedRoute>
-          
+
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
@@ -200,10 +200,14 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
+        {user.id ? (
+          <BottomNavBar />
+        ) : (
+          <></>
+        )}
 
-        <BottomNavBar />
       </div>
-    </Router>
+    </Router >
   );
 }
 

@@ -13,7 +13,7 @@ const theme = createTheme({
   palette: {
     primary: {
       // light: '', // auto-gen from main if blank
-      main: '#1ad1ff',
+      main: '#85A2B3',
       // dark: '', // auto-gen from main if blank
       // contrastText: '#fff',
     },
@@ -37,13 +37,13 @@ const theme = createTheme({
     },
     warning: {
       // light: '#598e89', // auto-gen from main if blank
-      main: '#666699',
+      main: '#e3e9e9',
       // dark: '#99d5cf', // auto-gen from main if blank
       // contrastText: '#000',
     },
     error: {
       // light: '#598e89', // auto-gen from main if blank
-      main: '#666699',
+      main: '#690907',
       // dark: '#99d5cf', // auto-gen from main if blank
       // contrastText: '#000',
     },
