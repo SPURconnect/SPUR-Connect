@@ -2,13 +2,13 @@ import react, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+import MessagesMenu from '../MessagesMenu/MessagesMenu';
 // import MessagesMsg from '../MessagesMsg/MessagesMsg';
 // import MessagesConvo from '../MessagesConvo/MessagesConvo';
 
 //MUI
 import { Grid, Typography, Card, CardHeader, List, ListItem, ListItemAvatar, ListItemText, Avatar, IconButton } from '@mui/material';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { grey } from '@mui/material/colors';
+// import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 ///// End MUI Stuff
 
@@ -28,6 +28,10 @@ export default function MessagesView() {
     })
   }, [])
 
+  const stopPropAndNav = (e) => {
+    
+  }
+
   return(
     <>
     <Grid container maxHeight="88%" sx={{marginTop: '10px'}}>
@@ -45,15 +49,17 @@ export default function MessagesView() {
                   sx={{ paddingBottom: '0px' }}
                   onClick={(e) => {history.push(`/messages/convo/${convo.uniqUser}`)}}
                   action={
-                      <IconButton  aria-label="options">
+                      <IconButton onClick={(e) => {e.stopPropagation()}} >
                         {/* Add onClick options//delete functionality */}
-                        <MoreVertIcon />
+                        <MessagesMenu />
                       </IconButton>
                     }
                   avatar={
+                    
                     <Avatar
                       sx={{ width: '45px', height: '45px' }}
                       aria-label="profile image"
+                      onClick={(e) => {e.stopPropagation(); history.push(`/searchProfiles/${convo.uniqUser}`)}}
                       src={profiles.filter(prof => 
                             (prof.id == convo.uniqUser)).map(profile => {
                               return `${profile.photo}`
@@ -63,7 +69,7 @@ export default function MessagesView() {
                   title={profiles.filter(prof => (prof.id == convo.uniqUser)).map(profile => {
                     return `${profile.first_name} ${profile.last_name}`
                   })}
-                  subheader={convo.messages[0].content.slice(0, 35)}
+                  subheader={convo.messages[convo.messages.length - 1].content.slice(0, 35)}
                 />
               </Card>
             })
@@ -78,6 +84,7 @@ export default function MessagesView() {
       </Grid>
       <Grid item xs={.5}/>
     </Grid>
+
     </>
   )
 }
