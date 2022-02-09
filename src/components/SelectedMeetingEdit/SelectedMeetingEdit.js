@@ -70,7 +70,7 @@ function SelectedMeetingEdit() {
         payload: {
           meetup_location: meetingDetailsReducer.meetup_location,
           date: meetingDetailsReducer.date,
-          summary:meetingDetailsReducer.summary,
+          summary: meetingDetailsReducer.summary,
           id: params.id
         }
       })

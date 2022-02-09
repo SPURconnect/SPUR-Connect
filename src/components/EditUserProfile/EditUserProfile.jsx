@@ -173,7 +173,7 @@ function EditUserProfile() {
       {/* Row 2 */}
       <Grid item xs={.5} />
 
-      <Grid item xs={3} mt="10px">
+      <Grid item xs={3} mt="20px">
         <TextField
           label="First Name"
           placeholder="First Name"
@@ -187,7 +187,7 @@ function EditUserProfile() {
 
       <Grid item xs={.5} />
 
-      <Grid item xs={4} mt="10px">
+      <Grid item xs={4} mt="20px">
         <TextField
           label="Last Name"
           placeholder="Last Name"
@@ -199,7 +199,7 @@ function EditUserProfile() {
         />
       </Grid>
       <Grid item xs={.5} />
-      <Grid item xs={3} sx={{ padding: '15px 0px' }}>
+      <Grid item xs={3} mt="10px" sx={{ padding: '15px 0px' }}>
         <Button
           variant="contained"
           onClick={handleUpdateSubmit}
@@ -305,13 +305,6 @@ function EditUserProfile() {
 
       <Grid item xs={5.25} mt="20px" size="small">
         <TextField
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <LaunchIcon />
-              </InputAdornment>
-            ),
-          }}
           label="Portfolio"
           placeholder="Portfolio"
           value={editProfile.portfolio || ''}
@@ -327,13 +320,6 @@ function EditUserProfile() {
       <Grid item xs={5.25} mt="20px" size="small">
         <TextField
           label="LinkedIn"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <LinkedInIcon />
-              </InputAdornment>
-            ),
-          }}
           placeholder="Linkedin"
           value={editProfile.linkedin || ''}
           onChange={handleLinkedin}
@@ -352,13 +338,6 @@ function EditUserProfile() {
       <Grid item xs={5.25} mt="20px" size="small">
         <TextField
           label="Twitter"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <TwitterIcon />
-              </InputAdornment>
-            ),
-          }}
           placeholder="Twitter"
           value={editProfile.twitter || ''}
           onChange={handleTwitter}
@@ -373,13 +352,6 @@ function EditUserProfile() {
       <Grid item xs={5.25} mt="20px" size="small">
         <TextField
           label="YouTube"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <YouTubeIcon />
-              </InputAdornment>
-            ),
-          }}
           placeholder="YouTube"
           value={editProfile.youtube || ''}
           onChange={handleYouTube}
@@ -398,13 +370,6 @@ function EditUserProfile() {
       <Grid item xs={5.25} mt="20px" size="small">
         <TextField
           label="Facebook"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <FacebookIcon />
-              </InputAdornment>
-            ),
-          }}
           placeholder="Facebook"
           value={editProfile.facebook || ''}
           onChange={handleFacebook}
@@ -419,13 +384,6 @@ function EditUserProfile() {
       <Grid item xs={5.25} mt="20px" size="small">
         <TextField
           label="Instagram"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <InstagramIcon />
-              </InputAdornment>
-            ),
-          }}
           placeholder="Instagram"
           value={editProfile.instagram || ''}
           onChange={handleInstagram}
@@ -459,7 +417,7 @@ function EditUserProfile() {
       {/*  */}
 
       {/* Row 8 */}
-      <Grid item xs={.5} mt="20px" size="small" />
+      <Grid item xs={.5} mt="20px" size="small" sx={{ marginLeft: '0px'}} />
       <Grid item xs={7} mt="20px" size="small">
         <TextField
           label="img url"
@@ -467,12 +425,13 @@ function EditUserProfile() {
           value={editProfile.photo || ''}
           onChange={handlePhoto}
           sx={{
-            backgroundColor: 'white'
+            backgroundColor: 'white',
+            width: '100%'
           }}
         />
       </Grid>
       <Grid item xs={.5} mt="20px" size="small" />
-      <Grid item xs={3} sx={{ padding: '25px 0px' }}>
+      <Grid item xs={3} sx={{ padding: '25px 10px' }}>
         <Button
           variant="contained"
           onClick={() => history.push("/user")}

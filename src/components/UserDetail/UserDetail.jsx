@@ -47,7 +47,7 @@ function UserDetail({ profile }) {
   }
 
   return (
-    <Grid container>
+    <Grid container justifyContent='center' sx={{ padding: '10px 0px 0px' }}>
       {/* Row 1 */}
       {/* <Grid item xs={3}/> */}
       <Grid item xs={6} sx={{paddingLeft: '10px'}}>
@@ -79,11 +79,11 @@ function UserDetail({ profile }) {
 
       {/* Row 2 */}
       <Grid item xs={.5} />
-      <Grid item xs={4.5}>
+      <Grid item xs={4.5} sx={{paddingLeft: '10px'}}>
         {indusObject[0]?.industry_name}
       </Grid>
       <Grid item xs={.5} />
-      <Grid item xs={6} align="right">
+      <Grid item xs={6} sx={{margin: 'auto'}}>
         
         {profile.location_city + ', ' + profile.location_state}
 
