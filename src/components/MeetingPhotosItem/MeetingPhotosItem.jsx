@@ -22,6 +22,7 @@ function MeetingPhotosItem({photo}) {
       type: 'DELETE_PHOTO',
       payload: {id: photo.id}
     })
+    handleClose();
   }
 
   const handleClick = (event) => {
