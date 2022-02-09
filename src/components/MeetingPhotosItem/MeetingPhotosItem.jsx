@@ -15,7 +15,8 @@ function MeetingPhotosItem({photo}) {
   const openInNewTab = () => {
     const newWindow = window.open(photo.image_url, '_blank', 'noopener,noreferrer')
     if (newWindow) newWindow.opener = null
-  }
+    handleClose();
+  };
 
   function handleDeleteButton(){
     dispatch({
@@ -82,7 +83,7 @@ function MeetingPhotosItem({photo}) {
           horizontal: 'left',
         }}
       >
-        <MenuItem onClick={handleClose}>View Full Size</MenuItem>
+        <MenuItem onClick={openInNewTab}>View Full Size</MenuItem>
         <MenuItem onClick={handleDeleteButton}>Delete</MenuItem>
         <MenuItem onClick={handleClose}>Cancel</MenuItem>
       </Menu>
