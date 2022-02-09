@@ -13,6 +13,9 @@ import { MuiThemeProvider, createTheme } from "@material-ui/core/styles";
 
 function MeetingPhotos() {
 
+
+  const history = useHistory();
+
   const dispatch = useDispatch();
   const params = useParams();
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -35,13 +38,14 @@ function MeetingPhotos() {
       payload: params.id
     })
   };
-  
-  function handleAddPhoto(file){
-    if(file != ''){
-      console.log('inputPhoto: ', file);
+
+
+
+  function handleAddPhoto(file) {
+    if (file != '') {
       dispatch({
         type: 'ADD_PHOTO',
-        payload: {image: file, id: params.id}
+        payload: { image: file, id: params.id }
       });
     };
   };
@@ -55,7 +59,15 @@ function MeetingPhotos() {
         alignItems="center"
         sx={{mt: 2}}
       >
-        <Button variant="contained" onClick={() => setDialogOpen(true)}>Upload</Button>
+        <Button
+          variant="contained"
+          onClick={() => setDialogOpen(true)}
+          sx={{
+            color: 'white'
+          }}
+        >
+          Upload
+        </Button>
         <DropzoneDialog
           showPreviews={true}
           showPreviewsInDropzone={false}

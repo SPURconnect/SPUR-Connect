@@ -1,10 +1,12 @@
 import { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { Box, Button, Stack, TextField, Typography, IconButton } from '@mui/material';
+import { Box, Button, Stack, TextField, Typography, IconButton, InputAdornment, Grid } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SelectedMeetingEdit from '../SelectedMeetingEdit/SelectedMeetingEdit';
 import MeetingNavBar from '../MeetingNavBar/MeetingNavBar';
+import EventIcon from '@mui/icons-material/Event';
 
 
 
@@ -23,75 +25,133 @@ function SelectedMeeting() {
     })
   }, [params.id]);
 
-   console.log('reducer data', meetings)
-/* const backpage = (e) =>  {
-    history.push('/meetinghistory');
-  
+  const fixedDate = (params) => {
+    let theDate = params.date;
+    let cleanTime = new Date(theDate);
+    let bestTime = cleanTime.toLocaleTimeString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'});
+    return bestTime;
   }
-
-const edit = (e) =>  {
-    history.push('/meetingdetails');
-  
-  }   */
-
 
   
   return (
-
-    //map this out, research stack
+    
     <div>
-      <MeetingNavBar prop={'details'}/>
+      <MeetingNavBar prop={"details"} />
+      <Box display="flex" 
+      justifyContent="center" 
+      alignItems="center">
+        {meetings.map((meetings) => (
+          <Typography
+            variant="h4"
+            component="h4"
+            sx={{
+              alignItems: "center",
+              paddingTop: "10%",
+              paddingBottom: "10%",
+          }}
+            key={meetings.id}
+          >
+            {meetings.meeting_title}
+          </Typography>
+        ))}
+      </Box>
+
       <Box
         display="flex"
         justifyContent="center"
         alignItems="center"
+        sx={{
+          maxWidth: "100vw",
+        }}
       >
-        <Typography
-          variant="h6"
-          component="h6"
-        >
-          Selected Meeting Details
-        </Typography>
-        <IconButton
-        size='large'
-        sx={{width: '10%', margin: 'auto', paddingTop: '2vh'}}
-        onClick={() => history.push(`/meeting/edit/${params.id}`)}
-      >
-        <EditIcon 
-          fontSize='inherit'
-        />
-      </IconButton>
+        {meetings.map((meetings) => (
+          <Grid container direction="row" alignItems="center" justifyContent="center">
+          
+            <TextField
+              sx={{ mt: 1, width: 250 }}
+              label={<span style={{ fontSize: 21 }}>Location</span>}
+              defaultValue={meetings.meetup_location}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LocationOnIcon />
+                  </InputAdornment>
+                ),
+                readOnly: true,
+                }}
+              variant="standard"
+            />
+            <TextField
+              label={<span style={{ fontSize: 21 }}>Time</span>}
+              sx={{ mt: 5, width: 250, fontsize: 30}}
+              defaultValue={fixedDate(meetings)}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <EventIcon />
+                  </InputAdornment>
+                ),
+                readOnly: true,
+              }}
+              variant="standard"
+            />
+            
+            
+            <Box
+              sx={{
+                outline: "rgb(169,169,169) solid 1px",
+                minHeight: "20vh",
+                width: "82vw",
+                borderRadius: "5px",
+                mt: 5,
+              }}
+            >
+              <Typography
+                variant="body2"
+                sx={{
+                  display: "inline-block",
+                  margin: "0px 5px",
+                  padding: "0px 8px",
+                  backgroundColor: "white",
+                  transform: "translate(10px, -50%)",
+                  color: "gray",
+                }}
+              >
+                Summary
+              </Typography>
+              <Typography
+                variant="body1"
+                nowrap
+                sx={{
+                  padding: "0px 10px 10px 10px",
+                  overflow: "auto",
+                }}
+              >
+                {meetings.summary}
+              </Typography>
+            </Box>
+            </Grid>
+        ))}
       </Box>
       <Box
         display="flex"
         justifyContent="center"
         alignItems="center"
         sx={{
-          maxWidth: '100vw'
+          maxWidth: "100vw",
         }}
       >
-
-         
-         {
-           meetings.map(meetings => 
-            (<Stack key={meetings.id}> 
-             <h5>Meeting Title</h5>
-              <p>{meetings.meeting_title}</p>
-              <h5>Meeting Location</h5>
-              <p>{meetings.meetup_location}</p> 
-              <h5>Schedule</h5>
-              <p>{meetings.date}</p> 
-              <h5>Summary</h5>
-              <p>{meetings.summary}</p>
-            
-
-            </Stack>)
-           )}
-                            
-              
+        <Button
+          sx={{ mt: 4 }}
+          variant="contained"
+          onClick={() => history.push(`/meeting/edit/${params.id}`)}
+        >
+          Edit Details
+        </Button>
       </Box>
     </div>
-  )
+  );
 };
+
 
 export default SelectedMeeting;

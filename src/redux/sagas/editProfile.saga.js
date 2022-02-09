@@ -5,12 +5,12 @@ function* fetchProfileToEdit(action){
   try{
     const response = yield axios({
       method: 'GET',
-      url: `/api/editProfile/${action.payload}`
+      url: `/api/userProfile/`
     })
     const editProfile= response.data;
     yield put({
       type: 'SET_EDIT_PROFILE',
-      payload: editProfile
+      payload: editProfile[0]
     })
     console.log('in fetchUserProfileToEdit saga response.data', editProfile);
     
@@ -24,7 +24,7 @@ function* editProfileInfo(action) {
     console.log('in editProfileInfo action.payload', action.payload)
     yield axios({
       method: 'PUT',
-      url: `/api/editProfile/${action.payload.id}`,
+      url: `/api/userProfile/${action.payload.id}`,
       data: action.payload
     })
     yield put({
@@ -41,7 +41,7 @@ function* editProfileAvailability(action) {
   try {
     yield axios({
       method: 'PUT',
-      url: `/api/editProfile`,
+      url: `/api/userProfile`,
       data: action.payload
     })
     yield put({

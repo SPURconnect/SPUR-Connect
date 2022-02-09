@@ -47,6 +47,9 @@ export default function MessageSendModal({buttonText, sendTo}) {
     <div>
       <Button 
           variant="contained"
+          sx={{
+            color: 'white'
+          }}
           color="primary"
           size="small"
           onClick={handleOpen}
@@ -87,7 +90,7 @@ export default function MessageSendModal({buttonText, sendTo}) {
               <Button 
                 variant="contained" 
                 size="small"
-                color="success" 
+                color="secondary" 
                 onClick={() => handleSendMessage()}
               > Send 
               </Button>
