@@ -30,7 +30,7 @@ export default function MessagesView() {
 
   return(
     <>
-    <Grid container maxHeight="88%">
+    <Grid container maxHeight="88%" sx={{marginTop: '10px'}}>
       <Grid item xs={.5}/>
       
       <Grid item xs={11}>

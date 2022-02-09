@@ -52,39 +52,39 @@ function RegisterForm() {
   return (
     <form className="formPanel" onSubmit={registerUser}>
       <center>
-      <h2>Register</h2>
-      {errors.registrationMessage && (
-        <h3 className="alert" role="alert">
-          {errors.registrationMessage}
-        </h3>
-      )}
-      <div>
-        <label>
+        <h2>Register</h2>
+        {errors.registrationMessage && (
+          <h3 className="alert" role="alert">
+            {errors.registrationMessage}
+          </h3>
+        )}
+        <div>
+          <label>
             <TextField
               label="Username"
               defaultValue="Default Value"
               value={username}
               onChange={(event) => setUsername(event.target.value)}
             />
-        </label>
-      </div>
-      <div>
-        <label>
-            <br></br>
+          </label>
+        </div>
+        <div>
+          <label>
             <TextField
+              sx={{ mt: 1 }}
               label="Password"
               defaultValue="Default Value"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />
-        </label>
-      </div>
+          </label>
+        </div>
         <div>
           <label>
-            <br></br>
             <TextField
               label="First Name"
               defaultValue="Default Value"
+              sx={{ mt: 1 }}
               value={firstName}
               onChange={(event) => setFirstName(event.target.value)}
             />
@@ -92,32 +92,32 @@ function RegisterForm() {
         </div>
         <div>
           <label>
-            <br></br>
             <TextField
               label="Last Name"
               defaultValue="Default Value"
+              sx={{ mt: 1}}
               value={lastName}
               onChange={(event) => setLastName(event.target.value)}
             />
           </label>
         </div>
-      <div>
-        <label>
-            <br></br>
+        <div>
+          <label>
             <TextField
               label="Email"
               defaultValue="Default Value"
+              sx={{ mt: 1 }}
               value={email}
               onChange={(event) => setEmail(event.target.value)}
             />
-        </label>
-      </div>
-      <div>
+          </label>
+        </div>
+        <div>
           <label>
-            <br></br>
             <TextField
-              label="Location/City"
+              label="City"
               defaultValue="Default Value"
+              sx={{ mt: 1 }}
               value={city}
               onChange={(event) => setCity(event.target.value)}
             />
@@ -125,10 +125,10 @@ function RegisterForm() {
         </div>
         <div>
           <label>
-            <br></br>
             <TextField
-              label="Location/State"
+              label="State"
               defaultValue="Default Value"
+              sx={{ mt: 1 }}
               value={state}
               onChange={(event) => setState(event.target.value)}
             />
@@ -136,26 +136,32 @@ function RegisterForm() {
         </div>
         <div>
           <label>
-            <br></br>
             <TextField
-              label="Location/Zip"
+              label="ZIP"
               defaultValue="Default Value"
               value={zip}
+              sx={{ mt: 1 }}
               onChange={(event) => setZip(event.target.value)}
             />
           </label>
         </div>
         <div>
-        <label htmlFor="Industry">
-          <br></br>
-            <FormControl fullWidth>
-              <InputLabel variant="standard">
-                Choose an Industry:
-              </InputLabel>
+          <label htmlFor="Industry">
+            <FormControl
+              fullWidth
+              sx={{ alignItems: "center", padding: "10px", mt: 1 }}
+            >
+              Choose an Industry:
               <NativeSelect
+                sx={{
+                  mt: 1,
+                  backgroundColor: "#0583f2",
+                  color: "white",
+                  padding: "5px 2px 5px 12px",
+                }}
                 defaultValue={30}
                 inputProps={{
-                  name: 'Industry',
+                  name: "Industry",
                 }}
                 value={industry}
                 onChange={(event) => chooseIndustry(event)}
@@ -163,16 +169,18 @@ function RegisterForm() {
                 <option disabled>Choose an Industry</option>
                 {industriesReducer.map((industry) => {
                   return (
-                    <option key={industry.id} value={industry.id}>{industry.industry_name}</option>
-                  )
+                    <option key={industry.id} value={industry.id}>
+                      {industry.industry_name}
+                    </option>
+                  );
                 })}
               </NativeSelect>
             </FormControl>
-        </label>
-      </div>
-      <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
-      </div>
+          </label>
+        </div>
+        <div>
+          <input className="btn" type="submit" name="submit" value="Register" />
+        </div>
       </center>
     </form>
   );

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+
 import { HashRouter as Router, Redirect, Route, Switch,
   } from 'react-router-dom';
 
@@ -33,7 +34,7 @@ import SearchProfilesDetails from '../SearchProfilesDetails/SearchProfilesDetail
 
 function App() {
   const dispatch = useDispatch();
-  
+
   const user = useSelector(store => store.user);
   // gets the location of where the user is in the app based on the url
   // splices it to work with the reducer set up
@@ -129,7 +130,7 @@ function App() {
           >
             <SelectedMeeting />
           </ProtectedRoute>
-          
+
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
@@ -191,10 +192,14 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
+        {user.id ? (
+          <BottomNavBar />
+        ) : (
+          <></>
+        )}
 
-        <BottomNavBar />
       </div>
-    </Router>
+    </Router >
   );
 }
 

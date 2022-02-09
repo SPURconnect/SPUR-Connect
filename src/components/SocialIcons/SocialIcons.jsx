@@ -5,42 +5,51 @@ import LinkedIn from './LinkedIn.png';
 import Twitter from './Twitter.png';
 import YouTube from './YouTube.png';
 import Github from './Github.png';
+import Facebook2 from './Facebook2.png';
+import Insta2 from './Insta2.png';
+import Linkedin2 from './Linkedin2.png';
+import Twitter2 from './Twitter2.png';
+import Youtube2 from './Youtube2.png';
+import Github2 from './Github2.png';
+import ExternalLink from './ExternalLink.png';
+
+import './SocialIcons.css';
 
 import { Grid } from '@mui/material';
 
 export default function SocialIcons({profile}) {
 
   return(
-    <Grid container>
+    <Grid container sx={{textAlign: 'center', padding: '10px 0px 0px'}}>
 
       <Grid item xs={2} mt="10px">
         <a href={profile.portfolio}>
-          <img size="80px" src={Github}/>
+          <img className='socialIcons' size="80px" src={ExternalLink}/>
         </a>
       </Grid>
       <Grid item xs={2} mt="10px">
         <a href={profile.linkedin}>
-          <img src={LinkedIn}/>
+          <img className='socialIcons' src={Linkedin2}/>
         </a>
       </Grid>
       <Grid item xs={2} mt="10px">
         <a href={profile.instagram}>
-          <img src={Insta}/>
+          <img className='socialIcons' src={Insta2}/>
         </a>
       </Grid>
       <Grid item xs={2} mt="10px">
         <a href={profile.facebook}>
-          <img src={Facebook}/>
+          <img className='socialIcons' src={Facebook2}/>
         </a>
       </Grid>
       <Grid item xs={2} mt="10px">
         <a href={profile.twitter}>
-          <img src={Twitter}/>
+          <img className='socialIcons' src={Twitter2}/>
         </a>
       </Grid>
       <Grid item xs={2} mt="10px">
         <a href={profile.youtube}>
-          <img src={YouTube}/>
+          <img className='socialIcons' src={Youtube2}/>
         </a>
       </Grid>
 

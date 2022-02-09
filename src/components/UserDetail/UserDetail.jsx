@@ -2,17 +2,16 @@ import React, { useEffect } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import SocialIcons from '../SocialIcons/SocialIcons'; 
+import SocialIcons from '../SocialIcons/SocialIcons';
 
 //MUI Stuff
 import { styled } from '@mui/material/styles';
-import { Grid, Switch, Stack, FormGroup, Box, Button, TextField, Typography, ListItemAvatar, Avatar } from '@mui/material';
 
-////
+import { Grid, Switch, Stack, FormControlLabel, FormGroup, Box, Button, TextField, Typography, ListItemAvatar, Avatar } from '@mui/material';
 
-function UserDetail ({profile}){
+function UserDetail({ profile }) {
   const history = useHistory();
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
 
   const user = useSelector((store) => store.user);
   const industries = useSelector((store) => store.industriesReducer);
@@ -36,67 +35,100 @@ function UserDetail ({profile}){
 
   const setSwitch = () => {
     if (profile.availability) {
-      return <Switch 
+      return <Switch
         defaultChecked
         color="secondary"
         inputProps={{ 'aria-label': 'ant design' }} />
     }
     else {
-      return <Switch 
+      return <Switch
         inputProps={{ 'aria-label': 'ant design' }} />
     }
   }
 
-  return(
+  return (
     <Grid container>
       {/* Row 1 */}
-      <Grid item xs={3}/>
-      <Grid item xs={6} mt="10px" align="center">
+      {/* <Grid item xs={3}/> */}
+      <Grid item xs={6} sx={{paddingLeft: '10px'}}>
         <ListItemAvatar>
           <Avatar
-          sx={{ width: 175, height: 175 }}
-          src={profile.photo} />
+            sx={{ width: 175, height: 175 }}
+            src={profile.photo} />
         </ListItemAvatar>
       </Grid>
-      <Grid item xs={3}/>
+      <Grid item xs={6}>
+        <Grid>
+          <Typography variant='h5' sx={{padding: '65px 0px 0px 40px', fontWeight: 'bold'}}>
+            {profile.first_name} {profile.last_name}
+          </Typography>
+        </Grid>
+      </Grid>
+      {/* <Grid item xs={3}/> */}
       {/*  */}
 
       {/* Row 2 */}
-      <Grid item xs={3}/>
+      <Grid item xs={3} />
       <Grid item xs={6} align="center">
         <h3>
-          {profile.first_name} {profile.last_name}
+          {/* {profile.first_name} {profile.last_name} */}
         </h3>
       </Grid>
-      <Grid item xs={3}/>
+      <Grid item xs={3} />
       {/*  */}
 
       {/* Row 2 */}
-      <Grid item xs={.5}/>
+      <Grid item xs={.5} />
       <Grid item xs={4.5}>
         {indusObject[0].industry_name}
       </Grid>
-      <Grid item xs={.5}/>
+      <Grid item xs={.5} />
       <Grid item xs={6} align="right">
-        {profile.location_city}, 
-          {profile.location_state}
+        
+        {profile.location_city + ', ' + profile.location_state}
+
       </Grid>
-      <Grid item xs={.5}/>
+      <Grid item xs={.5} />
       {/*  */}
 
+      <SocialIcons profile={profile} />
+
       {/* Row 3 */}
-      <Grid item xs={.5}/>
-      <Grid item xs={11} mt="15px">
-        <TextField
-        multiline
-        label={`About ${profile.first_name}`}
-        fullWidth
-        value={profile.about_me}/>
+      <Grid item xs={.5} />
+      <Grid item xs={11} >
+        <Typography
+            variant='body2'
+            sx={{
+              display: 'inline-block',
+              margin: '0px 5px',
+              color: 'gray',
+            }}
+          >
+            About {profile.first_name}
+          </Typography>
+        <Box
+          sx={{
+            outline: 'rgb(169,169,169) solid 1px',
+            minHeight: '20vh',
+            width: '82vw',
+            borderRadius: '5px',
+            backgroundColor: 'white'
+          }}
+        >
+          <Typography
+            variant='body1'
+            nowrap
+            sx={{
+              padding: '10px',
+              overflow: 'auto',
+            }}
+          >
+            {profile.about_me}
+          </Typography>
+        </Box>
       </Grid>
-      <Grid item xs={.5}/>      
+      <Grid item xs={.5} />
       {/*  */}
-    
-      <SocialIcons profile={profile}/>
 
       {/* Row 4 */}
       {/* <Grid item xs={.5}/>
@@ -108,7 +140,7 @@ function UserDetail ({profile}){
         <YouTubeIcon/> {profile.youtube}
       </Grid>
       <Grid item xs={.5}/> */}
-      
+
       {/*  */}
 
       {/* Row 5 */}
@@ -121,7 +153,7 @@ function UserDetail ({profile}){
         <InstagramIcon/> {profile.instagram}
       </Grid>
       <Grid item xs={.5}/> */}
-      
+
       {/*  */}
 
       {/* Row 6 */}
@@ -134,39 +166,52 @@ function UserDetail ({profile}){
         <TwitterIcon/> {profile.twitter}
       </Grid>
       <Grid item xs={.5}/>         */}
-      
+
 
       {/* Row 8 */}
-      <Grid item xs={.5}/>
-      <Grid item xs={11}>
+      <Grid item xs={1.5} />
+      <Grid item xs={10}>
         <FormGroup onChange={(event) => setAvailability(event)}>
           <Stack direction="row" spacing={1} alignItems="center">
-            <h4>Show in searches. <br/>
+            <h4>Show in searches. <br />
               Allow meeting/messages.</h4>
             {setSwitch()}
           </Stack>
         </FormGroup>
       </Grid>
-      <Grid item xs={.5}/>
+      <Grid item xs={.5} />
       {/*  */}
-  
+
       {/* Row 9 */}
-      <Grid item xs={.5}/>
-      <Grid item xs={5.25}>
+      <Grid item xs={.5} />
+      <Grid
+        item
+        xs={11}
+        sx={{
+          textAlign: 'center',
+          padding: '5px'
+        }}
+      >
         <Button
           size="small"
           variant="contained"
           onClick={()=> history.push(`/user/edit`)}
+          sx={{
+            color: 'white'
+          }}
         >
-          Edit Profile Info
+          Edit Profile
         </Button>
       </Grid>
-      <Grid item xs={.5}/>
-      <Grid item xs={5.25}>
-        <LogOutButton className="btn" />
-      </Grid>
-      
-      <Grid item xs={.5}/>
+      <Grid item xs={.5} />
+      {/* <Grid item xs={5.25}>
+        <LogOutButton 
+          className="btn"
+          style={{position: 'sticky', top: 'auto', bottom: 0}}
+        />
+      </Grid> */}
+
+      {/* <Grid item xs={.5}/> */}
       {/*  */}
 
     </Grid>

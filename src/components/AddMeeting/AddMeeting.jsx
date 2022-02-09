@@ -5,6 +5,7 @@ import {Box, Button, TextField, Typography} from '@mui/material';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
+import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import { List, ListItem, ListItemAvatar, ListItemText, Avatar, IconButton } from '@mui/material';
 
 function AddMeeting(){
@@ -72,7 +73,7 @@ function AddMeeting(){
         <Button
           onClick={goToProfile}
         >
-          Back
+          <ArrowBackOutlinedIcon sx={{ padding: '10px' }} /> Back
         </Button>
         <Box
           display="flex"
@@ -126,6 +127,9 @@ function AddMeeting(){
             placeholder="Add a Title"
             value={meetingTitle}
             onChange={handleSetMeetingTitle}
+            sx={{
+              backgroundColor: 'white'
+            }}
           />
         </Box>
         <Box
@@ -139,6 +143,9 @@ function AddMeeting(){
             placeholder="Add a Location"
             value={location}
             onChange={handleSetLocation}
+            sx={{
+              backgroundColor: 'white'
+            }}
           />
         </Box>
         <Box
@@ -152,6 +159,9 @@ function AddMeeting(){
             placeholder="Add a Summary"
             value={summary}
             onChange={handleSummary}
+            sx={{
+              backgroundColor: 'white'
+            }}
           />
         </Box>
         <Box
@@ -165,7 +175,11 @@ function AddMeeting(){
               label="Date&Time of Meeting"
               value={date}
               onChange={handleSetDate}
-              renderInput={(params) => <TextField {...params} />}
+              renderInput={(params) => 
+                <TextField 
+                  {...params} 
+                  sx={{backgroundColor: 'white'}} 
+                />}
             />
         </Box>
         <Box
@@ -178,6 +192,9 @@ function AddMeeting(){
           <Button
             variant="contained"
             onClick={addMeeting}
+            sx={{
+              color: 'white'
+            }}
           >
             Schedule
           </Button>
