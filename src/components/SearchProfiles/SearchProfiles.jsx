@@ -73,7 +73,7 @@ function SearchProfiles(props) {
   // };
 
   const handleCardClick = (profile) => {
-    history.push(`/searchProfiles/${profile.id}`)
+    history.push(`/searchProfiles/${profile.user_id}`)
   };
 
   const ifNoSearch = () => {
