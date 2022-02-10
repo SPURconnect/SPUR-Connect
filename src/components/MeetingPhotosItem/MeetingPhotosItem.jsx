@@ -1,14 +1,12 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
-import { Box, Button, Card, CardActionArea, CardMedia, CardContent, CardActions, Typography, List, ListItem, ListItemText, MenuItem, Menu} from '@mui/material';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Box, Card, CardActionArea, CardMedia, MenuItem, Menu} from '@mui/material';
+import toast from 'react-hot-toast';
 
 
 function MeetingPhotosItem({photo}) {
 
-  const history = useHistory();
   const dispatch = useDispatch();
-  const params = useParams();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -19,11 +17,11 @@ function MeetingPhotosItem({photo}) {
   };
 
   function handleDeleteButton(){
-    //TODO: Sweet Alert?????
     dispatch({
       type: 'DELETE_PHOTO',
       payload: {id: photo.id}
     })
+    toast.success(`Photo deleted!`);
     handleClose();
   }
 
