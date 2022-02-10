@@ -47,7 +47,7 @@ function MeetingPhotosItem({photo}) {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
             component="img"
-            height="165"
+            height="140"
             image={photo.image_url}
             alt="Open Full Size Image"
             onClick={handleClick}

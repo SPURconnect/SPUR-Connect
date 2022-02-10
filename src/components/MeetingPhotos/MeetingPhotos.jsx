@@ -73,7 +73,7 @@ function MeetingPhotos() {
           showPreviewsInDropzone={false}
           useChipsForPreview={true}
           filesLimit={1}
-          previewGridProps={{container: { spacing: 'center', direction: 'row' }}}
+          previewGridProps={{container: { direction: 'row' }}}
           previewChipProps={{classes: { root: classes.previewChip } }}
           acceptedFiles={['image/*']}
           cancelButtonText={"cancel"}
@@ -87,7 +87,7 @@ function MeetingPhotos() {
         }}
       />
       </Box>
-      <Grid container maxHeight="88%" sx={{mt: 2}}>
+      <Grid container spacing={1} maxHeight="88%" mt={2} sx={{padding: '10px'}}>
       {photos.map((photo) =>{
         return(
           <Grid item xs={6} key={photo.id}>
