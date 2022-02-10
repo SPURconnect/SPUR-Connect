@@ -4,6 +4,8 @@ import TextField from '@mui/material/TextField'
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
+import { Link } from 'react-router-dom';
+import { Button, Input } from '@mui/material';
 
 
 function RegisterForm() {
@@ -20,9 +22,7 @@ function RegisterForm() {
   const industriesReducer = useSelector((store) => store.industriesReducer);
   const dispatch = useDispatch();
 
-  const registerUser = (event) => {
-    event.preventDefault();
-
+  const registerUser = () => {
     dispatch({
       type: 'REGISTER',
       payload: {
@@ -32,13 +32,16 @@ function RegisterForm() {
         location_city: city,
         location_state: state,
         location_zip: zip,
-        industry_id:industry,
+        industry_id: industry,
         first_name: firstName,
         last_name: lastName
       }
     });
+    dispatch({
+      type: 'SET_WHERE',
+      payload: 'user'
+    });
   }; // end registerUser
-
 
   useEffect(() => {
     dispatch({ type: 'FETCH_INDUSTRIES' })
@@ -50,9 +53,9 @@ function RegisterForm() {
   };
 
   return (
-    <form className="formPanel" onSubmit={registerUser}>
+    <div className="formPanelRegister">
       <center>
-        <h2>Register</h2>
+        <h2 style={{ marginTop: '0px', color: '#2C373A' }}>Register</h2>
         {errors.registrationMessage && (
           <h3 className="alert" role="alert">
             {errors.registrationMessage}
@@ -64,6 +67,9 @@ function RegisterForm() {
               label="Username"
               defaultValue="Default Value"
               value={username}
+              sx={{
+                backgroundColor: 'white'
+              }}
               onChange={(event) => setUsername(event.target.value)}
             />
           </label>
@@ -71,8 +77,12 @@ function RegisterForm() {
         <div>
           <label>
             <TextField
-              sx={{ mt: 1 }}
+              sx={{
+                mt: 1,
+                backgroundColor: 'white'
+              }}
               label="Password"
+              type='password'
               defaultValue="Default Value"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
@@ -84,7 +94,10 @@ function RegisterForm() {
             <TextField
               label="First Name"
               defaultValue="Default Value"
-              sx={{ mt: 1 }}
+              sx={{
+                mt: 1,
+                backgroundColor: 'white'
+              }}
               value={firstName}
               onChange={(event) => setFirstName(event.target.value)}
             />
@@ -95,7 +108,10 @@ function RegisterForm() {
             <TextField
               label="Last Name"
               defaultValue="Default Value"
-              sx={{ mt: 1}}
+              sx={{
+                mt: 1,
+                backgroundColor: 'white'
+              }}
               value={lastName}
               onChange={(event) => setLastName(event.target.value)}
             />
@@ -106,7 +122,10 @@ function RegisterForm() {
             <TextField
               label="Email"
               defaultValue="Default Value"
-              sx={{ mt: 1 }}
+              sx={{
+                mt: 1,
+                backgroundColor: 'white'
+              }}
               value={email}
               onChange={(event) => setEmail(event.target.value)}
             />
@@ -117,7 +136,10 @@ function RegisterForm() {
             <TextField
               label="City"
               defaultValue="Default Value"
-              sx={{ mt: 1 }}
+              sx={{
+                mt: 1,
+                backgroundColor: 'white'
+              }}
               value={city}
               onChange={(event) => setCity(event.target.value)}
             />
@@ -128,7 +150,10 @@ function RegisterForm() {
             <TextField
               label="State"
               defaultValue="Default Value"
-              sx={{ mt: 1 }}
+              sx={{
+                mt: 1,
+                backgroundColor: 'white'
+              }}
               value={state}
               onChange={(event) => setState(event.target.value)}
             />
@@ -140,7 +165,10 @@ function RegisterForm() {
               label="ZIP"
               defaultValue="Default Value"
               value={zip}
-              sx={{ mt: 1 }}
+              sx={{
+                mt: 1,
+                backgroundColor: 'white'
+              }}
               onChange={(event) => setZip(event.target.value)}
             />
           </label>
@@ -178,10 +206,28 @@ function RegisterForm() {
           </label>
         </div>
         <div>
-          <input className="btn" type="submit" name="submit" value="Register" />
-        </div>
+          <Button
+            variant='contained'
+            sx={{
+              color: 'white',
+              margin: '0px 5px 15px',
+              display: 'block'
+            }}
+            onClick={() => registerUser()}
+          >
+            Register
+          </Button>        </div>
+        <Link
+          style={{
+            color: '#F26142',
+            fontSize: '14px'
+          }}
+          to={'/login'}
+        >
+          Already have an account? Login here!
+        </Link>
       </center>
-    </form>
+    </div>
   );
 }
 

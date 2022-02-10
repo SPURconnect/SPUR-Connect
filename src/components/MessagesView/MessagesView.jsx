@@ -56,12 +56,12 @@ export default function MessagesView() {
                       aria-label="profile image"
                       onClick={(e) => {e.stopPropagation(); history.push(`/searchProfiles/${convo.uniqUser}`)}}
                       src={profiles.filter(prof => 
-                            (prof.id == convo.uniqUser)).map(profile => {
+                            (prof.user_id == convo.uniqUser)).map(profile => {
                               return `${profile.photo}`
                             })}
                     />
                   }
-                  title={profiles.filter(prof => (prof.id == convo.uniqUser)).map(profile => {
+                  title={profiles.filter(prof => (prof.user_id == convo.uniqUser)).map(profile => {
                     return `${profile.first_name} ${profile.last_name}`
                   })}
                   subheader={convo.messages[convo.messages.length - 1].content.slice(0, 35)}

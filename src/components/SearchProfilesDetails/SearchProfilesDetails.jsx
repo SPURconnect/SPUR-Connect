@@ -94,7 +94,7 @@ function SearchProfilesDetails() {
         <Grid item xs={.5} />
 
         <Grid item xs={5.25} mt="15px" align="center">
-          <MessageSendModal buttonText="Say Hello" sendTo={params} />
+          <MessageSendModal buttonText="Say Hello" sendTo={params.id} />
         </Grid>
 
         <Grid item xs={.5} />
