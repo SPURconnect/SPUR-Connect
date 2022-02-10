@@ -1,27 +1,37 @@
 import { TableBody, TableRow, TableCell, TableContainer, Grid, Toolbar, Typography } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import { Box } from '@mui/system';
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import MeetingHistoryItem from '../MeetingHistoryItem/MeetingHistoryItem';
 
 function MeetingHistory() {
   const meetings = useSelector((store) => store.meetings);
+  const dispatch = useDispatch();
+
+  const locationToSend = window.location.hash.replace('#/', '');
+
+  useEffect(() => {
+    dispatch({
+      type: 'SET_WHERE',
+      payload: locationToSend
+    })
+  }, [dispatch]);
 
   return (
     <>
-      <Box
+      {/* <Box
+        color="info"
         sx={{
           position: 'fixed',
           width: '100%',
           height: '7vh',
-          backgroundColor: 'grey',
           padding: '9px 0px',
           boxShadow: '0px 3px 5px rgba(0, 0, 0, .3)'
         }}
         zIndex={1500}
-      >
-        <Typography
+      > */}
+        {/* <Typography
           variant='h4'
           sx={{
             textAlign: 'center',
@@ -30,14 +40,20 @@ function MeetingHistory() {
           }}
         >
           Meeting History
-        </Typography>
-      </Box>
+        </Typography> */}
+      {/* </Box> */}
 
       {/* Grid Body Container */}
-      <Grid container maxHeight="85%">
+      <Grid 
+        container 
+        maxHeight="85%" 
+        sx={{
+          paddingTop: '2vh'
+        }}
+      >
         <Grid item xs={.5} />
         <Grid item xs={11}>
-          <Toolbar sx={{ height: '9vh' }} />
+          {/* <Toolbar sx={{ height: '10px' }} /> */}
 
           {meetings?.length > 0 ?
             meetings?.map((item) => {

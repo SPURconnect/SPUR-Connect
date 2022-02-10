@@ -13,7 +13,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   
     .then((dbRes) => {
       res.send(dbRes.rows);
-      console.log('In get meeting router', dbRes.rows);
+      // console.log('In get meeting router', dbRes.rows);
     })
     .catch(dbErr => {
       console.log('/meetings GET error:', dbErr);
@@ -31,7 +31,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   
     .then((dbRes) => {
       res.send(dbRes.rows);
-      console.log('In get meeting router', dbRes.rows);
+      // console.log('In get meeting router', dbRes.rows);
     })
     .catch(dbErr => {
       console.log('/meetings GET error:', dbErr);

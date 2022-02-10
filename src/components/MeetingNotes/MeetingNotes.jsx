@@ -90,7 +90,12 @@ function MeetingNotes() {
           placeholder='Notes'
           value={notes.notes || ''}
           onChange={handleNoteChange}
-          sx={{ mt: 1, width: 250, }} //Change width of TextField here.
+          sx={{ mt: 1, width: 250, backgroundColor: 'white' }} //Change width of TextField here.
+          inputProps={{
+            maxlength: 1000
+          }}
+          FormHelperTextProps={{ style: { backgroundColor: '#EBEEEE', margin: 0, padding: '5px' }}}
+          helperText={notes.notes?.length > 0 ? `${notes.notes?.length}/1000` : '0/1000'}
         />
       </Box>
       <Box
@@ -99,16 +104,16 @@ function MeetingNotes() {
         alignItems="center"
       >
         <Button
-          variant=""
           onClick={handleClearNotes}
           sx={{ mt: 2, mr: 2 }}
+          color='error'
         >
           Clear
         </Button>
         <Button //TODO: Add sweetalerts or something to notify changes saved.
           variant="contained"
           onClick={handleSaveNotes}
-          sx={{ mt: 2, ml: 10 }}
+          sx={{ mt: 2, ml: 10, color: 'white' }}
         >
           Save
         </Button>

@@ -23,9 +23,6 @@ searchProfilesRouter.get('/:input', (req, res) => {
         OR  (UPPER("industry_name") LIKE UPPER($1) AND "availability" = TRUE)
         OR  (CONCAT (UPPER("first_name"), ' ', UPPER("last_name")) LIKE UPPER($1) AND "availability" = TRUE)
         OR  (CONCAT (UPPER("location_city"), ', ', UPPER("location_state")) LIKE UPPER($1) AND "availability" = TRUE);
-        
-
-
     `;
     const queryValues = [`%${req.params.input}%`];
     pool.query(query, queryValues)

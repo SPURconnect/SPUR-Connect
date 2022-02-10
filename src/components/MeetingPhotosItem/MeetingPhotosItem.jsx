@@ -53,6 +53,7 @@ function MeetingPhotosItem({photo}) {
             onClick={handleClick}
           />
         </CardActionArea>
+
       </Card>
       <Menu
         id="demo-positioned-menu"

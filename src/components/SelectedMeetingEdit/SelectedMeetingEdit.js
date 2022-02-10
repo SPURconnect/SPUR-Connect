@@ -2,26 +2,25 @@ import * as React from 'react';
 import { useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { Box, Button, Stack, TextField, Typography, IconButton } from '@mui/material';
+import { Box, Button, Stack, TextField, Typography, IconButton, InputAdornment, Grid } from '@mui/material';
 import StaticDateRangePicker from '@mui/lab/StaticDateRangePicker';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
 import EditIcon from '@mui/icons-material/Edit';
 import MeetingNavBar from '../MeetingNavBar/MeetingNavBar';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import EventIcon from '@mui/icons-material/Event';
 
 
 
 function SelectedMeetingEdit() {
-
   const history = useHistory();
   const dispatch = useDispatch();
   const params = useParams();
   const meetings = useSelector(store => store.meetings);
   const meetingDetailsReducer = useSelector(store => store.meetingDetailsReducer);
   const [date, setDate] = useState(new Date()); 
-
-
 
   useEffect(() => {
     dispatch({
@@ -30,7 +29,6 @@ function SelectedMeetingEdit() {
     })
   }, [params.id]);
 
-  
   function handleSetDate(newValue){
     let cleanTime = newValue.toLocaleTimeString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'})
     console.log(newValue);
@@ -41,12 +39,7 @@ function SelectedMeetingEdit() {
       type: 'SET_DATE',
       payload: cleanTime
     })
-
-
   }; 
-
-
-  
 
   const handleMeetupLocation = (e) => {
     dispatch({
@@ -70,126 +63,137 @@ function SelectedMeetingEdit() {
     })
   }
 
-
-    
-console.log('meeting reducer')
-  const saveMeetingDeatils = (e) => {
-   e.preventDefault();
+  const saveMeetingDetails = (e) => {
+    e.preventDefault();
       dispatch({
         type: 'SAVE_MEETING_DETAILS',
         payload: {
           meetup_location: meetingDetailsReducer.meetup_location,
           date: meetingDetailsReducer.date,
-          summary:meetingDetailsReducer.summary,
+          summary: meetingDetailsReducer.summary,
           id: params.id
         }
-    
       })
       history.push(`/meeting/${params.id}`);
     }
 
-
-   console.log('reducer data', meetings)
-
-  
   return (
-
-    //map this out, research stack
+    
     <div>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
-       <MeetingNavBar prop={'details'} />
-      
-      <div style={{marginTop: '86px'}}>
-     
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Typography
-          variant="h6"
-          component="h6"
-          sx={{mt: 1}}
-        >
-          Meeting Details
-        </Typography>
+        <MeetingNavBar prop={"details"} />
         
-      </Box>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        sx={{mt: 3}}
-      >
-
-          <TextField
-          multiline={true} //Allows changing height of TextField.
-          rows={1} //Change height of TextField here.
-          placeholder='Location'
-          value={meetingDetailsReducer.meetup_location}
-          onChange={handleMeetupLocation}
-          sx={{mt: 1, width: 250,}} //Change width of TextField here.
-        />
-      </Box>
-        
-        <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        sx={{mt: 3}}
-      >
-         <DateTimePicker
-              label="Date&Time of Meeting"
+        <Grid container direction="row" alignItems="center" justifyContent="center">
+          
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            sx={{
+              maxWidth: "100vw",
+              mt: 5,
+              }}
+              >
+            <TextField
+              label={<span style={{ fontSize: 21 }}>Location</span>}
+              value={meetingDetailsReducer.meetup_location || ''}
+              onChange={handleMeetupLocation}
+              sx={{ mt: 5, width: 250, backgroundColor: 'white' }} 
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LocationOnIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            </Box>
+            <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            sx={{
+              maxWidth: "100vw",
+              mt: 5,
+              }}
+              >
+            <DateTimePicker
+              label="Time"
               value={meetingDetailsReducer.date}
               onChange={handleSetDate}
-              renderInput={(params) => <TextField {...params} />}
+              sx={{ mt: 1, width: 250 }}
+              renderInput={(params) => <TextField {...params} sx={{backgroundColor: 'white'}} />}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <EventIcon />
+                  </InputAdornment>
+                ),
+              }}
             />
-     
-    </Box>
-    
-    <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        sx={{mt: 3}}
-      >
-
-         <TextField
-          multiline={true} //Allows changing height of TextField.
-          rows={5} //Change height of TextField here.
-          placeholder='summary'
-          value={meetingDetailsReducer.summary}
-          onChange={handleSummary}
-          sx={{mt: 3, width: 350,}} //Change width of TextField here.
-        /><br></br>
-
-</Box>
-       
-       <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        sx={{mt: 3}}
-      >
-
-
+            </Box>
+            
+            <Box 
+             display="flex"
+             justifyContent="center"
+             alignItems="center"
+             sx={{ mt: 2 }}
+             >
+              <TextField
+                label={
+                  <span style={{ fontSize: 21, textAlign: "center" }}>
+                    Summary
+                  </span>
+                }
+                multiline={true}
+                rows={8}
+                placeholder="Notes"
+                value={meetingDetailsReducer.summary || ""}
+                onChange={handleSummary}
+                sx={{ mt: 1, width: '82vw', mt: 4, backgroundColor: 'white' }}
+                inputProps={{
+                  maxlength: 255
+                }}
+                FormHelperTextProps={{ style: { backgroundColor: '#EBEEEE', margin: 0, padding: '5px' }}}
+                helperText={`${meetingDetailsReducer.summary?.length}/255`}
+              />
+            </Box>
+            </Grid>
+            
+            <Box
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              sx={{ mt: 3 }}
+            >
               <Button
-               variant="contained"
-               style={{ backgroundColor: '#0583f2', color: 'White' }}               
-               onClick={saveMeetingDeatils}>Update</Button>        
-              
-      </Box>
-     </div>
-     
-       
-
-
-       
-     </LocalizationProvider>
-       
-    
+                variant="contained"
+                style={{
+                  color: "White",
+                  marginRight: "5%",
+                }}
+                onClick={saveMeetingDetails}
+              >
+                Update
+              </Button>
+              <Button
+                color='error'
+                variant="contained"
+                style={{
+                  color: "White",
+                  marginLeft: "5%",
+                }}
+                onClick={() => history.push(`/meeting/${params.id}`)}
+              >
+                Cancel
+              </Button>
+          </Box>
+        
+      </LocalizationProvider>
     </div>
-  )
+  );
 };
+
+
 
 export default SelectedMeetingEdit;
