@@ -30,7 +30,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   pool.query(queryText, [req.params.id, req.user.id])
   
     .then((dbRes) => {
-      res.send(dbRes.rows);
+      res.send(dbRes.rows[0]);
       // console.log('In get meeting router', dbRes.rows);
     })
     .catch(dbErr => {
@@ -108,8 +108,7 @@ router.put('/notes/:id', rejectUnauthenticated, (req, res) => {
 router.get('/edit/:id', rejectUnauthenticated, (req, res) => {
   console.log('in meeting router get meeting detail ', req.params.id);
   const sqlText = `
-  SELECT "meetup_location","date","summary"
-  FROM "user_meetings"
+  SELECT * FROM "user_meetings"
       WHERE "id" = $1;
   `;
   const sqlValues = [

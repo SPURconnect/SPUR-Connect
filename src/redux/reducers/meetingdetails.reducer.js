@@ -1,19 +1,9 @@
 const meetingsDetailsReducer = (state = {}, action) => {
     switch (action.type) {
       case 'SET_MEETING_DETAIL':
-        console.log('$$$$ in EditMeetingDetails reducer', action.payload);
-        
-  
-        return {
-
-          meetup_location: action.payload.meetup_location,
-          date: action.payload.date,
-          summary: action.payload.summary  
-         
-        }
-        
+        return action.payload;
       case 'SAVE_MEETING_DETAILS':
-        return action.payload
+        return action.payload;
       case 'SET_MEETINGUP_LOCATION':
         return {...state, meetup_location: action.payload}
       case 'SET_DATE':

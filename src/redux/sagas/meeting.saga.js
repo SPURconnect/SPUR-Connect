@@ -38,7 +38,7 @@ function* getSingleMeeting(action){
       url: `/api/meetings/${action.payload}`,
     })
     yield put({
-      type: 'SET_MEETINGS',
+      type: 'SET_MEETING_DETAIL',
       payload: response.data
     })
   }catch(error){

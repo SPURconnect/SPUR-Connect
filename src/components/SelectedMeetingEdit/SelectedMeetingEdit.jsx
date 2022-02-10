@@ -30,9 +30,13 @@ function SelectedMeetingEdit() {
   }, [params.id]);
 
   function handleSetDate(newValue){
-    let cleanTime = newValue.toLocaleTimeString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'})
-    console.log(newValue);
-    console.log(cleanTime);
+    let cleanTime = newValue.toLocaleTimeString([], 
+      {year: 'numeric', 
+      month: 'numeric', 
+      day: 'numeric', 
+      hour: '2-digit', 
+      minute: '2-digit'}
+    )
     setDate(cleanTime);
     
     dispatch({
@@ -48,14 +52,6 @@ function SelectedMeetingEdit() {
     })
   }
 
-   /* const handleDate = (e) => {
-    dispatch({
-      type: 'SET_DATE',
-      payload: e.target.value
-    })
-   
-  }  */
-
   const handleSummary = (e) => {
     dispatch({
       type: 'SET_SUMMARY',
@@ -63,8 +59,7 @@ function SelectedMeetingEdit() {
     })
   }
 
-  const saveMeetingDetails = (e) => {
-    e.preventDefault();
+  const saveMeetingDetails = () => {
       dispatch({
         type: 'SAVE_MEETING_DETAILS',
         payload: {
@@ -172,7 +167,7 @@ function SelectedMeetingEdit() {
                   color: "White",
                   marginRight: "5%",
                 }}
-                onClick={saveMeetingDetails}
+                onClick={() => saveMeetingDetails()}
               >
                 Update
               </Button>

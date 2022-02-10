@@ -10,7 +10,7 @@ function* fetchMeetingDetails(action){
       method: 'GET',
       url: `/api/meetings/edit/${action.payload}`,
     })
-    console.log(response.data);
+    console.log('********', response.data);
     yield put({
       type: 'SET_MEETING_DETAIL',
       payload: response.data

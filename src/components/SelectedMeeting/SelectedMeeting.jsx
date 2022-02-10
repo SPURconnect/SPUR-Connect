@@ -16,22 +16,21 @@ function SelectedMeeting() {
   const dispatch = useDispatch();
   const params = useParams();
   const meetings = useSelector(store => store.meetings);
+  const singleMeeting = useSelector(store => store.meetingDetailsReducer);
 
   useEffect(() => {
-
     dispatch({
       type: 'GET_SINGLE_MEETING',
       payload: params.id
     })
   }, [params.id]);
 
-  const fixedDate = (params) => {
-    let theDate = params.date;
+  const fixedDate = (meeting) => {
+    let theDate = meeting?.date;
     let cleanTime = new Date(theDate);
     let bestTime = cleanTime.toLocaleTimeString([], { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' });
     return bestTime;
   }
-
 
   return (
 
@@ -40,7 +39,6 @@ function SelectedMeeting() {
       <Box display="flex"
         justifyContent="center"
         alignItems="center">
-        {meetings.map((meetings) => (
           <Typography
             variant="h4"
             component="h4"
@@ -49,11 +47,10 @@ function SelectedMeeting() {
               paddingTop: "10%",
               paddingBottom: "10%",
             }}
-            key={meetings.id}
+            key={singleMeeting.id}
           >
-            {meetings.meeting_title}
+            {singleMeeting.meeting_title}
           </Typography>
-        ))}
       </Box>
 
       <Box
@@ -64,13 +61,12 @@ function SelectedMeeting() {
           maxWidth: "100vw",
         }}
       >
-        {meetings.map((meetings) => (
           <Grid container direction="column" alignItems="center" justifyContent="center">
             <Grid item xs={3}>
               <TextField
                 sx={{ mt: 1, width: 250 }}
                 label={<span style={{ fontSize: 21 }}>Location</span>}
-                defaultValue={meetings.meetup_location}
+                value={singleMeeting.meetup_location}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
@@ -87,7 +83,7 @@ function SelectedMeeting() {
             <TextField
               label={<span style={{ fontSize: 21 }}>Time</span>}
               sx={{ mt: 5, width: 250, fontsize: 30}}
-              defaultValue={fixedDate(meetings)}
+              value={fixedDate(singleMeeting)}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -134,12 +130,11 @@ function SelectedMeeting() {
                   overflow: "auto",
                 }}
               >
-                {meetings.summary}
+                {singleMeeting.summary}
               </Typography>
             </Box>
             </Grid>
           </Grid>
-        ))}
       </Box>
       <Box
         display="flex"
