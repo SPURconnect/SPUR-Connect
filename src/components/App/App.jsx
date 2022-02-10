@@ -45,6 +45,7 @@ function App() {
     dispatch({ type: 'FETCH_USER' });
     dispatch({ type: 'FETCH_ALL_PROFILES' });
     dispatch({ type: 'GET_MEETINGS' });
+    dispatch({ type: 'FETCH_INDUSTRIES'});
     dispatch({
       type: 'SET_WHERE',
       payload: locationToSend

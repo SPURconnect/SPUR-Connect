@@ -27,6 +27,10 @@ function LoginForm() {
       dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }
     history.push('/searchProfiles');
+    dispatch({
+      type: 'SET_WHERE',
+      payload: 'searchProfiles'
+    });
   }; // end login
 
   return (

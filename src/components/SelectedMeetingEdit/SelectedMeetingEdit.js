@@ -15,15 +15,12 @@ import EventIcon from '@mui/icons-material/Event';
 
 
 function SelectedMeetingEdit() {
-
   const history = useHistory();
   const dispatch = useDispatch();
   const params = useParams();
   const meetings = useSelector(store => store.meetings);
   const meetingDetailsReducer = useSelector(store => store.meetingDetailsReducer);
   const [date, setDate] = useState(new Date()); 
-
-
 
   useEffect(() => {
     dispatch({
@@ -32,7 +29,6 @@ function SelectedMeetingEdit() {
     })
   }, [params.id]);
 
-  
   function handleSetDate(newValue){
     let cleanTime = newValue.toLocaleTimeString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'})
     console.log(newValue);
@@ -43,12 +39,7 @@ function SelectedMeetingEdit() {
       type: 'SET_DATE',
       payload: cleanTime
     })
-
-
   }; 
-
-
-  
 
   const handleMeetupLocation = (e) => {
     dispatch({
@@ -72,9 +63,6 @@ function SelectedMeetingEdit() {
     })
   }
 
-
-    
-
   const saveMeetingDetails = (e) => {
     e.preventDefault();
       dispatch({
@@ -82,7 +70,7 @@ function SelectedMeetingEdit() {
         payload: {
           meetup_location: meetingDetailsReducer.meetup_location,
           date: meetingDetailsReducer.date,
-          summary:meetingDetailsReducer.summary,
+          summary: meetingDetailsReducer.summary,
           id: params.id
         }
       })
@@ -103,14 +91,14 @@ function SelectedMeetingEdit() {
             alignItems="center"
             sx={{
               maxWidth: "100vw",
-              mt: 12,
+              mt: 5,
               }}
               >
             <TextField
               label={<span style={{ fontSize: 21 }}>Location</span>}
               value={meetingDetailsReducer.meetup_location || ''}
               onChange={handleMeetupLocation}
-              sx={{ mt: 5, width: 250, }} 
+              sx={{ mt: 5, width: 250, backgroundColor: 'white' }} 
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -134,7 +122,7 @@ function SelectedMeetingEdit() {
               value={meetingDetailsReducer.date}
               onChange={handleSetDate}
               sx={{ mt: 1, width: 250 }}
-              renderInput={(params) => <TextField {...params} />}
+              renderInput={(params) => <TextField {...params} sx={{backgroundColor: 'white'}} />}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -162,7 +150,12 @@ function SelectedMeetingEdit() {
                 placeholder="Notes"
                 value={meetingDetailsReducer.summary || ""}
                 onChange={handleSummary}
-                sx={{ mt: 1, width: '82vw', mt: 4 }}
+                sx={{ mt: 1, width: '82vw', mt: 4, backgroundColor: 'white' }}
+                inputProps={{
+                  maxlength: 255
+                }}
+                FormHelperTextProps={{ style: { backgroundColor: '#EBEEEE', margin: 0, padding: '5px' }}}
+                helperText={`${meetingDetailsReducer.summary?.length}/255`}
               />
             </Box>
             </Grid>
@@ -176,7 +169,6 @@ function SelectedMeetingEdit() {
               <Button
                 variant="contained"
                 style={{
-                  backgroundColor: "#0583f2",
                   color: "White",
                   marginRight: "5%",
                 }}
@@ -185,9 +177,9 @@ function SelectedMeetingEdit() {
                 Update
               </Button>
               <Button
+                color='error'
                 variant="contained"
                 style={{
-                  backgroundColor: "#0583f2",
                   color: "White",
                   marginLeft: "5%",
                 }}

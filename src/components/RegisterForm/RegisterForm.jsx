@@ -155,8 +155,7 @@ function RegisterForm() {
               <NativeSelect
                 sx={{
                   mt: 1,
-                  backgroundColor: "#0583f2",
-                  color: "white",
+                  backgroundColor: "white",
                   padding: "5px 2px 5px 12px",
                 }}
                 defaultValue={30}

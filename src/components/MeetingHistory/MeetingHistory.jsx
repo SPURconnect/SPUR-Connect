@@ -1,12 +1,22 @@
 import { TableBody, TableRow, TableCell, TableContainer, Grid, Toolbar, Typography } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import { Box } from '@mui/system';
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import MeetingHistoryItem from '../MeetingHistoryItem/MeetingHistoryItem';
 
 function MeetingHistory() {
   const meetings = useSelector((store) => store.meetings);
+  const dispatch = useDispatch();
+
+  const locationToSend = window.location.hash.replace('#/', '');
+
+  useEffect(() => {
+    dispatch({
+      type: 'SET_WHERE',
+      payload: locationToSend
+    })
+  }, [dispatch]);
 
   return (
     <>

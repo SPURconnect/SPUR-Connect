@@ -26,19 +26,16 @@ function SearchProfilesDetails() {
 
 
   useEffect(() => {
-
     dispatch({
       type: 'FETCH_SINGLE_PROFILE',
       payload: params.id
     })
   }, [params.id])
 
-
-
   return (
     <>
       <Button
-        onClick={() => history.push('/searchProfiles')}
+        onClick={() => history.goBack()}
       // color='secondary'
       >
         <ArrowBackOutlinedIcon sx={{ padding: '10px' }} /> Back

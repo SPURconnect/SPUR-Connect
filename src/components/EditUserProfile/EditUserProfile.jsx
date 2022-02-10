@@ -15,7 +15,7 @@ import LaunchIcon from '@mui/icons-material/Launch';
 import './EditUserProfile.css'
 
 
-function EditUserProfile (){
+function EditUserProfile() {
 
   const params = useParams();
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ function EditUserProfile (){
   const editProfile = useSelector((store) => store.editProfileReducer);
   const industries = useSelector((store) => store.industriesReducer);
 
-  const [industry, setIndustry] = useState(1);
+  const [industry, setIndustry] = useState(editProfile.industry_id);
 
   useEffect(() => {
     dispatch({
@@ -40,7 +40,7 @@ function EditUserProfile (){
     dispatch({
       type: 'SAGA_EDIT_PROFILE_INFO',
       payload: {
-        email: editProfile.email, 
+        email: editProfile.email,
         first_name: editProfile.first_name,
         last_name: editProfile.last_name,
         photo: editProfile.photo,
@@ -109,7 +109,7 @@ function EditUserProfile (){
       payload: e.target.value
     })
   }
-  
+
   const handleLinkedin = (e) => {
     dispatch({
       type: 'SET_LINKEDIN',
@@ -154,26 +154,26 @@ function EditUserProfile (){
   }
 
   return (
-    <Grid container maxHeight="88%" sx={{padding: '15px 0px'}}>
+    <Grid container maxHeight="88%" sx={{ padding: '15px 0px' }}>
 
       {/* Row 1 */}
-      <Grid item xs={3}/>
-        
-      <Grid item xs={6} mt="10px" align="center" sx={{paddingBottom: '10px'}}>
+      <Grid item xs={3} />
+
+      <Grid item xs={6} mt="10px" align="center" sx={{ paddingBottom: '10px' }}>
         <ListItemAvatar>
-          <Avatar 
-          sx={{ width: 175, height: 175 }}
-          src={editProfile.photo} />
+          <Avatar
+            sx={{ width: 175, height: 175 }}
+            src={editProfile.photo} />
         </ListItemAvatar>
       </Grid>
 
-      <Grid item xs={3}/>
+      <Grid item xs={3} />
       {/*  */}
 
       {/* Row 2 */}
-      <Grid item xs={.5}/>
+      <Grid item xs={.5} />
 
-      <Grid item xs={3} mt="10px">
+      <Grid item xs={3} mt="20px">
         <TextField
           label="First Name"
           placeholder="First Name"
@@ -185,9 +185,9 @@ function EditUserProfile (){
         />
       </Grid>
 
-      <Grid item xs={.5}/>
-        
-      <Grid item xs={4} mt="10px">
+      <Grid item xs={.5} />
+
+      <Grid item xs={4} mt="20px">
         <TextField
           label="Last Name"
           placeholder="Last Name"
@@ -198,8 +198,8 @@ function EditUserProfile (){
           }}
         />
       </Grid>
-      <Grid item xs={.5}/>
-      <Grid item xs={3} sx={{padding: '15px 0px'}}>
+      <Grid item xs={.5} />
+      <Grid item xs={3} mt="10px" sx={{ padding: '15px 0px' }}>
         <Button
           variant="contained"
           onClick={handleUpdateSubmit}
@@ -210,10 +210,10 @@ function EditUserProfile (){
           Update
         </Button>
       </Grid>
-      <Grid item xs={.5}/>
+      <Grid item xs={.5} />
 
       {/* Row 3 */}
-      <Grid item xs={.5}/>
+      <Grid item xs={.5} />
       <Grid item xs={4} mt="20px" size="small">
         <TextField
           select
@@ -224,21 +224,21 @@ function EditUserProfile (){
           onChange={handleIndustry}
           sx={{
             backgroundColor: 'white'
-             }}
-          >
+          }}
+        >
           {industries.map((indus) => {
-                    return <MenuItem 
-                            key={indus.id} 
-                            value={indus.id}
-                          >
-                            {indus.industry_name}
-                          </MenuItem>
-                  })}
+            return <MenuItem
+              key={indus.id}
+              value={indus.id}
+            >
+              {indus.industry_name}
+            </MenuItem>
+          })}
         </TextField>
-      
+
       </Grid>
 
-      <Grid item xs={.5}/>
+      <Grid item xs={.5} />
 
       <Grid item xs={6.5} mt="20px" size="small">
         <TextField
@@ -252,11 +252,11 @@ function EditUserProfile (){
           }}
         />
       </Grid>
-      <Grid item xs={.5}/>
+      <Grid item xs={.5} />
 
       {/* Row 4 */}
-      <Grid item xs={.5}/>
-      
+      <Grid item xs={.5} />
+
       <Grid item xs={4.5} mt="20px" size="small">
         <TextField
           label="City"
@@ -269,7 +269,7 @@ function EditUserProfile (){
         />
       </Grid>
 
-      <Grid item xs={.5}/>
+      <Grid item xs={.5} />
 
       <Grid item xs={3} mt="20px">
         <TextField
@@ -283,7 +283,7 @@ function EditUserProfile (){
         />
       </Grid>
 
-      <Grid item xs={.5}/>
+      <Grid item xs={.5} />
       <Grid item xs={2.5} mt="20px" size="small">
         <TextField
           py="5px"
@@ -296,44 +296,30 @@ function EditUserProfile (){
           }}
         />
       </Grid>
-      
-      <Grid item xs={.5}/>
+
+      <Grid item xs={.5} />
       {/*  */}
 
       {/* Row 5 */}
-      <Grid item xs={.5} mt="20px" size="small"/>
+      <Grid item xs={.5} mt="20px" size="small" />
 
-        <Grid item xs={5.25} mt="20px" size="small">
-          <TextField
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <LaunchIcon />
-                </InputAdornment>
-              ),
-            }}
-            label="Portfolio"
-            placeholder="Portfolio"
-            value={editProfile.portfolio || ''}
-            onChange={handlePortfolio}
-            sx={{
-              backgroundColor: 'white'
-            }}
-          />
-        </Grid>
+      <Grid item xs={5.25} mt="20px" size="small">
+        <TextField
+          label="Portfolio"
+          placeholder="Portfolio"
+          value={editProfile.portfolio || ''}
+          onChange={handlePortfolio}
+          sx={{
+            backgroundColor: 'white'
+          }}
+        />
+      </Grid>
 
-      <Grid item xs={.5} mt="20px" size="small"/>
+      <Grid item xs={.5} mt="20px" size="small" />
 
       <Grid item xs={5.25} mt="20px" size="small">
         <TextField
           label="LinkedIn"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <LinkedInIcon />
-              </InputAdornment>
-            ),
-          }}
           placeholder="Linkedin"
           value={editProfile.linkedin || ''}
           onChange={handleLinkedin}
@@ -343,22 +329,15 @@ function EditUserProfile (){
         />
       </Grid>
 
-      <Grid item xs={.5} mt="20px" size="small"/>
+      <Grid item xs={.5} mt="20px" size="small" />
       {/*  */}
 
       {/* Row 6 */}
-      <Grid item xs={.5} mt="20px" size="small"/>
-      
+      <Grid item xs={.5} mt="20px" size="small" />
+
       <Grid item xs={5.25} mt="20px" size="small">
         <TextField
           label="Twitter"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <TwitterIcon />
-              </InputAdornment>
-            ),
-          }}
           placeholder="Twitter"
           value={editProfile.twitter || ''}
           onChange={handleTwitter}
@@ -368,18 +347,11 @@ function EditUserProfile (){
         />
       </Grid>
 
-      <Grid item xs={.5} mt="20px" size="small"/>
+      <Grid item xs={.5} mt="20px" size="small" />
 
       <Grid item xs={5.25} mt="20px" size="small">
         <TextField
           label="YouTube"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <YouTubeIcon />
-              </InputAdornment>
-            ),
-          }}
           placeholder="YouTube"
           value={editProfile.youtube || ''}
           onChange={handleYouTube}
@@ -389,22 +361,15 @@ function EditUserProfile (){
         />
       </Grid>
 
-      <Grid item xs={.5} mt="20px" size="small"/>
+      <Grid item xs={.5} mt="20px" size="small" />
       {/*  */}
 
       {/* Row 7 */}
-      <Grid item xs={.5} mt="20px" size="small"/>
-      
+      <Grid item xs={.5} mt="20px" size="small" />
+
       <Grid item xs={5.25} mt="20px" size="small">
         <TextField
           label="Facebook"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <FacebookIcon />
-              </InputAdornment>
-            ),
-          }}
           placeholder="Facebook"
           value={editProfile.facebook || ''}
           onChange={handleFacebook}
@@ -414,18 +379,11 @@ function EditUserProfile (){
         />
       </Grid>
 
-      <Grid item xs={.5} mt="20px" size="small"/>
+      <Grid item xs={.5} mt="20px" size="small" />
 
       <Grid item xs={5.25} mt="20px" size="small">
         <TextField
           label="Instagram"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <InstagramIcon />
-              </InputAdornment>
-            ),
-          }}
           placeholder="Instagram"
           value={editProfile.instagram || ''}
           onChange={handleInstagram}
@@ -435,18 +393,18 @@ function EditUserProfile (){
         />
       </Grid>
 
-      <Grid item xs={.5} mt="20px" size="small"/>
+      <Grid item xs={.5} mt="20px" size="small" />
       {/*  */}
 
       {/* Row 7 */}
-      <Grid item xs={.5} mt="20px" size="small"/>
+      <Grid item xs={.5} mt="20px" size="small" />
 
       <Grid item xs={11} mt="20px" size="small">
         <TextField
           fullWidth
           multiline
           label="About Me"
-          value={editProfile.about_me || ''} 
+          value={editProfile.about_me || ''}
           placeholder="About me"
           onChange={handleAboutMe}
           sx={{
@@ -455,11 +413,11 @@ function EditUserProfile (){
         />
       </Grid>
 
-      <Grid item xs={.5} mt="20px" size="small"/>
+      <Grid item xs={.5} mt="20px" size="small" />
       {/*  */}
-          
+
       {/* Row 8 */}
-      <Grid item xs={.5} mt="20px" size="small"/>
+      <Grid item xs={.5} mt="20px" size="small" sx={{ marginLeft: '0px'}} />
       <Grid item xs={7} mt="20px" size="small">
         <TextField
           label="img url"
@@ -467,12 +425,13 @@ function EditUserProfile (){
           value={editProfile.photo || ''}
           onChange={handlePhoto}
           sx={{
-            backgroundColor: 'white'
+            backgroundColor: 'white',
+            width: '100%'
           }}
         />
       </Grid>
-      <Grid item xs={.5} mt="20px" size="small"/>
-      <Grid item xs={3} sx={{padding: '25px 0px'}}>
+      <Grid item xs={.5} mt="20px" size="small" />
+      <Grid item xs={3} sx={{ padding: '25px 10px' }}>
         <Button
           variant="contained"
           onClick={() => history.push("/user")}
@@ -483,7 +442,7 @@ function EditUserProfile (){
           Cancel
         </Button>
       </Grid>
-  </Grid>
+    </Grid>
   );
 }
 

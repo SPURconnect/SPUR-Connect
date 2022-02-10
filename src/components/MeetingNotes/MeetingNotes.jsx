@@ -91,6 +91,11 @@ function MeetingNotes() {
           value={notes.notes || ''}
           onChange={handleNoteChange}
           sx={{ mt: 1, width: 250, backgroundColor: 'white' }} //Change width of TextField here.
+          inputProps={{
+            maxlength: 1000
+          }}
+          FormHelperTextProps={{ style: { backgroundColor: '#EBEEEE', margin: 0, padding: '5px' }}}
+          helperText={notes.notes?.length > 0 ? `${notes.notes?.length}/1000` : '0/1000'}
         />
       </Box>
       <Box
@@ -101,7 +106,7 @@ function MeetingNotes() {
         <Button
           onClick={handleClearNotes}
           sx={{ mt: 2, mr: 2 }}
-          color='secondary'
+          color='error'
         >
           Clear
         </Button>
