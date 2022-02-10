@@ -1,6 +1,7 @@
 import react, {useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 //MUI
 import {TextField, Box, Button, Modal, MenuItem, Grid, Paper, Typography} from '@mui/material';
@@ -21,6 +22,7 @@ const style = {
 export default function MessageSendModal({buttonText, sendTo}) {
   //HOOKS
   const dispatch = useDispatch();
+  const history = useHistory();
   //Modal Stuff
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -41,6 +43,9 @@ export default function MessageSendModal({buttonText, sendTo}) {
       payload: outboundMessage
     })
     setMessage('');
+    toast.success(`Message Sent!`)
+    handleClose();
+    
   };
 
   return (

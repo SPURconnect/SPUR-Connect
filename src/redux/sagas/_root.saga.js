@@ -5,8 +5,7 @@ import registrationSaga from './registration.saga';
 import searchProfilesSaga from './searchProfiles.saga';
 import userSaga from './user.saga';
 import userProfile from './userProfile.saga';
-import messagesGET from './GETmessages.saga';
-import messagesPOST from './POSTmessages.saga';
+import messagesSaga from './messages.saga';
 import meetingSaga from './meeting.saga';
 import editProfileSaga from './editProfile.saga';
 import uploadsSaga from './uploads.saga';
@@ -29,8 +28,7 @@ export default function* rootSaga() {
     editProfileSaga(), // This is to edit the user profiles
     searchProfilesSaga(),
     industriesSaga(),
-    messagesGET(),
-    messagesPOST(),
+    messagesSaga(),
     meetingSaga(), // saga for meetings
     uploadsSaga(), 
     meetingDetailsSaga(),

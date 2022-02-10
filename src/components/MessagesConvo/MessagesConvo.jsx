@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
 import MessagesMsg from '../MessagesMsg/MessagesMsg';
-import MessageSendModal from '../MessageSendModal/MessageSendModal';
+
+
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 
-import { TableContainer, Table, TableBody, Grid, TextField, Button, Box, List } from '@mui/material';
+import { TableContainer, Table, TableBody, Grid, TextField, Button, Box, Typography } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 
 export default function MessagesConvo() {
@@ -49,8 +50,9 @@ export default function MessagesConvo() {
       >
         <ArrowBackOutlinedIcon sx={{ padding: '10px' }} /> Back
       </Button>
-      <Grid container maxHeight="88%">
 
+      {userConvo.length > 0 ?
+        <Grid container maxHeight="88%">
         {/*  */}
         <Grid item xs={.5} />
 
@@ -87,8 +89,13 @@ export default function MessagesConvo() {
         <Grid item xs={.5} />
         {/*  */}
       </Grid>
-
-      {/* <MessageSendModal buttonText={"Reply"} sendTo={convoWithUserID}/> */}
+      :
+      <Typography
+        sx={{ padding: '30vh 20vw', opacity: '60%' }}
+      >
+        There is no conversation to display. Start one below!
+      </Typography>
+      }
 
       <Box
         position="fixed"

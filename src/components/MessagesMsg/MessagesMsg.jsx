@@ -22,7 +22,7 @@ export default function MessagesMsg({timestamp, message, alignment}) {
         </ListItem></List>
         </TableCell>
       </TableRow>
-     
+    
     </>
   )
 }
