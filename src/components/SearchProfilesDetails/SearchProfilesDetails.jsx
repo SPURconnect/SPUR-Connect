@@ -32,13 +32,6 @@ function SearchProfilesDetails() {
     })
   }, [params.id])
 
-  const handleBack = () => {
-    dispatch({
-      type: 'SET_WHERE',
-      // payload: 
-    })
-  }
-
   return (
     <>
       <Button

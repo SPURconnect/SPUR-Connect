@@ -9,8 +9,6 @@ function MeetingHistory() {
   const meetings = useSelector((store) => store.meetings);
   const dispatch = useDispatch();
 
-  console.log('*******************', window.location.hash)
-
   const locationToSend = window.location.hash.replace('#/', '');
 
   useEffect(() => {

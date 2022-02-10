@@ -85,8 +85,6 @@ function SearchProfiles(props) {
     }
   }
 
-  console.log('*******************', window.location.hash)
-
   return (
     <div>
 
