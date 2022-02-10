@@ -7,8 +7,7 @@ import MessagesMenu from '../MessagesMenu/MessagesMenu';
 // import MessagesConvo from '../MessagesConvo/MessagesConvo';
 
 //MUI
-import { Grid, Typography, Card, CardHeader, List, ListItem, ListItemAvatar, ListItemText, Avatar, IconButton } from '@mui/material';
-// import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { Grid, Typography, Card, CardHeader, Avatar, IconButton } from '@mui/material';
 
 ///// End MUI Stuff
 
@@ -27,10 +26,6 @@ export default function MessagesView() {
       type: "FETCH_MESSAGES"
     })
   }, [])
-
-  const stopPropAndNav = (e) => {
-    
-  }
 
   return(
     <>
