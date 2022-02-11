@@ -23,6 +23,7 @@ const style = {
   bgcolor: 'background.paper',
   border: '2px solid #000',
   p: 4,
+  mt: '20%',
 };
 
 function SearchProfiles(props) {
@@ -56,21 +57,9 @@ function SearchProfiles(props) {
         type: 'FETCH_PROFILES',
         payload: event.target.value
       })
-      // dispatch({
-      //   type: 'SORT_BY_INDUSTRY',
-      //   payload: selected
-      // });
     }
   };
 
-  // const handleIndustryChange = (event) =>  {
-  //   event.preventDefault();
-  //   setSelected(event.target.value);
-  //   dispatch({
-  //     type: 'SORT_BY_INDUSTRY',
-  //     payload: event.target.value
-  //   });
-  // };
 
   const handleCardClick = (profile) => {
     history.push(`/searchProfiles/${profile.user_id}`)
@@ -92,7 +81,6 @@ function SearchProfiles(props) {
         display="flex"
         justifyContent="center"
         alignItems="center"
-        // minHeight="0vh"
         sx={{ mt: 3 }}
       >
         <TextField
@@ -124,13 +112,14 @@ function SearchProfiles(props) {
         >
           <Box sx={style}>
             <div className="modalDiv">
-              <h4>Help</h4>
+              <h4>Search Help</h4>
               <p>Search by first or last name:<br />
                 Ex: "John" "Smith"<br /><br />
-                Search by location(city, state, or ZIP):<br />
+                Search by location (city, state, or ZIP):<br />
                 Ex: "Minneapolis" "Minnesota" "55407"<br /><br />
                 Search by industry name:<br />
-                Ex: "Software Engineer" "Agriculture"
+                Ex: "Software Engineer" "Agriculture"<br /><br />
+                *By default all searches are sorted by industry, then last name.
               </p>
             </div>
 
