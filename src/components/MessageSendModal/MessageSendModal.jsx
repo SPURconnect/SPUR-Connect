@@ -77,6 +77,8 @@ export default function MessageSendModal({buttonText, sendTo}) {
             >
               <TextField
                 fullWidth
+                multiline
+                minRows={6}
                 variant="outlined"
                 label="Break the ice!"
                 formlabel="Conversation Starter"
@@ -87,9 +89,9 @@ export default function MessageSendModal({buttonText, sendTo}) {
 
             <Grid item xs={1}/>
 
-            <Grid item xs={6}/>
+            <Grid item xs={3}/>
 
-            <Grid item xs={6}
+            <Grid item align='center' xs={6}
               sx={{marginTop: 2, marginBottom: 2}} 
             >
               <Button 
@@ -100,6 +102,7 @@ export default function MessageSendModal({buttonText, sendTo}) {
               > Send 
               </Button>
             </Grid>
+            <Grid item xs={3}/>
 
           </Grid>
           
