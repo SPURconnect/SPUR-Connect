@@ -24,7 +24,8 @@ export default function MessagesView() {
   useEffect(() => {
     dispatch({
       type: "FETCH_MESSAGES"
-    })
+    });
+    dispatch({ type: 'FETCH_ALL_PROFILES' });
   }, [])
 
   return(
