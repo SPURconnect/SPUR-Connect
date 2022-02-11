@@ -39,7 +39,7 @@ CREATE TABLE "profiles" (
 
 CREATE TABLE "user_messages" (
     "id" SERIAL PRIMARY KEY,
-    "content" VARCHAR (80) NOT NULL,
+    "content" VARCHAR (400) NOT NULL,
     "sender_id" INT REFERENCES "user" (id) ON DELETE CASCADE NOT NULL,
     "recipient_id" INT REFERENCES "user" (id) ON DELETE CASCADE NOT NULL,
     "timestamp" TIMESTAMP WITH TIME ZONE NOT NULL
@@ -155,7 +155,7 @@ VALUES
 ('NPM INSTALL JOKE LULZ', 4, 2, '2022-01-27 02:24:55-06'),
 ('Up late, St Louis is cold.', 2, 5, '2022-01-27 02:24:04-06'),
 ('Try minneapolis, dang.', 5, 2, '2022-01-27 02:24:59-06'),
-('Let''s talk business ideas.', 2, 6, '2022-01-27 02:24:04-06'),
+('Lets talk business ideas.', 2, 6, '2022-01-27 02:24:04-06'),
 ('Okay, livestream gluten free bread cooking app?', 6, 2, '2022-01-27 02:26:22-06'),
 ('You try coming up with a bunch of overtures', 3, 4, '2022-01-27 02:24:04-06'),
 ('I just say ''no, u''', 4, 3, '2022-01-27 02:26:04-06'),
@@ -169,3 +169,23 @@ VALUES
 ('Quantum message sending', 6, 4, '2022-01-27 02:24:15-06'),
 ('Quantum message sending', 5, 6, '2022-01-27 02:24:04-06'),
 ('Quantum message sending', 6, 5, '2022-01-27 02:24:15-06');
+('Doing a survey of new software engineers: What have you done to build your skills in the past two months?', 17, 3, '2022-02-11 02:24:15-06')
+('Doing a survey of new software engineers: What have you done to build your skills in the past two months?', 17, 4, '2022-02-11 02:24:15-06')
+('Doing a survey of new software engineers: What have you done to build your skills in the past two months?', 17, 6, '2022-02-11 02:24:15-06')
+('Doing a survey of new software engineers: What have you done to build your skills in the past two months?', 17, 7, '2022-02-11 02:24:15-06')
+('Doing a survey of new software engineers: What have you done to build your skills in the past two months?', 17, 11, '2022-02-11 02:24:15-06')
+('Doing a survey of new software engineers: What have you done to build your skills in the past two months?', 17, 12, '2022-02-11 02:24:15-06')
+('Doing a survey of new software engineers: What have you done to build your skills in the past two months?', 17, 16, '2022-02-11 02:24:15-06')
+('Doing a survey of new software engineers: What have you done to build your skills in the past two months?', 17, 2, '2022-02-11 02:24:15-06')
+('Doing a survey of new software engineers: What have you done to build your skills in the past two months?', 17, 1, '2022-02-11 02:24:15-06')
+('Doing a survey of new software engineers: What have you done to build your skills in the past two months?', 17, 5, '2022-02-11 02:24:15-06')
+('Built a new project in three.js', 7, 17, '2022-02-12 01:13:15-06')
+('A python web-scraper that collects NFTs', 1, 17, '2022-02-12 01:11:15-06')
+('Built dummy data for a group project!', 4, 17, '2022-02-12 01:35:15-06')
+('I took a new course on legacy PHP', 5, 17, '2022-02-12 01:13:15-06')
+('I studied how to build informational youtube videos ', 11, 17, '2022-02-12 01:13:15-06')
+('I havent done anything! OH no!', 12, 17, '2022-02-12 01:13:15-06')
+('Built a server in my house to host all my projects', 2, 17, '2022-02-12 01:13:15-06')
+('Tackling code challenges in C# to get a sense of the syntax', 3, 17, '2022-02-12 01:13:15-06')
+('Every week a new solo project', 6, 17, '2022-02-12 01:13:15-06')
+('Shell scripting some local automations', 16, 17, '2022-02-12 01:13:15-06')
