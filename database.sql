@@ -73,6 +73,27 @@ VALUES
 ('testUser3', '$2a$10$47ix/4rxZXU5uppu2UtQfuCmB7F1oyFoKuzeOlxpvq62rWaac3C22'),
 ('testUser4', '$2a$10$ttWC3MHHpVYSO1npEPVcMu6G3p8d8y9Cravau9ArZ9ptMfGWzAoLO'),
 ('testUser5', '$2a$10$8hgUv.nEk2jo5C0ghtEBPeabN2RvwHriBsYy02WTfSq7YL2T6doMW');
+('testuser0', '$2a$10$JElypO6zB15H59KVSsc5R.a6k8Y3PS8qlPQ29H79zUbmEjj6dAaom');
+('testUser1', '$2a$10$abmyEv9kcY3wm7CwhIQ9fu8DvwOZnAqDbLybetoHl7N5FzrfaLAPO');
+('testUser2', '$2a$10$cbD7IpSAhKbsVckG3AUh0.SloLK9aM4tIom.W1KfINd1t4p1vyrie');
+('testUser3', '$2a$10$47ix/4rxZXU5uppu2UtQfuCmB7F1oyFoKuzeOlxpvq62rWaac3C22');
+('testUser4', '$2a$10$ttWC3MHHpVYSO1npEPVcMu6G3p8d8y9Cravau9ArZ9ptMfGWzAoLO');
+('testUser5',  '$2a$10$8hgUv.nEk2jo5C0ghtEBPeabN2RvwHriBsYy02WTfSq7YL2T6doMW');
+('spuraccount1', '$2a$10$J0P0SDSiUWGQakF4uhg1jeZMuaBS/zl2IeKwTIlID4q5cNdF5FRIi');
+('spuraccount2', '$2a$10$joK9ZMQ3P8.yceCz7Lowd.Ej2scsHdIMojx/55G5dfV.t0hPjm7Ei');
+('spuraccount3', '$2a$10$BZUm.TtuWJTuH1wxqXEqf..GCWENl21vr2xBxx7h4LLvogkKirXdq');
+('spuraccount4', '$2a$10$gn7g.vygjPagSPYXGIbcqe6EZMlq2IpUbI/bg3Ip4cjXZBajWIODq');
+('spuraccount5', '$2a$10$i7T3b1XpcdWN8EEsMlzh4eOWzhDQA5rPhLiaAWhRjobKj9UC4QNqa');
+('lovejazz1', '$2a$10$r/46mt1V/RL2BKCdGOo5geUkDr6fM.CHWvDYbTB4jAu6xnhfP0z36');
+('lovejazz2', '$2a$10$IuAeaWvQi8Cx77F11kF7.OioogedAKbxyQiNDONSfC/ylr6../4pm');
+('lovejazz3', '$2a$10$C8J/a84uCfzI9oiIzHVgBO9GG5Qh0j4m8JoQTSBVeRTWKniCfWFO2');
+('lovejazz4', '$2a$10$iNl8tbNcBWhQEdKW/Ow4R.L3rOLvAPmax859MGL.sIewW4zV.6ee6');
+('coffeerules1', '$2a$10$B9JOkipxHJxmXtBCKUvEkeHc1rxd5HWrRHBi1Oamamod5E8TUaFqS');
+('coffeerules2', '$2a$10$GwvaI6AciqCi88o/Dxpt7e/rUr.t/CEmU5r./E7hDVb86Kpn1WC2a');
+('coffeerules3', '$2a$10$rvh3lVvO7bUtcDvgWpynXeuCG0YwfTWLmElVgfnp6wXsNObxJ6UUu');
+('coffeerules4', '$2a$10$zpBytjHDpn9h.nDBuN8RoedE477JBnjOEBxccdh79JgKgJru1A50y');
+('coffeerules5', '$2a$10$oRyc0w4Q1S5bSbnuoDaoMuNaQ2rsfWPpMGA/gd7vrTbTl6fnGTzIm');
+
 
 INSERT INTO "industry" ("industry_name") 
 VALUES 
