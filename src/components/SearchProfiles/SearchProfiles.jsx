@@ -78,7 +78,7 @@ function SearchProfiles(props) {
 
   const ifNoSearch = () => {
     if (searchProfilesReducer.length === 0) {
-      return <p className="justBeCentered">There's nothing here!<br /><br /> Try searching for potential connections.</p>
+      return <p className="justBeCentered" style={{padding: '15vh 20vw', opacity: '60%'}}>There's nothing here!<br /><br /> Try searching for potential connections.</p>
     }
     else {
       return;

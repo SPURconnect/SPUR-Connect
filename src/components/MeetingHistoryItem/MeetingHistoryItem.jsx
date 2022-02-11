@@ -78,7 +78,7 @@ function MeetingHistoryItem({ item }) {
       type: 'SET_WHERE',
       payload: 'searchProfiles'
     });
-    history.push(`/searchProfiles/${currentProfile.id}`);
+    history.push(`/searchProfiles/${currentProfile.user_id}`);
     
   }
  
