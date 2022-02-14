@@ -1,15 +1,37 @@
+![License](https://img.shields.io/github/license/https://github.com/SPURconnect/https://github.com/SPURconnect/SPUR-Connect.svg?style=for-the-badge) ![Repo Size](https://img.shields.io/github/languages/code-size/https://github.com/SPURconnect/https://github.com/SPURconnect/SPUR-Connect.svg?style=for-the-badge) ![TOP_LANGUAGE](https://img.shields.io/github/languages/top/https://github.com/SPURconnect/https://github.com/SPURconnect/SPUR-Connect.svg?style=for-the-badge) ![FORKS](https://img.shields.io/github/forks/https://github.com/SPURconnect/https://github.com/SPURconnect/SPUR-Connect.svg?style=for-the-badge&social) ![Stars](https://img.shields.io/github/stars/https://github.com/SPURconnect/https://github.com/SPURconnect/SPUR-Connect.svg?style=for-the-badge)
+    
+# SPUR Connect
 
-# Prime Solo Project Starting Repo
+## Table of Contents
+
+- [Description](#description)
+- [Screenshots](#screenshots)
+- [Built With](#built-with)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Acknowledgements](#acknowledgements)
+- [Contacts](#contacts)
+
+## Description
+
+The purpose of this application is to give a traveling business professional the ability to maximize their time and meetings. With SPUR Connect users can get real time information on who is located near them and open to meetings. This application will make it incredibly easy to message another user, and connect to figure out a time to meet. In a clean, professional, intuitive interface users will be able to schedule meetings, record notes, and upload photos of receipts. 
+
+## Screenshots
+
+<img src="" />## Built With
+
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" height="40px" width="40px" /></a><a href="https://www.heroku.com/"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/heroku/heroku-original.svg" height="40px" width="40px" /></a><a href="https://developer.mozilla.org/en-US/docs/Web/HTML"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" height="40px" width="40px" /></a><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" height="40px" width="40px" /></a><a href="https://material-ui.com/"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/materialui/materialui-original.svg" height="40px" width="40px" /></a><a href="https://nodejs.org/en/"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" height="40px" width="40px" /></a><a href="https://www.postgresql.org/"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" height="40px" width="40px" /></a><a href="https://reactjs.org/"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" height="40px" width="40px" /></a><a href="https://redux.js.org/"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg" height="40px" width="40px" /></a>
+
+## Getting Started
+
+
+
+### Prerequisites
+
 This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
-
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
-
-## Use the Template for This Repository (Don't Clone)
-
-- Don't Fork or Clone. Instead, click the `Use this Template` button, and make a copy to your personal account.
-
-
-## Prerequisites
 
 Before you get started, make sure you have the following software installed on your computer:
 
@@ -17,73 +39,9 @@ Before you get started, make sure you have the following software installed on y
 - [PostrgeSQL](https://www.postgresql.org/)
 - [Nodemon](https://nodemon.io/)
 
-## Create database and table
+Create a new database called `spur_connect` and create the tables needed by running SQL statements from the database.sql file.
 
-Create a new database called `prime_app` and create a `user` table:
-
-```SQL
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
-```
-
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
-
-## Development Setup Instructions
-
-- Run `npm install`
-- Create a `.env` file at the root of the project and paste this line into the file:
-  ```
-  SERVER_SESSION_SECRET=superDuperSecret
-  ```
-  While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm run server`
-- Run `npm run client`
-- Navigate to `localhost:3000`
-
-## Debugging
-
-To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
-
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
-
-Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
-
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
-
-## Testing Routes with Postman
-
-To use Postman with this repo, you will need to set up requests in Postman to register a user and login a user at a minimum.
-
-Keep in mind that once you using the login route, Postman will manage your session cookie for you just like a browser, ensuring it is sent with each subsequent request. If you delete the `localhost` cookie in Postman, it will effectively log you out.
-
-1. Start the server - `npm run server`
-2. Import the sample routes JSON file [v2](./PostmanPrimeSoloRoutesv2.json) by clicking `Import` in Postman. Select the file.
-3. Click `Collections` and `Send` the following three calls in order:
-   1. `POST /api/user/register` registers a new user, see body to change username/password
-   2. `POST /api/user/login` will login a user, see body to change username/password
-   3. `GET /api/user` will get user information, by default it's not very much
-
-After running the login route above, you can try any other route you've created that requires a logged in user!
-
-## Production Build
-
-Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
-
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm start`
-- Navigate to `localhost:5000`
-
-## Lay of the Land
-
-There are a few videos linked below that show a walkthrough the client and sever setup to help acclimatize to the boilerplate. Please take some time to watch the videos in order to get a better understanding of what the boilerplate is like.
-
-- [Initial Set](https://vimeo.com/453297271)
-- [Server Walkthrough](https://vimeo.com/453297212)
-- [Client Walkthrough](https://vimeo.com/453297124)
+If you would like to name your database something else, you will need to change `spur_connect` to the name of your new database name in `server/modules/pool.js`
 
 Directory Structure:
 
@@ -92,30 +50,60 @@ Directory Structure:
 - `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
 - `server/` contains the Express App
 
-This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
+### Installation
 
-- src/components
-  - App/App
-  - Footer/Footer
-  - Nav/Nav
-  - AboutPage/AboutPage
-  - InfoPage/InfoPage
-  - UserPage/UserPage
-  - LoginPage/LoginPage
-  - RegisterPage/RegisterPage
-  - LogOutButton/LogOutButton
-  - ProtectedRoute/ProtectedRoute
+Clone the repository and npm install in the terminal.
+Then in 2 separate terminals, npm run server in one and npm run client in the other.
 
-## Deployment
+## Usage
 
-1. Create a new Heroku project
-1. Link the Heroku project to the project GitHub Repo
-1. Create an Heroku Postgres database
-1. Connect to the Heroku Postgres database from Postico
-1. Create the necessary tables
-1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
-1. In the deploy section, select manual deploy
+If you're a new user, register an account to log in. If you're already registered, log in to your existing account.
 
-## Update Documentation
+Registered users upon registering will be taken to their profile view. On this view you can choose the "Edit Profile" button at the bottom to edit your profile.
 
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
+On the Edit Profile view users can change their profile picture, their social media links, their current location, and fill out an "About Me" section.
+
+Along the bottom of the app is a navigation bar with 4 buttons. When an already registered user logs in they will be taken to the second view on that nav bar, the Search view.
+
+When arriving at the search view, the view is empty and the user is prompted to search for potential connections. At the top right of the view there is an "i" button that shows the user categories they can search by. To the left of that button at the top of the page is the search bar. As the user types in the search bar the page is filled with users and narrowed down as the user keeps typing.
+
+The results from the search are cards showing other user's profile pictures, their industry, and their location. Only users who have their visibility toggled on will be searchable.
+
+Clicking on the cards will take the user to that other user's profile. 
+
+On another user's profile, their information is shown with links to their social media. On the right side there is a "Say Hello" button that can be used to send the user a message. On the left side there is a "Invite to meet" button that can be used to set up a meeting with the user.
+
+Once a message is sent to the other user, it can be seen by selecting the "Messages" view on the bottom nav bar.
+
+On the messages view, the user is shown a history of their messages with other users. On these cards the user can click the profile picture to be taken to that other user's profile, click the drop down menu on the right to show options that go to the other user's profile, or delete the conversation. If the user clicks anywhere else on the card they will be taken to the conversation with the other user.
+
+When in a conversation view, the messages from other users are shown in green and are on the left side of the view. Your own messages are shown on the right side of the view. Timestamps are shown at the bottom of each message. At the bottom of the page a chat box is shown with a send button at the right of it. A back button at the top left of the view will return the user to the message history view.
+
+On another user's profile, when "Invite to Meet" is selected, the user will be taken to  the "Add a meeting" view. On this view, the other user's name and profile picture are shown, with inputs for a meeting title, location for the meeting, a summary of the meeting, and a date and time for the meeting. When finished filling out the details the meeting can be scheduled by selecting "Schedule".
+
+Selecting schedule will take the user to the "Meetings history" view. This view can also be accessed by selecting far left icon "Meetings" on the bottom nav bar. On this view the user can see a history of all of their scheduled and prior meetings.
+
+Each meeting is shown with a card. The other user's profile picture is shown on the card corresponding with their meeting. The title of the meeting is shown as well as a timestamp for when the meeting was scheduled.
+
+Selecting one of the cards shows a dropdown menu for that specific meeting. On the right is a trashcan icon that will delete the meeting. There is also a "Details" button that will take the user to the specific details of that meeting.
+
+When in selected meeting view, a top nav bar is shown for the different views of that meeting. The default view when arriving is the "Details" view. On this page the details of the selected meeting are shown along with the location of the meeting, time of the meeting, and the summary. An "Edit Details" button at the bottom allows the user to change these details. 
+
+At far right of the top nav bar is a camera icon. When selected this will take the user to the "Photos" view for the selected meeting. This view has an "Upload" button that allows the user to drag or select a photo to be uploaded for the meeting. Already selected uploads are shown as thumbnails on the view. When a thumbnail is selected a menu is shown with options to take the user to a full size view of the image, delete the image, or cancel.
+
+Next to the camera icon is a note icon. When selected the user will be taken to the "Notes" page for the selected meeting. This page has a 1000 character limit for any notes the user wants to keep for the meeting. A clear button at the bottom left will clear the notes entirely. A save button at the bottom right will save the notes that are entered.
+
+When finished using the app, a user can go to the profile page by selecting the profile icon on the bottom nav bar at the far left. At the top right of the profile view is a "Log Out" button. This will log them out of the app.
+
+
+## License
+
+<a href="https://choosealicense.com/licenses/mit/"><img src="https://raw.githubusercontent.com/johnturner4004/readme-generator/master/src/components/assets/images/mit.svg" height=40 />MIT License</a>
+
+## Acknowledgements
+
+Thank you to Brandon Hlavka and Kristy Dahlvang for having the SPUR Connect vision. Thank you to the SPUR Connect Prime Digital Academy team who helped make that vision a reality.
+
+## Contacts
+
+<a href="https://www.linkedin.com/in/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>  <a href="mailto:Spurconnect.2022@gmail.com"><img src=https://raw.githubusercontent.com/johnturner4004/readme-generator/master/src/components/assets/images/email_me_button_icon_151852.svg /></a>
