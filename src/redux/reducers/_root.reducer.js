@@ -11,10 +11,8 @@ import editProfileReducer from './editProfile.reducer';
 import notes from './notes.reducer';
 import allProfilesReducer from './allProfiles.reducer';
 import photos from './photos.reducer.js';
-import meetingDetailsReducer from './meetingdetails.reducer';
+import meetingDetailsReducer from './meetingDetails.reducer';
 import singleProfileReducer from './singleProfile.reducer';
-
-
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
