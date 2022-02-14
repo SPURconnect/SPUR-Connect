@@ -3,21 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
 //MUI Stuff
-import { InputAdornment, Grid, MenuItem, Box, Button, TextField, ListItemAvatar, Avatar } from '@mui/material';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import YouTubeIcon from '@mui/icons-material/YouTube';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import LaunchIcon from '@mui/icons-material/Launch';
-
-import './EditUserProfile.css'
-
+import { Grid, MenuItem, Button, TextField, ListItemAvatar, Avatar } from '@mui/material';
 
 function EditUserProfile() {
-
-  const params = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
   const editProfile = useSelector((store) => store.editProfileReducer);
@@ -33,7 +21,6 @@ function EditUserProfile() {
       type: 'FETCH_INDUSTRIES'
     })
   }, [])
-
 
   const handleUpdateSubmit = (e) => {
     e.preventDefault();
@@ -58,7 +45,7 @@ function EditUserProfile() {
         industry_id: industry
       }
     })
-    history.push('/user')
+    history.push('/user');
   }
   const handlePhoto = (e) => {
     dispatch({
