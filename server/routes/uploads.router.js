@@ -4,7 +4,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const cloudinaryUpload = require('../modules/cloudinary-config');
 
-//TODO: Target /:id for selected meeting param.
+// GETs all the meeting uploads based on logged in user id and selected meeting id
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   const sqlText = `
     SELECT * FROM “meeting_uploads”
@@ -20,6 +20,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
+// POSTs a new image to the DB
 router.post('/:id', rejectUnauthenticated, cloudinaryUpload.single('image'), async (req, res) => {
   console.log('req.file:', req.file)
   const imageUrl = req.file.path;
@@ -42,6 +43,7 @@ router.post('/:id', rejectUnauthenticated, cloudinaryUpload.single('image'), asy
     });
 });
 
+// DELETEs selected image from the DB
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
   const sqlText = `
     DELETE FROM "meeting_uploads"

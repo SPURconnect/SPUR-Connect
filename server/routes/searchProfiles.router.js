@@ -2,15 +2,13 @@ const express = require('express');
 const pool = require('../modules/pool');
 const searchProfilesRouter = express.Router();
 
-/**
- * GET route template
- */
+// GET profiles from search based on current input
 searchProfilesRouter.get('/:input', (req, res) => {
+  // checks if the input is empty else does a query
   if (req.params.input === '') {
     return;
   }
   else {
-
     const query = `
     SELECT * FROM "profiles"
     JOIN "industry" 
@@ -37,6 +35,7 @@ searchProfilesRouter.get('/:input', (req, res) => {
   }
 });
 
+// GETs all the profiles to store in the profiles reducer
 searchProfilesRouter.get('/', (req, res) => {
   const query = `
       SELECT * FROM "profiles"`;
@@ -51,6 +50,7 @@ searchProfilesRouter.get('/', (req, res) => {
 }
 );
 
+// GETs a single profile based on id
 searchProfilesRouter.get('/:id', (req, res) => {
   console.log('searchProfilesRouter', req.params.id)
   const query = `
@@ -67,6 +67,5 @@ searchProfilesRouter.get('/:id', (req, res) => {
     })
 }
 );
-
 
 module.exports = searchProfilesRouter;

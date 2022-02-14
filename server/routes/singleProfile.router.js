@@ -2,12 +2,8 @@ const express = require('express');
 const pool = require('../modules/pool');
 const singleProfileRouter = express.Router();
 
-/**
- * GET route template
- */
-
+// GETs single profile
 singleProfileRouter.get('/:id', (req, res) => {
-  console.log('singleProfileRouter', req.params.id)
   const query = `
       SELECT *  FROM "profiles"
       JOIN "industry"
@@ -24,6 +20,5 @@ singleProfileRouter.get('/:id', (req, res) => {
     })
 }
 );
-
 
 module.exports = singleProfileRouter;

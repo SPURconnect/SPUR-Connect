@@ -3,6 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
+// GETs all the meetings associated with the logged in user
 router.get('/', rejectUnauthenticated, (req, res) => {
   const queryText = `
       SELECT * FROM "user_meetings"
@@ -13,7 +14,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   
     .then((dbRes) => {
       res.send(dbRes.rows);
-      // console.log('In get meeting router', dbRes.rows);
     })
     .catch(dbErr => {
       console.log('/meetings GET error:', dbErr);
@@ -21,6 +21,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     });
 });
 
+// GETs single meeting of logged in user based on id
 router.get('/:id', rejectUnauthenticated, (req, res) => {
 
   const queryText = `
@@ -31,7 +32,6 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   
     .then((dbRes) => {
       res.send(dbRes.rows[0]);
-      // console.log('In get meeting router', dbRes.rows);
     })
     .catch(dbErr => {
       console.log('/meetings GET error:', dbErr);
@@ -63,7 +63,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     });
 });
 
-//Get notes for selected meeting.
+// GET notes for selected meeting.
 router.get('/notes/:id', rejectUnauthenticated, (req, res) => {
   const sqlText = `
     SELECT "meeting_notes" FROM "user_meetings"
@@ -82,7 +82,7 @@ router.get('/notes/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
-//Edit selected notes.
+// Edit selected notes.
 router.put('/notes/:id', rejectUnauthenticated, (req, res) => {
   const sqlText = `
     UPDATE "user_meetings" 
@@ -104,7 +104,7 @@ router.put('/notes/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
-//Get meeting details for selected meeting.
+// GET meeting details for selected meeting.
 router.get('/edit/:id', rejectUnauthenticated, (req, res) => {
   console.log('in meeting router get meeting detail ', req.params.id);
   const sqlText = `
@@ -124,7 +124,7 @@ router.get('/edit/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
-
+// Updates selected meeting details
 router.put('/edit/:id', rejectUnauthenticated, (req, res) => {
   const sqlText = `
     UPDATE "user_meetings" 
@@ -146,7 +146,7 @@ router.put('/edit/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
-
+// DELETES selected meeting 
 router.delete('/', rejectUnauthenticated, (req, res) => {
   const sqlText = `
     DELETE FROM "user_meetings"
