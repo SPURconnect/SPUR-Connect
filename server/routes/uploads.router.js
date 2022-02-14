@@ -5,13 +5,13 @@ const router = express.Router();
 const cloudinaryUpload = require('../modules/cloudinary-config');
 
 //TODO: Target /:id for selected meeting param.
-router.get('/:id', rejectUnauthenticated, (req,res) =>{
+router.get('/:id', rejectUnauthenticated, (req, res) => {
   const sqlText = `
-    SELECT * FROM "meeting_uploads"
-    WHERE "meeting_id"=$1;
+    SELECT * FROM “meeting_uploads”
+    WHERE “meeting_id”=$1 AND “user_id”=$2;
   `;
-  pool.query(sqlText, [req.params.id])
-    .then((dbRes) =>{
+  pool.query(sqlText, [req.params.id, req.user.id])
+    .then((dbRes) => {
       res.send(dbRes.rows);
     })
     .catch((dbErr) => {
@@ -33,7 +33,7 @@ router.post('/:id', rejectUnauthenticated, cloudinaryUpload.single('image'), asy
   const sqlValues = ["Placeholder Title", imageUrl, req.params.id, req.user.id];
   pool.query(sqlText, sqlValues)
     .then((dbRes) => {
-      const meetingId = {meeting_id: dbRes.rows[0].meeting_id};
+      const meetingId = { meeting_id: dbRes.rows[0].meeting_id };
       res.send(meetingId);
     })
     .catch((dbErr) => {
@@ -42,7 +42,7 @@ router.post('/:id', rejectUnauthenticated, cloudinaryUpload.single('image'), asy
     });
 });
 
-router.delete('/:id', rejectUnauthenticated, (req, res) =>{
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
   const sqlText = `
     DELETE FROM "meeting_uploads"
     WHERE "id"=$1 AND "user_id"=$2
@@ -50,10 +50,10 @@ router.delete('/:id', rejectUnauthenticated, (req, res) =>{
   `;
   pool.query(sqlText, [req.params.id, req.user.id])
     .then((dbRes) => {
-      const meetingId = {meeting_id: dbRes.rows[0].meeting_id};
+      const meetingId = { meeting_id: dbRes.rows[0].meeting_id };
       res.send(meetingId);
     })
-    .catch((dbErr) =>{
+    .catch((dbErr) => {
       res.sendStatus(500);
     });
 });

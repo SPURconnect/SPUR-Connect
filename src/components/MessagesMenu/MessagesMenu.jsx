@@ -34,7 +34,7 @@ export default function MessagesMenu() {
         }}
       >
         <MenuItem onClick={handleClose}>Go to User</MenuItem>
-        <MenuItem onClick={handleClose}>Delete Convo</MenuItem>
+        <MenuItem disabled>Delete Convo</MenuItem>
       </Menu>
     </div>
   );

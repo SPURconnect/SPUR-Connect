@@ -1,4 +1,3 @@
-
 -- USER is a reserved keyword with Postgres
 -- You must use double quotes in every query that user is in:
 -- ex. SELECT * FROM "user";
@@ -141,9 +140,10 @@ VALUES
 ('Kevin', 'Porter', 'https://images.pexels.com/photos/769772/pexels-photo-769772.jpeg', 'test6@aol.com', 6, 'https://www.facebook.com/', 'https://www.linkedin.com/', 'https://www.twitter.com/', 'https://www.youtube.com/', 'https://www.instagram.com/', 'https://www.github.com', 'Eden Prairie', 55347, 'Minnesota', true, 'I like stuff and other stuff', 29),
 ('Justin', 'Cummings', 'https://i.imgur.com/R9Q3cWu.png', 'test6@aol.com', 1, 'https://www.facebook.com/', 'https://www.linkedin.com/in/justinlcummings/', 'https://www.twitter.com/', '', '', 'https://www.github.com', 'Shawnee', 66203, 'Kansas', true, 'Think of Seth Rogen, now imagine him better looking, taller and longer hair.', 30),
 ('Jerome', 'Horton', 'https://media-exp1.licdn.com/dms/image/C4E03AQE6gAhT50qaNA/profile-displayphoto-shrink_200_200/0/1641672625792?e=1649894400&v=beta&t=r_U4ZVJ4tPERRGsBWw1JchQnbp1H00MQoJkBOy8EqHk', 'test3@aol.com', 1, '', 'https://www.linkedin.com/in/jerome-d-horton/', '', '', 'https://www.instagram.com/', 'https://www.github.com', 'Minneapolis', 91210, 'Minnesota', true,'Food & Wine Connoisseur, lover of Fine Art and Sports. Die-hard Manchester United Fan. Catch me if you can!', 31),
-('Kelsey', 'Brown', 'https://media-exp1.licdn.com/dms/image/D4E35AQHpTp-1p5BuPA/profile-framedphoto-shrink_200_200/0/1643668883250?e=1644703200&v=beta&t=oq_-VMi8c_WVNFqNpPIqIjsVlI29KLDh-9KIdL0lLUw', 'test4@aol.com', 1, 'https://www.facebook.com/kelsey.brown.9809/', 'https://www.linkedin.com/in/kelsey-brown-3a3792a8/', '', '', '', 'https://www.github.com', 'Brooklyn Park', 55444, 'Minnesota', true, 'I love to grow and learn which is why I made the transition from working in education to becoming a software developer. I wanted to develop new skills and I enjoy the daily problem-solving that is involved in development.', 32),
+('Kelsey', 'Brown', 'https://i.imgur.com/x2ZWko5.png', 'test6@aol.com', 1, '', '', '', '', '', 'https://www.github.com', 'Brooklyn Park', 55444, 'Minnesota', true, 'I love to grow and learn which is why I made the transition from working in education to becoming a software developer. I wanted to develop new skills and I enjoy the daily problem-solving that is involved in development.', 32),
 ('Warren', 'O Brien', 'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg', 'test5@aol.com', 1, '', 'https://www.linkedin.com/in/warren-obrien/', 'https://www.twitter.com/', '', '', 'https://www.github.com', 'Eau Claire', 54701, 'Wisconsin', true, 'People-Centered Web Developer and Cheeseburger Connoisseur.',  33),
-('Claire', 'Limesand', 'https://media-exp1.licdn.com/dms/image/D4E35AQHR5b_6-DT1dg/profile-framedphoto-shrink_200_200/0/1641395771338?e=1644703200&v=beta&t=dVGdm_WiLUAiGe-Al7ZRnkAN05J_ypK5pBfeqMwEf64', 'test6@aol.com', 1, '', 'https://www.linkedin.com/in/claire-l-a47b6a225/', '', '', '', 'https://www.github.com', 'Lawrence', 66044, 'Kansas', true, 'I’m a green tea fueled puzzle-solver and self-improver with a commitment to details and deadlines who took a risk and changed careers to pursue a role in tech. I see the opportunity in mistakes and the potential in successes.', 34);
+('Claire', 'Limesand', 'https://i.imgur.com/cBVeL4Z.png', 'test6@aol.com', 1, '', 'https://www.linkedin.com/in/claire-l-a47b6a225/', '', '', '', 'https://www.github.com', 'Lawrence', 66044, 'Kansas', true, 'I’m a green tea fueled puzzle-solver and self-improver with a commitment to details and deadlines who took a risk and changed careers to pursue a role in tech. I see the opportunity in mistakes and the potential in successes.', 34);
+
 
 -- dummy data for meetings
 INSERT INTO "user_meetings" ("summary", "meetup_location", "date", "meeting_title", "user_id", "participant_id")
@@ -236,3 +236,4 @@ VALUES
 ('Tackling code challenges in C# to get a sense of the syntax', 3, 17, '2022-02-12 01:13:15-06'),
 ('Every week a new solo project', 6, 17, '2022-02-12 01:13:15-06'),
 ('Shell scripting some local automations', 16, 17, '2022-02-12 01:13:15-06');
+

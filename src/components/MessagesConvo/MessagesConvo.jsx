@@ -72,6 +72,7 @@ export default function MessagesConvo() {
                       timestamp={msg.timestamp}
                       message={msg.content}
                       alignment={'left'}
+                      user={'sender'}
                     />
                     :
                     <MessagesMsg
@@ -79,6 +80,7 @@ export default function MessagesConvo() {
                       timestamp={msg.timestamp}
                       message={msg.content}
                       alignment={'right'}
+                      user={'receiver'}
                     />
                 })}
               </TableBody>
