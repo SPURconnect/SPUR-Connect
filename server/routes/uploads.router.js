@@ -7,8 +7,8 @@ const cloudinaryUpload = require('../modules/cloudinary-config');
 // GETs all the meeting uploads based on logged in user id and selected meeting id
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   const sqlText = `
-    SELECT * FROM “meeting_uploads”
-    WHERE “meeting_id”=$1 AND “user_id”=$2;
+    SELECT * FROM "meeting_uploads"
+    WHERE "meeting_id"=$1 AND "user_id"=$2;
   `;
   pool.query(sqlText, [req.params.id, req.user.id])
     .then((dbRes) => {
