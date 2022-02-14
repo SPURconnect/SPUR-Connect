@@ -15,7 +15,7 @@
 
 ## Description
 
-SPUR Connect exists to give traveling business professional a tool to maximize their time and availability by easing the process of making new professional connections, cold-messaging, and scheduling last-minute meetings. User can get real time information about currently available users who are located near them and open to setting meetings. With a clean, professional, and intuitive mobile-designed interface - users will be able to schedule meetings, send messages, record notes, and upload photos of receipts for business expenditures.
+SPUR Connect exists to give traveling business professional a tool to maximize their time and availability by easing the process of making new professional connections, cold-messaging, and scheduling last-minute meetings. User can get real time information about currently available users who are located near them and open to setting meetings. With a clean, professional, and intuitive mobile-designed interface users are able to schedule meetings, send messages, record notes, and upload photos of receipts for business expenditures.
 
 ## Screenshots
 
@@ -25,9 +25,10 @@ SPUR Connect exists to give traveling business professional a tool to maximize t
 
 ## Getting Started
 
+ -- Replace with Heroku deployment --
 
 
-### Prerequisites
+### Development Prerequisites
 
 This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
 
@@ -57,11 +58,11 @@ Then in 2 separate terminals, npm run server in one and npm run client in the ot
 
 If you're a new user, register an account to log in. If you're already registered, log in to your existing account.
 
-Registered users upon registering will be taken to their profile view. On this view you can choose the "Edit Profile" button at the bottom to edit your profile.
+Upon first-time registration, users will be taken to their profile view. On this view you can choose the "Edit Profile" button at the bottom to add additional information not required at registration.
 
 On the Edit Profile view users can change their profile picture, their social media links, their current location, and fill out an "About Me" section.
 
-Along the bottom of the app is a navigation bar with 4 buttons. When an already registered user logs in they will be taken to the second view on that nav bar, the Search view.
+Navigation: Along the bottom of the app is a navigation bar with 4 buttons. When an already registered user logs in they will be taken to the second view on that nav bar, the Search view.
 
 When arriving at the search view, the view is empty and the user is prompted to search for potential connections. At the top right of the view there is an "i" button that shows the user categories they can search by. To the left of that button at the top of the page is the search bar. As the user types in the search bar the page is filled with users and narrowed down as the user keeps typing.
 
