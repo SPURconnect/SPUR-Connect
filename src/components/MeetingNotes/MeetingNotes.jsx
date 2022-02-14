@@ -57,7 +57,6 @@ function MeetingNotes() {
     dispatch({
       type: 'CLEAR_EDIT_NOTES',
     })
-    //TODO: Save notes after??
   };
 
   return (
@@ -110,7 +109,7 @@ function MeetingNotes() {
         >
           Clear
         </Button>
-        <Button //TODO: Add sweetalerts or something to notify changes saved.
+        <Button
           variant="contained"
           onClick={handleSaveNotes}
           sx={{ mt: 2, ml: 10, color: 'white' }}
