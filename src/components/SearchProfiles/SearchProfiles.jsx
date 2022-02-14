@@ -5,13 +5,13 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
-import CardContent from '@mui/material/CardContent';
 import Avatar from '@mui/material/Avatar';
 import { grey } from '@mui/material/colors';
 import { TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import InfoIcon from '@mui/icons-material/Info';
-import { InputAdornment, Box, Grid, Typography, Modal, IconButton, Paper } from '@mui/material';
+import { InputAdornment, Box, Grid, Modal, IconButton } from '@mui/material';
+
 import './SearchProfiles.css';
 
 const style = {
@@ -27,12 +27,8 @@ const style = {
 };
 
 function SearchProfiles(props) {
-
-  const store = useSelector((store) => store);
-  const [selected, setSelected] = useState(0);
   const dispatch = useDispatch();
   const searchProfilesReducer = useSelector(store => store.searchProfilesReducer);
-  const industriesReducer = useSelector(store => store.industriesReducer);
   const user = useSelector(store => store.user);
   const history = useHistory();
   const [open, setOpen] = useState(false);
@@ -60,14 +56,14 @@ function SearchProfiles(props) {
     }
   };
 
-
   const handleCardClick = (profile) => {
     history.push(`/searchProfiles/${profile.user_id}`)
   };
 
   const ifNoSearch = () => {
     if (searchProfilesReducer.length === 0) {
-      return <p className="justBeCentered" style={{padding: '15vh 20vw', opacity: '60%'}}>There's nothing here!<br /><br /> Try searching for potential connections.</p>
+      return <p className="justBeCentered" 
+        style={{ padding: '15vh 20vw', opacity: '60%' }}>There's nothing here!<br /><br /> Try searching for potential connections.</p>
     }
     else {
       return;
@@ -76,7 +72,6 @@ function SearchProfiles(props) {
 
   return (
     <div>
-
       <Box
         display="flex"
         justifyContent="center"
@@ -103,7 +98,9 @@ function SearchProfiles(props) {
           color="primary"
           size="small"
           onClick={handleOpen}
-        ><InfoIcon /></IconButton>
+        >
+          <InfoIcon />
+        </IconButton>
         <Modal
           open={open}
           onClose={handleClose}
@@ -126,14 +123,6 @@ function SearchProfiles(props) {
           </Box>
         </Modal>
       </Box>
-      {/* <select controlled value={selected} onChange={(event) => handleIndustryChange(event)}>
-        <option value={0}>Filter By Industry</option>
-        {industriesReducer.map((industry) =>  {
-            return  (
-              <option key={industry.id} value={industry.id}>{industry.industry_name}</option>
-            )
-        })}
-      </select> */}
 
       {ifNoSearch()}
 
