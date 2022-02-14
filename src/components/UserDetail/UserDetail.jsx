@@ -1,13 +1,20 @@
 import React, { useEffect } from 'react';
-import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import SocialIcons from '../SocialIcons/SocialIcons';
 
 //MUI Stuff
-import { styled } from '@mui/material/styles';
-
-import { Grid, Switch, Stack, FormControlLabel, FormGroup, Box, Button, TextField, Typography, ListItemAvatar, Avatar } from '@mui/material';
+import {
+  Grid,
+  Switch,
+  Stack,
+  FormGroup,
+  Box,
+  Button,
+  Typography,
+  ListItemAvatar,
+  Avatar
+} from '@mui/material';
 
 function UserDetail({ profile }) {
   const history = useHistory();
@@ -50,7 +57,7 @@ function UserDetail({ profile }) {
     <Grid container justifyContent='center' sx={{ padding: '10px 0px 0px' }}>
       {/* Row 1 */}
       {/* <Grid item xs={3}/> */}
-      <Grid item xs={6} sx={{paddingLeft: '10px'}}>
+      <Grid item xs={6} sx={{ paddingLeft: '10px', paddingBottom: '20px' }}>
         <ListItemAvatar>
           <Avatar
             sx={{ width: 175, height: 175 }}
@@ -59,32 +66,21 @@ function UserDetail({ profile }) {
       </Grid>
       <Grid item xs={6}>
         <Grid>
-          <Typography variant='h5' sx={{padding: '65px 0px 0px 40px', fontWeight: 'bold'}}>
+          <Typography variant='h5' sx={{ padding: '65px 0px 0px 40px', fontWeight: 'bold' }}>
             {profile.first_name} {profile.last_name}
           </Typography>
         </Grid>
       </Grid>
-      {/* <Grid item xs={3}/> */}
-      {/*  */}
-
-      {/* Row 2 */}
-      <Grid item xs={3} />
-      <Grid item xs={6} align="center">
-        <h3>
-          {/* {profile.first_name} {profile.last_name} */}
-        </h3>
-      </Grid>
-      <Grid item xs={3} />
       {/*  */}
 
       {/* Row 2 */}
       <Grid item xs={.5} />
-      <Grid item xs={4.5} sx={{paddingLeft: '10px'}}>
+      <Grid item xs={4.5} sx={{ paddingLeft: '10px' }}>
         {indusObject[0]?.industry_name}
       </Grid>
       <Grid item xs={.5} />
-      <Grid item xs={6} sx={{margin: 'auto'}}>
-        
+      <Grid item xs={6} sx={{ margin: 'auto' }}>
+
         {profile.location_city + ', ' + profile.location_state}
 
       </Grid>
@@ -97,15 +93,15 @@ function UserDetail({ profile }) {
       <Grid item xs={.5} />
       <Grid item xs={11} >
         <Typography
-            variant='body2'
-            sx={{
-              display: 'inline-block',
-              margin: '0px 5px',
-              color: 'gray',
-            }}
-          >
-            About {profile.first_name}
-          </Typography>
+          variant='body2'
+          sx={{
+            display: 'inline-block',
+            margin: '0px 5px',
+            color: 'gray',
+          }}
+        >
+          About {profile.first_name}
+        </Typography>
         <Box
           sx={{
             outline: 'rgb(169,169,169) solid 1px',
@@ -131,44 +127,6 @@ function UserDetail({ profile }) {
       {/*  */}
 
       {/* Row 4 */}
-      {/* <Grid item xs={.5}/>
-      <Grid item xs={5.25} mt="15px">
-        <GitHubIcon/> {profile.portfolio}
-      </Grid>
-      <Grid item xs={.5}/>
-      <Grid item xs={5.25} mt="15px">
-        <YouTubeIcon/> {profile.youtube}
-      </Grid>
-      <Grid item xs={.5}/> */}
-
-      {/*  */}
-
-      {/* Row 5 */}
-      {/* <Grid item xs={.5}/>
-      <Grid item xs={5.25} mt="15px">
-        <FacebookIcon/> {profile.facebook}
-      </Grid>
-      <Grid item xs={.5}/>
-      <Grid item xs={5.25} mt="15px">
-        <InstagramIcon/> {profile.instagram}
-      </Grid>
-      <Grid item xs={.5}/> */}
-
-      {/*  */}
-
-      {/* Row 6 */}
-      {/* <Grid item xs={.5}/>
-      <Grid item xs={5.25} mt="15px">
-        <LinkedInIcon/> {profile.linkedin}
-      </Grid>
-      <Grid item xs={.5}/>
-      <Grid item xs={5.25} mt="15px">
-        <TwitterIcon/> {profile.twitter}
-      </Grid>
-      <Grid item xs={.5}/>         */}
-
-
-      {/* Row 8 */}
       <Grid item xs={1.5} />
       <Grid item xs={10}>
         <FormGroup onChange={(event) => setAvailability(event)}>
@@ -182,7 +140,7 @@ function UserDetail({ profile }) {
       <Grid item xs={.5} />
       {/*  */}
 
-      {/* Row 9 */}
+      {/* Row 5 */}
       <Grid item xs={.5} />
       <Grid
         item
@@ -195,7 +153,7 @@ function UserDetail({ profile }) {
         <Button
           size="small"
           variant="contained"
-          onClick={()=> history.push(`/user/edit`)}
+          onClick={() => history.push(`/user/edit`)}
           sx={{
             color: 'white'
           }}
@@ -204,14 +162,6 @@ function UserDetail({ profile }) {
         </Button>
       </Grid>
       <Grid item xs={.5} />
-      {/* <Grid item xs={5.25}>
-        <LogOutButton 
-          className="btn"
-          style={{position: 'sticky', top: 'auto', bottom: 0}}
-        />
-      </Grid> */}
-
-      {/* <Grid item xs={.5}/> */}
       {/*  */}
 
     </Grid>
