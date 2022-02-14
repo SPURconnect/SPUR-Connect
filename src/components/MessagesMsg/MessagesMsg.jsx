@@ -15,7 +15,17 @@ export default function MessagesMsg({ timestamp, message, alignment, user }) {
           >
             <List><ListItem>
               <ListItemText
-                sx={{ mx: 0, my: 0, paddingx: 0, paddingy: 0 }}
+                sx={{
+                  mx: 0,
+                  my: 0,
+                  paddingx: 0,
+                  paddingy: 0,
+                  marginLeft: '15%',
+                  border: '2px solid rgb(133,162,179)',
+                  backgroundColor: 'rgb(184,199,209, 0.5)',
+                  borderRadius: '15px',
+                  padding: "10px",
+                }}
                 align={alignment}
                 primary={message}
                 secondary={timestamp.slice(0, 10)}
@@ -38,8 +48,8 @@ export default function MessagesMsg({ timestamp, message, alignment, user }) {
                   my: 0,
                   paddingx: 0,
                   paddingy: 0,
-                  border: '2px solid lightGreen',
-                  backgroundColor: 'lightGreen',
+                  border: '2px solid rgb(242,97,66)',
+                  backgroundColor: 'rgb(242,97,66, 0.25)',
                   borderRadius: '15px',
                   padding: "10px",
                   width: '75%'
