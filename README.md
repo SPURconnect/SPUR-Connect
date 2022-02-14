@@ -1,4 +1,5 @@
- 
+![License](https://img.shields.io/github/license/https://github.com/SPURconnect/SPUR-Connect.svg?style=for-the-badge) ![Repo Size](https://img.shields.io/github/languages/code-size/https://github.com/SPURconnect/SPUR-Connect.svg?style=for-the-badge) ![TOP_LANGUAGE](https://img.shields.io/github/languages/top/https://github.com/SPURconnect/SPUR-Connect.svg?style=for-the-badge) ![FORKS](https://img.shields.io/github/forks/https://github.com/SPURconnect/SPUR-Connect.svg?style=for-the-badge&social) ![Stars](https://img.shields.io/github/stars/https://github.com/SPURconnect/SPUR-Connect.svg?style=for-the-badge)
+
 # SPUR Connect
 
 ## Table of Contents
