@@ -1,5 +1,4 @@
-![License](https://img.shields.io/github/license/https://github.com/SPURconnect/https://github.com/SPURconnect/SPUR-Connect.svg?style=for-the-badge) ![Repo Size](https://img.shields.io/github/languages/code-size/https://github.com/SPURconnect/https://github.com/SPURconnect/SPUR-Connect.svg?style=for-the-badge) ![TOP_LANGUAGE](https://img.shields.io/github/languages/top/https://github.com/SPURconnect/https://github.com/SPURconnect/SPUR-Connect.svg?style=for-the-badge) ![FORKS](https://img.shields.io/github/forks/https://github.com/SPURconnect/https://github.com/SPURconnect/SPUR-Connect.svg?style=for-the-badge&social) ![Stars](https://img.shields.io/github/stars/https://github.com/SPURconnect/https://github.com/SPURconnect/SPUR-Connect.svg?style=for-the-badge)
-    
+ 
 # SPUR Connect
 
 ## Table of Contents
@@ -17,7 +16,7 @@
 
 ## Description
 
-The purpose of this application is to give a traveling business professional the ability to maximize their time and meetings. With SPUR Connect users can get real time information on who is located near them and open to meetings. This application will make it incredibly easy to message another user, and connect to figure out a time to meet. In a clean, professional, intuitive interface users will be able to schedule meetings, record notes, and upload photos of receipts. 
+SPUR Connect exists to give traveling business professional a tool to maximize their time and availability by easing the process of making new professional connections, cold-messaging, and scheduling last-minute meetings. User can get real time information about currently available users who are located near them and open to setting meetings. With a clean, professional, and intuitive mobile-designed interface - users will be able to schedule meetings, send messages, record notes, and upload photos of receipts for business expenditures.
 
 ## Screenshots
 
