@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Button, Menu, MenuItem}  from '@mui/material/';
+import { Menu, MenuItem}  from '@mui/material/';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 export default function MessagesMenu() {

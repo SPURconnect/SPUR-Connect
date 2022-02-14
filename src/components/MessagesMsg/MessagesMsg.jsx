@@ -1,5 +1,4 @@
-import react from 'react';
-import { TableCell, TableRow, Box, Typography, List, ListItem, ListItemText } from '@mui/material';
+import { TableCell, TableRow, List, ListItem, ListItemText } from '@mui/material';
 
 export default function MessagesMsg({ timestamp, message, alignment, user }) {
 
