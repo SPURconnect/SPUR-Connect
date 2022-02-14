@@ -147,7 +147,7 @@ function SelectedMeetingEdit() {
                 onChange={handleSummary}
                 sx={{ mt: 1, width: '82vw', mt: 4, backgroundColor: 'white' }}
                 inputProps={{
-                  maxlength: 255
+                  maxLength: 255
                 }}
                 FormHelperTextProps={{ style: { backgroundColor: '#EBEEEE', margin: 0, padding: '5px' }}}
                 helperText={`${meetingDetailsReducer.summary?.length}/255`}

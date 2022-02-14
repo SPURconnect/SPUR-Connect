@@ -4,9 +4,8 @@ import { useHistory } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 // MUI imports
-
 import {
-  TableRow, TableCell, Button, Card, CardHeader, CardContent, CardActions, Collapse, Avatar, IconButton,
+  Button, Card, CardHeader, CardContent, CardActions, Collapse, Avatar, IconButton,
   Typography, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -79,13 +78,18 @@ function MeetingHistoryItem({ item }) {
       payload: 'searchProfiles'
     });
     history.push(`/searchProfiles/${currentProfile.user_id}`);
-    
   }
  
- 
   let cleanTime = new Date(item.date);
-
-  let bestTime = cleanTime.toLocaleTimeString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'});
+  let bestTime = cleanTime.toLocaleTimeString([], 
+    {
+      year: 'numeric', 
+      month: 'numeric', 
+      day: 'numeric', 
+      hour: '2-digit', 
+      minute: '2-digit'
+    }
+  );
 
   return (
     <div style={{ paddingBottom: '4px' }}>

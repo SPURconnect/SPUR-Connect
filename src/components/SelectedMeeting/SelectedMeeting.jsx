@@ -124,7 +124,6 @@ function SelectedMeeting() {
 
               <Typography
                 variant="body1"
-                // nowrap
                 sx={{
                   padding: "7px 10px 10px 10px",
                   overflow: "auto",
