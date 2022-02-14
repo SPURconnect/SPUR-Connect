@@ -2,23 +2,18 @@ import * as React from 'react';
 import { useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { Box, Button, Stack, TextField, Typography, IconButton, InputAdornment, Grid } from '@mui/material';
-import StaticDateRangePicker from '@mui/lab/StaticDateRangePicker';
+import { Box, Button, TextField, InputAdornment, Grid } from '@mui/material';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
-import EditIcon from '@mui/icons-material/Edit';
 import MeetingNavBar from '../MeetingNavBar/MeetingNavBar';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import EventIcon from '@mui/icons-material/Event';
-
-
 
 function SelectedMeetingEdit() {
   const history = useHistory();
   const dispatch = useDispatch();
   const params = useParams();
-  const meetings = useSelector(store => store.meetings);
   const meetingDetailsReducer = useSelector(store => store.meetingDetailsReducer);
   const [date, setDate] = useState(new Date()); 
 

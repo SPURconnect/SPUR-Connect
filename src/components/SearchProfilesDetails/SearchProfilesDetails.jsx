@@ -5,25 +5,15 @@ import SocialIcons from '../SocialIcons/SocialIcons';
 import MessageSendModal from '../MessageSendModal/MessageSendModal';
 
 //MUI STUFF
-import { Grid, Typography, Box, Button, TextField, ListItemAvatar, Avatar } from '@mui/material';
+import { Grid, Button, TextField, ListItemAvatar, Avatar } from '@mui/material';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import YouTubeIcon from '@mui/icons-material/YouTube';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 /////
 
 function SearchProfilesDetails() {
-  // this component doesn't do much to start, just renders some user reducer info to the DOM
-  const user = useSelector((store) => store.user);
   const singleProfileReducer = useSelector((store) => store.singleProfileReducer);
   const history = useHistory();
   const dispatch = useDispatch();
   const params = useParams();
-
 
   useEffect(() => {
     dispatch({
@@ -36,7 +26,6 @@ function SearchProfilesDetails() {
     <>
       <Button
         onClick={() => history.goBack()}
-      // color='secondary'
       >
         <ArrowBackOutlinedIcon sx={{ padding: '10px' }} /> Back
       </Button>
@@ -105,7 +94,6 @@ function SearchProfilesDetails() {
         <Grid item xs={11} mt="15px">
           <TextField
             multiline
-            // label={`About ${singleProfileReducer.first_name}`}
             fullWidth
             value={singleProfileReducer.about_me}
             sx={{
@@ -114,64 +102,8 @@ function SearchProfilesDetails() {
           />
         </Grid>
         <Grid item xs={.5} />
-
         {/*  */}
 
-        {/* Row 5 */}
-        {/* <Grid item xs={.5} />
-      <Grid item xs={5.25} mt="15px">
-        <GitHubIcon />
-        {singleProfileReducer.portfolio}
-      </Grid>
-      <Grid item xs={.5} />
-      <Grid item xs={5.25} mt="15px">
-        <YouTubeIcon />
-        {singleProfileReducer.youtube}
-      </Grid>
-      <Grid item xs={.5} /> */}
-        {/*  */}
-
-        {/* Row 6 */}
-        {/* <Grid item xs={.5} />
-      <Grid item xs={5.25} mt="15px">
-        <FacebookIcon />
-        {singleProfileReducer.facebook}
-      </Grid>
-      <Grid item xs={.5} />
-      <Grid item xs={5.25} mt="15px">
-        <InstagramIcon />
-        {singleProfileReducer.instagram}
-      </Grid>
-      <Grid item xs={.5} /> */}
-        {/*  */}
-
-        {/* Row 7 */}
-        {/* <Grid item xs={.5} />
-      <Grid item xs={5.25} mt="15px">
-        <LinkedInIcon />
-        {singleProfileReducer.linkedin}
-      </Grid>
-      <Grid item xs={.5} />
-      <Grid item xs={5.25} mt="15px">
-        <TwitterIcon />
-        {singleProfileReducer.twitter}
-      </Grid>
-      <Grid item xs={.5} /> */}
-        {/*  */}
-
-        {/* Row 8 */}
-        {/* <Grid item xs={.5} />
-      <Grid item xs={5.25} mt="15px">
-        <GitHubIcon />
-        {singleProfileReducer.portfolio}
-      </Grid>
-      <Grid item xs={.5} />
-      <Grid item xs={5.25} mt="15px">
-
-      </Grid>
-      <Grid item xs={.5} /> */}
-
-        {/*  */}
       </Grid>
     </>
   );

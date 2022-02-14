@@ -1,21 +1,16 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { Box, Button, Stack, TextField, Typography, IconButton, InputAdornment, Grid } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
+import { Box, Button, TextField, Typography, InputAdornment, Grid } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import SelectedMeetingEdit from '../SelectedMeetingEdit/SelectedMeetingEdit';
 import MeetingNavBar from '../MeetingNavBar/MeetingNavBar';
 import EventIcon from '@mui/icons-material/Event';
-
-
 
 function SelectedMeeting() {
 
   const history = useHistory();
   const dispatch = useDispatch();
   const params = useParams();
-  const meetings = useSelector(store => store.meetings);
   const singleMeeting = useSelector(store => store.meetingDetailsReducer);
 
   useEffect(() => {
