@@ -5,7 +5,6 @@ import toast from 'react-hot-toast';
 
 
 function MeetingPhotosItem({photo}) {
-
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);

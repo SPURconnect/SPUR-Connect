@@ -1,9 +1,8 @@
-import react, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
 import MessagesMsg from '../MessagesMsg/MessagesMsg';
-
 
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 
@@ -33,7 +32,6 @@ export default function MessagesConvo() {
       content: message,
       timestamp: new Date(),
       recipient_id: convoWithUserID.id
-      // sender_id: req.user.id on serverside
     }
     dispatch({
       type: "POST_MESSAGE",
@@ -46,7 +44,6 @@ export default function MessagesConvo() {
     <>
       <Button
         onClick={() => history.push('/messages')}
-      // color='secondary'
       >
         <ArrowBackOutlinedIcon sx={{ padding: '10px' }} /> Back
       </Button>
