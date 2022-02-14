@@ -1,6 +1,4 @@
-import { TableBody, TableRow, TableCell, TableContainer, Grid, Toolbar, Typography } from '@mui/material';
-import { grey } from '@mui/material/colors';
-import { Box } from '@mui/system';
+import { Grid, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MeetingHistoryItem from '../MeetingHistoryItem/MeetingHistoryItem';
@@ -20,29 +18,6 @@ function MeetingHistory() {
 
   return (
     <>
-      {/* <Box
-        color="info"
-        sx={{
-          position: 'fixed',
-          width: '100%',
-          height: '7vh',
-          padding: '9px 0px',
-          boxShadow: '0px 3px 5px rgba(0, 0, 0, .3)'
-        }}
-        zIndex={1500}
-      > */}
-        {/* <Typography
-          variant='h4'
-          sx={{
-            textAlign: 'center',
-            color: grey[50],
-            paddingTop: '9px'
-          }}
-        >
-          Meeting History
-        </Typography> */}
-      {/* </Box> */}
-
       {/* Grid Body Container */}
       <Grid 
         container 
@@ -53,8 +28,6 @@ function MeetingHistory() {
       >
         <Grid item xs={.5} />
         <Grid item xs={11}>
-          {/* <Toolbar sx={{ height: '10px' }} /> */}
-
           {meetings?.length > 0 ?
             meetings?.map((item) => {
               return (
@@ -72,7 +45,6 @@ function MeetingHistory() {
           }
         </Grid>
         <Grid item xs={.5} />
-
       </Grid>
     </>
   )
