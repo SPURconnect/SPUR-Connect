@@ -1,10 +1,7 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
-
-
 function* fetchMeetingDetails(action){
-  console.log('in action payload fetchMeetingDetails ', action.payload);
   try{
     const response = yield axios({
       method: 'GET',
@@ -22,7 +19,6 @@ function* fetchMeetingDetails(action){
 
 
 function* saveMeetingDetails(action){
-  console.log('in action payload saveMeetingDetails ', action.payload);
   try{
 
    yield axios({

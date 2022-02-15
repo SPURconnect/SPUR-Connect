@@ -67,7 +67,6 @@ function* fetchNotes(action){
       method: 'GET',
       url: `/api/meetings/notes/${action.payload}`,
     })
-    console.log(response.data.meeting_notes);
     yield put({
       type: 'SET_NOTES',
       payload: response.data.meeting_notes
@@ -92,8 +91,6 @@ function* saveNotes(action){
     console.log('saveNotes catch error:', error);
   };
 };
-
-
 
 function* meetingSaga(){
   yield takeEvery('ADD_MEETING', addMeeting);

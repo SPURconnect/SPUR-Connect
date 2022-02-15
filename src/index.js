@@ -6,7 +6,7 @@ import store from './redux/store';
 
 import App from './components/App/App';
 
-import { green, grey } from '@mui/material/colors';
+import { green } from '@mui/material/colors';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 
 const theme = createTheme({
