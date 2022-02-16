@@ -3,7 +3,6 @@
 ## Table of Contents
 
 - [Description](#description)
-- [Screenshots](#screenshots)
 - [Built With](#built-with)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
@@ -16,8 +15,6 @@
 ## Description
 
 SPUR Connect exists to give traveling business professional a tool to maximize their time and availability by easing the process of making new professional connections, cold-messaging, and scheduling last-minute meetings. User can get real time information about currently available users who are located near them and open to setting meetings. With a clean, professional, and intuitive mobile-designed interface users are able to schedule meetings, send messages, record notes, and upload photos of receipts for business expenditures.
-
-## Screenshots
 
 ## Built With
 
