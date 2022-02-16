@@ -7,7 +7,6 @@ import MeetingNavBar from '../MeetingNavBar/MeetingNavBar';
 
 function MeetingNotes() {
   // hooks being used
-  const history = useHistory();
   const dispatch = useDispatch();
   const params = useParams();
   // reducers being used
@@ -37,7 +36,6 @@ function MeetingNotes() {
   // sets current meeting for toast notification
   let currentMeeting;
   for (let meeting of meetings) {
-    console.log(params.id)
     if (Number(params.id) === meeting.id) {
       currentMeeting = meeting;
     }
