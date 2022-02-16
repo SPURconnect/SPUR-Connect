@@ -79,7 +79,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     })
 });
 
-//this put route is to help edit a players stats
+// updates the profile based on user input from the front end
 router.put('/:id', rejectUnauthenticated, (req, res) => {
   const sqlText = `
     UPDATE "profiles"
@@ -129,6 +129,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
     })
 })
 
+// PUT route specifically to update your availability toggle
 router.put('/', rejectUnauthenticated, (req, res) => {
   const sqlText = `
     UPDATE "profiles"

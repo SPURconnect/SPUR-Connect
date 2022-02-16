@@ -14,6 +14,7 @@ import { InputAdornment, Box, Grid, Modal, IconButton } from '@mui/material';
 
 import './SearchProfiles.css';
 
+// MUI style for card
 const style = {
   position: 'absolute',
   top: '20%',
@@ -27,11 +28,15 @@ const style = {
 };
 
 function SearchProfiles(props) {
+  // hooks being used
   const dispatch = useDispatch();
+  const history = useHistory();
+  // reducers being used
   const searchProfilesReducer = useSelector(store => store.searchProfilesReducer);
   const user = useSelector(store => store.user);
-  const history = useHistory();
+  // pieces of state being used
   const [open, setOpen] = useState(false);
+  // handles the opening and closing of the more information icon button
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -41,6 +46,8 @@ function SearchProfiles(props) {
     })
   }, []);
 
+  // if the search bar is empty the searchProfiles reducer will be cleared,
+    // else it will send a dispatch with the value of the search 
   const handleQueryChange = (event) => {
     event.preventDefault();
     if (event.target.value === '') {
@@ -56,14 +63,17 @@ function SearchProfiles(props) {
     }
   };
 
+  // handles clicking on a card and pushes a user to the profiles with params
   const handleCardClick = (profile) => {
     history.push(`/searchProfiles/${profile.user_id}`)
   };
 
+  // displays a prompt if there are no searches going 
   const ifNoSearch = () => {
     if (searchProfilesReducer.length === 0) {
       return <p className="justBeCentered" 
-        style={{ padding: '15vh 20vw', opacity: '60%' }}>There's nothing here!<br /><br /> Try searching for potential connections.</p>
+        style={{ padding: '15vh 20vw', opacity: '60%' }}
+        >There's nothing here!<br /><br /> Try searching for potential connections.</p>
     }
     else {
       return;

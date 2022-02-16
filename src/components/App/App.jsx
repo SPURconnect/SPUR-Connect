@@ -12,8 +12,6 @@ import BottomNavBar from '../BottomNavBar/BottomNavBar';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
-import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import MessagesConvo from '../MessagesConvo/MessagesConvo';
@@ -36,10 +34,12 @@ function App() {
 
   const user = useSelector(store => store.user);
   // gets the location of where the user is in the app based on the url
-  // splices it to work with the reducer set up
-  // see BottomNavBar for other side of this code
+    // splices it to work with the reducer set up
+    // see BottomNavBar for other side of this code
   const locationToSend = window.location.hash.replace('#/', '');
 
+  // fetches all the user information, as well as populating all the profiles, meetings, 
+    // industries and updates the where reducer based on the hash in the url
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
     dispatch({ type: 'FETCH_ALL_PROFILES' });
@@ -60,7 +60,7 @@ function App() {
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-          <Redirect exact from="/" to="/home" />
+          <Redirect exact from="/" to="/user" />
 
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
@@ -72,14 +72,6 @@ function App() {
             path="/user"
           >
             <UserPage />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/info"
-          >
-            <InfoPage />
           </ProtectedRoute>
 
           <ProtectedRoute exact path="/searchProfiles">
@@ -167,16 +159,6 @@ function App() {
           <ProtectedRoute exact path="/meeting/photos/:id">
             <MeetingPhotos />
           </ProtectedRoute>
-
-          <Route exact path="/home">
-            {user.id ? (
-              // If the user is already logged in, redirect them to the /user page
-              <Redirect to="/user" />
-            ) : (
-              // Otherwise, show the Landing page
-              <LandingPage />
-            )}
-          </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

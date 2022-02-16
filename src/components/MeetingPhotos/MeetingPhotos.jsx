@@ -10,10 +10,14 @@ import { createStyles, makeStyles } from '@material-ui/core/styles';
 //https://api.cloudinary.com/v1_1/${cloudName}/upload
 
 function MeetingPhotos() {
+  // hooks being used
   const dispatch = useDispatch();
   const params = useParams();
-  const [dialogOpen, setDialogOpen] = useState(false);
+  // reducers being used
   const photos = useSelector((store) => store.photos);
+  // pieces of state being used
+  const [dialogOpen, setDialogOpen] = useState(false);
+  // sets a style for the preview of the dropzone
   const useStyles = makeStyles(theme => createStyles({
     previewChip: {
       minWidth: 160,
@@ -22,6 +26,7 @@ function MeetingPhotos() {
   }));
   const classes = useStyles();
 
+  // on component load fetches the photos of a users meeting based on params
   useEffect(() => {
     fetchPhotos();
   }, []);
@@ -33,6 +38,8 @@ function MeetingPhotos() {
     })
   };
 
+  // handles the adding of photos to a meeting, if the file not an empty string it
+    // dispatches the information from the dropzone dialog
   function handleAddPhoto(file) {
     if (file != '') {
       dispatch({

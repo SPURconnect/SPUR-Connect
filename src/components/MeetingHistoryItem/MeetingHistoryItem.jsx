@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import toast from 'react-hot-toast';
-
 // MUI imports
 import {
   Button, Card, CardHeader, CardContent, CardActions, Collapse, Avatar, IconButton,
@@ -13,7 +12,6 @@ import { grey } from '@mui/material/colors';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Box } from '@mui/system';
-
 // MUI expand styler
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -27,6 +25,7 @@ const ExpandMore = styled((props) => {
 }));
 
 function MeetingHistoryItem({ item }) {
+  // hooks being used
   const dispatch = useDispatch();
   const history = useHistory();
   // reducer for all the profiles
@@ -47,15 +46,18 @@ function MeetingHistoryItem({ item }) {
     setOpen(false);
   };
 
+  // on page load gets all of the meeting history the logged in user has
   useEffect(() => {
     dispatch({ type: 'GET_MEETINGS' });
     displayProfileImage();
   }, [dispatch]);
 
+  // when a meeting is clicked on pushes the user to the meeting details view
   const handleGoToMeetingDetails = () => {
     history.push(`/meeting/${item.id}`);
   }
 
+  // handles the filtering of the profiles reducer to get the profile picture
   const displayProfileImage = () => {
     for (let profile of allProfiles) {
       if (profile.user_id === item.participant_id) {
@@ -64,6 +66,7 @@ function MeetingHistoryItem({ item }) {
     }
   }
 
+  // sends a dispatch to the server when the meeting is deleted
   const handleDeleteMeeting = () => {
     dispatch({
       type: 'DELETE_MEETING',
@@ -72,6 +75,8 @@ function MeetingHistoryItem({ item }) {
     toast.success(`${item.meeting_title} deleted!`)
   }
 
+  // sends the user to the other participants profile when their profile picture is
+    // clicked on
   const handleGoToProfile = () => {
     dispatch({
       type: 'SET_WHERE',
@@ -80,6 +85,7 @@ function MeetingHistoryItem({ item }) {
     history.push(`/searchProfiles/${currentProfile.user_id}`);
   }
  
+  // cleans up the time for displaying on the cards
   let cleanTime = new Date(item.date);
   let bestTime = cleanTime.toLocaleTimeString([], 
     {

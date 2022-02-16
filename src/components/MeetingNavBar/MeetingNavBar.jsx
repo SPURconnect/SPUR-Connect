@@ -10,8 +10,13 @@ import Grid from '@mui/material/Grid';
 import { Toolbar, Typography } from '@mui/material';
 
 function MeetingNavBar({ prop }) {
+  // hooks being used
   const history = useHistory();
   const params = useParams();
+
+  // this component works by being imported into the various meeting views, then having 
+    // props passed along with it. it will change the icon colors depending on the name
+    // of the prop being passed 'details' or 'notes' are examples
 
   return (
     <div>

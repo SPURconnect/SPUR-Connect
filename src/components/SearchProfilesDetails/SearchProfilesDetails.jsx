@@ -7,14 +7,17 @@ import MessageSendModal from '../MessageSendModal/MessageSendModal';
 //MUI STUFF
 import { Grid, Button, TextField, ListItemAvatar, Avatar } from '@mui/material';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
-/////
 
 function SearchProfilesDetails() {
-  const singleProfileReducer = useSelector((store) => store.singleProfileReducer);
+  // hooks being used
   const history = useHistory();
   const dispatch = useDispatch();
   const params = useParams();
+  // reducers being used
+  const singleProfileReducer = useSelector((store) => store.singleProfileReducer);
 
+  // fetches a single profiles based on params and listens for if the params in the url
+    // change, then send the dispatch again
   useEffect(() => {
     dispatch({
       type: 'FETCH_SINGLE_PROFILE',

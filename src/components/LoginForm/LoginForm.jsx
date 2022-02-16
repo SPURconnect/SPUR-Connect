@@ -6,12 +6,17 @@ import TextField from '@mui/material/TextField'
 import { Button } from '@mui/material';
 
 function LoginForm() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const errors = useSelector(store => store.errors);
+  // hooks being used
   const dispatch = useDispatch();
   const history = useHistory();
+  // reducers being used
+  const errors = useSelector(store => store.errors);
+  // pieces of state being used
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
+  // on login dispatches the username and password to be checked, pushes the user to the 
+    // search page and sets the where reducer to the search component
   const login = (event) => {
     if (username && password) {
       dispatch({

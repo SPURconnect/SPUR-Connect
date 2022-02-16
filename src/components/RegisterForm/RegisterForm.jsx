@@ -8,6 +8,12 @@ import { Button } from '@mui/material';
 
 
 function RegisterForm() {
+  // hooks being used
+  const dispatch = useDispatch();
+  // reducers being used
+  const errors = useSelector((store) => store.errors);
+  const industriesReducer = useSelector((store) => store.industriesReducer);
+  // pieces of state being used
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
@@ -17,10 +23,8 @@ function RegisterForm() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [industry, setIndustry] = useState(1);
-  const errors = useSelector((store) => store.errors);
-  const industriesReducer = useSelector((store) => store.industriesReducer);
-  const dispatch = useDispatch();
 
+  // handles the registration dispatch of the new user
   const registerUser = () => {
     dispatch({
       type: 'REGISTER',
@@ -42,10 +46,12 @@ function RegisterForm() {
     });
   }; // end registerUser
 
+  // on component load gets all the industries to populate the drop down
   useEffect(() => {
     dispatch({ type: 'FETCH_INDUSTRIES' })
   }, []);
 
+  // sets the industry piece of state to whatever the user chooses in the drop down
   function chooseIndustry(event) {
     event.preventDefault();
     setIndustry(event.target.value);

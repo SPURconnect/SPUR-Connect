@@ -2,9 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const industriesRouter = express.Router();
 
-/**
- * GET route template
- */
+// GET all industries orders by name
 industriesRouter.get('/', (req, res) => {
   
   const query = `

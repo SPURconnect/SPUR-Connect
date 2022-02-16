@@ -15,7 +15,7 @@ export default function MessagesView() {
   const conversations = useSelector((store) => store.messagesReducer);
   const profiles = useSelector((store) => store.allProfilesReducer);
 
-
+  // fetches a users messages with other users and the profiles
   useEffect(() => {
     dispatch({
       type: "FETCH_MESSAGES"
@@ -23,6 +23,11 @@ export default function MessagesView() {
     dispatch({ type: 'FETCH_ALL_PROFILES' });
   }, [])
 
+  // this component maps through the conversations to display a profile picture, the last message
+    // sent or received and the verticon component
+    // for the profile picture it will give you a warning about the src being not a string
+    // but thats because theres a function inside of it to map over the profiles and get 
+    // the correct photo
   return (
     <>
       <Grid container maxHeight="88%" sx={{ marginTop: '10px' }}>

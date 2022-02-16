@@ -5,16 +5,20 @@ import toast from 'react-hot-toast';
 
 
 function MeetingPhotosItem({photo}) {
+  // hooks being used
   const dispatch = useDispatch();
+  // pieces of state being used
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
+  // when a photo is clicked and view fill size chosen it will being opened in a new window
   const openInNewTab = () => {
     const newWindow = window.open(photo.image_url, '_blank', 'noopener,noreferrer')
     if (newWindow) newWindow.opener = null
     handleClose();
   };
 
+  // when a photo is clicked and delete is chosen it will dispatch the delete request
   function handleDeleteButton(){
     dispatch({
       type: 'DELETE_PHOTO',
@@ -24,10 +28,10 @@ function MeetingPhotosItem({photo}) {
     handleClose();
   }
 
+  // handles the opening and closing of the menu with the options in it
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
   const handleClose = () => {
     setAnchorEl(null);
   };

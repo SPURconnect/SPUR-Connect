@@ -11,12 +11,17 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import EventIcon from '@mui/icons-material/Event';
 
 function SelectedMeetingEdit() {
+  // hooks being used
   const history = useHistory();
   const dispatch = useDispatch();
   const params = useParams();
+  // reducers being used
   const meetingDetailsReducer = useSelector(store => store.meetingDetailsReducer);
+  // pieces of state being used
   const [date, setDate] = useState(new Date()); 
 
+  // gets the meeting details based on params again, also listens to the params
+    // if it changes will update the info on the page
   useEffect(() => {
     dispatch({
       type: 'FETCH_MEETING_DETAILS',
@@ -24,6 +29,9 @@ function SelectedMeetingEdit() {
     })
   }, [params.id]);
 
+  // cleans the date being dispatched
+    // ex: '12/12/2022 10:54 AM'
+    // dispatches the cleaned up date to the meetingDetailsReducer
   function handleSetDate(newValue){
     let cleanTime = newValue.toLocaleTimeString([], 
       {year: 'numeric', 
@@ -40,6 +48,7 @@ function SelectedMeetingEdit() {
     })
   }; 
 
+  // dispatches the updated meeting location to the meetingDetailsReducer
   const handleMeetupLocation = (e) => {
     dispatch({
       type: 'SET_MEETINGUP_LOCATION',
@@ -47,6 +56,7 @@ function SelectedMeetingEdit() {
     })
   }
 
+  // dispatches the updated meeting summary to the meetingDetailsReducer
   const handleSummary = (e) => {
     dispatch({
       type: 'SET_SUMMARY',
@@ -54,6 +64,7 @@ function SelectedMeetingEdit() {
     })
   }
 
+  //  dispatches the updated reducer information to the server
   const saveMeetingDetails = () => {
       dispatch({
         type: 'SAVE_MEETING_DETAILS',

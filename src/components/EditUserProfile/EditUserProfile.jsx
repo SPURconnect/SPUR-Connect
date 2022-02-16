@@ -6,13 +6,17 @@ import { useHistory, useParams } from 'react-router-dom';
 import { Grid, MenuItem, Button, TextField, ListItemAvatar, Avatar } from '@mui/material';
 
 function EditUserProfile() {
+  // hooks being used
   const dispatch = useDispatch();
   const history = useHistory();
+  // reducers being used
   const editProfile = useSelector((store) => store.editProfileReducer);
   const industries = useSelector((store) => store.industriesReducer);
-
+  // pieces of state being used
   const [industry, setIndustry] = useState(editProfile.industry_id);
 
+  // on clicking the edit button on a users profile will fetch the industries as well
+    // as the users entire profile
   useEffect(() => {
     dispatch({
       type: 'SAGA_FETCH_PROFILE_TO_EDIT'
@@ -22,6 +26,8 @@ function EditUserProfile() {
     })
   }, [])
 
+  // after the user is done editing and hits save, will fire a dispatch to the server
+    // to update their information in the database, then push them back to the profile
   const handleUpdateSubmit = (e) => {
     e.preventDefault();
     dispatch({
@@ -47,6 +53,8 @@ function EditUserProfile() {
     })
     history.push('/user');
   }
+  // the rest of the functions handle the changes to the reducer editProfileReducer
+    // that we use to store the information being sent to the database
   const handlePhoto = (e) => {
     dispatch({
       type: 'SET_PHOTO',
@@ -96,7 +104,6 @@ function EditUserProfile() {
       payload: e.target.value
     })
   }
-
   const handleLinkedin = (e) => {
     dispatch({
       type: 'SET_LINKEDIN',

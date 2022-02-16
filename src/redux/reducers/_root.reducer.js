@@ -33,8 +33,8 @@ const rootReducer = combineReducers({
   notes, // contains notes for meetings
   allProfilesReducer, // contains all the profiles of users
   photos, // contains photos for meetings
-  meetingDetailsReducer,
-  singleProfileReducer, 
+  meetingDetailsReducer, // contains the meeting details based on params
+  singleProfileReducer,  
 
 });
 
