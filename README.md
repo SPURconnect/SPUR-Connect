@@ -95,9 +95,6 @@ Next to the camera icon is a note icon. When selected the user will be taken to 
 When finished using the app, a user can go to the profile page by selecting the profile icon on the bottom nav bar at the far left. At the top right of the profile view is a "Log Out" button. This will log them out of the app.
 
 
-## License
-
-<a href="https://choosealicense.com/licenses/mit/"><img src="https://raw.githubusercontent.com/johnturner4004/readme-generator/master/src/components/assets/images/mit.svg" height=40 />MIT License</a>
 
 ## Acknowledgements
 
