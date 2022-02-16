@@ -11,7 +11,7 @@ import editProfileReducer from './editProfile.reducer';
 import notes from './notes.reducer';
 import allProfilesReducer from './allProfiles.reducer';
 import photos from './photos.reducer.js';
-import meetingDetailsReducer from './meetingdetails.reducer';
+import meetingDetailsReducer from './meetingDetails.reducer';
 import singleProfileReducer from './singleProfile.reducer';
 
 

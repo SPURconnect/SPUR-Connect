@@ -60,7 +60,11 @@ If you're a new user, register an account to log in. If you're already registere
 
 Upon first-time registration, users will be taken to their profile view. On this view you can choose the "Edit Profile" button at the bottom to add additional information not required at registration.
 
+![Screenshot](./public/images/profile.png)
+
 On the Edit Profile view users can change their profile picture, their social media links, their current location, and fill out an "About Me" section.
+
+![Screenshot](./public/images/editProfile.png)
 
 Navigation: Along the bottom of the app is a navigation bar with 4 buttons. When an already registered user logs in they will be taken to the second view on that nav bar, the Search view.
 
@@ -68,19 +72,31 @@ When arriving at the search view, the view is empty and the user is prompted to 
 
 The results from the search are cards showing other user's profile pictures, their industry, and their location. Only users who have their visibility toggled on will be searchable.
 
+![Screenshot](./public/images/searchResults.png)
+
 Clicking on the cards will take the user to that other user's profile. 
 
 On another user's profile, their information is shown with links to their social media. On the right side there is a "Say Hello" button that can be used to send the user a message. On the left side there is a "Invite to meet" button that can be used to set up a meeting with the user.
 
+![Screenshot](./public/images/profileDetails.png)
+
 Once a message is sent to the other user, it can be seen by selecting the "Messages" view on the bottom nav bar.
+
+![Screenshot](./public/images/messages.png)
 
 On the messages view, the user is shown a history of their messages with other users. On these cards the user can click the profile picture to be taken to that other user's profile, click the drop down menu on the right to show options that go to the other user's profile, or delete the conversation. If the user clicks anywhere else on the card they will be taken to the conversation with the other user.
 
-When in a conversation view, the messages from other users are shown in green and are on the left side of the view. Your own messages are shown on the right side of the view. Timestamps are shown at the bottom of each message. At the bottom of the page a chat box is shown with a send button at the right of it. A back button at the top left of the view will return the user to the message history view.
+![Screenshot](./public/images/messageDetail.png)
+
+When in a conversation view, the messages from other users are shown in orange and are on the left side of the view. Your own messages are shown on the right side of the view. Timestamps are shown at the bottom of each message. At the bottom of the page a chat box is shown with a send button at the right of it. A back button at the top left of the view will return the user to the message history view.
 
 On another user's profile, when "Invite to Meet" is selected, the user will be taken to  the "Add a meeting" view. On this view, the other user's name and profile picture are shown, with inputs for a meeting title, location for the meeting, a summary of the meeting, and a date and time for the meeting. When finished filling out the details the meeting can be scheduled by selecting "Schedule".
 
+![Screenshot](./public/images/addMeeting.png)
+
 Selecting schedule will take the user to the "Meetings history" view. This view can also be accessed by selecting far left icon "Meetings" on the bottom nav bar. On this view the user can see a history of all of their scheduled and prior meetings.
+
+![Screenshot](./public/images/meetingHistory.png)
 
 Each meeting is shown with a card. The other user's profile picture is shown on the card corresponding with their meeting. The title of the meeting is shown as well as a timestamp for when the meeting was scheduled.
 
@@ -88,9 +104,16 @@ Selecting one of the cards shows a dropdown menu for that specific meeting. On t
 
 When in selected meeting view, a top nav bar is shown for the different views of that meeting. The default view when arriving is the "Details" view. On this page the details of the selected meeting are shown along with the location of the meeting, time of the meeting, and the summary. An "Edit Details" button at the bottom allows the user to change these details. 
 
+![Screenshot](./public/images/meetingDetails.png)
+
 At far right of the top nav bar is a camera icon. When selected this will take the user to the "Photos" view for the selected meeting. This view has an "Upload" button that allows the user to drag or select a photo to be uploaded for the meeting. Already selected uploads are shown as thumbnails on the view. When a thumbnail is selected a menu is shown with options to take the user to a full size view of the image, delete the image, or cancel.
 
+![Screenshot](./public/images/meetingPhotos.png)
+
 Next to the camera icon is a note icon. When selected the user will be taken to the "Notes" page for the selected meeting. This page has a 1000 character limit for any notes the user wants to keep for the meeting. A clear button at the bottom left will clear the notes entirely. A save button at the bottom right will save the notes that are entered.
+
+
+![Screenshot](./public/images/meetingNotes.png)
 
 When finished using the app, a user can go to the profile page by selecting the profile icon on the bottom nav bar at the far left. At the top right of the profile view is a "Log Out" button. This will log them out of the app.
 
