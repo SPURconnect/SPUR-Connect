@@ -4,10 +4,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import UserDetail from '../UserDetail/UserDetail';
 
 function UserPage() {
-  const userProfile = useSelector((store) => store.userProfileReducer);
+  // hooks being used
   const dispatch = useDispatch();
+  // reducers being used
+  const userProfile = useSelector((store) => store.userProfileReducer);
 
-
+  // fetches the user profile and maps through the details for displaying
+    // logoutButton is imported here
   useEffect(() => {
     dispatch({
       type: 'SAGA_FETCH_USER_PROFILES'

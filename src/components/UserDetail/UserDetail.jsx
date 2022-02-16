@@ -17,12 +17,13 @@ import {
 } from '@mui/material';
 
 function UserDetail({ profile }) {
+  // hooks being used
   const history = useHistory();
   const dispatch = useDispatch();
-
+  // reducers being used
   const user = useSelector((store) => store.user);
   const industries = useSelector((store) => store.industriesReducer);
-
+  // filers the industry to display on the user profile
   const indusObject = industries.filter(indus => (indus.id == profile.industry_id));
 
   useEffect(() => {
@@ -32,6 +33,7 @@ function UserDetail({ profile }) {
     })
   }, [user.id])
 
+  // handles the setting and updating of the users availability
   const setAvailability = (event) => {
     event.preventDefault();
     dispatch({
@@ -40,6 +42,7 @@ function UserDetail({ profile }) {
     });
   }
 
+  // renders the switch based on availability in the profile
   const setSwitch = () => {
     if (profile.availability) {
       return <Switch
