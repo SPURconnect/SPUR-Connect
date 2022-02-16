@@ -6,13 +6,15 @@ import toast from 'react-hot-toast';
 import MeetingNavBar from '../MeetingNavBar/MeetingNavBar';
 
 function MeetingNotes() {
-
+  // hooks being used
   const history = useHistory();
   const dispatch = useDispatch();
   const params = useParams();
+  // reducers being used
   const notes = useSelector(store => store.notes);
   const meetings = useSelector(store => store.meetings);
 
+  // on component load fetches the notes based on params
   useEffect(() => {
     fetchNotes();
   }, []);
@@ -24,6 +26,7 @@ function MeetingNotes() {
     })
   };
 
+  // updates the notes reducer when the user types something into the textarea
   const handleNoteChange = (e) => {
     dispatch({
       type: 'EDIT_NOTES',
@@ -40,6 +43,8 @@ function MeetingNotes() {
     }
   }
 
+  // sends the saved notes off to the database for updating
+    // toast notification for success!
   const handleSaveNotes = (e) => {
     e.preventDefault();
     dispatch({
@@ -49,10 +54,10 @@ function MeetingNotes() {
         notes: notes.notes !== null ? notes.notes : ''
       }
     })
-    toast.success(`${currentMeeting.meeting_title} updated!`)
-    history.push(`/meeting/${params.id}`);
+    toast.success(`${currentMeeting.meeting_title} updated!`);
   };
 
+  // when the clear button is clicked it will clear the notes reducer
   function handleClearNotes() {
     dispatch({
       type: 'CLEAR_EDIT_NOTES',
