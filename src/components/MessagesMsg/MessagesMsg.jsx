@@ -1,5 +1,7 @@
 import { TableCell, TableRow, List, ListItem, ListItemText } from '@mui/material';
 
+// component that is imported and given props on how to display it, if its from the sender
+  // it will look different than if its from the receiver
 export default function MessagesMsg({ timestamp, message, alignment, user }) {
 
   return (

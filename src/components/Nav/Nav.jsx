@@ -5,8 +5,11 @@ import { AppBar, Grid, Typography } from '@mui/material';
 import './Nav.css';
 
 function Nav() {
+  // reducer being used
   const user = useSelector((store) => store.user);
 
+  // only displays this component if the user is not logged in, on logging in it will be 
+    // rendered out to save space on a mobile screen
   return (
     <>
       {user.id ?
