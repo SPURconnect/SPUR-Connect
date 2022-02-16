@@ -3,8 +3,10 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 function LogOutButton(props) {
+  // hooks being used
   const dispatch = useDispatch();
 
+  // when the logout button is hit logs the user out and clears the meetings reducer
   const handleLogOut = () => {
     dispatch({ type: 'LOGOUT' });
     dispatch({ type: 'CLEAR_MEETINGS' });
@@ -12,10 +14,6 @@ function LogOutButton(props) {
 
   return (
     <Button
-      // This button shows up in multiple locations and is styled differently
-      // because it's styled differently depending on where it is used, the className
-      // is passed to it from it's parents through React props
-      // className={props.className}
       variant='contained'
       size='small'
       color='primary'

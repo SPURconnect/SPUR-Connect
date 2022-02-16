@@ -4,11 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import MeetingHistoryItem from '../MeetingHistoryItem/MeetingHistoryItem';
 
 function MeetingHistory() {
-  const meetings = useSelector((store) => store.meetings);
+  // hooks being used
   const dispatch = useDispatch();
-
+  // reducers being used
+  const meetings = useSelector((store) => store.meetings);
+  // gets the location to send to the where reducer based on the # in the url
   const locationToSend = window.location.hash.replace('#/', '');
 
+  // on page load updates the where reducer to window location
   useEffect(() => {
     dispatch({
       type: 'SET_WHERE',
