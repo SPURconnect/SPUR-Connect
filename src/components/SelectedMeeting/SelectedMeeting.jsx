@@ -7,12 +7,15 @@ import MeetingNavBar from '../MeetingNavBar/MeetingNavBar';
 import EventIcon from '@mui/icons-material/Event';
 
 function SelectedMeeting() {
-
+  // hooks being used
   const history = useHistory();
   const dispatch = useDispatch();
   const params = useParams();
+  // reducers being used
   const singleMeeting = useSelector(store => store.meetingDetailsReducer);
 
+  // gets a single meeting based on params and if the params change will dispatch
+    // again with the new params
   useEffect(() => {
     dispatch({
       type: 'GET_SINGLE_MEETING',
@@ -20,6 +23,8 @@ function SelectedMeeting() {
     })
   }, [params.id]);
 
+  // updates the date for consistent display
+    // like so '12/12/2022 10:54AM'
   const fixedDate = (meeting) => {
     let theDate = meeting?.date;
     let cleanTime = new Date(theDate);

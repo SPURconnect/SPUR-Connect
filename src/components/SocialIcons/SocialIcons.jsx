@@ -10,6 +10,9 @@ import './SocialIcons.css';
 
 import { Grid } from '@mui/material';
 
+// this component is called in the users profile page and the profiles of other users
+  // the icons are center justified and will only display if a value is given
+
 export default function SocialIcons({ profile }) {
 
   return (
