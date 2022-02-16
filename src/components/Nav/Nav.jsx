@@ -1,9 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import LogOutButton from '../LogOutButton/LogOutButton';
-import './Nav.css';
 import { useSelector } from 'react-redux';
-import { AppBar, Button, Grid, Typography } from '@mui/material';
+import { AppBar, Grid, Typography } from '@mui/material';
+
+import './Nav.css';
 
 function Nav() {
   const user = useSelector((store) => store.user);
@@ -45,26 +44,12 @@ function Nav() {
                 </Typography>
               </Grid>
               <Grid item xs={1} />
-              <Grid item 
+              <Grid item
                 xs={5}
                 sx={{
                   float: 'right'
                 }}
               >
-                {/* If no user is logged in, show these links */}
-                {/* {!user.id && (
-                  // If there's no user, show login/registration links
-                  <Button 
-                    to="/login" 
-                    size='small' 
-                    sx={{ 
-                      color: '#e3e9e9', 
-                      margin: '10px 10px 0px 0px'
-                    }}
-                  >
-                    Login / Register
-                  </Button>
-                )} */}
               </Grid>
             </Grid>
           </AppBar>

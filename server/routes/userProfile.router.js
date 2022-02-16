@@ -5,9 +5,6 @@ const router = express.Router();
 
 // Gets All Profile Info for User Profile View
 router.get('/', rejectUnauthenticated, (req, res) => {
-  // GET route code here
-  console.log('GET/UserProfiles', req.user.id);
-  
   const sqlText = `
     SELECT 
       "profiles"."first_name", 
@@ -46,9 +43,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 // Gets User Profile information by Route Parameter. 
 router.get('/:id', rejectUnauthenticated, (req, res) => {
-  // GET route code here
-  console.log('GET/UserProfiles', req.user.id);
-
   const sqlText = `
     SELECT 
       "profiles"."first_name", 
@@ -87,8 +81,6 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 
 //this put route is to help edit a players stats
 router.put('/:id', rejectUnauthenticated, (req, res) => {
-  
-  
   const sqlText = `
     UPDATE "profiles"
     SET
@@ -129,17 +121,6 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
   ]
   pool.query(sqlText, sqlValues)
     .then((dbRes) => {
-    //   const sqlText2 = `
-    // UPDATE "industry"
-    // SET
-    //       "industry_name"=$1 
-    // WHERE "id" = $2
-    // `;
-    //   const sqlValues2 = [
-    //     req.body.industry_name,
-    //     req.params.id
-    //   ]
-    //   pool.query(sqlText2, sqlValues2)
       res.sendStatus(200)
     })
     .catch((dbErr) => {
@@ -149,8 +130,6 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
 })
 
 router.put('/', rejectUnauthenticated, (req, res) => {
-  console.log("In PUT @@@@@ req.body.availability", req.body.availability);
-  
   const sqlText = `
     UPDATE "profiles"
     SET

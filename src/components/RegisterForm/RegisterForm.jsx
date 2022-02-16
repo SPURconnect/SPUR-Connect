@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import TextField from '@mui/material/TextField'
-import InputLabel from '@mui/material/InputLabel';
+import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
 import { Link } from 'react-router-dom';
-import { Button, Input } from '@mui/material';
+import { Button } from '@mui/material';
 
 
 function RegisterForm() {
@@ -49,7 +48,7 @@ function RegisterForm() {
 
   function chooseIndustry(event) {
     event.preventDefault();
-    setIndustry(event.target.value)
+    setIndustry(event.target.value);
   };
 
   return (
@@ -216,7 +215,8 @@ function RegisterForm() {
             onClick={() => registerUser()}
           >
             Register
-          </Button>        </div>
+          </Button>
+        </div>
         <Link
           style={{
             color: '#F26142',

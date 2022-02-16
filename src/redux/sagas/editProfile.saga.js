@@ -12,8 +12,6 @@ function* fetchProfileToEdit(action){
       type: 'SET_EDIT_PROFILE',
       payload: editProfile[0]
     })
-    console.log('in fetchUserProfileToEdit saga response.data', editProfile);
-    
   } catch (err) {
     console.log('in fetchUserProfileToEdit saga error', err);
   }
@@ -21,7 +19,6 @@ function* fetchProfileToEdit(action){
 
 function* editProfileInfo(action) {
   try {
-    console.log('in editProfileInfo action.payload', action.payload)
     yield axios({
       method: 'PUT',
       url: `/api/userProfile/${action.payload.id}`,
@@ -37,7 +34,6 @@ function* editProfileInfo(action) {
 } 
 
 function* editProfileAvailability(action) {
-  console.log('in editProfileAvailability action.payload', action.payload)
   try {
     yield axios({
       method: 'PUT',
@@ -52,8 +48,6 @@ function* editProfileAvailability(action) {
     console.log('in editProfileAvailability saga err',err )
   }
 } 
-
-
 
 function* editProfileSaga() {
   yield takeLatest('SAGA_FETCH_PROFILE_TO_EDIT', fetchProfileToEdit),

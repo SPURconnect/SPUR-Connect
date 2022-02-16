@@ -13,8 +13,6 @@ function LoginForm() {
   const history = useHistory();
 
   const login = (event) => {
-    // event.preventDefault();
-
     if (username && password) {
       dispatch({
         type: 'LOGIN',

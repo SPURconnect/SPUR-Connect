@@ -1,21 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
-import { Box, Button, Backdrop, Grid} from '@mui/material';
+import { useParams } from 'react-router-dom';
+import { Box, Button, Grid} from '@mui/material';
 import MeetingPhotosItem from '../MeetingPhotosItem/MeetingPhotosItem.jsx';
-import { DropzoneArea, DropzoneDialog } from 'material-ui-dropzone';
+import { DropzoneDialog } from 'material-ui-dropzone';
 import MeetingNavBar from '../MeetingNavBar/MeetingNavBar';
-import './MeetingPhotos.css';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
-import { MuiThemeProvider, createTheme } from "@material-ui/core/styles";
 
 //https://api.cloudinary.com/v1_1/${cloudName}/upload
 
 function MeetingPhotos() {
-
-
-  const history = useHistory();
-
   const dispatch = useDispatch();
   const params = useParams();
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -38,8 +32,6 @@ function MeetingPhotos() {
       payload: params.id
     })
   };
-
-
 
   function handleAddPhoto(file) {
     if (file != '') {

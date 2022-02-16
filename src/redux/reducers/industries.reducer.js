@@ -7,5 +7,4 @@ const industriesReducer = (state = [], action) => {
   }
 };
 
-
 export default industriesReducer;

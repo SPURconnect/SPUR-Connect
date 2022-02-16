@@ -1,11 +1,10 @@
-import react, {useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useHistory } from 'react-router-dom';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
 
-//MUI
-import {TextField, Box, Button, Modal, MenuItem, Grid, Paper, Typography} from '@mui/material';
-
+// MUI imports
+import { TextField, Box, Button, Modal, Grid, Paper } from '@mui/material';
+// MUI style for modal
 const style = {
   position: 'absolute',
   top: '50%',
@@ -17,17 +16,14 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-////// 
 
-export default function MessageSendModal({buttonText, sendTo}) {
+export default function MessageSendModal({ buttonText, sendTo }) {
   //HOOKS
   const dispatch = useDispatch();
-  const history = useHistory();
   //Modal Stuff
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
   //Local State
   const [message, setMessage] = useState('');
 
@@ -36,7 +32,6 @@ export default function MessageSendModal({buttonText, sendTo}) {
       content: message,
       timestamp: new Date(),
       recipient_id: sendTo
-      // sender_id: req.user.id on serverside
     }
     dispatch({
       type: "POST_MESSAGE",
@@ -45,20 +40,20 @@ export default function MessageSendModal({buttonText, sendTo}) {
     setMessage('');
     toast.success(`Message Sent!`)
     handleClose();
-    
+
   };
 
   return (
     <div>
-      <Button 
-          variant="contained"
-          sx={{
-            color: 'white'
-          }}
-          color="primary"
-          size="small"
-          onClick={handleOpen}
-        > {buttonText}
+      <Button
+        variant="contained"
+        sx={{
+          color: 'white'
+        }}
+        color="primary"
+        size="small"
+        onClick={handleOpen}
+      > {buttonText}
       </Button>
       <Modal
         open={open}
@@ -70,10 +65,10 @@ export default function MessageSendModal({buttonText, sendTo}) {
         <Box sx={style}>
           <Grid container style={{ Paper }}>
 
-            <Grid item xs={1}/>
+            <Grid item xs={1} />
 
             <Grid item xs={10}
-              sx={{marginTop: 2, marginBottom: 2}} 
+              sx={{ marginTop: 2, marginBottom: 2 }}
             >
               <TextField
                 fullWidth
@@ -87,25 +82,25 @@ export default function MessageSendModal({buttonText, sendTo}) {
               />
             </Grid>
 
-            <Grid item xs={1}/>
+            <Grid item xs={1} />
 
-            <Grid item xs={3}/>
+            <Grid item xs={3} />
 
             <Grid item align='center' xs={6}
-              sx={{marginTop: 2, marginBottom: 2}} 
+              sx={{ marginTop: 2, marginBottom: 2 }}
             >
-              <Button 
-                variant="contained" 
+              <Button
+                variant="contained"
                 size="small"
-                color="secondary" 
+                color="secondary"
                 onClick={() => handleSendMessage()}
-              > Send 
+              > Send
               </Button>
             </Grid>
-            <Grid item xs={3}/>
+            <Grid item xs={3} />
 
           </Grid>
-          
+
         </Box>
       </Modal>
     </div>
