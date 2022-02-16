@@ -9,16 +9,21 @@ import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import { ListItemAvatar, Avatar } from '@mui/material';
 
 function AddMeeting() {
-
+  // hooks being used in this component
   const history = useHistory();
   const dispatch = useDispatch();
   const params = useParams();
+  // reducers being used in this components
   const singleProfileReducer = useSelector((store) => store.singleProfileReducer);
+  // various pieces of state being used in this component
   const [meetingTitle, setMeetingTitle] = useState('');
   const [summary, setSummary] = useState('');
   const [location, setLocation] = useState('');
   const [date, setDate] = useState(new Date());
 
+  // on page load fetches a single profile based on params
+    // also listens for if the params changes 
+    // fetches single profile again if the params does change
   useEffect(() => {
     dispatch({
       type: 'FETCH_SINGLE_PROFILE',
@@ -26,10 +31,10 @@ function AddMeeting() {
     })
   }, [params.id])
 
+  // next three handle the user input for title, location, and summary
   function handleSetMeetingTitle(event) {
     setMeetingTitle(event.target.value);
   };
-
   function handleSetLocation(event) {
     setLocation(event.target.value);
   };
@@ -37,6 +42,8 @@ function AddMeeting() {
     setSummary(event.target.value);
   };
 
+  // changes the input of time to a cleaned up time 
+    // displayed as '12/12/2022 10:54 AM'
   function handleSetDate(newValue) {
     let cleanTime = newValue.toLocaleTimeString([],
       {
@@ -50,10 +57,14 @@ function AddMeeting() {
     setDate(cleanTime);
   };
 
+  // pushes the user to the profile when you click the back button
   function goToProfile() {
     history.push(`/searchProfiles/${params.id}`);
   };
 
+  // when the schedule button is clicked sends a dispatch to add that meeting 
+    // to the server as well as clearing the pieces of state, the profiles, and
+    // changing the where reducer to meeting after pushing the user to meetings
   function addMeeting() {
     console.log(meetingTitle, location, date)
     dispatch({

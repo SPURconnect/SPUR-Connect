@@ -36,10 +36,12 @@ function App() {
 
   const user = useSelector(store => store.user);
   // gets the location of where the user is in the app based on the url
-  // splices it to work with the reducer set up
-  // see BottomNavBar for other side of this code
+    // splices it to work with the reducer set up
+    // see BottomNavBar for other side of this code
   const locationToSend = window.location.hash.replace('#/', '');
 
+  // fetches all the user information, as well as populating all the profiles, meetings, 
+    // industries and updates the where reducer based on the hash in the url
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
     dispatch({ type: 'FETCH_ALL_PROFILES' });
