@@ -10,23 +10,26 @@ import { TableContainer, Table, TableBody, Grid, TextField, Button, Box, Typogra
 import SendIcon from '@mui/icons-material/Send';
 
 export default function MessagesConvo() {
-  //alias HOOKs
+  // alias HOOKs
   const dispatch = useDispatch();
   const history = useHistory();
   const convoWithUserID = useParams();
-  //REDUX store
+  // REDUX store
   const userMessages = useSelector((store) => store.messagesReducer);
-  //filter for specific messages
+  // filter for specific messages
   const userConvo = userMessages.filter((convo) => (convo.uniqUser == convoWithUserID.id));
-
+  // pieces of state being used
   const [message, setMessage] = useState('');
 
+  // on component load fetches all the messages of a user 
   useEffect(() => {
     dispatch({
       type: "FETCH_MESSAGES"
     })
   }, [])
 
+  // handles the sending of the message when the arrow button is clicked
+    // sets a new object and dispatches that object to be POSTed
   const handleSendMessage = () => {
     let outboundMessage = {
       content: message,

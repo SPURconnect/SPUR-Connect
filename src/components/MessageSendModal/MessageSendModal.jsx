@@ -22,11 +22,13 @@ export default function MessageSendModal({ buttonText, sendTo }) {
   const dispatch = useDispatch();
   //Modal Stuff
   const [open, setOpen] = useState(false);
+  // handles the opening and closing of the modal
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   //Local State
   const [message, setMessage] = useState('');
 
+  // POSTs a message to another user and handles the closing of the modal
   const handleSendMessage = () => {
     let outboundMessage = {
       content: message,
@@ -40,7 +42,6 @@ export default function MessageSendModal({ buttonText, sendTo }) {
     setMessage('');
     toast.success(`Message Sent!`)
     handleClose();
-
   };
 
   return (
