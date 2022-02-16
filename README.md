@@ -123,6 +123,13 @@ When finished using the app, a user can go to the profile page by selecting the 
 
 Thank you to Brandon Hlavka and Kristy Dahlvang for having the SPUR Connect vision. Thank you to the SPUR Connect Prime Digital Academy team who helped make that vision a reality.
 
+- [Kayla Mir](https://github.com/Kayla-Mir)
+- [Joe Allen](https://github.com/AllenJoeG)
+- [Michael Huso](https://github.com/husomichael)
+- [Nicholas Ilacqua](https://github.com/IlacquaNicholas)
+- [Victor Lees](https://github.com/vlees46)
+- [Duncan Nielsen](https://github.com/duncann008)
+
 ## Contacts
 
 <a href="https://www.linkedin.com/in/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>  <a href="mailto:Spurconnect.2022@gmail.com"><img src=https://raw.githubusercontent.com/johnturner4004/readme-generator/master/src/components/assets/images/email_me_button_icon_151852.svg /></a>
